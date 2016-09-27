@@ -1,7 +1,7 @@
 language: csharp
+solution: GroupProject.sln
 sudo: required
 dist: trusty
-solution: GroupProject.sln
 
 mono: none
 dotnet: 1.0.0-preview2-003131
