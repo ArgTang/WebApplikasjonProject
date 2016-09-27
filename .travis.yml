@@ -13,4 +13,5 @@ branches:
 script:
   # Run a new console app
   - dotnet restore
+  - cd src/GroupProject/
   - dotnet --verbose run
