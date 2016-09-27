@@ -1,5 +1,4 @@
 language: csharp
-solution: GroupProject.sln
 sudo: required
 dist: trusty
 
@@ -11,7 +10,6 @@ branches:
     - master
     
 script:
-  # Run a new console app
-  - dotnet restore
   - cd src/GroupProject/
-  - dotnet --verbose build
+  - dotnet restore
+  - dotnet --verbose build -c Release
