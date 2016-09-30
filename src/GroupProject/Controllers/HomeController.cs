@@ -13,7 +13,20 @@ namespace GroupProject.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewBag.Message = "Powered by ASP.NET Core";
+            ViewData["Title"] = "Index";
+            ViewBag.Message = "This is Index";
+            return View();
+        }
+
+        public IActionResult About() {
+            ViewData["Title"] = "About";
+            ViewBag.Message = "About";
+            return View();
+        }
+
+        public IActionResult Contact() {
+            ViewData["Title"] = "Contact";
+            ViewBag.Message = "This is not Index, but Contact";
             return View();
         }
     }

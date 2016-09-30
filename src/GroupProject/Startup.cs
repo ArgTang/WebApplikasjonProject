@@ -50,11 +50,12 @@ namespace GroupProject
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
             }
             else
             {
-                app.UseExceptionHandler("/Main/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseApplicationInsightsExceptionTelemetry();
