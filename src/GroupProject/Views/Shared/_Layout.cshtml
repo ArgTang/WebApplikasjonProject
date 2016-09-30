@@ -5,9 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-
+    <link rel="stylesheet" href="~/css/style.css" />
+    
     <environment names="Development">
-        <link rel="stylesheet" href="~/css/style.css" />
+       
     </environment>
     <environment names="Staging,Production">
         <!-- CDN links here see https://docs.asp.net/en/latest/client-side/bootstrap.html -->
@@ -15,29 +16,27 @@
 </head>
 <body>
 
-    <nav>
-        <ul>
-            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-            <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-            <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-        </ul>
-    </nav>
-
-<main>
+    @await Html.PartialAsync("navigation")
+    
+    <!-- Typescript integration test, remove later-->
     <p class="message"></p>
-    Compiler: <input id="compiler" value="TypeScript" onkeyup="document.getElementById('message').innerText = sayHello()" />
-    @RenderBody()
-</main>
-    
-    <footer>
-        <p>This is a footer &copy; 2016</p>
-    </footer>
-    
+    Compiler: <input id="compiler" value="TypeScript" onkeyup="document.querySelector('.message').innerText = sayHello()" />
+
+    <main>
+        <!-- this is where content is inserted -->
+        @RenderBody()
+    </main>
+
+    @await Html.PartialAsync("footer")
+
+    <script src="JS/app.js"></script>
     <environment names="Development">
-    
+
     </environment>
     <environment names="Staging,Production">
 
     </environment>
+
+@RenderSection("scripts", required: false)
 </body>
 </html>
