@@ -60,12 +60,13 @@
       "wwwroot",
       "web.config",
       "Appsettings.json",
-      "Views  "
+      "Views"
     ]
   },
 
   "scripts": {
-    "precompile": ["dotnet bundle"],
+    "precompile": [ "dotnet bundle" ],
+    "prepublish": [ "npm install", "gulp clean" ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }
