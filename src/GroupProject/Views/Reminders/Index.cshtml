@@ -1,0 +1,14 @@
+﻿
+@Model List<Reminder>
+@using GroupProject.Models
+    
+<section>
+    <h1>Persons</h1>
+    <ul>
+        @foreach (var reminder in Model)
+        {
+            <li>@reminder.Title</li>
+
+        }
+    </ul>
+</section>

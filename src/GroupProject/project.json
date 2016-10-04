@@ -1,9 +1,11 @@
 ﻿{
   "dependencies": {
     "BundlerMinifier.Core": "2.2.281",
-    "Microsoft.ApplicationInsights.AspNetCore": "1.0.1",
+    "Microsoft.ApplicationInsights.AspNetCore": "1.0.2",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
+    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
     "Microsoft.AspNetCore.Mvc": "1.0.1",
+    "Microsoft.AspNetCore.Mvc.TagHelpers": "1.0.1",
     "Microsoft.AspNetCore.Razor": "1.0.0",
     "Microsoft.AspNetCore.Razor.tools": {
       "version": "1.0.0-preview2-final",
@@ -12,6 +14,11 @@
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1",
+    "Microsoft.EntityFrameworkCore.Tools": {
+      "version": "1.0.0-preview2-final",
+      "type": "build"
+    },
     "Microsoft.Extensions.Configuration": "1.0.0",
     "Microsoft.Extensions.Configuration.CommandLine": "1.0.0",
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0",
@@ -23,14 +30,14 @@
       "type": "platform",
       "version": "1.0.1"
     },
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
   },
 
   "tools": {
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final",
     "BundlerMinifier.Core": "2.2.281",
-    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final"
-
+    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
+    "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final",
   },
 
   "frameworks": {
@@ -58,12 +65,13 @@
       "wwwroot",
       "web.config",
       "Appsettings.json",
-      "Views  "
+      "Views"
     ]
   },
 
   "scripts": {
-    "precompile": ["dotnet bundle"],
+    "precompile": [ "dotnet bundle" ],
+    "prepublish": [ "npm install", "gulp clean" ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }

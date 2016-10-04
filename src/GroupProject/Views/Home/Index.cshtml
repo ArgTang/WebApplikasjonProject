@@ -1,10 +1,20 @@
-﻿<!DOCTYPE HTML>
-<html lang="en-US">
-<head>
-    <meta charset="utf-8" />
-    <title>ASP.NET Core Website</title>
-</head>
-<body>
-    <h1>@ViewBag.Message</h1>
-</body>
-</html>
+﻿@Model List<Person>
+@using GroupProject.Models
+
+@{
+    Layout = "_Layout";
+}
+
+
+<h1>@ViewBag.Message</h1>
+
+
+
+<section>
+    <h1>Persons</h1>
+    <ul>
+        @foreach ( var person in Model ) {
+            <li>@person.FirstName</li>
+        }
+    </ul>
+</section>
