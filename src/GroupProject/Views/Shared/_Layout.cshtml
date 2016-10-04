@@ -4,10 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     
     <environment names="Development">
-       
+        <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <script scr="lib/jquery/dist/jquery.js"></script>
+        <script async defer scr="lib/bootstrap/dist/js/bootstrap.js"></script>
     </environment>
     <environment names="Staging,Production">
         <!-- CDN links here see https://docs.asp.net/en/latest/client-side/bootstrap.html -->
