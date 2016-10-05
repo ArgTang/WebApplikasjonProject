@@ -1,0 +1,13 @@
+﻿@import 'colors';
+
+body {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $base;
+}
+
+nav {
+    font-size: 1.3em;
+}
