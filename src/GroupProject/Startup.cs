@@ -36,7 +36,7 @@ namespace GroupProject
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddDbContext<PersonContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                    options.UseSqlServer(Configuration.GetConnectionString("ole")));
             services.AddMvc();
         }
 
