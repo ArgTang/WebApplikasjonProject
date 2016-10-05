@@ -20,7 +20,7 @@ var paths = {
 paths.sass = paths.frontroot + '/sass/**/*.scss';
 
 gulp.task('clean', function () {
-    return del([paths.webroot +'/js/**/*', 
+    return del([paths.webroot + '/js/**/*', 
                 paths.webroot + '/css/**/*' ]);
 });
 
