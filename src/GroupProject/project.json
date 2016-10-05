@@ -70,7 +70,7 @@
   },
 
   "scripts": {
-    "precompile": [ "dotnet bundle" ],
+    "precompile": [ "dotnet bundle", "gulp compile" ],
     "prepublish": [ "npm install", "bower install", "gulp clean" ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
