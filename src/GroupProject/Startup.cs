@@ -15,8 +15,8 @@ namespace GroupProject
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile(Path.Combine(env.ContentRootPath, "appsettings.json"), optional:true, reloadOnChange:true)
-                .AddJsonFile(Path.Combine(env.ContentRootPath, $"appsettings.{env.EnvironmentName}.json"), optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional:true, reloadOnChange:true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
             if (env.IsDevelopment())
@@ -36,7 +36,7 @@ namespace GroupProject
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddDbContext<PersonContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                    options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddMvc();
         }
 
