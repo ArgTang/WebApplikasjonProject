@@ -1,0 +1,209 @@
+.container_description {
+    vertical-align: top;
+}
+
+.container_main {
+    vertical-align: middle;
+}
+
+.container_description,
+.container_main {
+    .overlay {
+        display: none;
+        position: absolute;
+        background: white;
+        @include opacity(0);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        &.active {
+            display: block;
+        }
+    }
+}
+
+.container_description {
+    background-color: #eee;
+    color: #666;
+    > .wrp {
+        position: relative;
+        overflow: hidden;
+        border-right: 1px solid #CCCCCC;
+        > .col {
+            position: absolute;
+            overflow: auto;
+            top: 0;
+            bottom: 0;
+            &.content {
+                margin: 0 .5em;
+                left: 0;
+                right: 1em;
+                overflow: hidden;
+            }
+            &.handle {
+                right: 0em;
+                width: 1em;
+                > * {
+                    position: absolute;
+                    top: 50%;
+                    bottom: 50%;
+                    margin-top: -2em;
+                }
+            }
+        }
+    }
+    h1 {
+        font-size: 1.3em;
+        font-weight: bold;
+
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+}
+
+.container_main {
+    &.fullscreen {
+        .container,
+        .resizable {
+            width: 100%;
+            height: 100%;
+        }
+        .handle_resize {
+            display: none;
+        }
+    }
+    .container {
+        vertical-align: middle;
+        text-align: center;
+        iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            // opeare fixes
+            position: relative;
+            z-index: 1;
+        }
+        .resizable {
+            &.active iframe {
+                outline: 1px dashed #333;
+            }
+            @include inline-block;
+            position: relative;
+            letter-spacing: 0;
+            .handle_resize {
+                $unit: 2em;
+                position: absolute;
+                background: transparent;
+                &.handle_resize_e {
+                    top: 50%;
+                    bottom: 50%;
+                    right: -$unit;
+                    margin-top: -2em;
+                    width: .9em;
+                    vertical-align: middle;
+                }
+                &.handle_resize_s {
+                    bottom: -$unit;
+                    left: 50%;
+                    right: 50%;
+                    margin-left: -2em;
+                    height: .9em;
+                    text-align: center;
+                }
+                &.handle_resize_se {
+                    bottom: -$unit/2;
+                    right: -$unit/2;
+                    width: $unit;
+                    height: $unit;
+                }
+            }
+        }
+    }
+}
+
+.handle_resize {
+    &.handle_resize_e {
+        cursor: e-resize;
+    }
+    &.handle_resize_s {
+        cursor: s-resize;
+    }
+    &.handle_resize_se {
+        cursor: se-resize;
+    }
+}
+
+/*
+<ul class="accordion">
+	<li class="open">
+		<div class="wrp">
+			<h1>
+				<div>
+					<iframe>
+*/
+.accordion {
+    display: block;
+    &.open {
+        @extend .tbl;
+    }
+    width: 100%;
+    height: 100%;
+
+    li {
+        height: 4em;
+        &.content {
+            height: 0;
+            overflow: hidden;
+            display: none;
+            background: #f8f8f8;
+            border-bottom: 1px solid #ccc;
+        }
+        h1 {
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+            padding: 1em .5em;
+            position: relative;
+            &:after {
+                font-size: 1.3em;
+                font-weight: bold;
+                font-family: monospace;
+                content: "+";
+                position: absolute;
+                // aligned to the column close button
+                right: 5px;
+                color: #007BC0;
+            }
+        }
+        iframe {
+            display: none;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    &.open {
+        > .heading.open {
+            h1 {
+                &:after {
+                    content: "-";
+                }
+            }
+            + .content {
+                display: table-row;
+                height: auto;
+                > div {
+                    iframe {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}

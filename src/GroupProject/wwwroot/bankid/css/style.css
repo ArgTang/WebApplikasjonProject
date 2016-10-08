@@ -1,0 +1,70 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot');
+	src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('fonts/icomoon.woff') format('woff'),
+		url('fonts/icomoon.ttf') format('truetype'),
+		url('fonts/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'icomoon';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"] {
+*/
+.icon-exchange, .icon-fullscreen, .icon-remove, .icon-reorder, .icon-desktop, .icon-tablet, .icon-mobile, .icon-caret-down, .icon-caret-up, .icon-link {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-exchange:before {
+	content: "\f0ec";
+}
+.icon-fullscreen:before {
+	content: "\e000";
+}
+.icon-remove:before {
+	content: "\f00d";
+}
+.icon-reorder:before {
+	content: "\f0c9";
+}
+.icon-desktop:before {
+	content: "\f108";
+}
+.icon-tablet:before {
+	content: "\f10a";
+}
+.icon-mobile:before {
+	content: "\f10b";
+}
+.icon-caret-down:before {
+	content: "\f0d7";
+}
+.icon-caret-up:before {
+	content: "\f0d8";
+}
+.icon-link:before {
+	content: "\f0c1";
+}
