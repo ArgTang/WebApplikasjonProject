@@ -243,3 +243,4 @@ ModelManifest.xml
 src/GroupProject/wwwroot/JS/
 src/GroupProject/scripts/*.js
 src/GroupProject/scripts/app.js.map
+global.json
