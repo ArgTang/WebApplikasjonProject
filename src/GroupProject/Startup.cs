@@ -1,11 +1,11 @@
 ﻿using System.IO;
-using GroupProject.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using GroupProject.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GroupProject
 {
@@ -34,10 +34,10 @@ namespace GroupProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationInsightsTelemetry(Configuration);
-
-            services.AddDbContext<PersonContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ole")));
-            services.AddMvc();
+            services.AddDbContext<PersonDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("ole")));
+            services.AddMvc();       
+                  
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace GroupProject.Models
 {
-    [Table("Person")]
-    public class Person
+    [Table("Konto")]
+    public class Konto
     {
         [Key]
-        public int PersonId { get; set; }
-        public string passord { get; set; }
-        public string PersonNr { get; set; }
-
+        public int kontoId { get; set; }
+        public string kontoNr { get; set; }
+        public int saldo { get; set; }
     }
 }
