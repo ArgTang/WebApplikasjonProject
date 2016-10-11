@@ -9,11 +9,9 @@ namespace GroupProject.Controllers
 {
     public class HomeController : Controller
     {
-        private IConfiguration _config;
 
-        public HomeController(IConfiguration config)
+        public HomeController()
         {
-            _config = config;
             //SeedData.Seed(personContext);
         }
         // GET: /<controller>/
