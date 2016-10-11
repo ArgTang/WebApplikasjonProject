@@ -15,8 +15,8 @@ namespace GroupProject
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile(Path.Combine(env.ContentRootPath, "appsettings.json"), optional:true, reloadOnChange:true)
-                .AddJsonFile(Path.Combine(env.ContentRootPath, $"appsettings.{env.EnvironmentName}.json"), optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional:true, reloadOnChange:true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
             if (env.IsDevelopment())
@@ -34,10 +34,12 @@ namespace GroupProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationInsightsTelemetry(Configuration);
+
+
             services.AddDbContext<PersonDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("ole")));
-            services.AddMvc();       
-                  
+                    options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddMvc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

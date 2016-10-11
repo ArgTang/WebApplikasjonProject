@@ -240,6 +240,12 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-src/GroupProject/wwwroot/JS/
+
+# Our own ignores
+src/GroupProject/frontendsrc/*/*.js
+src/GroupProject/frontendsrc/*/*.map
+src/GroupProject/wwwroot/
+src/GroupProject/Migrations
+
 src/GroupProject/scripts/*.js
-src/GroupProject/scripts/app.js.map
+src/GroupProject/scripts/*.js.map

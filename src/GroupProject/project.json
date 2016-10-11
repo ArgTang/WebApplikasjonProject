@@ -43,7 +43,7 @@
         "portable-net45+win8+dnxcore50",
         "portable-net45+win8"
       ]
-    } 
+    }
   },
 
   "frameworks": {
@@ -77,7 +77,8 @@
 
   "scripts": {
     "precompile": [ "dotnet bundle" ],
-    "prepublish": [ "npm install", "gulp clean" ],
+    "postcompile": [ "gulp compile" ],
+    "prepublish": [ "npm install", "bower install", "gulp clean" ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }
