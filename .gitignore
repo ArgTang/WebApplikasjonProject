@@ -245,6 +245,7 @@ ModelManifest.xml
 src/GroupProject/frontendsrc/*/*.js
 src/GroupProject/frontendsrc/*/*.map
 src/GroupProject/wwwroot/
+!src/GroupProject/wwwroot/images
 src/GroupProject/Migrations
 
 src/GroupProject/scripts/*.js
