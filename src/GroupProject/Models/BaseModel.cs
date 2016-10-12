@@ -12,21 +12,18 @@ namespace GroupProject.Models
         [Required]
         public int Id { get; set; }
 
-        //[Required]
-        //public DateTime CreatedDate { get; set; }
+        [Required]
+        public DateTime CreatedDate { get; set; }
 
-        //[Required]
-        //[StringLength(50)]
-        //public string createdBy { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string createdBy { get; set; }
 
-        //[Required]
-        //public DateTime UpdatedDate { get; set; }
+        [Required]
+        public DateTime UpdatedDate { get; set; }
 
-        //[Required]
-        //[StringLength(50)]
-        //public string UpdatedBy { get; set; }  
-
-        
-
+        [Required]
+        [StringLength(50)]
+        public string UpdatedBy { get; set; }
     }
 }

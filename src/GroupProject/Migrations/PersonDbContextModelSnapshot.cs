@@ -18,13 +18,24 @@ namespace GroupProject.Migrations
 
             modelBuilder.Entity("GroupProject.Models.Betalinger", b =>
                 {
-
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("CreatedDate");
+
                     b.Property<int>("KontoerId");
 
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
+
+                    b.Property<DateTime>("UpdatedDate");
+
                     b.Property<int>("belop");
+
+                    b.Property<string>("createdBy")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
 
                     b.Property<string>("info")
                         .IsRequired()
@@ -34,26 +45,27 @@ namespace GroupProject.Migrations
 
                     b.HasIndex("KontoerId");
 
-                    b.Property<int>("betalingsId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("belop");
-
-                    b.Property<string>("info");
-
-                    b.HasKey("betalingsId");
-
-
                     b.ToTable("Betalinger");
                 });
 
             modelBuilder.Entity("GroupProject.Models.Konto", b =>
                 {
-
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("CreatedDate");
+
                     b.Property<int>("PersonerId");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<string>("createdBy")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
 
                     b.Property<string>("kontoNr")
                         .IsRequired();
@@ -64,33 +76,36 @@ namespace GroupProject.Migrations
 
                     b.HasIndex("PersonerId");
 
-                    b.Property<int>("kontoId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("kontoNr");
-
-                    b.Property<int>("saldo");
-
-                    b.HasKey("kontoId");
-
-
                     b.ToTable("Konto");
                 });
 
             modelBuilder.Entity("GroupProject.Models.Person", b =>
                 {
-                    b.Property<int>("PersonId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("PersonNr");
+                    b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("passord");
+                    b.Property<string>("PersonNr")
+                        .IsRequired();
 
-                    b.HasKey("PersonId");
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<string>("createdBy")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
+
+                    b.Property<string>("passord")
+                        .IsRequired();
+
+                    b.HasKey("Id");
 
                     b.ToTable("Person");
                 });
-
 
             modelBuilder.Entity("GroupProject.Models.Betalinger", b =>
                 {
