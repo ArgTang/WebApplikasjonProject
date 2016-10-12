@@ -7,7 +7,6 @@ function bidMobile() {
      * @type {number}
      */
     var KEY_ESC = 27;
-    var TIMER = 2000;
 
     /**
      * Action constants
@@ -486,10 +485,6 @@ function bidMobile() {
     function referencePage() {
 
         setPageHeaderAccordingToAction();
-
-        setTimeout( function () {
-            redirect( "../login?udd=n06_b_password", false, false );
-        }, TIMER );
     }
 
     //    -----------------------------------------------------------------------------------------------------

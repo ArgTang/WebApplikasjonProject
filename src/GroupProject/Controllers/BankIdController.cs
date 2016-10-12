@@ -8,15 +8,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GroupProject.Controllers
 {
-    public class LoginController : Controller
+    public class BankIdController : Controller
     {
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Identify()
         {
             return View();
         }
 
         public IActionResult Reference()
+        {
+            return View();
+        }
+
+        public IActionResult Password()
         {
             return View();
         }
