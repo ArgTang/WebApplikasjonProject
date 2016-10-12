@@ -6,11 +6,14 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
+
 namespace GroupProject.Models
 {
-    public class PersonDbContext : DbContext
+    public class PersonDbContext:DbContext
     {
-        public PersonDbContext(DbContextOptions<PersonDbContext> options) : base(options)
+        
+        public PersonDbContext(DbContextOptions<PersonDbContext> options):base(options)
+
         {
 
         }
@@ -27,6 +30,5 @@ namespace GroupProject.Models
 
             base.OnModelCreating(modelBuilder);
         }
-
     }
 }

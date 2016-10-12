@@ -19,6 +19,5 @@ namespace GroupProject.Models
         public virtual Konto Kontoer { get; set; }
         [Required]
         public int KontoerId { get; set; }
-
     }
 }

@@ -18,6 +18,7 @@ namespace GroupProject.Migrations
 
             modelBuilder.Entity("GroupProject.Models.Betalinger", b =>
                 {
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
@@ -33,11 +34,22 @@ namespace GroupProject.Migrations
 
                     b.HasIndex("KontoerId");
 
+                    b.Property<int>("betalingsId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("belop");
+
+                    b.Property<string>("info");
+
+                    b.HasKey("betalingsId");
+
+
                     b.ToTable("Betalinger");
                 });
 
             modelBuilder.Entity("GroupProject.Models.Konto", b =>
                 {
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
@@ -51,6 +63,16 @@ namespace GroupProject.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("PersonerId");
+
+                    b.Property<int>("kontoId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("kontoNr");
+
+                    b.Property<int>("saldo");
+
+                    b.HasKey("kontoId");
+
 
                     b.ToTable("Konto");
                 });
@@ -68,6 +90,7 @@ namespace GroupProject.Migrations
 
                     b.ToTable("Person");
                 });
+
 
             modelBuilder.Entity("GroupProject.Models.Betalinger", b =>
                 {
