@@ -12,7 +12,7 @@ namespace GroupProject.Controllers
 
         public HomeController()
         {
-            //SeedData.Seed(personContext);
+            //SeedData.Seed(personDbContext);
         }
         // GET: /<controller>/
         public IActionResult Index()

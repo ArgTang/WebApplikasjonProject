@@ -18,28 +18,39 @@ namespace GroupProject.Migrations
 
             modelBuilder.Entity("GroupProject.Models.Betalinger", b =>
                 {
-                    b.Property<int>("betalingsId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("KontoerId");
 
                     b.Property<int>("belop");
 
-                    b.Property<string>("info");
+                    b.Property<string>("info")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 100);
 
-                    b.HasKey("betalingsId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("KontoerId");
 
                     b.ToTable("Betalinger");
                 });
 
             modelBuilder.Entity("GroupProject.Models.Konto", b =>
                 {
-                    b.Property<int>("kontoId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("kontoNr");
+                    b.Property<int>("PersonerId");
+
+                    b.Property<string>("kontoNr")
+                        .IsRequired();
 
                     b.Property<int>("saldo");
 
-                    b.HasKey("kontoId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonerId");
 
                     b.ToTable("Konto");
                 });
@@ -56,6 +67,22 @@ namespace GroupProject.Migrations
                     b.HasKey("PersonId");
 
                     b.ToTable("Person");
+                });
+
+            modelBuilder.Entity("GroupProject.Models.Betalinger", b =>
+                {
+                    b.HasOne("GroupProject.Models.Konto", "Kontoer")
+                        .WithMany("betal")
+                        .HasForeignKey("KontoerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("GroupProject.Models.Konto", b =>
+                {
+                    b.HasOne("GroupProject.Models.Person", "Personer")
+                        .WithMany("konto")
+                        .HasForeignKey("PersonerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

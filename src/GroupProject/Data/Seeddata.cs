@@ -1,32 +1,35 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
-//using GroupProject.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using GroupProject.Models;
 
-//namespace GroupProject.Data
-//{
-//    public static class SeedData
-//    {
-//        public static void Seed(PersonContext context)
-//        {
-//            context.Database.EnsureCreated();
-            
-//            if (!context.Persons.Any())
-//            {
-//                context.AddRange( new Person
-//                {
-//                    FirstName = "Bob",
-//                    LastName = "Belcher"
-//                },
-//                new Person
-//                {
-//                    FirstName = "Sterling Mallory",
-//                    LastName = "Archer"
-//                });
+namespace GroupProject.Data
+{
+    public static class SeedData
+    {
+        public static void Seed(PersonDbContext context)
+        {
+            context.Database.EnsureCreated();
 
-//                context.SaveChanges();
-//            }
+            if (!context.Personer.Any())
+            {
+                context.AddRange(new Person
+                {
+                    PersonNr = "12321312312",
+                    passord = "psyco"
+                },
+                new Person
+                {
+                    PersonNr = "56765756757",
+                    passord = "heipaadeg"
+                });
+
+                context.SaveChanges();
+            }
+        }
+    }
+}
 
 //            if (!context.Addresses.Any())
 //            {
@@ -48,7 +51,7 @@
 //                });
 //                context.SaveChanges();
 //            }
-               
+
 //        }
 
 //    }

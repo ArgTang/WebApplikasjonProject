@@ -15,5 +15,7 @@ namespace GroupProject.Models
         public string passord { get; set; }
         public string PersonNr { get; set; }
 
+        public virtual ICollection<Konto> konto { get; set; }
+
     }
 }
