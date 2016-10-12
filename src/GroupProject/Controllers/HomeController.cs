@@ -27,17 +27,5 @@ namespace GroupProject.Controllers
             //ViewBag.Message = "This is Index";
             return View(persons);
         }
-
-        public IActionResult About() {
-            ViewData["Title"] = "About";
-            ViewBag.Message = "About";
-            return View();
-        }
-
-        public IActionResult Contact() {
-            ViewData["Title"] = "Contact";
-            ViewBag.Message = "This is not Index, but Contact";
-            return View();
-        }
     }
 }
