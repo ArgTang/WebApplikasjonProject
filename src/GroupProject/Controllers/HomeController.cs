@@ -14,7 +14,6 @@ namespace GroupProject.Controllers
         private PersonDbContext _personDbContext { get; set; }
         public HomeController(PersonDbContext personDbcontext )
         {
-            ViewData["Title"] = "Sparebank ACOS";
             _personDbContext = personDbcontext; 
             SeedData.Seed(_personDbContext);
 
@@ -23,8 +22,7 @@ namespace GroupProject.Controllers
         public IActionResult Index()
         {
             var persons = _personDbContext.Person.ToList();
-            //ViewData["Title"] = "Index";
-            //ViewBag.Message = "This is Index";
+            ViewData["Title"] = "Sparebank ACOS";
             return View(persons);
         }
     }
