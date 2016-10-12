@@ -1,5 +1,4 @@
-﻿@Model List<Person>
-@using GroupProject.Models
+﻿
 
 @{
     Layout = "_Layout";
@@ -14,7 +13,22 @@
     <h1>Personer</h1>
     <ul>
         @foreach ( var person in Model ) {
-            <li>@person.PersonNr</li>
+            <li>Personnr: @person.PersonNr</li>
+            <li>passord: @person.passord</li>
+            <li>createdBy: @person.createdBy</li>
+            <li>UpdatedBy: @person.UpdatedBy</li>
+            <li>CreatedDate: @person.CreatedDate</li>
         }
     </ul>
+    @*<h1>Kontoer</h1>
+    <ul>
+        @foreach (var konto in Model)
+        {
+            <li>KontoNr: @konto.kontoNr</li>
+            <li>Saldo: @konto.saldo</li>
+            <li>createdBy: @konto.createdBy</li>
+            <li>UpdatedBy: @konto.UpdatedBy</li>
+            <li>CreatedDate: @konto.CreatedDate</li>
+        }
+    </ul>*@
 </section>

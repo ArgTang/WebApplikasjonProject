@@ -22,8 +22,7 @@ namespace GroupProject.Controllers
         public IActionResult Index()
         {
             var persons = _personDbContext.Person.ToList();
-            //ViewData["Title"] = "Index";
-            //ViewBag.Message = "This is Index";
+
             return View(persons);
         }
 

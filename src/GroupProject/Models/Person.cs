@@ -14,6 +14,8 @@ namespace GroupProject.Models
         public string passord { get; set; }
 
         [Required]
+        [MaxLength(11)]
+        [MinLength(11)]
         public string PersonNr { get; set; }
 
         public virtual ICollection<Konto> konto { get; set; }
