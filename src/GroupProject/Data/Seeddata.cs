@@ -4,51 +4,42 @@ using System.Linq;
 using System.Threading.Tasks;
 using GroupProject.Models;
 
+
+
 namespace GroupProject.Data
 {
     public static class SeedData
     {
-        public static void Seed(PersonContext context)
+        public static void Seed(PersonDbContext context)
         {
             context.Database.EnsureCreated();
-            
-            if (!context.Persons.Any())
+
+            if (!context.Person.Any())
             {
-                context.AddRange( new Person
+                context.AddRange(new Person
                 {
-                    FirstName = "Bob",
-                    LastName = "Belcher"
+                    
+                    PersonNr = "26118742957",
+                    passord = "heipaadeg",
+                    CreatedDate = DateTime.Now,
+                    createdBy = "ole",
+                    UpdatedDate = DateTime.Now,
+                    UpdatedBy = "ole"
                 },
                 new Person
                 {
-                    FirstName = "Sterling Mallory",
-                    LastName = "Archer"
+                    
+                    PersonNr = "2321321312",
+                    passord = "heipaadfsdfdeg",
+                    CreatedDate = DateTime.Now,
+                    createdBy = "bjarne",
+                    UpdatedDate = DateTime.Now,
+                    UpdatedBy = "bjarne"
                 });
 
                 context.SaveChanges();
             }
 
-            if (!context.Addresses.Any())
-            {
-                context.AddRange(new Address
-                {
-                    City = "Bergen",
-                    Street = "torgallmenningen 2",
-                    PersonId = 1,
-                    ZipCode = "3442",
-                    State = "Hordaland"
-                },
-                new Address
-                {
-                    City = "Oslo",
-                    Street = "Storgata 234",
-                    PersonId = 2,
-                    ZipCode = "2322",
-                    State = "Oslo"
-                });
-                context.SaveChanges();
-            }
-               
         }
 
     }

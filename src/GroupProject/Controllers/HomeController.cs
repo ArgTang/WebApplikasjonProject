@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GroupProject.Data;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using GroupProject.Models;
+using Microsoft.Extensions.Configuration;
+using GroupProject.Data;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,32 +10,20 @@ namespace GroupProject.Controllers
 {
     public class HomeController : Controller
     {
-        private PersonContext personContext;
+        private PersonDbContext _personDbContext { get; set; }
 
-        public HomeController(PersonContext personContext)
+        public HomeController(PersonDbContext personDbcontext )
         {
-            this.personContext = personContext;
-            SeedData.Seed(personContext);
+            _personDbContext = personDbcontext; 
+            SeedData.Seed(_personDbContext);
+
         }
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var persons = personContext.Persons.ToList();
-            ViewData["Title"] = "Index";
-            ViewBag.Message = "This is Index";
+            var persons = _personDbContext.Person.ToList();
+            ViewData["Title"] = "Sparebank ACOS";
             return View(persons);
-        }
-
-        public IActionResult About() {
-            ViewData["Title"] = "About";
-            ViewBag.Message = "About";
-            return View();
-        }
-
-        public IActionResult Contact() {
-            ViewData["Title"] = "Contact";
-            ViewBag.Message = "This is not Index, but Contact";
-            return View();
         }
     }
 }

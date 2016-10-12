@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GroupProject.Models
+namespace GroupProject.Models 
 {
-    public class Person
+    [Table("Person")]
+    public class Person : BaseModel
     {
-        public int PersonId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        [Required]
+        public string passord { get; set; }
 
-        public List<Address> Addresses { get; set; }
+        [Required]
+        public string PersonNr { get; set; }
+
+        public virtual ICollection<Konto> konto { get; set; }
+
     }
 }

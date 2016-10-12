@@ -1,11 +1,11 @@
 ﻿using System.IO;
-using GroupProject.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using GroupProject.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GroupProject
 {
@@ -15,8 +15,8 @@ namespace GroupProject
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile(Path.Combine(env.ContentRootPath, "appsettings.json"), optional:true, reloadOnChange:true)
-                .AddJsonFile(Path.Combine(env.ContentRootPath, $"appsettings.{env.EnvironmentName}.json"), optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional:true, reloadOnChange:true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
             if (env.IsDevelopment())
@@ -35,9 +35,11 @@ namespace GroupProject
         {
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddDbContext<PersonContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("aleks")));
+            services.AddDbContext<PersonDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("Default")));
+
             services.AddMvc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +58,7 @@ namespace GroupProject
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Shared/Error");
             }
 
             app.UseApplicationInsightsExceptionTelemetry();
