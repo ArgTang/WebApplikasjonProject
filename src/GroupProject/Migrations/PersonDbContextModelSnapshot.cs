@@ -18,44 +18,109 @@ namespace GroupProject.Migrations
 
             modelBuilder.Entity("GroupProject.Models.Betalinger", b =>
                 {
-                    b.Property<int>("betalingsId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int>("KontoerId");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
+
+                    b.Property<DateTime>("UpdatedDate");
 
                     b.Property<int>("belop");
 
-                    b.Property<string>("info");
+                    b.Property<string>("createdBy")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
 
-                    b.HasKey("betalingsId");
+                    b.Property<string>("info")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 100);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KontoerId");
 
                     b.ToTable("Betalinger");
                 });
 
             modelBuilder.Entity("GroupProject.Models.Konto", b =>
                 {
-                    b.Property<int>("kontoId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("kontoNr");
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int>("PersonerId");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<string>("createdBy")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
+
+                    b.Property<string>("kontoNr")
+                        .IsRequired();
 
                     b.Property<int>("saldo");
 
-                    b.HasKey("kontoId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonerId");
 
                     b.ToTable("Konto");
                 });
 
             modelBuilder.Entity("GroupProject.Models.Person", b =>
                 {
-                    b.Property<int>("PersonId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("PersonNr");
+                    b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("passord");
+                    b.Property<string>("PersonNr")
+                        .IsRequired();
 
-                    b.HasKey("PersonId");
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<string>("createdBy")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
+
+                    b.Property<string>("passord")
+                        .IsRequired();
+
+                    b.HasKey("Id");
 
                     b.ToTable("Person");
+                });
+
+            modelBuilder.Entity("GroupProject.Models.Betalinger", b =>
+                {
+                    b.HasOne("GroupProject.Models.Konto", "Kontoer")
+                        .WithMany("betal")
+                        .HasForeignKey("KontoerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("GroupProject.Models.Konto", b =>
+                {
+                    b.HasOne("GroupProject.Models.Person", "Personer")
+                        .WithMany("konto")
+                        .HasForeignKey("PersonerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

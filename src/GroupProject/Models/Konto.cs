@@ -8,11 +8,18 @@ using System.Threading.Tasks;
 namespace GroupProject.Models
 {
     [Table("Konto")]
-    public class Konto
+    public class Konto : BaseModel
     {
-        [Key]
-        public int kontoId { get; set; }
+        [Required]
         public string kontoNr { get; set; }
+        [Required]
+        [Range(-10000, 10000000)]
         public int saldo { get; set; }
+
+        public virtual Person Personer { get; set; }
+        [Required]
+        public int PersonerId { get; set; }
+
+        public virtual ICollection<Betalinger> betal { get; set; }
     }
 }

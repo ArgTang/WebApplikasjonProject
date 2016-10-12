@@ -5,18 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+
 namespace GroupProject.Models
 {
     public class PersonDbContext:DbContext
     {
         
-
         public PersonDbContext(DbContextOptions<PersonDbContext> options):base(options)
         {
 
         }
 
-        public DbSet<Person> Personer { set; get; }
+        public DbSet<Person> Person { set; get; }
         public DbSet<Betalinger> Betal { set; get; }
         public DbSet<Konto> Kontoer { get; set; }
 
