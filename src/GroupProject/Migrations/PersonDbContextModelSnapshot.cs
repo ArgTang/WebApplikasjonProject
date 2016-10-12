@@ -90,6 +90,7 @@ namespace GroupProject.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
+
                     b.Property<string>("PersonNr")
                         .IsRequired()
                         .HasAnnotation("MaxLength", 11);

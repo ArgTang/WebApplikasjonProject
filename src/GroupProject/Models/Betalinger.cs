@@ -16,7 +16,6 @@ namespace GroupProject.Models
         [StringLength(100)]
         public string info { get; set; }
 
-        [Required]
         public bool utfort { get; set; }
         
         public DateTime datoUtfort { get; set; }

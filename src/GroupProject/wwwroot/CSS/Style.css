@@ -1,9 +1,23 @@
-body {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-around;
-  align-items: center;
-  background-color: grey; }
-
-nav {
+nav > * {
   font-size: 1.3em; }
+
+.navbar {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-bottom: 0 !important; }
+
+.navbar-brand, .navbar-brand {
+  font-size: 2em; }
+
+#logobilde {
+  height: 2.5em; }
+
+#headerbilde {
+  background: url(../images/hygge.jpg) no-repeat center center;
+  height: 80vh;
+  background-size: cover; }
+
+#headbilde h1 {
+  position: relative;
+  top: 5vh;
+  left: 2vw; }

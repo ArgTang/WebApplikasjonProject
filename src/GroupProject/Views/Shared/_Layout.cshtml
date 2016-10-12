@@ -4,25 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="/css/style.css" />
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script async defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     
     <environment names="Development">
-        <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-        <script scr="lib/jquery/dist/jquery.js"></script>
-        <script async defer scr="lib/bootstrap/dist/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="/css/style.css" />     
     </environment>
     <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/css/style.min.css" />
         <!-- CDN links here see https://docs.asp.net/en/latest/client-side/bootstrap.html -->
     </environment>
 </head>
 <body>
 
     @await Html.PartialAsync("navigation")
-    
-    <!-- Typescript integration test, remove later-->
-    <p class="message"></p>
-    Compiler: <input id="compiler" value="TypeScript" onkeyup="document.querySelector('.message').innerText = sayHello()" />
-
     <main>
         <!-- this is where content is inserted -->
         @RenderBody()
@@ -30,12 +27,11 @@
 
     @await Html.PartialAsync("footer")
 
-    <script src="JS/app.js"></script>
     <environment names="Development">
-
+        <script src="JS/app.js"></script>
     </environment>
     <environment names="Staging,Production">
-
+        <script src="~/JS/app.min.js"></script>
     </environment>
 
     @RenderSection("scripts", required: false)

@@ -12,6 +12,7 @@ namespace GroupProject.Controllers
     {
 
         private PersonDbContext _personDbContext { get; set; }
+
         public HomeController(PersonDbContext personDbcontext )
         {
             _personDbContext = personDbcontext; 
@@ -36,6 +37,8 @@ namespace GroupProject.Controllers
             ViewData["Title"] = "Contact";
             ViewBag.Message = "This is not Index, but Contact";
             return View();
+            ViewData["Title"] = "Sparebank ACOS";
+            return View(persons);
         }
     }
 }

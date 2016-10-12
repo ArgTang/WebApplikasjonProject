@@ -27,7 +27,6 @@ namespace GroupProject.Data
                 },
                 new Person
                 {
-                 
                     PersonNr = "12334578912",
                     passord = "heipaadfsdfdeg",
                     CreatedDate = DateTime.Now,
