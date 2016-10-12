@@ -14,6 +14,7 @@ namespace GroupProject.Controllers
         private PersonDbContext _personDbContext { get; set; }
         public HomeController(PersonDbContext personDbcontext )
         {
+            ViewData["Title"] = "Sparebank ACOS";
             _personDbContext = personDbcontext; 
             SeedData.Seed(_personDbContext);
 
