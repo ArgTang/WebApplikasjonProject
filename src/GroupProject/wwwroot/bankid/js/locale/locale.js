@@ -23,7 +23,8 @@
         ;
 
     // find locale query in list of locales
-    var indexOf = config.list.indexOf( localeQuery );
+    var indexOf = config.list.indexOf(localeQuery);
+    
     // if locale is in list and locale is NOT mock locale
     if ( indexOf > -1 && localeQuery !== "zz" ) {
         // locale  found in list of locales
@@ -35,7 +36,7 @@
     }
     // choose the first locale in list
     else {
-        locale = config.list[0];
+        locale = config.list[1];
     }
 
     // locale not given

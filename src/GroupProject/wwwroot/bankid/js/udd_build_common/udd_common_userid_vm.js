@@ -13,7 +13,8 @@ define( [
     "event_handler",
     "lib/constants"
 ], function ( $, comp, builds, utils, gfx, ko, locale, eventHandler, constants ) {
-
+     
+    
     return function ( config ) {
         config = config || {};
 
@@ -27,7 +28,7 @@ define( [
             INPUT_INVALID = 2
             ;
 
-        config = utils.merge( {
+        config = utils.merge({
             /**
              * UDD type
              */
@@ -64,15 +65,8 @@ define( [
              * Header subtitle
              */
             headerTitleSubtitle: "Navn på dokument" // DUMMY
-        }, config, builds.customise );
-
-        console.log(window.location.href);
-        console.log(window.location.pathname);
-        console.log(window.location.href.indexOf("_ijt"));
-
-        if(window.location.href.indexOf("_ijt") > 0){
-            window.location.replace("bankid.html?udd=n01&locale=no");
-        }
+        }, config, builds.customise);
+        
 
         /**
          * Is input valid observable
@@ -281,9 +275,9 @@ define( [
 
         function redirect(location) {
             if(location === "bankIDmobil"){
-                window.location.replace("bidm/ref.html?id="+inputComponent.val()+"&scenario=success");
+                window.location.replace("login/reference");
             }else if(location === "error"){
-                window.location.replace("bankid.html?udd=e24&locale=no");
+                window.location.replace("login?udd=e24&locale=no");
             }
         }
 

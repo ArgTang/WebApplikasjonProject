@@ -16,6 +16,11 @@ namespace GroupProject.Controllers
             return View();
         }
 
+        public IActionResult Reference()
+        {
+            return View();
+        }
+
 
     }
 }

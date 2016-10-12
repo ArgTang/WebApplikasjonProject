@@ -488,7 +488,7 @@ function bidMobile() {
         setPageHeaderAccordingToAction();
 
         setTimeout( function () {
-            redirect( "../bankid.html?udd=n06_b_password&locale=no", false, true );
+            redirect( "../login?udd=n06_b_password", false, false );
         }, TIMER );
     }
 
