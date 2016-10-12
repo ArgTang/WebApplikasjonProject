@@ -25,5 +25,13 @@ namespace GroupProject.Controllers
             ViewData["Title"] = "Sparebank ACOS";
             return View(persons);
         }
+        public IActionResult Authenticate() {
+
+            if(ModelState.IsValid) {
+                return RedirectToAction("Index", "LoggedIn");
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
