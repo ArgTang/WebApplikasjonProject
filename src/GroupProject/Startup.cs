@@ -35,9 +35,9 @@ namespace GroupProject
         {
             services.AddApplicationInsightsTelemetry(Configuration);
 
-
             services.AddDbContext<PersonDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Default")));
+
             services.AddMvc();
 
         }
