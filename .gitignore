@@ -244,7 +244,10 @@ ModelManifest.xml
 # Our own ignores
 src/GroupProject/frontendsrc/*/*.js
 src/GroupProject/frontendsrc/*/*.map
-src/GroupProject/wwwroot/
+
+src/GroupProject/wwwroot/js
+src/GroupProject/wwwroot/lib
+src/GroupProject/wwwroot/css
 src/GroupProject/Migrations
 
 src/GroupProject/scripts/*.js

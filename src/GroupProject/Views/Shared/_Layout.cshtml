@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="/css/style.css" />
     
     <environment names="Development">
-        <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-        <script scr="lib/jquery/dist/jquery.js"></script>
-        <script async defer scr="lib/bootstrap/dist/js/bootstrap.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script async src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script async defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </environment>
     <environment names="Staging,Production">
         <!-- CDN links here see https://docs.asp.net/en/latest/client-side/bootstrap.html -->
@@ -18,11 +18,6 @@
 <body>
 
     @await Html.PartialAsync("navigation")
-    
-    <!-- Typescript integration test, remove later-->
-    <p class="message"></p>
-    Compiler: <input id="compiler" value="TypeScript" onkeyup="document.querySelector('.message').innerText = sayHello()" />
-
     <main>
         <!-- this is where content is inserted -->
         @RenderBody()

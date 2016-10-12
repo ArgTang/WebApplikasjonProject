@@ -10,8 +10,8 @@ namespace GroupProject.Controllers
 {
     public class HomeController : Controller
     {
-
         private PersonDbContext _personDbContext { get; set; }
+
         public HomeController(PersonDbContext personDbcontext )
         {
             _personDbContext = personDbcontext; 
@@ -22,21 +22,8 @@ namespace GroupProject.Controllers
         public IActionResult Index()
         {
             var persons = _personDbContext.Person.ToList();
-            //ViewData["Title"] = "Index";
-            //ViewBag.Message = "This is Index";
+            ViewData["Title"] = "Sparebank ACOS";
             return View(persons);
-        }
-
-        public IActionResult About() {
-            ViewData["Title"] = "About";
-            ViewBag.Message = "About";
-            return View();
-        }
-
-        public IActionResult Contact() {
-            ViewData["Title"] = "Contact";
-            ViewBag.Message = "This is not Index, but Contact";
-            return View();
         }
     }
 }

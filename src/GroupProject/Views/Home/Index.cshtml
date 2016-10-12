@@ -1,16 +1,11 @@
-﻿@Model List<Person>
-@using GroupProject.Models
+﻿
 
 @{
     Layout = "_Layout";
 }
 
-<h1>@ViewBag.Message</h1>
-
-
-
-
 <section>
+    <header id="headerbilde" alt="Ett bilde av en familie"></header>
     <h1>Personer</h1>
     <ul>
         @foreach ( var person in Model ) {
