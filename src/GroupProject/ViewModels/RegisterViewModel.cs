@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 
 namespace GroupProject.ViewModels
 {
-    public class LoginViewModel
+    public class RegisterViewModel
     {
         [Required]
-        [DataType(DataType.Text)]
+        [EmailAddress]
         public string username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         public string password { get; set; }
 
-        [Display(Name = "Remember me")]
-        public bool rememberMe { get; set; }
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirn Password")]
+        [Compare("password", ErrorMessage = "Both passwords must match")]
+        public string confirmPassword { get; set; }
     }
 }

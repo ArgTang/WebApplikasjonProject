@@ -21,7 +21,7 @@
 
     <a class="button warning" asp-controller="LoggedIn" asp-action="Logout">Logout</a>
 
-    @*@await Html.PartialAsync("navigation")*@
+    @await Html.PartialAsync("_LoginPartial")
     <main>
         <!-- this is where content is inserted -->
         @RenderBody()

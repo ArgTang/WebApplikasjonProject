@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 namespace GroupProject.ViewModels
 {
-    public class LoginViewModel
+    public class Login
     {
-        [Required]
-        [DataType(DataType.Text)]
+        [Key]
+        public Guid LoginId { get; set; }
+
         public string username { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
         public string password { get; set; }
-
-        [Display(Name = "Remember me")]
-        public bool rememberMe { get; set; }
     }
 }
