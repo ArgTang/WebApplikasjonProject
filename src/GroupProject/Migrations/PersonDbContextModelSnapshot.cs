@@ -74,7 +74,7 @@ namespace GroupProject.Migrations
                     b.Property<string>("kontoNr")
                         .IsRequired();
 
-                    b.Property<int>("saldo");
+                    b.Property<decimal>("saldo");
 
                     b.HasKey("Id");
 
