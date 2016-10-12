@@ -24,7 +24,9 @@ body {
 }
 
 #headerbilde {
-    background: url(../images/hygge.jpg) no-repeat center center;
+    background: url(../images/happy.jpg) no-repeat;
+    background-position: center 20%;
+    min-height: 50rem;
     height: 80vh;
     background-size:cover;    
 }

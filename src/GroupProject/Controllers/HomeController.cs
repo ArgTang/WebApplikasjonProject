@@ -10,8 +10,8 @@ namespace GroupProject.Controllers
 {
     public class HomeController : Controller
     {
-
         private PersonDbContext _personDbContext { get; set; }
+
         public HomeController(PersonDbContext personDbcontext )
         {
             _personDbContext = personDbcontext; 
