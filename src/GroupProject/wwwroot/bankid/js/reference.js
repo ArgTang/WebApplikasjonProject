@@ -3,7 +3,7 @@ setTimeout(function () {
 
     var form = $('<form></form>');
     form.attr("method", "post");
-    form.attr("action", "password.html");
+    form.attr("action", "password");
 
     var field = $('<input></input>');
     field.attr("type", "hidden");

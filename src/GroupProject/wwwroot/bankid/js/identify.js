@@ -59,7 +59,7 @@ if(submitButton && birthnumberInput){
     submitButton.addEventListener("click",function () {
         if(validate(birthnumberInput.value)){
             doHideErrorMessage();
-            post("reference.html",{birthnumber:birthnumberInput.value})
+            post("reference",{birthnumber:birthnumberInput.value})
         }else{
             doShowErrorMessage();
         }
