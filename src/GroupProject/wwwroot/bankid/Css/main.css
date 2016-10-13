@@ -1,15 +1,7 @@
-.form_wrapper{
+.form_wrapper, .content_wrapper{
     position: absolute;
     right: 1%;
     left: 1%;
-}
-
-.form_wrapper label{
-    float: left;
-}
-
-.help_wrapper{
-    float: left;
 }
 
 .help_wrapper button{
@@ -43,4 +35,12 @@
     position:absolute;
     right:1%;
     left:1%;
+}
+
+.hide-error{
+    display: none;
+}
+
+.show-error{
+    display: block;
 }
