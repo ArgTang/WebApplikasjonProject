@@ -1,45 +1,60 @@
 ﻿@{
     Layout = "shared/_bankid";
 }
-<div class="viewport animate">
-    <div class="lm_view padding block_vertical_center">
-        <div>
-            <form class="form_wrapper" autocomplete="off">
-                <div class="row label">
-                    <label>Fødselsnummer</label>
-                    <div class="help_wrapper">
-                        <button type="button">
-                            <img alt="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19oZWxwPC90aXRsZT48ZyBmaWxsPSJub25lIj48cGF0aCBkPSJNMTcuNSA5YzAtNC42OTQtMy44MDYtOC41LTguNS04LjVzLTguNSAzLjgwNi04LjUgOC41IDMuODA2IDguNSA4LjUgOC41IDguNS0zLjgwNiA4LjUtOC41eiIgc3Ryb2tlPSIjMDA3OEJEIi8+PHBhdGggZD0iTTggMTJoMnYyaC0ydi0yem0uNzU4LThjMSAwIDEuODMxLjIzOSAyLjQ5My43MTcuNjYyLjQ3OC45OTIgMS4xODYuOTkyIDIuMTI0IDAgLjU3NS0uMTQ0IDEuMDYtLjQzMSAxLjQ1NC0uMTY4LjIzOS0uNDkxLjU0NC0uOTY5LjkxNmwtLjQ3MS4zNjVjLS4yNTcuMTk5LS4yNjguNDMxLS4zNTIuNjk3LS4wNTMuMTY4LS4wOTEuMzU3LS4wOTYuNzExaC0xLjkzM2MuMDI3LS43NDguMDg4LTEuMTkzLjIwMy0xLjQ3OC4xMTUtLjI4NS40MTItLjYxNC44OS0uOTg2bC40ODUtLjM3OGMuMTU5LS4xMTkuMjg4LS4yNS4zODUtLjM5Mi4xNzctLjI0My4yNjYtLjUxMS4yNjYtLjgwMyAwLS4zMzYtLjA5OC0uNjQzLS4yOTUtLjkxOS0uMTk3LS4yNzctLjU1Ny0uNDE1LTEuMDc5LS40MTUtLjUxMyAwLS44NzcuMTctMS4wOTIuNTExLS4yMTUuMzQxLS4yNTQuNDU2LS4yNTQuODIzaC0xLjkxOGMuMDUzLTEuMjYxLjQyNS0xLjkxNiAxLjI1My0yLjQ0My41MjItLjMzNiAxLjE2NC0uNTA1IDEuOTI1LS41MDV6IiBmaWxsPSIjMDA3OEJEIi8+PC9nPjwvc3ZnPg==" class="help" data-svg="help">
-                        </button>
+<main class="body" role="main">
+    <div class="viewport animate">
+        <div class="lm_view padding block_vertical_center">
+            <div>
+                <form class="form_wrapper" autocomplete="off">
+                    <div class="row label">
+                        <label>Fødselsnummer</label>
                     </div>
-                </div>
-                <div class="row form">
-                    <div class="input_wrapper">
-                        <div class="label">
-                            <div class="icon">
-                                <div>
-                                    <img alt="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb191c2VyaWQ8L3RpdGxlPjxnIGZpbGw9IiMwMDc4QkQiPjxwYXRoIGQ9Ik0yMCAyMmMwLTUuNTIzLTQuNDc3LTEwLTEwLTEwcy0xMCA0LjQ3Ny0xMCAxMGgyMHoiLz48Y2lyY2xlIGN4PSIxMCIgY3k9IjUiIHI9IjUiLz48L2c+PC9zdmc+" title="">
+                    <div class="row form">
+                        <div class="input_wrapper">
+                            <div class="infobubble_wrapper  hide-error" data-position="top">
+                                <div class="infobubble_container">
+                                    <div class="infobubble">
+                                        <div class="arrow">
+                                            <div class="border"></div>
+                                            <div class="fill"></div>
+                                        </div>
+                                        <div class="wrapper">
+                                            <img class="icon" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb193YXJuaW5nPC90aXRsZT48ZyBmaWxsPSJub25lIj48cGF0aCBkPSJNLjE3IDE1LjcwNmw4LjA5MS0xNC4xNzJjLjQwNy0uNzEyIDEuMDcyLS43MTIgMS40NzggMGw4LjA5MSAxNC4xNzJjLjQwNy43MTIuMDYyIDEuMjk0LS43NjggMS4yOTRoLTE2LjEyM2MtLjgyOSAwLTEuMTc1LS41ODEtLjc2OS0xLjI5NHoiIGZpbGw9IiNDRDA5MjAiLz48cGF0aCBkPSJNOCA2aDJ2My4wMjFsLS40ODMgMi45NzloLTEuMDA1bC0uNTEyLTIuOTc5di0zLjAyMXptMCA3aDJ2MmgtMnYtMnoiIGZpbGw9IiNmZmYiLz48L2c+PC9zdmc+">
+                                            <span class="text">Fødselsnummer må være 11 siffer</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="input">
-                                <div class="wrp">
-                                    <input class="">
-                                    <div class="placeholder"></div>
+                            <div class="label">
+                                <div class="icon">
+                                    <div>
+                                        <img alt=""
+                                             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb191c2VyaWQ8L3RpdGxlPjxnIGZpbGw9IiMwMDc4QkQiPjxwYXRoIGQ9Ik0yMCAyMmMwLTUuNTIzLTQuNDc3LTEwLTEwLTEwcy0xMCA0LjQ3Ny0xMCAxMGgyMHoiLz48Y2lyY2xlIGN4PSIxMCIgY3k9IjUiIHI9IjUiLz48L2c+PC9zdmc+"
+                                             title="">
+                                    </div>
+                                </div>
+                                <div class="input">
+                                    <div class="wrp">
+                                        <input id="birthnumberInput" class="">
+                                        <div class="placeholder"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="button_icon_wrapper">
+                            <button id="submitButton" class="button disabled" title="Neste" onclick="return false">
+                                <span class="label" style="display: none;"></span>
+                                <img alt="" class="svg"
+                                     src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19hcnJvd19yaWdodDwvdGl0bGU+PHBhdGggZD0iTTE5IDExbC01IDUgMiAyIDgtOC41MzEtOC04LjQ2OS0yIDIgNSA1aC0xOXYzaDE5eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==">
+                            </button>
+                        </div>
                     </div>
-                    <div class="button_icon_wrapper">
-                        <button class="button disabled" title="Neste" type="submit">
-                            <span class="label" style="display: none;"></span>
-                            <img alt="" class="svg" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19hcnJvd19yaWdodDwvdGl0bGU+PHBhdGggZD0iTTE5IDExbC01IDUgMiAyIDgtOC41MzEtOC04LjQ2OS0yIDIgNSA1aC0xOXYzaDE5eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==">
-                        </button>
+                    <div class="row message">
+                        <span>11 siffer</span>
                     </div>
-                </div>
-                <div class="row message">
-                    <span>11 siffer</span>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</main>
+<script src="bankid/js/identify.js"></script>
