@@ -5,13 +5,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" type="text/css" href="~/bankid/Css/bid.css">
-    <link rel="stylesheet" type="text/css" href="~/bankid/Css/main.css">
     <environment names="Development">
-
+        <link rel="stylesheet" type="text/css" href="/bankid/Css/bid.css">
+        <link rel="stylesheet" type="text/css" href="/bankid/Css/main.css">
     </environment>
     <environment names="Staging,Production">
         <!-- CDN links here see https://docs.asp.net/en/latest/client-side/bootstrap.html -->
+        <link rel="stylesheet" type="text/css" href="~/bankid/Css/bid.css">
+        <link rel="stylesheet" type="text/css" href="~/bankid/Css/main.css">
     </environment>
 </head>
 <body>
