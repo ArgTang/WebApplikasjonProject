@@ -9,11 +9,13 @@ namespace GroupProject.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [DataType(DataType.Text)]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Brukernavn", Prompt = "Brukernavn")]
         public string username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "Passord", Prompt = "Passord")]
         public string password { get; set; }
 
         [Display(Name = "Remember me")]

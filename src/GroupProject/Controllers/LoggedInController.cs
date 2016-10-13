@@ -17,9 +17,8 @@ namespace GroupProject.Controllers
             return View();
         }
 
-        public IActionResult Logout() 
+        public IActionResult Logout()
         {
-
             return RedirectToAction("Index", "Home");
         }
     }

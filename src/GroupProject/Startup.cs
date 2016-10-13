@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GroupProject.Data;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using GroupProject.Models;
+using System;
 
 namespace GroupProject
 {
@@ -43,6 +44,28 @@ namespace GroupProject
                     .AddDefaultTokenProviders();               
 
             services.AddMvc();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 12;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = false;
+
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 3;
+
+                // Cookie settings
+                options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.Cookies.ApplicationCookie.LoginPath = "/Home/Login";
+                options.Cookies.ApplicationCookie.LogoutPath = "/Home/Logout";
+
+                // User settings
+                options.User.RequireUniqueEmail = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
