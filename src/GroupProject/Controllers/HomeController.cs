@@ -1,18 +1,18 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using GroupProject.Models;
-using Microsoft.Extensions.Configuration;
 using GroupProject.Data;
-using GroupProject.ViewComponents;
 using GroupProject.ViewModels;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace GroupProject.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -28,7 +28,6 @@ namespace GroupProject.Controllers
         )
         {
             _personDbContext = personDbcontext;
-            SeedData.Seed(_personDbContext);
 
             this._userManager = userManager;
             this._signInManager = signInManager;
@@ -59,10 +58,9 @@ namespace GroupProject.Controllers
 
                 //Login success or fail
                 if ( loginresults.Succeeded ) {
-                    _logger.LogInformation(1, "User logged in.");
                     return RedirectToAction("Index", "LoggedIn");
                 } else {
-                    _logger.LogWarning(1, "invalid login");
+                    _logger.LogWarning("invalid login attempt");
                     ModelState.AddModelError(string.Empty, "Invalid login");
                     return View(model);
                 }
@@ -83,23 +81,26 @@ namespace GroupProject.Controllers
         {
             if ( ModelState.IsValid ) {
                 // create new user
-                var identityUser = new ApplicationUser {
+                var newUser = new ApplicationUser {
                     UserName = model.username,
                     Email = model.username
                 };
 
-                var identityResult = await _userManager.CreateAsync(identityUser, model.password);
+                var identityResult = await _userManager.CreateAsync(newUser, model.password);
 
                 //login wih new user or send back to registration form
-                if ( identityResult.Succeeded ) {
+                if ( identityResult.Succeeded ) {                    
                     var loginresults = await _signInManager.PasswordSignInAsync(
                                             model.username,
                                             model.password,
-                                            false,
+                                            false, ///remember me flag
                                             lockoutOnFailure: false);
+                    _logger.LogInformation($"Created new user: {newUser.ToString()}");
                     return RedirectToAction("Index", "LoggedIn");
                 } else {
-                    ModelState.AddModelError(string.Empty, $"Registration failed: {identityResult.ToString()}");
+                    var message = $"Registration failed: {identityResult.ToString()}";
+                    _logger.LogWarning(message);
+                    ModelState.AddModelError(string.Empty, message);
                     return View(model);
                 }
             }

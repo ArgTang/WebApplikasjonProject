@@ -14,9 +14,5 @@ namespace GroupProject.Data
         public ProfileContext(DbContextOptions<ProfileContext> options):base(options) {
 
         }
-
-        //public DbSet<Login> Logins { get; set; }
-
-        //public DbSet<Register> Registration { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 # Groupproject
 
++ we have two db context need to run these commands __twice__ with context flag
++ for cmd `--context ProfileContext` for prfilecontext
 
 ## Connecting to the database
 
@@ -13,3 +15,9 @@ To make sure we can connect to the database we need to run some commands in the 
 *   __`Update-Database` needs to be runned each time DB classes changes__ 
 
 more information here : https://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html
+
+### From cmd
+
+
++ commnad is ` dotnet ef migrations add migrationname` and`dotnet ef database update`
+
