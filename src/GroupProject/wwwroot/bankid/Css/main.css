@@ -1,0 +1,46 @@
+.form_wrapper{
+    position: absolute;
+    right: 1%;
+    left: 1%;
+}
+
+.form_wrapper label{
+    float: left;
+}
+
+.help_wrapper{
+    float: left;
+}
+
+.help_wrapper button{
+    background: none;
+    border: none;
+}
+
+.button{
+    background: #0078bd;
+    padding: 3px 0 0;
+    border: 0;
+    vertical-align: middle;
+    display: inline-block;
+    width: 53px;
+    white-space: normal;
+    max-height: 40px;
+    height: 40px;
+    border-radius: 3px;
+}
+
+
+.button.disabled .svg{
+    opacity: .5;
+}
+
+.button.active .svg{
+    opacity: 1;
+}
+
+.content.error{
+    position:absolute;
+    right:1%;
+    left:1%;
+}
