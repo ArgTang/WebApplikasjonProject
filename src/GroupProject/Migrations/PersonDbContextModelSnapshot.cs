@@ -90,7 +90,6 @@ namespace GroupProject.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-
                     b.Property<string>("PersonNr")
                         .IsRequired()
                         .HasAnnotation("MaxLength", 11);
@@ -104,6 +103,10 @@ namespace GroupProject.Migrations
                     b.Property<string>("createdBy")
                         .IsRequired()
                         .HasAnnotation("MaxLength", 50);
+
+                    b.Property<string>("epost")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 100);
 
                     b.Property<string>("passord")
                         .IsRequired();

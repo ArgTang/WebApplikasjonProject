@@ -23,7 +23,8 @@ namespace GroupProject.Data
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
-                    UpdatedBy = "ole"
+                    UpdatedBy = "ole",
+                    epost = "deg@gmail.com"
                 },
                 new Person
                 {
@@ -32,7 +33,8 @@ namespace GroupProject.Data
                     CreatedDate = DateTime.Now,
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
-                    UpdatedBy = "bjarne"
+                    UpdatedBy = "bjarne",
+                    epost = "deg@gmail.com"
                 },
                 new Person
                 {
@@ -42,7 +44,8 @@ namespace GroupProject.Data
                     CreatedDate = DateTime.Now,
                     createdBy = "admin",
                     UpdatedDate = DateTime.Now,
-                    UpdatedBy = "admin"
+                    UpdatedBy = "admin",
+                    epost = "paa@gmail.com"
                 });
                 
 

@@ -18,6 +18,10 @@ namespace GroupProject.Models
         [MinLength(11)]
         public string PersonNr { get; set; }
 
+        [Required]
+        [StringLength(100)]
+        public string epost { get; set; }
+
         public virtual ICollection<Konto> konto { get; set; }
 
     }
