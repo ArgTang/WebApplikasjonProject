@@ -25,7 +25,6 @@
     <script>
         $.getJSON("http://api.fixer.io/latest?base=NOK&symbols=EUR,GBP,USD,SEK", function (data) {
             var panel = document.querySelector('#currencyfeed');
-            console.log(JSON.stringify(data));
             panel.querySelector('#NOKEUR').textContent = data.rates.EUR;
             panel.querySelector('#NOKGBP').textContent = data.rates.GBP;
             panel.querySelector('#NOKUSD').textContent = data.rates.USD;
