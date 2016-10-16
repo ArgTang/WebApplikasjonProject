@@ -3,33 +3,38 @@
         <h3 class="panel-title">Valutakurser</h3>
     </div>
     <div class="panel-body">
-        <table class="table-responsive table-hovered">
-            <tr>
-                <td>NOK/EUR: </td>
-                <td id="NOKEUR"></td>
-            </tr>
-            <tr>
-                <td>NOK/GBP: </td>
-                <td id="NOKGBP"></td>
-            </tr>
-            <tr>
-                <td>NOK/USD: </td>
-                <td id="NOKUSD"></td>
-            </tr>
-            <tr>
-                <td>NOK/SEK: </td>
-                <td id="NOKSEK"></td>
-            </tr>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>NOK/EUR</td>
+                    <td id="NOKEUR"></td>
+                </tr>
+                <tr>
+                    <td>NOK/GBP</td>
+                    <td id="NOKGBP"></td>
+                </tr>
+                <tr>
+                    <td>NOK/USD</td>
+                    <td id="NOKUSD"></td>
+                </tr>
+                <tr>
+                    <td>NOK/SEK</td>
+                    <td id="NOKSEK"></td>
+                </tr>
+            </tbody>
         </table>
     </div>
     <script>
         $.getJSON("http://api.fixer.io/latest?base=NOK&symbols=EUR,GBP,USD,SEK", function (data) {
             var panel = document.querySelector('#currencyfeed');
-            panel.querySelector('#NOKEUR').textContent = data.rates.EUR;
-            panel.querySelector('#NOKGBP').textContent = data.rates.GBP;
-            panel.querySelector('#NOKUSD').textContent = data.rates.USD;
-            panel.querySelector('#NOKSEK').textContent = data.rates.SEK;
+            panel.querySelector('#NOKEUR').textContent = currencyMath(data.rates.EUR);
+            panel.querySelector('#NOKGBP').textContent = currencyMath(data.rates.GBP);
+            panel.querySelector('#NOKUSD').textContent = currencyMath(data.rates.USD);
+            panel.querySelector('#NOKSEK').textContent = currencyMath(data.rates.SEK);
         });
         
+        function currencyMath(currency) {
+            return (1/currency).toFixed(4)        
+        }
     </script>
 </section>

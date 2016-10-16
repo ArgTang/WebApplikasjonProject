@@ -8,19 +8,19 @@ body {
     padding-top:1em;
     padding-bottom:1em;
     margin-bottom:0 !important;  
-}
 
-.navbar-nav li {
-    display:flex !important;
-    align-items:center;
-}
+    li {
+        display:flex !important;
+        align-items:center;
+    }
 
-.navbar-brand {
-    font-size: 2em !important;
-}
+    .navbar-brand {
+        font-size: 2em !important;
+    }
 
-#logobilde {
-    height: 2.5em;
+    #logobilde {
+        height: 2.5em;
+    }
 }
 
 #headerbilde {
@@ -28,15 +28,27 @@ body {
     background-position: center 20%;
     min-height: 50rem;
     height: 80vh;
-    background-size:cover;    
+    background-size:cover;   
+    
+    h1 {
+        position: relative;
+        top: 5vh;
+        left: 2vw;
+    } 
 }
 
-#headbilde h1 {
-    position: relative;
-    top: 5vh;
-    left: 2vw;
-}
+#currencyfeed {
+    max-width: 20rem;
+    font-size: .8em;
 
+    .panel-body{
+        padding: 0;
+    }
+
+    .table {
+        margin: 0;
+    }
+}
 
 footer {
     text-align:center;
