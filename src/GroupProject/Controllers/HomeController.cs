@@ -37,8 +37,6 @@ namespace GroupProject.Controllers
             ViewData["Title"] = "Contact";
             ViewBag.Message = "This is not Index, but Contact";
             return View();
-            //ViewData["Title"] = "Sparebank ACOS";
-            //return View(persons);
         }
     }
 }

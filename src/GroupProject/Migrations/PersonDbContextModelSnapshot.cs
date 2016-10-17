@@ -40,7 +40,6 @@ namespace GroupProject.Migrations
                     b.Property<DateTime>("datoUtfort");
 
                     b.Property<string>("info")
-                        .IsRequired()
                         .HasAnnotation("MaxLength", 100);
 
                     b.Property<bool>("utfort");

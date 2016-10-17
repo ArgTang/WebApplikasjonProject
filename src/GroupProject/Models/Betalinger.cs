@@ -10,9 +10,9 @@ namespace GroupProject.Models
     [Table("Betalinger")]
     public class Betalinger : BaseModel
     {
-        [Required]
+        [Required(ErrorMessage = "Beløp må skrives inn")]
         public int belop { get; set; }
-        [Required]
+        
         [StringLength(100)]
         public string info { get; set; }
 

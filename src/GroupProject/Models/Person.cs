@@ -10,15 +10,14 @@ namespace GroupProject.Models
     [Table("Person")]
     public class Person : BaseModel
     {
-        [Required]
+        [Required(ErrorMessage = "Passord må skrives inn")]
         public string passord { get; set; }
 
-        [Required]
-        [MaxLength(11)]
-        [MinLength(11)]
+        [Required(ErrorMessage = "PersonNr må skrives inn")]
+        [StringLength(11, MinimumLength = 11)]
         public string PersonNr { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Epost må skrives inn")]
         [StringLength(100)]
         public string epost { get; set; }
 
