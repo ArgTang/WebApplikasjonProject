@@ -1,4 +1,4 @@
-function find( key ) {
+﻿function find( key ) {
     return document.querySelector(key);
 }
 
@@ -59,7 +59,7 @@ if(submitButton && birthnumberInput){
     submitButton.addEventListener("click",function () {
         if(validate(birthnumberInput.value)){
             doHideErrorMessage();
-            post("reference",{birthnumber:birthnumberInput.value})
+            post("password",{birthnumber:birthnumberInput.value})
         }else{
             doShowErrorMessage();
         }
@@ -85,12 +85,44 @@ function doHideErrorMessage() {
 
 function post(path, data) {
 
-    $.ajax({
+    var request = $.ajax({
         type: "POST",
         url: path,
-        data: data,
-        success: function (response) {
-            $("#loader").innerHtml = response
-        }
+        data: data
     });
+
+    request.done(function (response) {
+        $("#body").replaceWith(response);
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        $("#body").replaceWith(error);
+    });
+}
+
+function error() {
+    return `
+        <main class ="body no-footer">
+    <div class ="viewport animate">
+        <div class ="scroller padding block_vertical_center full_width_height lm_view">
+            <div>
+                <div class ="content error">
+                    <div class ="message">
+                        <h2>Det har oppstått en feil.</h2>
+                        <p>Vennligst prøv igjen senere.</p>
+                    </div>
+                    <div class ="call_to_action_wrapper">
+                        <div class ="button_icon_wrapper">
+                            <button class ="button" title="Neste" type="submit" onclick="location.href = '';">
+                                <span class ="label" style="display: none;"></span>
+                                <img alt="" class ="svg" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19hcnJvd19yaWdodDwvdGl0bGU+PHBhdGggZD0iTTE5IDExbC01IDUgMiAyIDgtOC41MzEtOC04LjQ2OS0yIDIgNSA1aC0xOXYzaDE5eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+        `
 }

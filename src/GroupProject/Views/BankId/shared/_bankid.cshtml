@@ -16,7 +16,7 @@
         <link rel="stylesheet" type="text/css" href="~/bankid/Css/main.css">
     </environment>
 </head>
-<body>
+<body id="body">
 <div class="layout">
     <header class="header">
         <div class="viewport">
@@ -38,9 +38,7 @@
             </div>
         </div>
     </header>
-    <div id="loader">
-        @RenderBody()
-    </div>
+    @RenderBody()
     @{
         if (ViewBag.footer == true)
         {

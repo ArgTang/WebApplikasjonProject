@@ -17,15 +17,13 @@ namespace GroupProject.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private PersonDbContext _personDbContext { get; set; }
 
-        public BankIdController(PersonDbContext personDbcontext,
-            UserManager<ApplicationUser> userManager
-        )
+        public BankIdController(PersonDbContext personDbcontext, UserManager<ApplicationUser> userManager)
         {
             _personDbContext = personDbcontext;
-
             this._userManager = userManager;
-
         }
+
+
         // GET: /<controller>/
         public IActionResult Identify()
         {
@@ -47,7 +45,7 @@ namespace GroupProject.Controllers
                 }
                 else
                 {
-                    return View(model);
+                    return RedirectToAction("Error");
                 }
 
             }
@@ -55,21 +53,69 @@ namespace GroupProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult Reference()
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Reference(IdentifyViewModel model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByNameAsync(model.Fødselsnummer);
+
+                //If user exist or dont
+                if (user.UserName == model.Fødselsnummer)
+                {
+                    return RedirectToAction("Password");
+                }
+                else
+                {
+                    return RedirectToAction("Error");
+                }
+
+            }
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Password()
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Password(IdentifyViewModel model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByNameAsync(model.Fødselsnummer);
+
+                //If user exist or dont
+                if (user.UserName == model.Fødselsnummer)
+                {
+                    return RedirectToAction("Reference");
+                }
+                else
+                {
+                    return RedirectToAction("Error");
+                }
+
+            }
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Error()
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Error(IdentifyViewModel model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByNameAsync(model.Fødselsnummer);
+
+                //If user exist or dont
+                if (user.UserName == model.Fødselsnummer)
+                {
+                    return RedirectToAction("Reference");
+                }
+                else
+                {
+                    return RedirectToAction("Error");
+                }
+
+            }
+            return View(model);
         }
 
 
