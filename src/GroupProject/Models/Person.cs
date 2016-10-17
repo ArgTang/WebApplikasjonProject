@@ -19,6 +19,9 @@ namespace GroupProject.Models
 
         [Required(ErrorMessage = "Epost må skrives inn")]
         [StringLength(100)]
+        [RegularExpression(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
++ "@"
++ @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$", ErrorMessage = "Feil mailadresse")]
         public string epost { get; set; }
 
         public virtual ICollection<Konto> konto { get; set; }

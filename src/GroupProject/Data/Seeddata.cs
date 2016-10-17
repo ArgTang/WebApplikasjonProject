@@ -19,7 +19,7 @@ namespace GroupProject.Data
                 context.AddRange(new Person
                 {
                     PersonNr = "26118742957",
-                    passord = "heipaadeg",
+                    passord = "passord",
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
@@ -34,7 +34,7 @@ namespace GroupProject.Data
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "bjarne",
-                    epost = "deg@gmail.com"
+                    epost = "hei@gmail.com"
                 },
                 new Person
                 {
