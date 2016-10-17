@@ -36,9 +36,6 @@ namespace GroupProject
             services.AddDbContext<PersonDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
-            //services.AddDbContext<ProfileContext>(options =>
-            //        options.UseSqlServer(Configuration.GetConnectionString("Default")));
-
             services.AddIdentity<ApplicationUser, IdentityRole>()
                     .AddEntityFrameworkStores<PersonDbContext>()
                     .AddDefaultTokenProviders();               
