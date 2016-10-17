@@ -40,7 +40,7 @@ namespace GroupProject.Controllers
         public IActionResult Index()
         {
             var persons = _personDbContext.Person.ToList();
-            ViewData["Title"] = "Sparebank ACOS";
+
             return View(persons);
         }
 
@@ -48,7 +48,6 @@ namespace GroupProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(LoginViewModel model)
         {
-
             if ( ModelState.IsValid ) {
                 var loginresults = await _signInManager.PasswordSignInAsync(
                                             model.username,
