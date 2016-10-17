@@ -4,7 +4,11 @@ body {
     font-size: 1.8rem !important;
 }
 
-.navbar {
+main {
+    min-height:50rem;
+}
+
+.navbar{
     padding-top:1em;
     padding-bottom:1em;
     margin-bottom:0 !important;  

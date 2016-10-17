@@ -10,11 +10,11 @@ namespace GroupProject.Models
     [Table("Konto")]
     public class Konto : BaseModel
     {
-        [Required]
+        [Required(ErrorMessage = "KontoNr må skrives inn")]
         public string kontoNr { get; set; }
-        [Required]
-        [Range(-10000, 10000000)]
-        public int saldo { get; set; }
+        [Required(ErrorMessage = "Saldo må skrives inn")]
+        [Range(-10000.00, 10000000.00)]
+        public decimal saldo { get; set; }
 
         public virtual Person Personer { get; set; }
         [Required]
