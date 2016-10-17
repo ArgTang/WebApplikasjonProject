@@ -38,7 +38,9 @@
             </div>
         </div>
     </header>
-    @RenderBody()
+    <div id="loader">
+        @RenderBody()
+    </div>
     @{
         if (ViewBag.footer == true)
         {

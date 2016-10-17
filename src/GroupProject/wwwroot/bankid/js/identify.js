@@ -83,20 +83,14 @@ function doHideErrorMessage() {
     addClass(infobubble,"hide-error")
 }
 
-function post(path, params) {
+function post(path, data) {
 
-    var form = $('<form></form>');
-    form.attr("method", "post");
-    form.attr("action", path);
-
-    $.each( params, function( key, value ) {
-        var field = $('<input></input>');
-
-        field.attr("type", "hidden");
-        field.attr("name", key);
-        field.attr("value", value);
-
-        form.append(field);
+    $.ajax({
+        type: "POST",
+        url: path,
+        data: data,
+        success: function (response) {
+            $("#loader").innerHtml = response
+        }
     });
-    $(form).appendTo('body').submit();
 }
