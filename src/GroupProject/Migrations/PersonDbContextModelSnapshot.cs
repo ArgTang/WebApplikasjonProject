@@ -152,13 +152,6 @@ namespace GroupProject.Migrations
                         .IsRequired()
                         .HasAnnotation("MaxLength", 50);
 
-                    b.Property<string>("epost")
-                        .IsRequired()
-                        .HasAnnotation("MaxLength", 100);
-
-                    b.Property<string>("passord")
-                        .IsRequired();
-
                     b.HasKey("Id");
 
                     b.ToTable("Person");

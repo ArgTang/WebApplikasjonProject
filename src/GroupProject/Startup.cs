@@ -58,7 +58,7 @@ namespace GroupProject
                 // Cookie settings
                 options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                 options.Cookies.ApplicationCookie.LoginPath = "/Home/Login";
-                options.Cookies.ApplicationCookie.LogoutPath = "/Home/Logout";
+                options.Cookies.ApplicationCookie.LogoutPath = "/LoggedIn/Logout";
 
                 // User settings
                 options.User.RequireUniqueEmail = true;

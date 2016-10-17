@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Identity;
 using GroupProject.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace GroupProject.Controllers
 {
+    [Route("User")]
     [Authorize]
     public class LoggedInController : Controller
     {
@@ -30,7 +30,7 @@ namespace GroupProject.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }
