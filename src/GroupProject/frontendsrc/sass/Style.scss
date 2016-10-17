@@ -4,7 +4,7 @@ body {
     font-size: 1.8rem !important;
 }
 
-.navbar{
+.navbar {
     padding-top:1em;
     padding-bottom:1em;
     margin-bottom:0 !important;  
@@ -38,15 +38,24 @@ body {
 }
 
 #currencyfeed {
-    max-width: 16rem;
+    max-width: 14rem;
     font-size: .8em;
 
-    .panel-body{
+    .panel-body {
         padding: 0;
     }
 
     .table {
         margin: 0;
+    }
+
+    td:empty{
+        opacity:0;
+    }
+
+    td {
+        opacity:1;
+        transition: all ease-in-out 500ms;
     }
 }
 
