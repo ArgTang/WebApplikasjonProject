@@ -42,15 +42,24 @@ main {
 }
 
 #currencyfeed {
-    max-width: 16rem;
+    max-width: 14rem;
     font-size: .8em;
 
-    .panel-body{
+    .panel-body {
         padding: 0;
     }
 
     .table {
         margin: 0;
+    }
+
+    td:empty{
+        opacity:0;
+    }
+
+    td {
+        opacity:1;
+        transition: all ease-in-out 500ms;
     }
 }
 
