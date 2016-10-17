@@ -22,4 +22,8 @@
         }
     </ul>
     @await Html.PartialAsync("Partials/CurrencyFeed")
+
+    <section class="container">
+        @await Component.InvokeAsync("Login")
+    </section>
 </section>

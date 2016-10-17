@@ -4,8 +4,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using GroupProject.Models;
 using Microsoft.EntityFrameworkCore;
+using GroupProject.Data;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using GroupProject.Models;
+using System;
 
 namespace GroupProject
 {
@@ -19,10 +22,6 @@ namespace GroupProject
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
-            if (env.IsDevelopment())
-            {
-                builder.AddApplicationInsightsSettings(developerMode:true);
-            }
 
             Configuration = builder.Build();
         }
@@ -33,22 +32,47 @@ namespace GroupProject
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplicationInsightsTelemetry(Configuration);
-
+            
             services.AddDbContext<PersonDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
+            services.AddDbContext<ProfileContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("Default")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                    .AddEntityFrameworkStores<ProfileContext>()
+                    .AddDefaultTokenProviders();               
+
             services.AddMvc();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 12;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = false;
+
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 3;
+
+                // Cookie settings
+                options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.Cookies.ApplicationCookie.LoginPath = "/Home/Login";
+                options.Cookies.ApplicationCookie.LogoutPath = "/Home/Logout";
+
+                // User settings
+                options.User.RequireUniqueEmail = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, PersonDbContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
-            app.UseApplicationInsightsRequestTelemetry();
 
             if (env.IsDevelopment())
             {
@@ -61,9 +85,11 @@ namespace GroupProject
                 app.UseExceptionHandler("/Shared/Error");
             }
 
-            app.UseApplicationInsightsExceptionTelemetry();
             app.UseStaticFiles();
+            app.UseIdentity();
             app.UseMvcWithDefaultRoute();
+
+            SeedData.SeedPersons(context);
         }
     }
 }
