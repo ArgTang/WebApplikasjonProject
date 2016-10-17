@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GroupProject.ViewModels;
+using Microsoft.AspNetCore.Identity;
+using GroupProject.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,6 +13,19 @@ namespace GroupProject.Controllers
 {
     public class BankIdController : Controller
     {
+
+        private readonly UserManager<ApplicationUser> _userManager;
+        private PersonDbContext _personDbContext { get; set; }
+
+        public BankIdController(PersonDbContext personDbcontext,
+            UserManager<ApplicationUser> userManager
+        )
+        {
+            _personDbContext = personDbcontext;
+
+            this._userManager = userManager;
+
+        }
         // GET: /<controller>/
         public IActionResult Identify()
         {
@@ -23,20 +38,15 @@ namespace GroupProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _signInManager.PasswordSignInAsync(
-                                            model.Fødselsnummer,
-                                            model.password,
-                                            model.rememberMe,
-                                            lockoutOnFailure: false);
+                var user = await _userManager.FindByNameAsync(model.Fødselsnummer);
 
-                //Login success or fail
-                if (user.Succeeded)
+                //If user exist or dont
+                if (user.UserName == model.Fødselsnummer)
                 {
-                    return RedirectToAction("Index", "LoggedIn");
+                    return RedirectToAction("Reference");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "No user");
                     return View(model);
                 }
 
