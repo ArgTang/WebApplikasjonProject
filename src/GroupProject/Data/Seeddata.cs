@@ -3,59 +3,81 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GroupProject.Models;
-
-
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace GroupProject.Data
 {
-    public static class SeedData
+    public class SeedData
     {
-        public static void SeedPersons(PersonDbContext context)
-        {
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
+        private readonly UserManager<ApplicationUser> _userManager;
+        private PersonDbContext _personDbContext;
 
-            if (!context.Person.Any())
+        public SeedData(PersonDbContext context, UserManager<ApplicationUser> userManager)
+        {
+            _userManager = userManager;
+            _personDbContext = context;
+        }
+        public async Task SeedPersons()
+        {
+
+
+            if (!await _personDbContext.Users.AnyAsync())
             {
-                context.AddRange(new Person
+                var newUser = new ApplicationUser
+                {
+                    UserName = "26118742957",
+                    Email = "olelundsor@gmail.com"
+                };
+                var identityResult = await _userManager.CreateAsync(newUser, "123456789Ole");
+            }
+
+            if (!_personDbContext.Person.Any())
+            {
+                _personDbContext.AddRange(new Person
                 {
                     PersonNr = "26118742957",
-                    passord = "passord",
+                    
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "ole",
-                    epost = "deg@gmail.com"
+                   
                 },
                 new Person
                 {
                     PersonNr = "12334578912",
-                    passord = "heipaadfsdfdeg",
+                   
                     CreatedDate = DateTime.Now,
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "bjarne",
+<<<<<<<
                     epost = "hei@gmail.com"
 
+=======
+                    
+
+>>>>>>>
                 },
                 new Person
                 {
 
                     PersonNr = "34524567897",
-                    passord = "asdf",
+                    
                     CreatedDate = DateTime.Now,
                     createdBy = "admin",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "admin",
-                    epost = "paa@gmail.com"
+                    
                 });
                 
 
             }
-            context.SaveChanges();
-            if (!context.Kontoer.Any())
+            _personDbContext.SaveChanges();
+            if (!_personDbContext.Kontoer.Any())
             {
-                context.AddRange(new Konto
+                _personDbContext.AddRange(new Konto
                 {
                     PersonerId = 1,
                     kontoNr = "1234121234",
@@ -87,10 +109,10 @@ namespace GroupProject.Data
                 });
 
             }
-            context.SaveChanges();
-            if (!context.Betal.Any())
+            _personDbContext.SaveChanges();
+            if (!_personDbContext.Betal.Any())
             {
-                context.AddRange(new Betalinger
+                _personDbContext.AddRange(new Betalinger
                 {
                     KontoerId = 1,
                     belop = 12312,
@@ -127,7 +149,7 @@ namespace GroupProject.Data
                     UpdatedBy = "ole"
                 });
             }
-            context.SaveChanges();
+            _personDbContext.SaveChanges();
         }
     }
 }

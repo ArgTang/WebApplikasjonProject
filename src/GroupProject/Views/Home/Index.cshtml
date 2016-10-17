@@ -1,26 +1,17 @@
 ﻿
-﻿
-
-@{
-    Layout = "_Layout";
-}
-
-
-
 ﻿<section>
     <header id="headerbilde" alt="Ett bilde av en familie"></header>
 
-    <h1>Personer</h1>
+    @*<h1>Personer</h1>
     <ul>
-        @foreach ( var person in Model ) {
-            <li>Personnr: @person.PersonNr</li>
-            <li>passord: @person.passord</li>
-            <li>createdBy: @person.createdBy</li>
-            <li>UpdatedBy: @person.UpdatedBy</li>
-            <li>CreatedDate: @person.CreatedDate</li>
-            <li>Epost: @person.epost</li>
-        }
-    </ul>
+            @foreach ( var person in Model ) {
+                <li>Personnr: @person.PersonNr</li>
+                <li>createdBy: @person.createdBy</li>
+                <li>UpdatedBy: @person.UpdatedBy</li>
+                <li>CreatedDate: @person.CreatedDate</li>
+            }
+    </ul>*@
+
     @await Html.PartialAsync("Partials/CurrencyFeed")
 
     <section class="container">
