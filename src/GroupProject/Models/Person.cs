@@ -11,6 +11,7 @@ namespace GroupProject.Models
     public class Person : BaseModel
     {
         [Required(ErrorMessage = "Passord må skrives inn")]
+        [DataType(DataType.Password)]
         public string passord { get; set; }
 
         [Required(ErrorMessage = "PersonNr må skrives inn")]
