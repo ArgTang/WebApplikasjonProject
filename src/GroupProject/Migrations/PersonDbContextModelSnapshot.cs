@@ -37,9 +37,12 @@ namespace GroupProject.Migrations
                         .IsRequired()
                         .HasAnnotation("MaxLength", 50);
 
+                    b.Property<DateTime>("datoUtfort");
+
                     b.Property<string>("info")
-                        .IsRequired()
                         .HasAnnotation("MaxLength", 100);
+
+                    b.Property<bool>("utfort");
 
                     b.HasKey("Id");
 
@@ -70,7 +73,7 @@ namespace GroupProject.Migrations
                     b.Property<string>("kontoNr")
                         .IsRequired();
 
-                    b.Property<int>("saldo");
+                    b.Property<decimal>("saldo");
 
                     b.HasKey("Id");
 
@@ -87,7 +90,8 @@ namespace GroupProject.Migrations
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("PersonNr")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 11);
 
                     b.Property<string>("UpdatedBy")
                         .IsRequired()
@@ -98,6 +102,10 @@ namespace GroupProject.Migrations
                     b.Property<string>("createdBy")
                         .IsRequired()
                         .HasAnnotation("MaxLength", 50);
+
+                    b.Property<string>("epost")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 100);
 
                     b.Property<string>("passord")
                         .IsRequired();
