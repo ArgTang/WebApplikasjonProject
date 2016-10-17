@@ -10,8 +10,9 @@ namespace GroupProject.Data
 {
     public static class SeedData
     {
-        public static void Seed(PersonDbContext context)
+        public static void SeedPersons(PersonDbContext context)
         {
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
             if (!context.Person.Any())
