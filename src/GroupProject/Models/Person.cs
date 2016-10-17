@@ -10,11 +10,18 @@ namespace GroupProject.Models
     [Table("Person")]
     public class Person : BaseModel
     {
-        [Required]
+        [Required(ErrorMessage = "Passord må skrives inn")]
+        [DataType(DataType.Password)]
         public string passord { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "PersonNr må skrives inn")]
+        [StringLength(11, MinimumLength = 11)]
         public string PersonNr { get; set; }
+
+        [Required(ErrorMessage = "Epost må skrives inn")]
+        [StringLength(100)]
+        [DataType(DataType.EmailAddress)]
+        public string epost { get; set; }
 
         public virtual ICollection<Konto> konto { get; set; }
 
