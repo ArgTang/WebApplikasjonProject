@@ -49,8 +49,6 @@ function validate(birthNumber) {
 
 }
 
-
-
 var birthnumberInput = find( "#birthnumberInput" );
 var submitButton = find("#submitButton");
 var infobubble = find(".infobubble_wrapper");
@@ -75,16 +73,15 @@ document.body.addEventListener("click",function () {
 
 function doShowErrorMessage() {
     removeClass(infobubble,"hide-error");
-    addClass(infobubble,"show-error")
+    addClass(infobubble, "show-error");
 }
 
 function doHideErrorMessage() {
     removeClass(infobubble,"show-error");
-    addClass(infobubble,"hide-error")
+    addClass(infobubble, "hide-error");
 }
 
 function post(path, data) {
-
     var request = $.ajax({
         type: "POST",
         url: path,
@@ -92,10 +89,15 @@ function post(path, data) {
     });
 
     request.done(function (response) {
-        $(".body").replaceWith(response);
+        if (response === "loggedIn") {
+            window.location = "/loggedin";
+        } else {
+            $(".body").replaceWith(response);
+        }
     });
 
-    request.fail(function (jqXHR, textStatus) {
+    request.fail(function (
+        jqXHR, textStatus) {
         $(".body").replaceWith(error);
     });
 }
@@ -124,5 +126,5 @@ function error() {
         </div>
     </div>
 </main>
-        `
+        `;
 }

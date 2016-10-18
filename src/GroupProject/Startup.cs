@@ -65,6 +65,8 @@ namespace GroupProject
             });
 
             services.AddTransient<SeedData>();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -86,6 +88,7 @@ namespace GroupProject
 
             app.UseStaticFiles();
             app.UseIdentity();
+            app.UseSession();
             app.UseMvcWithDefaultRoute();
 
             seedData.SeedPersons().Wait();
