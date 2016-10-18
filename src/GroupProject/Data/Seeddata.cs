@@ -26,9 +26,8 @@ namespace GroupProject.Data
             {
                 var newUser = new ApplicationUser
                 {
-                    UserName = "06129437713",
-                    Email = "olelundsor@gmail.com",
-                    EmailConfirmed = true
+                    UserName = "26118742957",
+                    Email = "olelundsor@gmail.com"
                 };
                 var identityResult = await _userManager.CreateAsync(newUser, "123456789Ole");
             }
