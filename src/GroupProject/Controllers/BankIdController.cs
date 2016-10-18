@@ -34,8 +34,7 @@ namespace GroupProject.Controllers
         public IActionResult Index()
 
         {
-            var model = new IdentifyViewModel();
-            return View("Identify",model);
+            return View("Identify");
         }
 
         [HttpPost]
