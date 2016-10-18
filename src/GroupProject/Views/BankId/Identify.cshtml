@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IdentifyViewModel
+@{
     Layout = "shared/_bankid";
     ViewBag.bankIDTitle = "Identifisering";
     ViewBag.footer = true;
@@ -10,57 +11,60 @@
     <div class="viewport animate">
         <div class="lm_view padding block_vertical_center">
             <div>
-                <form class="form_wrapper" autocomplete="off">
-                    <div class="row label">
-                        <label>Fødselsnummer</label>
-                    </div>
-                    <div class="row form">
-                        <div class="input_wrapper">
-                            <div class="infobubble_wrapper  hide-error" data-position="top">
-                                <div class="infobubble_container">
-                                    <div class="infobubble">
-                                        <div class="arrow">
-                                            <div class="border"></div>
-                                            <div class="fill"></div>
+                <form asp-controller="BankId" asp-action="Identify" method="post" role="form" class="form_wrapper" autocomplete="off">
+                        <div class="row label">
+                            <label asp-for="Fødselsnummer" >Fødselsnummer</label>
+                        </div>
+                        <div class="row form">
+                            <div class="input_wrapper">
+                                <div class="infobubble_wrapper" data-position="top">
+                                    <div class="infobubble_container">
+                                        <div class="infobubble">
+                                            <div class="arrow">
+                                                <div class="border"></div>
+                                                <div class="fill"></div>
+                                            </div>
+                                            <div class="wrapper">
+                                                <img class="icon" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb193YXJuaW5nPC90aXRsZT48ZyBmaWxsPSJub25lIj48cGF0aCBkPSJNLjE3IDE1LjcwNmw4LjA5MS0xNC4xNzJjLjQwNy0uNzEyIDEuMDcyLS43MTIgMS40NzggMGw4LjA5MSAxNC4xNzJjLjQwNy43MTIuMDYyIDEuMjk0LS43NjggMS4yOTRoLTE2LjEyM2MtLjgyOSAwLTEuMTc1LS41ODEtLjc2OS0xLjI5NHoiIGZpbGw9IiNDRDA5MjAiLz48cGF0aCBkPSJNOCA2aDJ2My4wMjFsLS40ODMgMi45NzloLTEuMDA1bC0uNTEyLTIuOTc5di0zLjAyMXptMCA3aDJ2MmgtMnYtMnoiIGZpbGw9IiNmZmYiLz48L2c+PC9zdmc+">
+                                                <span class="text">Fødselsnummer må være 11 siffer</span>
+                                            </div>
                                         </div>
-                                        <div class="wrapper">
-                                            <img class="icon" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb193YXJuaW5nPC90aXRsZT48ZyBmaWxsPSJub25lIj48cGF0aCBkPSJNLjE3IDE1LjcwNmw4LjA5MS0xNC4xNzJjLjQwNy0uNzEyIDEuMDcyLS43MTIgMS40NzggMGw4LjA5MSAxNC4xNzJjLjQwNy43MTIuMDYyIDEuMjk0LS43NjggMS4yOTRoLTE2LjEyM2MtLjgyOSAwLTEuMTc1LS41ODEtLjc2OS0xLjI5NHoiIGZpbGw9IiNDRDA5MjAiLz48cGF0aCBkPSJNOCA2aDJ2My4wMjFsLS40ODMgMi45NzloLTEuMDA1bC0uNTEyLTIuOTc5di0zLjAyMXptMCA3aDJ2MmgtMnYtMnoiIGZpbGw9IiNmZmYiLz48L2c+PC9zdmc+">
-                                            <span class="text">Fødselsnummer må være 11 siffer</span>
+                                    </div>
+                                </div>
+                                <div class="label">
+                                    <div class="icon">
+                                        <div>
+                                            <img alt=""
+                                                 src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb191c2VyaWQ8L3RpdGxlPjxnIGZpbGw9IiMwMDc4QkQiPjxwYXRoIGQ9Ik0yMCAyMmMwLTUuNTIzLTQuNDc3LTEwLTEwLTEwcy0xMCA0LjQ3Ny0xMCAxMGgyMHoiLz48Y2lyY2xlIGN4PSIxMCIgY3k9IjUiIHI9IjUiLz48L2c+PC9zdmc+"
+                                                 title="">
+                                        </div>
+                                    </div>
+                                    <div class="input">
+                                        <div class="wrp">
+                                            <input asp-for="Fødselsnummer" id="birthnumberInput" class="">
+                                            <div class="placeholder"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="label">
-                                <div class="icon">
-                                    <div>
-                                        <img alt=""
-                                                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb191c2VyaWQ8L3RpdGxlPjxnIGZpbGw9IiMwMDc4QkQiPjxwYXRoIGQ9Ik0yMCAyMmMwLTUuNTIzLTQuNDc3LTEwLTEwLTEwcy0xMCA0LjQ3Ny0xMCAxMGgyMHoiLz48Y2lyY2xlIGN4PSIxMCIgY3k9IjUiIHI9IjUiLz48L2c+PC9zdmc+"
-                                                title="">
-                                    </div>
-                                </div>
-                                <div class="input">
-                                    <div class="wrp">
-                                        <input id="birthnumberInput" class="">
-                                        <div class="placeholder"></div>
-                                    </div>
-                                </div>
+                            <div class="button_icon_wrapper">
+                                <button id="submitButton" class="button disabled" title="Neste">
+                                    <span class="label" style="display: none;"></span>
+                                    <img alt="" class="svg"
+                                         src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19hcnJvd19yaWdodDwvdGl0bGU+PHBhdGggZD0iTTE5IDExbC01IDUgMiAyIDgtOC41MzEtOC04LjQ2OS0yIDIgNSA1aC0xOXYzaDE5eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==">
+                                </button>
                             </div>
                         </div>
-                        <div class="button_icon_wrapper">
-                            <button id="submitButton" class="button disabled" title="Neste" onclick="return false">
-                                <span class="label" style="display: none;"></span>
-                                <img alt="" class="svg"
-                                        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19hcnJvd19yaWdodDwvdGl0bGU+PHBhdGggZD0iTTE5IDExbC01IDUgMiAyIDgtOC41MzEtOC04LjQ2OS0yIDIgNSA1aC0xOXYzaDE5eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==">
-                            </button>
+                        <div class="row message">
+                            <span>11 siffer</span>
                         </div>
-                    </div>
-                    <div class="row message">
-                        <span>11 siffer</span>
-                    </div>
-                </form>
+                    <div class="text-danger"></div>
+                    </form>
             </div>
         </div>
     </div>
 </main>
 
 <script src="js/identify.js" charset="UTF-8"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js" integrity="sha256-uUVS/d3xM3l8YmucAkj1DeRt6U4Y+Xv3ePUgVVEVmVw=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js" integrity="sha256-g1QKGxqsp+x5JkuN/JjHl96je2wztgS5Wo4h4c7gm9M=" crossorigin="anonymous"></script>

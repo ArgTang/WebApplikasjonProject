@@ -17,7 +17,7 @@ namespace GroupProject.Anotations
         public override bool IsValid(object value)
         {
             string birthNumber= value as string;
-            if (string.IsNullOrEmpty(birthNumber) || birthNumber.Length != Length)
+            if (string.IsNullOrEmpty(birthNumber))
             {
                 return false;
             }

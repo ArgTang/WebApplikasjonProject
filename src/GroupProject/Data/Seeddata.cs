@@ -51,14 +51,7 @@ namespace GroupProject.Data
                     CreatedDate = DateTime.Now,
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
-                    UpdatedBy = "bjarne",
-<<<<<<<
-                    epost = "hei@gmail.com"
-
-=======
-                    
-
->>>>>>>
+                    UpdatedBy = "bjarne"
                 },
                 new Person
                 {

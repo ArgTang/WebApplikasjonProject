@@ -59,7 +59,7 @@ if(submitButton && birthnumberInput){
     submitButton.addEventListener("click",function () {
         if(validate(birthnumberInput.value)){
             doHideErrorMessage();
-            post("password",{birthnumber:birthnumberInput.value})
+            //post("identify",{birthnumber:birthnumberInput.value})
         }else{
             doShowErrorMessage();
         }
@@ -92,11 +92,11 @@ function post(path, data) {
     });
 
     request.done(function (response) {
-        $("#body").replaceWith(response);
+        $(".body").replaceWith(response);
     });
 
     request.fail(function (jqXHR, textStatus) {
-        $("#body").replaceWith(error);
+        $(".body").replaceWith(error);
     });
 }
 

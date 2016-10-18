@@ -17,17 +17,20 @@ namespace GroupProject.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private PersonDbContext _personDbContext { get; set; }
 
-        public BankIdController(PersonDbContext personDbcontext, UserManager<ApplicationUser> userManager)
+        public BankIdController(PersonDbContext personDbcontext,
+            UserManager<ApplicationUser> userManager
+        )
         {
             _personDbContext = personDbcontext;
+
             this._userManager = userManager;
+
         }
-
-
         // GET: /<controller>/
         public IActionResult Identify()
         {
-            return View();
+            var model = new IdentifyViewModel();
+            return View(model);
         }
 
         [HttpPost]
@@ -36,32 +39,10 @@ namespace GroupProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByNameAsync(model.Fødselsnummer);
+                ApplicationUser user = await _userManager.FindByNameAsync(model.Fødselsnummer);
 
                 //If user exist or dont
-                if (user.UserName == model.Fødselsnummer)
-                {
-                    return RedirectToAction("Reference");
-                }
-                else
-                {
-                    return RedirectToAction("Error");
-                }
-
-            }
-            return View(model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Reference(IdentifyViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await _userManager.FindByNameAsync(model.Fødselsnummer);
-
-                //If user exist or dont
-                if (user.UserName == model.Fødselsnummer)
+                if (user == null )//|| user.UserName == model.Fødselsnummer)
                 {
                     return RedirectToAction("Password");
                 }
@@ -70,27 +51,7 @@ namespace GroupProject.Controllers
                     return RedirectToAction("Error");
                 }
 
-            }
-            return View(model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Password(IdentifyViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await _userManager.FindByNameAsync(model.Fødselsnummer);
-
-                //If user exist or dont
-                if (user.UserName == model.Fødselsnummer)
-                {
-                    return RedirectToAction("Reference");
-                }
-                else
-                {
-                    return RedirectToAction("Error");
-                }
+            }else{
 
             }
             return View(model);
@@ -98,24 +59,21 @@ namespace GroupProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Error(IdentifyViewModel model)
+        public IActionResult Reference()
         {
-            if (ModelState.IsValid)
-            {
-                var user = await _userManager.FindByNameAsync(model.Fødselsnummer);
+            return View();
+        }
 
-                //If user exist or dont
-                if (user.UserName == model.Fødselsnummer)
-                {
-                    return RedirectToAction("Reference");
-                }
-                else
-                {
-                    return RedirectToAction("Error");
-                }
+        [HttpPost]
+        public IActionResult Password()
+        {
+            return View();
+        }
 
-            }
-            return View(model);
+        [HttpPost]
+        public IActionResult Error()
+        {
+            return View();
         }
 
 
