@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GroupProject.Anotations;
 using Microsoft.AspNetCore.Mvc;
 using GroupProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using GroupProject.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,56 +29,43 @@ namespace GroupProject.Controllers
             this._userManager = userManager;
 
         }
+
         // GET: /<controller>/
-        public IActionResult Identify()
+        public IActionResult Index()
+
         {
             var model = new IdentifyViewModel();
-            return View(model);
+            return View("Identify",model);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Identify(IdentifyViewModel model)
+        [Route("bankid/identify")]
+        public async Task<IActionResult> PostIdentify()
         {
-            if (ModelState.IsValid)
-            {
-                ApplicationUser user = await _userManager.FindByNameAsync(model.Fødselsnummer);
-
-                //If user exist or dont
-                if (user == null )//|| user.UserName == model.Fødselsnummer)
+                try
                 {
-                    return RedirectToAction("Password");
+                    IFormCollection form = Request.Form;
+                    String key = "birthnumber";
+                    if (form.ContainsKey(key))
+                    {
+                        BirthNumber birthNumber = new BirthNumber();
+
+                        if (birthNumber.IsValid(form[key].ToString()) && _personDbContext.Users.Any(p => p.NormalizedUserName == form[key])){
+                            return View("Reference");
+                        }else{
+                            return View("Error");
+                        }
+                    }
+                    else
+                    {
+                        return View("Error");
+                    }
                 }
-                else
+                //If no body is specified
+                catch (Exception)
                 {
-                    return RedirectToAction("Error");
+                    return View("Error");
                 }
-
-            }else{
-
-            }
-            return View(model);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Reference()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Password()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Error()
-        {
-            return View();
-        }
-
-
     }
 }

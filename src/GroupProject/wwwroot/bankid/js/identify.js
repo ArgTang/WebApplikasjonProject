@@ -56,10 +56,10 @@ var submitButton = find("#submitButton");
 var infobubble = find(".infobubble_wrapper");
 
 if(submitButton && birthnumberInput){
-    submitButton.addEventListener("click",function () {
+    submitButton.addEventListener("click", function () {
         if(validate(birthnumberInput.value)){
             doHideErrorMessage();
-            //post("identify",{birthnumber:birthnumberInput.value})
+            post("bankid/identify", { birthnumber: birthnumberInput.value });
         }else{
             doShowErrorMessage();
         }
