@@ -66,5 +66,11 @@ namespace GroupProject.Controllers
                     return View("Error");
                 }
         }
+
+        [HttpPost]
+        public IActionResult Password()
+        {
+            return View();
+        }
     }
 }
