@@ -1,5 +1,11 @@
 ﻿@import 'colors';
 
+@mixin flex {
+        display:flex !important;
+        align-items:center;
+        justify-content:space-around;
+}
+
 body {
     font-size: 1.8rem !important;
 }
@@ -8,22 +14,26 @@ main {
     min-height:50rem;
 }
 
+nav * {
+    color:$base !important;
+}
+
+nav *:hover {
+    color:$accent !important;
+}
+
 .navbar{
     padding-top:1em;
     padding-bottom:1em;
     margin-bottom:0 !important;  
-
-    li {
-        display:flex !important;
-        align-items:center;
-    }
 
     .navbar-brand {
         font-size: 2em !important;
     }
 
     #logobilde {
-        height: 2.5em;
+        height: 200%;
+        padding-right: 0.1em;
     }
 }
 
@@ -65,4 +75,9 @@ main {
 
 footer {
     text-align:center;
+    color: $base;
+}
+
+.flex {
+    @include flex;
 }
