@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GroupProject.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,6 +16,9 @@ namespace GroupProject.Models
         [Required(ErrorMessage = "Saldo må skrives inn")]
         [Range(-10000.00, 10000000.00)]
         public decimal saldo { get; set; }
+        [Required]
+        [StringLength(30)]
+        public string kontoType { get; set; }
 
         public virtual Person Personer { get; set; }
         [Required]

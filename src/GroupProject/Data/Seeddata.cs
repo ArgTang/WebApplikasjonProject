@@ -62,7 +62,8 @@ namespace GroupProject.Data
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
-                    UpdatedBy = "ole"
+                    UpdatedBy = "ole",
+                    kontoType = "Brukerkonto"
                 },
                 new Konto
                 {
@@ -72,7 +73,8 @@ namespace GroupProject.Data
                     CreatedDate = DateTime.Now,
                     createdBy = "geir",
                     UpdatedDate = DateTime.Now,
-                    UpdatedBy = "geir"
+                    UpdatedBy = "geir",
+                    kontoType = "Sparekonto"
                 },
                 new Konto
                 {
@@ -82,7 +84,8 @@ namespace GroupProject.Data
                     CreatedDate = DateTime.Now,
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
-                    UpdatedBy = "bjarne"
+                    UpdatedBy = "bjarne",
+                    kontoType = "Brukerkonto"
                 });
 
             }
