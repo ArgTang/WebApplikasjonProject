@@ -16,13 +16,15 @@ main {
 
 nav * {
     color:$base !important;
+    transition: border-color 150ms ease-out;
+    transition: color 150ms ease-out;
 }
 
 nav *:hover {
     color:$accent !important;
 }
 
-.navbar{
+.navbar {
     padding-top:1em;
     padding-bottom:1em;
     margin-bottom:0 !important;  
@@ -55,12 +57,6 @@ nav *:hover {
     min-height: 50rem;
     height: 80vh;
     background-size:cover;   
-    
-    h1 {
-        position: relative;
-        top: 5vh;
-        left: 2vw;
-    } 
 }
 
 #currencyfeed {
