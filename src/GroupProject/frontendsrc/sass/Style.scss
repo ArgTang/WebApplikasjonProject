@@ -35,6 +35,18 @@ nav *:hover {
         height: 200%;
         padding-right: 0.1em;
     }
+
+    .navbar-nav:first-child {
+
+        margin-left: 5rem;
+
+        li:not(:last-child) {
+            border-right: 1px solid $base
+        }
+        a:hover {
+            text-decoration:underline;
+        }
+    }
 }
 
 #headerbilde {
@@ -81,15 +93,15 @@ footer {
 .flex {
     @include flex;
 }
-#betalknapp{
-    background-color:deepskyblue;
-    color:black;
+
+.btn,
+button {
+    border-color: $base !important;
+    color: $base !important;
 }
-#endreknapp{
-    background-color:greenyellow;
-    color:black;
-}
-#slettknapp{
-    background-color:red;
-    color:black;
+
+btn,
+button:hover {
+    border-color: $accent !important;
+    color: $base !important;
 }
