@@ -7,16 +7,16 @@ using GroupProject.Models;
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 namespace GroupProject.Controllers
 {
-    [Route("User")]
     [Authorize]
-    public class LoggedInController : Controller
+    public class UserController : Controller
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public LoggedInController(SignInManager<ApplicationUser> signInManager)
+        public UserController(SignInManager<ApplicationUser> signInManager)
         {
             this._signInManager = signInManager;
         }
+
 
         // GET: /<controller>/
         public IActionResult Index()
