@@ -82,11 +82,14 @@ footer {
     @include flex;
 }
 #betalknapp{
-    background-color:aquamarine;
+    background-color:deepskyblue;
+    color:black;
 }
 #endreknapp{
     background-color:greenyellow;
+    color:black;
 }
 #slettknapp{
     background-color:red;
+    color:black;
 }
