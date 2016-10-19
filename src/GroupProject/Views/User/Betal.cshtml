@@ -1,14 +1,9 @@
-﻿@{
-    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
-}
-
+﻿
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker3.css" rel="stylesheet" />
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.nb.min.js" integrity="sha256-8xrVLIgvl9O6xBlVPzBEA429sz0VLupHCIv5gFk4XAo=" crossorigin="anonymous"></script>
 
-<a asp-action="Logout" asp-controller="LoggedIn" > Logg ut</a>
-
-<div class="container">
+<section class="container">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -61,7 +56,7 @@
         </tbody>
     </table>
     <button type="submit" id="betalknapp" class="btn btn-default">Betal regning</button>
-</div>
+</section>
 
 <script>
     $('#sandbox-container').datepicker({

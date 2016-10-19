@@ -42,6 +42,12 @@ namespace GroupProject.Controllers
             return View();
         }
 
+        public IActionResult Oversikt()
+        {
+            ViewData["Title"] = "Logged in ACOS";
+            return View();
+        }
+
         //[HttpPost]
         //[ValidateAntiForgeryToken]
         //public IActionResult Betal()
