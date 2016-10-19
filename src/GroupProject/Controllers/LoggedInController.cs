@@ -25,6 +25,20 @@ namespace GroupProject.Controllers
             return View();
         }
 
+        public IActionResult Betal()
+        {
+            ViewData["Title"] = "Logged in ACOS";
+            return View();
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Betal()
+        //{
+        //    ViewData["Title"] = "Logged in ACOS";
+        //    return View();
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()

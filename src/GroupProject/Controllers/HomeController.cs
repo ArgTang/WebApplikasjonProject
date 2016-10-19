@@ -57,7 +57,7 @@ namespace GroupProject.Controllers
 
                 //Login success or fail
                 if ( loginresults.Succeeded ) {
-                    return RedirectToAction(nameof(HomeController.Index), "LoggedIn");
+                    return RedirectToAction(nameof(LoggedInController.Index), "LoggedIn");
                 } else {
                     _logger.LogWarning("invalid login attempt");
                     ModelState.AddModelError(string.Empty, "Invalid login");

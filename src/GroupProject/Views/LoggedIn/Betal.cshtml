@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker3.css" rel="stylesheet" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.nb.min.js" integrity="sha256-8xrVLIgvl9O6xBlVPzBEA429sz0VLupHCIv5gFk4XAo=" crossorigin="anonymous"></script>
+
+<a asp-action="Logout" asp-controller="LoggedIn" > Logg ut</a>
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Betalingsdetaljer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>* Påkrevde felt</td></tr>
+            <tr>
+                <td>
+                    Fra konto: *
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" aria-label="...">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Velg konto <span class="caret"></span></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#">Brukerkonto</a></li>
+                                        <li><a href="#">Sparekonto</a></li>
+                                    </ul>
+                                </div><!-- /btn-group -->
+                            </div><!-- /input-group -->
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Til konto: *<input type="text" name='Til konto' placeholder='Til konto' class="form-control" /></td>
+            </tr>
+            <tr>
+                <td>Mottaker: *<input type="text" name='Mottaker' placeholder='Mottaker' class="form-control" /></td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>Beløp: *<input type="text" name='beløp' size="7" />,<input type="text" name='desimalbeløp' maxlength="2" size="2" /></td>
+            </tr>
+            <tr>
+                <td>
+                    Dato: *
+                    <div>
+                        <input type="text" class="form-control" id="sandbox-container">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>KID: <input type="text" name='KID' placeholder='KID nummer' class="form-control" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" id="betalknapp" class="btn btn-default">Betal regning</button>
+</div>
+</div>
+<script>
+    $('#sandbox-container').datepicker({
+        format: "dd/mm/yyyy",
+        weekStart: 1,
+        locale: "nb",
+        orientation: "bottom auto",
+        multidate: false,
+        daysOfWeekDisabled: "0,6",
+        calendarWeeks: true,
+        todayHighlight: true
+    });
+</script>
