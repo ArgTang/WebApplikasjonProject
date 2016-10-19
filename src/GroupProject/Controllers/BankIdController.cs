@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GroupProject.Anotations;
+using GroupProject.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using GroupProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -18,20 +18,18 @@ namespace GroupProject.Controllers
 {
     public class BankIdController : Controller
     {
-        String birthKey = "birthnumber";
-        String passKey = "password";
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly String birthKey = "birthnumber";
+        private readonly String passKey = "password";
         private readonly SignInManager<ApplicationUser> _signInManager;
         private PersonDbContext _personDbContext { get; set; }
 
         public BankIdController(PersonDbContext personDbcontext,
-            UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager
+            SignInManager<ApplicationUser> signInManager
         )
         {
             _personDbContext = personDbcontext;
 
             this._signInManager = signInManager;
-            this._userManager = userManager;
 
         }
 
@@ -59,13 +57,7 @@ namespace GroupProject.Controllers
                         {
                             HttpContext.Session.SetString(birthKey,birthNr);
                             return View("Reference");
-                        }else{
-                            return View("Error");
                         }
-                    }
-                    else
-                    {
-                        return View("Error");
                     }
                 }
                 //If no body is specified
@@ -73,6 +65,7 @@ namespace GroupProject.Controllers
                 {
                     return View("Error");
                 }
+            return View("Error");
         }
 
         // POST: /bankid/password
@@ -80,7 +73,7 @@ namespace GroupProject.Controllers
         [Route("bankid/reference")]
         public IActionResult Reference()
         {
-  
+ 
             return View();
         }
 
@@ -90,7 +83,6 @@ namespace GroupProject.Controllers
         public IActionResult Password()
         {
             ViewBag.error = "hide-error";
-            HttpContext.Session.SetString("currentUser","Aleksander 123");
             return View();
         }
 

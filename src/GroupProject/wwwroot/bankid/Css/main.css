@@ -41,10 +41,6 @@
     display: none;
 }
 
-.show-error{
-    display: block;
-}
-
 .infobubble_wrapper .infobubble_container .infobubble {
     width: auto;
 }

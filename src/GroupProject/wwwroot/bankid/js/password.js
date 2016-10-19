@@ -40,11 +40,10 @@ if(showPasswordButton){
 }
 
 function showPassButton(show) {
-    if(show === true){
-        addClass(showPswWrapper, "visible");
-
+    if(show === true) {
+        showPswWrapper.toggle("visible");
     }else{
-        removeClass(showPswWrapper, "visible");
+        showPswWrapper.toggle("visible");
     }
 }
 

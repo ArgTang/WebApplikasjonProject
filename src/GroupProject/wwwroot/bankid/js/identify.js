@@ -2,29 +2,6 @@
     return document.querySelector(key);
 }
 
-function addClass( element, clas ) {
-    var classes = element.className.split( " " );
-    if ( classes.indexOf( clas ) === -1 ) {
-        classes.push( clas );
-        element.className = classes.join( " " );
-    }
-}
-
-function removeClass( element, clas ) {
-    var classes = element.className.split( " " );
-    var indexOf = classes.indexOf( clas );
-
-    if ( indexOf > -1 ) {
-        classes.splice( indexOf, 1 );
-        element.className = classes.join( " " );
-    }
-}
-
-function hasClass( element, clas ) {
-    var classes = element.className.split( " " );
-    return classes.indexOf( clas ) > -1;
-}
-
 function validate(birthNumber) {
 
     birthNumber = birthNumber.toString();
@@ -56,29 +33,21 @@ var infobubble = find(".infobubble_wrapper");
 if(submitButton && birthnumberInput){
     submitButton.addEventListener("click", function () {
         if(validate(birthnumberInput.value)){
-            doHideErrorMessage();
+            toggleErrorMessage();
             post("bankid/identify", { birthnumber: birthnumberInput.value });
         }else{
-            doShowErrorMessage();
+            toggleErrorMessage();
         }
     });
 }
 
 
 document.body.addEventListener("click",function () {
-    if(hasClass(infobubble,"show-error")){
-        doHideErrorMessage();
-    }
+        toggleErrorMessage();
 },true);
 
-function doShowErrorMessage() {
-    removeClass(infobubble,"hide-error");
-    addClass(infobubble, "show-error");
-}
-
-function doHideErrorMessage() {
-    removeClass(infobubble,"show-error");
-    addClass(infobubble, "hide-error");
+function toggleErrorMessage() {
+    infobubble.classList.toggle("show-error");
 }
 
 function post(path, data) {

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Query.Expressions;
 
-namespace GroupProject.Anotations
+namespace GroupProject.Annotations
 {
     public class BirthNumber : ValidationAttribute
     {
