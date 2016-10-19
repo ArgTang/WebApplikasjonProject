@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace GroupProject.Models
 {
-    public class PersonDbContext:DbContext
+    public class PersonDbContext: IdentityDbContext<ApplicationUser>
     {
-        
-        public PersonDbContext(DbContextOptions<PersonDbContext> options):base(options)
+
+        public PersonDbContext(DbContextOptions<PersonDbContext> options):base(options) 
         {
 
         }
@@ -23,7 +24,6 @@ namespace GroupProject.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -36,11 +36,8 @@ namespace GroupProject
             services.AddDbContext<PersonDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
-            services.AddDbContext<ProfileContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("Default")));
-
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                    .AddEntityFrameworkStores<ProfileContext>()
+                    .AddEntityFrameworkStores<PersonDbContext>()
                     .AddDefaultTokenProviders();               
 
             services.AddMvc();
@@ -61,15 +58,17 @@ namespace GroupProject
                 // Cookie settings
                 options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                 options.Cookies.ApplicationCookie.LoginPath = "/Home/Login";
-                options.Cookies.ApplicationCookie.LogoutPath = "/Home/Logout";
+                options.Cookies.ApplicationCookie.LogoutPath = "/LoggedIn/Logout";
 
                 // User settings
                 options.User.RequireUniqueEmail = true;
             });
+
+            services.AddTransient<SeedData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, PersonDbContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, SeedData seedData)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -89,7 +88,7 @@ namespace GroupProject
             app.UseIdentity();
             app.UseMvcWithDefaultRoute();
 
-            SeedData.SeedPersons(context);
+            seedData.SeedPersons().Wait();
         }
     }
 }

@@ -57,7 +57,7 @@ namespace GroupProject.Controllers
 
                 //Login success or fail
                 if ( loginresults.Succeeded ) {
-                    return RedirectToAction("Index", "LoggedIn");
+                    return RedirectToAction(nameof(HomeController.Index), "LoggedIn");
                 } else {
                     _logger.LogWarning("invalid login attempt");
                     ModelState.AddModelError(string.Empty, "Invalid login");
@@ -95,7 +95,7 @@ namespace GroupProject.Controllers
                                             false, ///remember me flag
                                             lockoutOnFailure: false);
                     _logger.LogInformation($"Created new user: {newUser.ToString()}");
-                    return RedirectToAction("Index", "LoggedIn");
+                    return RedirectToAction(nameof(LoggedInController.Index), "LoggedIn");
                 } else {
                     var message = $"Registration failed: {identityResult.ToString()}";
                     _logger.LogWarning(message);

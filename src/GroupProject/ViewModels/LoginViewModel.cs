@@ -9,7 +9,7 @@ namespace GroupProject.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [DataType(DataType.EmailAddress)]
+        //[DataType(DataType.EmailAddress)]
         [Display(Name = "Brukernavn", Prompt = "Brukernavn")]
         public string username { get; set; }
 
