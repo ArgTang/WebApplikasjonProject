@@ -68,7 +68,7 @@ function post(path, data) {
 
     request.done(function (response) {
         if (response === "loggedIn") {
-            window.location = "/loggedin";
+            window.top.location = "/loggedin";
         } else {
             $(".body").replaceWith(response);
             result = true;

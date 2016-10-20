@@ -47,7 +47,7 @@ namespace GroupProject.Controllers
         // POST: /bankid/identify
         [HttpPost]
         [Route("bankid/identify")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public IActionResult PostIdentify()
         {
                 try
@@ -87,7 +87,7 @@ namespace GroupProject.Controllers
         // POST: /bankid/password
         [HttpPost]
         [Route("bankid/reference")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public IActionResult Reference()
         {
             return View();
@@ -96,7 +96,7 @@ namespace GroupProject.Controllers
         // POST: /bankid/password
         [HttpPost]
         [Route("bankid/password")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public IActionResult Password()
         {
             ViewBag.error = "hide-error";
@@ -106,7 +106,7 @@ namespace GroupProject.Controllers
         // POST: /bankid/password
         [HttpPost]
         [Route("bankid/login")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Login()
         {
             try
@@ -145,7 +145,7 @@ namespace GroupProject.Controllers
 
         [HttpPost]
         [Route("bankid/auth")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Auth()
         {
             try
@@ -179,7 +179,7 @@ namespace GroupProject.Controllers
         
         [HttpPost]
         [Route("bankid/auth/check")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> CheckAuth()
         {
             try
