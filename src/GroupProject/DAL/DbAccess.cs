@@ -1,4 +1,8 @@
 ﻿using GroupProject.Models;
+<<<<<<< HEAD
+using Microsoft.EntityFrameworkCore;
+=======
+>>>>>>> 0f251ae4673f753d701b647a0f3dc909f2031787
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +22,7 @@ namespace GroupProject.DAL
             String personNr = applicationUser.UserName;
 
             var person = _persondbcontext.Person
+                .Include(s => s.konto)
                 .Single(p => p.PersonNr == personNr);
             var retur = person.konto?.ToList() ?? new List<Konto>();
 
