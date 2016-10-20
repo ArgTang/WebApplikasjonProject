@@ -39,6 +39,7 @@ namespace GroupProject.Controllers
         // GET: /bankid
         public IActionResult Index()
         {
+            HttpContext.Session.Clear();
             return View("Identify");
         }
 

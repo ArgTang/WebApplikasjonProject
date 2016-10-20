@@ -33,24 +33,29 @@ var infobubble = find(".infobubble_wrapper");
 if(submitButton && birthnumberInput){
     submitButton.addEventListener("click", function () {
         if(validate(birthnumberInput.value)){
-            toggleErrorMessage();
+            toggleErrorMessage(false);
             var sucsess = post("bankid/identify", { birthnumber: birthnumberInput.value });
             if (sucsess) {
                 reference();
             }
         }else{
-            toggleErrorMessage();
+            toggleErrorMessage(true);
         }
     });
 }
 
 
 document.body.addEventListener("click",function () {
-        toggleErrorMessage();
+        toggleErrorMessage(false);
 },true);
 
-function toggleErrorMessage() {
-    infobubble.classList.toggle("show-error");
+function toggleErrorMessage(bool) {
+    if (bool) {
+        infobubble.classList.remove("hide-error");
+    } else {
+        infobubble.classList.add("hide-error");
+    }
+    
 }
 
 function post(path, data) {
