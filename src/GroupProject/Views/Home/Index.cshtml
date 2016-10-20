@@ -1,8 +1,19 @@
 ﻿
 ﻿<section>
     <header id="headerbilde" alt="Ett bilde av en familie"></header>
+    <div id="kurser">
+        @await Html.PartialAsync("Partials/CurrencyFeed")
+    </div>
 
-    @await Html.PartialAsync("Partials/CurrencyFeed")
+    @*<h1>Personer</h1>
+    <ul>
+            @foreach ( var person in Model ) {
+                <li>Personnr: @person.PersonNr</li>
+                <li>createdBy: @person.createdBy</li>
+                <li>UpdatedBy: @person.UpdatedBy</li>
+                <li>CreatedDate: @person.CreatedDate</li>
+            }
+    </ul>*@
 
     <section class="container">
         @await Component.InvokeAsync("Login")

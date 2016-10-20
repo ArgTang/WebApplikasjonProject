@@ -6,6 +6,7 @@ using GroupProject.Models;
 using System.Linq;
 using GroupProject.DAL;
 
+
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 namespace GroupProject.Controllers
 {
@@ -28,8 +29,6 @@ namespace GroupProject.Controllers
             _access = dbAccess;
             _userManager = userManager;
         }
-
-
         // GET: /<controller>/
         public async Task<ActionResult> Index()
         {
@@ -37,7 +36,6 @@ namespace GroupProject.Controllers
             var bruker = await _userManager.GetUserAsync(HttpContext.User); 
             var konto = _access.getAccounts(bruker);
             // sette inn dbacess i klassen
-
             return View(konto);
         }
 
@@ -49,6 +47,12 @@ namespace GroupProject.Controllers
         }
 
         public IActionResult Betal()
+        {
+            ViewData["Title"] = "Logged in ACOS";
+            return View();
+        }
+
+        public IActionResult Oversikt()
         {
             ViewData["Title"] = "Logged in ACOS";
             return View();

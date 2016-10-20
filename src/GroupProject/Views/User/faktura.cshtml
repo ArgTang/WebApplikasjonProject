@@ -1,4 +1,31 @@
-﻿@{
-    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
-}
-<p1>Dette er en side</p1>
+
+﻿<section class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <h2>Oversikt over betalinger til forfall</h2>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Faktura id:</th>
+                <th>Fra Konto:</th>
+                <th>Til konto:</th>
+                <th>Forfallsdato:</th>
+                <th>Sum:</th>
+                <th>Valg:</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>6543 00 2342</td>
+                <td>2254 22 7948</td>
+                <td>22.10.2016</td>
+                <td>500,00</td>
+                <td>
+                    <button id="endreknapp" type="submit" class="btn btn-default">Endre</button> 
+                    <button id="slettknapp" type="submit" class="btn btn-default">Slett</button>
+                    </td>
+            </tr>
+        </tbody>
+    </table>
+</section>

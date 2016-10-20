@@ -10,7 +10,7 @@
     <script async defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <environment names="Development">
-        <link rel="stylesheet" href="/css/style.css" />     
+        <link rel="stylesheet" href="~/css/style.css" />     
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="~/css/style.min.css" />
@@ -27,7 +27,7 @@
     @await Html.PartialAsync("footer")
 
     <environment names="Development">
-        <script src="JS/app.js"></script>
+        <script src="~/JS/app.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="~/JS/app.min.js"></script>

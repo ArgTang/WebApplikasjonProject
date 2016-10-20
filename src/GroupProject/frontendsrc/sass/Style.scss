@@ -11,18 +11,20 @@ body {
 }
 
 main {
-    min-height:50rem;
+    min-height:80vh;
 }
 
 nav * {
     color:$base !important;
+    transition: border-color 150ms ease-out;
+    transition: color 150ms ease-out;
 }
 
 nav *:hover {
     color:$accent !important;
 }
 
-.navbar{
+.navbar {
     padding-top:1em;
     padding-bottom:1em;
     margin-bottom:0 !important;  
@@ -35,6 +37,18 @@ nav *:hover {
         height: 200%;
         padding-right: 0.1em;
     }
+
+    .navbar-nav:first-child {
+
+        margin-left: 5rem;
+
+        li:not(:last-child) {
+            border-right: 1px solid $base
+        }
+        a:hover {
+            text-decoration:underline;
+        }
+    }
 }
 
 #headerbilde {
@@ -43,12 +57,6 @@ nav *:hover {
     min-height: 50rem;
     height: 80vh;
     background-size:cover;   
-    
-    h1 {
-        position: relative;
-        top: 5vh;
-        left: 2vw;
-    } 
 }
 
 #currencyfeed {
@@ -81,6 +89,24 @@ footer {
 .flex {
     @include flex;
 }
-#betalknapp{
-    background-color:aquamarine;
+
+.btn,
+button {
+    border-color: $base !important;
+    color: $base !important;
+}
+
+btn,
+button:hover {
+    border-color: $accent !important;
+    color: $base !important;
+}
+
+.footer {
+    background-color:#f8f8f8;                 
+    left: 0;
+    width: 100%;
+    :last-child {
+        margin-bottom:0;
+    }   
 }

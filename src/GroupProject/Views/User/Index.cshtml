@@ -1,6 +1,28 @@
-﻿@{
-    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
-}
-
+﻿@using GroupProject.Models
+@using GroupProject.ViewModels
 
 @await Html.PartialAsync("_LoggedInPartial")
+
+<div class="container">
+    <h2>Oversikt over dine kontoer</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Kontonummer</th>
+                <th>Bokført saldo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var konto in Model)
+            {
+                <tr>
+                    <td></td>@*@konto.kontoType*@
+                    <td>@konto.kontoNr</td>
+                    <td id="saldo">@konto.saldo</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
