@@ -3,9 +3,11 @@
   "name": "asp.net",
   "private": true,
   "devDependencies": {
+    "autoprefixer": "^6.5.1",
+    "bower": "1.7.9",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
-    "gulp-sass": "2.3.2",
-    "bower": "1.7.9"
+    "gulp-postcss": "^6.2.0",
+    "gulp-sass": "2.3.2"
   }
 }
