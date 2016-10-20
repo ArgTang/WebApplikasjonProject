@@ -7,17 +7,17 @@
 
 <section class="container">
     @*@if (SigninManager.IsSignedIn(User))
-    {*@
-        <h1>Dagligbank</h1>
-        <h3>Velkommen @UserManager.GetUserName(User)</h3>
-        <h3>Din forrige innlogging i nettbanken var 20 september 2016 kl 10.09</h3>
+        {*@
+    <h1>Dagligbank</h1>
+    <h3>Velkommen @UserManager.GetUserName(User)</h3>
+    <h3>Din forrige innlogging i nettbanken var 20 september 2016 kl 10.09</h3>
 
 
     @*}
-    else
-    {
-        <h1>Not logged in</h1>
-        <a href="/home">Go home</a>
-    }*@
+        else
+        {
+            <h1>Not logged in</h1>
+            <a href="/home">Go home</a>
+        }*@
     <br />
 </section>

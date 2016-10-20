@@ -9,6 +9,7 @@ using GroupProject.Data;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using GroupProject.Models;
 using System;
+using GroupProject.DAL;
 
 namespace GroupProject
 {
@@ -38,7 +39,7 @@ namespace GroupProject
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                     .AddEntityFrameworkStores<PersonDbContext>()
-                    .AddDefaultTokenProviders();               
+                    .AddDefaultTokenProviders();
 
             services.AddMvc();
 
@@ -65,8 +66,10 @@ namespace GroupProject
             });
 
             services.AddTransient<SeedData>();
+            services.AddTransient<DbAccess>();
             services.AddDistributedMemoryCache();
             services.AddSession();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
