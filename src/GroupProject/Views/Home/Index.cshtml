@@ -1,6 +1,9 @@
 ﻿
 ﻿<section>
     <header id="headerbilde" alt="Ett bilde av en familie"></header>
+    <div id="kurser">
+        @await Html.PartialAsync("Partials/CurrencyFeed")
+    </div>
 
     @*<h1>Personer</h1>
     <ul>
@@ -11,8 +14,6 @@
                 <li>CreatedDate: @person.CreatedDate</li>
             }
     </ul>*@
-
-    @await Html.PartialAsync("Partials/CurrencyFeed")
 
     <section class="container">
         @await Component.InvokeAsync("Login")
