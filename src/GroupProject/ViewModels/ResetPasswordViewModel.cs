@@ -14,15 +14,15 @@ namespace GroupProject.ViewModels
 
         [Required]
         [StringLength(60, 
-            ErrorMessage = "The password must be between 6 and 60 chars long"),
+            ErrorMessage = "Passordet må være mellom 6 og 60 tegn langt"),
             MinLength(6)
         ]
         [DataType(DataType.Password)]
         public string password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirn Password")]
-        [Compare("password", ErrorMessage = "Both passwords must match")]
+        [Display(Name = "Confirm Password")]
+        [Compare("password", ErrorMessage = "Begge passord må stemme med hverandre")]
         public string confirmPassword { get; set; }
     }
 }

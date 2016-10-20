@@ -20,8 +20,9 @@ namespace GroupProject.Data
         }
         public async Task SeedPersons()
         {
-
-
+            // kun for resetting av database, bør kjøres ved updates
+            //_personDbContext.Database.EnsureDeleted();
+            //_personDbContext.Database.EnsureCreated();
             if (!await _personDbContext.Users.AnyAsync())
             {
                 var newUser = new ApplicationUser
@@ -36,8 +37,8 @@ namespace GroupProject.Data
             {
                 _personDbContext.AddRange(new Person
                 {
-                    PersonNr = "26118742957",
-                    
+                   // Id = 1,
+                    PersonNr = "26118742957", 
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
@@ -78,27 +79,30 @@ namespace GroupProject.Data
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
-                    UpdatedBy = "ole"
+                    UpdatedBy = "ole",
+                    kontoType = "Brukerkonto"
                 },
                 new Konto
                 {
-                    PersonerId = 3,
+                    PersonerId = 1,
                     kontoNr = "6543 00 2342",
                     saldo = 0,
                     CreatedDate = DateTime.Now,
                     createdBy = "geir",
                     UpdatedDate = DateTime.Now,
-                    UpdatedBy = "geir"
+                    UpdatedBy = "geir",
+                    kontoType = "Sparekonto"
                 },
                 new Konto
                 {
-                    PersonerId = 2,
+                    PersonerId = 1,
                     kontoNr = "4321004121",
                     saldo = 231,
                     CreatedDate = DateTime.Now,
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
-                    UpdatedBy = "bjarne"
+                    UpdatedBy = "bjarne",
+                    kontoType = "BSU"
                 });
 
             }
@@ -107,7 +111,7 @@ namespace GroupProject.Data
             {
                 _personDbContext.AddRange(new Betalinger
                 {
-                    KontoerId = 1,
+                    KontoerId = 3,
                     belop = 12312,
                     info = "betalt til meg",
                     utfort = false,

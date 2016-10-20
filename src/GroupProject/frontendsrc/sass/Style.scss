@@ -1,29 +1,53 @@
 ﻿@import 'colors';
 
+@mixin flex {
+        display:flex !important;
+        align-items:center;
+        justify-content:space-around;
+}
+
 body {
     font-size: 1.8rem !important;
 }
 
 main {
-    min-height:50rem;
+    min-height:80vh;
 }
 
-.navbar{
+nav * {
+    color:$base !important;
+    transition: border-color 150ms ease-out;
+    transition: color 150ms ease-out;
+}
+
+nav *:hover {
+    color:$accent !important;
+}
+
+.navbar {
     padding-top:1em;
     padding-bottom:1em;
     margin-bottom:0 !important;  
-
-    li {
-        display:flex !important;
-        align-items:center;
-    }
 
     .navbar-brand {
         font-size: 2em !important;
     }
 
     #logobilde {
-        height: 2.5em;
+        height: 200%;
+        padding-right: 0.1em;
+    }
+
+    .navbar-nav:first-child {
+
+        margin-left: 5rem;
+
+        li:not(:last-child) {
+            border-right: 1px solid $base
+        }
+        a:hover {
+            text-decoration:underline;
+        }
     }
 }
 
@@ -33,12 +57,6 @@ main {
     min-height: 50rem;
     height: 80vh;
     background-size:cover;   
-    
-    h1 {
-        position: relative;
-        top: 5vh;
-        left: 2vw;
-    } 
 }
 
 #currencyfeed {
@@ -65,4 +83,30 @@ main {
 
 footer {
     text-align:center;
+    color: $base;
+}
+
+.flex {
+    @include flex;
+}
+
+.btn,
+button {
+    border-color: $base !important;
+    color: $base !important;
+}
+
+btn,
+button:hover {
+    border-color: $accent !important;
+    color: $base !important;
+}
+
+.footer {
+    background-color:#f8f8f8;                 
+    left: 0;
+    width: 100%;
+    :last-child {
+        margin-bottom:0;
+    }   
 }
