@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using GroupProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using GroupProject.Models;
+using Microsoft.AspNetCore.Antiforgery.Internal;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Server.Kestrel;
@@ -46,6 +47,7 @@ namespace GroupProject.Controllers
         // POST: /bankid/identify
         [HttpPost]
         [Route("bankid/identify")]
+        [ValidateAntiForgeryToken]
         public IActionResult PostIdentify()
         {
                 try
@@ -85,6 +87,7 @@ namespace GroupProject.Controllers
         // POST: /bankid/password
         [HttpPost]
         [Route("bankid/reference")]
+        [ValidateAntiForgeryToken]
         public IActionResult Reference()
         {
             return View();
@@ -93,6 +96,7 @@ namespace GroupProject.Controllers
         // POST: /bankid/password
         [HttpPost]
         [Route("bankid/password")]
+        [ValidateAntiForgeryToken]
         public IActionResult Password()
         {
             ViewBag.error = "hide-error";
@@ -102,6 +106,7 @@ namespace GroupProject.Controllers
         // POST: /bankid/password
         [HttpPost]
         [Route("bankid/login")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login()
         {
             try
@@ -140,6 +145,7 @@ namespace GroupProject.Controllers
 
         [HttpPost]
         [Route("bankid/auth")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Auth()
         {
             try
@@ -173,6 +179,7 @@ namespace GroupProject.Controllers
         
         [HttpPost]
         [Route("bankid/auth/check")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CheckAuth()
         {
             try
