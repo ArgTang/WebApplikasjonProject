@@ -12,7 +12,7 @@
         <div class="form-group">
             <div class="col-sm-10">
                 <label asp-for="toAccount"></label>
-                <input asp-for="toAccount" class="form-control">
+                <input asp-for="toAccount" class="form-control"  MaxLength="11">
                 <span asp-validation-for="toAccount" class="text-danger"></span>
             </div>
         </div>
@@ -46,21 +46,16 @@
                 <label asp-for="amount"></label>
                 <p class="flex">
                     <input asp-for="amount" class="form-control"> , 
-                    <input asp-for="fraction" class="form-control">
+                    <input asp-for="fraction" class="form-control" MaxLength="2">
                 </p>
-                <span asp-validation-for="amount" class="text-danger"></span>
+                <span asp-validation-for="amount" class="text-danger" ></span>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-10">
                 <label asp-for="date"></label>
-                <p class="flex">
-                    <input asp-for="date" class="form-control" id="timepickerr">
-                    <span class="input-group-addon" style="width:30px;">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </p>
+                    <input asp-for="date" class="form-control" id="timepickerr" />
                 <span asp-validation-for="date" class="text-danger"></span>
             </div>
         </div>
@@ -68,7 +63,7 @@
         <div class="form-group">
             <div class="col-sm-10">
                 <label asp-for="kid"></label>
-                <input asp-for="kid" class="form-control">
+                <input asp-for="kid" class="form-control" MaxLength="25" MinLengt="2">
                 <span asp-validation-for="kid" class="text-danger"></span>
             </div>
         </div>
@@ -82,7 +77,7 @@
             $('#timepickerr').datetimepicker({
                 dayViewHeaderFormat: 'MMM',
                 minDate: moment.now(),
-                format: "DD.MM",
+                format: "DD.MM.YY",
                 locale: 'nb'
             });
         })();

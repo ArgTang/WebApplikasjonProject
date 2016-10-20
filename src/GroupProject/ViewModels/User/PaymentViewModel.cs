@@ -12,6 +12,7 @@ namespace GroupProject.ViewModels.User
 
         [Required]
         [DataType(DataType.Text)]
+        [StringLength(11,ErrorMessage ="Kontonummeret må inneholde 11 siffer"),MinLength(11)]
         [Display(Name = "Til konto", Prompt = "Kontonummer")]
 
         public string toAccount { get; set; }
@@ -33,6 +34,7 @@ namespace GroupProject.ViewModels.User
 
         [Required]
         [DataType(DataType.Currency)]
+        [StringLength(2)]
         public decimal fraction { get; set; }
 
         [Required]
@@ -41,6 +43,7 @@ namespace GroupProject.ViewModels.User
         public DateTime date { get; set; }
 
         [DataType(DataType.Text)]
+        [StringLength(25,ErrorMessage ="KID-nummeret må være mellom 2 og 25 tegn langt"), MinLength(2)]
         [Display(Name = "KID", Prompt = "KID nummer")]
         public string kid { get; set; }
     }

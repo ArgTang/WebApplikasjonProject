@@ -5,7 +5,6 @@
 
 <div class="container">
     <h2>Oversikt over dine kontoer</h2>
-    <p>Følgende er hardkodet data:</p>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -15,40 +14,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ( var konto in Model ) {
+            @foreach (var konto in Model)
+            {
                 <tr>
                     <td></td>@*@konto.kontoType*@
                     <td>@konto.kontoNr</td>
                     <td id="saldo">@konto.saldo</td>
                 </tr>
-
             }
-            @*<tr>
-                <th>Sum</th>
-                <th></th>
-                <th></th>
-            </tr>*@
-            @*<tr>
-                    <td>Brukskonto</td>
-                    <td>6011 42 87549</td>
-                    <td>154,54</td>
-                </tr>
-                <tr>
-                    <td>Sparekonto</td>
-                    <td>6011 42 87674</td>
-                    <td>13 547,32</td>
-                </tr>
-                <tr>
-                    <td>BSU</td>
-                    <td>6011 42 87549</td>
-                    <td>150 000,09</td>
-                </tr>
-                <tr>
-                    <th>Sum</th>
-                    <th></th>
-                    <th>163 701,95</th>
-                </tr>*@
-
         </tbody>
 
     </table>

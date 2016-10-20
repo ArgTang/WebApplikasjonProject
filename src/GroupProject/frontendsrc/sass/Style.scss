@@ -11,7 +11,7 @@ body {
 }
 
 main {
-    min-height:50rem;
+    min-height:80vh;
 }
 
 nav * {
@@ -100,4 +100,14 @@ btn,
 button:hover {
     border-color: $accent !important;
     color: $base !important;
+}
+
+.footer{
+    background-color:#f8f8f8;                 
+    left: 0px;
+    width: 100%;
+    :last-child{
+        margin-bottom:0;
+        }
+    
 }
