@@ -5,67 +5,63 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" type="text/css" href="~/bankid/Css/bid.css">
-    <link rel="stylesheet" type="text/css" href="~/bankid/Css/header.css">
-    <link rel="stylesheet" type="text/css" href="~/bankid/Css/main.css">
     <environment names="Development">
-
+        <link rel="stylesheet" type="text/css" href="/bankid/Css/bid.css">
+        <link rel="stylesheet" type="text/css" href="/bankid/Css/main.css">
+        <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     </environment>
     <environment names="Staging,Production">
-        <!-- CDN links here see https://docs.asp.net/en/latest/client-side/bootstrap.html -->
+        <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="~/bankid/Css/bid.css">
+        <link rel="stylesheet" type="text/css" href="~/bankid/Css/main.css">
     </environment>
 </head>
-<body>
-    <div class="layout">
-        <header class="header">
-            <div class="viewport">
-                <div class="container">
-                    <div class="logo_wrapper">
-                        <div class="img_wrapper">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTEiIGhlaWdodD0iMTciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmJhbmtpZF9sb2dvPC90aXRsZT48ZyBmaWxsPSIjNTU1Ij48Zz48cGF0aCBkPSJNNi40MjggMTZoLTQuODU2Yy0uMzE1IDAtLjU3MS0uMjM2LS41NzEtLjUyOXYtLjk0M2MwLS4yOTIuMjU2LS41MjkuNTcxLS41MjloNC44NTdjLjMxNSAwIC41NzEuMjM3LjU3MS41Mjl2Ljk0M2MtLjAwMS4yOTMtLjI1Ni41MjktLjU3Mi41MjkiIGlkPSJTaGFwZSIgLz48cGF0aCBkPSJNMjIuNDI5IDE2aC00Ljg1N2MtLjMxNSAwLS41NzEtLjIzNi0uNTcxLS41Mjl2LS45NDNjMC0uMjkyLjI1Ni0uNTI5LjU3MS0uNTI5aDQuODU3Yy4zMTUgMCAuNTcxLjIzNy41NzEuNTI5di45NDNjMCAuMjkzLS4yNTYuNTI5LS41NzEuNTI5IiBpZD0iU2hhcGUiIC8+PHBhdGggZD0iTTE0LjQzIDhoLTQuODU5Yy0uMzE1IDAtLjU3LS4yMzYtLjU3LS41Mjh2LS45NDNjMC0uMjkyLjI1Ni0uNTI5LjU3LS41MjloNC44NTljLjMxNSAwIC41Ny4yMzcuNTcuNTI5di45NDJjMCAuMjkyLS4yNTUuNTI5LS41Ny41MjkiIGlkPSJTaGFwZSIgLz48cGF0aCBkPSJNMjIuNDI5IDhoLTQuODU3Yy0uMzE1IDAtLjU3MS0uMjM2LS41NzEtLjUyOHYtLjk0M2MwLS4yOTIuMjU2LS41MjkuNTcxLS41MjloNC44NTdjLjMxNSAwIC41NzEuMjM3LjU3MS41Mjl2Ljk0MmMwIC4yOTItLjI1Ni41MjktLjU3MS41MjkiIGlkPSJTaGFwZSIgLz48cGF0aCBkPSJNNi40MjggNGgtNC44NTZjLS4zMTUgMC0uNTcxLS4yMzctLjU3MS0uNTI4di0uOTQ0YzAtLjI5Mi4yNTYtLjUyOC41NzEtLjUyOGg0Ljg1N2MuMzE1IDAgLjU3MS4yMzYuNTcxLjUyOHYuOTQ0Yy0uMDAxLjI5MS0uMjU2LjUyOC0uNTcyLjUyOCIgaWQ9IlNoYXBlIiAvPjxwYXRoIGQ9Ik0yMi40MjkgNGgtNC44NTdjLS4zMTUgMC0uNTcxLS4yMzctLjU3MS0uNTI4di0uOTQ0YzAtLjI5Mi4yNTYtLjUyOC41NzEtLjUyOGg0Ljg1N2MuMzE1IDAgLjU3MS4yMzYuNTcxLjUyOHYuOTQ0YzAgLjI5MS0uMjU2LjUyOC0uNTcxLjUyOCIgaWQ9IlNoYXBlIiAvPjxwYXRoIGQ9Ik02LjQyOCAxMmgtNC44NTZjLS4zMTUgMC0uNTcxLS4yMzctLjU3MS0uNTI4di0uOTQ0YzAtLjI5Mi4yNTYtLjUyOC41NzEtLjUyOGg0Ljg1N2MuMzE1IDAgLjU3MS4yMzYuNTcxLjUyOHYuOTQ0Yy0uMDAxLjI5MS0uMjU2LjUyOC0uNTcyLjUyOCIgaWQ9IlNoYXBlIiAvPjxwYXRoIGQ9Ik0xNC40MyAxMmgtNC44NTljLS4zMTUgMC0uNTctLjIzNy0uNTctLjUyOHYtLjk0NGMwLS4yOTIuMjU2LS41MjguNTctLjUyOGg0Ljg1OWMuMzE1IDAgLjU3LjIzNi41Ny41Mjh2Ljk0NGMwIC4yOTEtLjI1NS41MjgtLjU3LjUyOCIgLz48L2c+PGcgPjxwYXRoIGQ9Ik04MC41NzggMTQuNTE5aC4wMTRsLS4wMTQtMTIuMDQyIDQuNDYzLjAwMWMyLjE0MyAwIDMuNDU4IDEuMTkxIDMuNDU4IDMuNTQydjQuOTc4YzAgMi4zNDQtMS4yOSAzLjUxNS0zLjQ1OCAzLjUxNWwtNC40NjMuMDA0em00LjM5OCAxLjQ4MWMzLjE1NCAwIDUuMDI0LTEuNzQgNS4wMjQtNS4xOHYtNC42MzljMC0zLjUwMS0xLjk3Ni01LjE3OS01LjA1Ni01LjE3OWwtNC45NjYtLjAwMmMtLjI2NSAwLS40OTcuMDk2LS42ODkuMjg4LS4xOTIuMTk0LS4yODkuNDMtLjI4OS43MDN2MTMuMDE3YzAgLjI3My4wOTcuNTExLjI4OS43MDMuMTkyLjE5LjQyMy4yODkuNjg5LjI4OWg0Ljk5OHoiIC8+PHBhdGggZD0iTTc2LjYgMTUuMjU2YzAgLjIwNi0uMDc3LjM4Mi0uMjM1LjUyNi0uMTU4LjE0NC0uMzQ3LjIxNy0uNTcxLjIxNy0uMjE3IDAtLjQwNC0uMDcyLS41Ni0uMjE3LS4xNTgtLjE0NS0uMjM1LS4zMi0uMjM1LS41MjZ2LTEzLjUxMmMwLS4yMDUuMDc3LS4zOC4yMzUtLjUyNi4xNTYtLjE0NS4zNDMtLjIxNy41Ni0uMjE3LjIyMyAwIC40MTQuMDcyLjU3MS4yMTcuMTU4LjE0Ni4yMzUuMzIxLjIzNS41MjZ2MTMuNTEyeiIgLz48cGF0aCBkPSJNNzMgMTUuMjU4YzAgLjQ5NS0uMjUzLjc0Mi0uNzU4Ljc0Mi0uMjAxIDAtLjM3OC0uMDctLjUyOS0uMjEzbC00LjYxLTQuMzY0Yy0uNDEyLjQyNS0uOTI2Ljg5NC0xLjU0NyAxLjQxdjIuNDE5YzAgLjIwNS0uMDc3LjM4Mi0uMjMyLjUyNC0uMTU1LjE0NS0uMzM3LjIxNy0uNTQ1LjIxNy0uMjE3IDAtLjQtLjA3Mi0uNTUzLS4yMTctLjE1MS0uMTQzLS4yMjctLjMxOC0uMjI3LS41MjN2LTEzLjUxM2MwLS4yMDQuMDc2LS4zNzguMjI3LS41MjMuMTUyLS4xNDQuMzM1LS4yMTcuNTUzLS4yMTcuMjA5IDAgLjM5LjA3Mi41NDUuMjE3LjE1NS4xNDUuMjMyLjMyLjIzMi41MjN2OS4wODFsNi4xNTYtNS44MTNjLjE1Mi0uMTQ3LjMyNy0uMjIyLjUyOS0uMjIyLjUwNSAwIC43NTguMjQ4Ljc1OC43NCAwIC4yMTgtLjA3NS4zOTgtLjIyOC41MzlsLTQuNTY0IDQuMzMzIDQuNTY0IDQuMzIzYy4xNTIuMTM5LjIyOC4zMi4yMjguNTM2IiAvPjxwYXRoIGQ9Ik02MS45OTkgMTUuMjc0YzAgLjIwMS0uMDc3LjM3My0uMjMyLjUxMy0uMTU2LjE0Mi0uMzQuMjEzLS41NTQuMjEzLS41MTcgMC0uNzc2LS4yNDMtLjc3Ni0uNzI2di03LjE5M2MwLS40NDItLjE2Ny0uODIzLS41MDQtMS4xNDEtLjMzNS0uMzE3LS43NDItLjQ3Ny0xLjIyNC0uNDc3aC0zLjRjLS40NzIgMC0uODc2LjE1OS0xLjIxMS40NzctLjMzNi4zMTgtLjUwNC42OTgtLjUwNCAxLjE0MXY3LjE5M2MwIC4yMDEtLjA3OS4zNzMtLjIzOC41MTMtLjE1OC4xNDItLjM0NC4yMTMtLjU1OS4yMTMtLjIyIDAtLjQxLS4wNzEtLjU2NC0uMjEzLS4xNTYtLjE0LS4yMzItLjMxMi0uMjMyLS41MTN2LTcuMTkzYzAtLjg1MS4zMjUtMS41NzcuOTc1LTIuMTc4LjY0OS0uNjAyIDEuNDI5LS45MDMgMi4zMzYtLjkwM2gzLjRjLjkwOSAwIDEuNjg1LjMwMSAyLjMyNy45MDMuNjQzLjYwMS45NjMgMS4zMjcuOTYzIDIuMTc4djcuMTkzaC0uMDAxeiIgLz48cGF0aCBkPSJNNDguNTk1IDEyLjkxNnYtMi4wODFjLTIuMDk1LS4wMTQtMy45NTUtLjA2OS00LjU3NS4xMDUtMS4yNC4zNDUtMS41OTQgMS4xMDgtMS41OTQgMS45NzYgMCAuNDQ0LjE1MS44MjYuNDUzIDEuMTQzLjMwMi4zMTkuNjY5LjQ3OCAxLjEwMi40NzhoMy4wNmMuNDI1IDAgLjc5MS0uMTU4IDEuMDk1LS40NzguMzA3LS4zMTguNDU5LS42OTkuNDU5LTEuMTQzem0xLjQwNS4wMDRjMCAuODUtLjI4OSAxLjU3NS0uODY3IDIuMTc3LS41NzguNjAyLTEuMjc2LjkwMy0yLjA5My45MDNoLTMuMDZjLS44MjQgMC0xLjUyNy0uMzAxLTIuMTA4LS45MDUtLjU4Mi0uNjAyLS44NzItMS4zMjgtLjg3Mi0yLjE3OSAwLTEuNDQ3Ljc4MS0yLjYzNyAyLjM0Mi0zLjIyLjc1MS0uMjc3IDIuMzkzLS4yMjMgNS4yNTMtLjIwMnYtMS40MjFjMC0uNDQtLjE1Mi0uODE5LS40NTgtMS4xMzYtLjMwNS0uMzE2LS42Ny0uNDc1LTEuMDk1LS40NzVoLTMuMDZjLS4zMTUgMC0uNjI2LjA5OS0uODY3LjI2OC0uMjUuMTc3LS40NC40Ni0uNi42OTUtLjExNi4xNjktLjI4My4yMS0uNDgzLjIxLS4xOTMgMC0uMzU4LS4wNzMtLjQ5OC0uMjIyLS4xMzktLjE0OS0uMjEtLjMyMy0uMjEtLjUyMyAwLS4zNzkuMjUtLjcyMy43MDgtMS4xMzguNjE3LS41NiAxLjI5NC0uNzUyIDEuOTQ5LS43NTJoMy4wNmMuODE2IDAgMS41MTUuMzAxIDIuMDkzLjkwMy41NzkuNjAxLjg2NyAxLjMyNy44NjcgMi4xNzd2NC44NDF6IiAvPjxwYXRoIGQ9Ik0zNy40MzggMTIuODZ2LTQuOTM2YzAtLjQ1MS0uMTY4LS44MzgtLjUwNS0xLjE2My0uMzM1LS4zMjMtLjc0Mi0uNDg2LTEuMjIzLS40ODZoLTMuNGMtLjQ3NCAwLS44NzcuMTYyLTEuMjEzLjQ4Ni0uMzM2LjMyNC0uNTAzLjcxMi0uNTAzIDEuMTYzdjQuOTM1YzAgLjQ1Ny4xNjcuODQ3LjUwMyAxLjE2OC4zMzUuMzIuNzM5LjQ4IDEuMjEzLjQ4aDMuNGMuNDggMCAuODg4LS4xNiAxLjIyMy0uNDg2LjMzNy0uMzIzLjUwNS0uNzExLjUwNS0xLjE2MXptMS41NjIgMGMwIC44NjctLjMyMSAxLjYwNi0uOTYzIDIuMjE5LS42NDMuNjEzLTEuNDE5LjkyLTIuMzI2LjkyaC0zLjRjLS45MDggMC0xLjY4Ni0uMzA3LTIuMzM2LS45MjEtLjY1LS42MTMtLjk3NS0xLjM1My0uOTc1LTIuMjJ2LTExLjExOGMwLS4yMDQuMDc3LS4zNzguMjMyLS41MjMuMTU2LS4xNDQuMzQ0LS4yMTcuNTY1LS4yMTcuMjE1IDAgLjQuMDcyLjU1OC4yMTcuMTU5LjE0NC4yMzkuMzE5LjIzOS41MjN2My40OWMuNTA5LS4yOTYgMS4wODEtLjQ0NCAxLjcxNi0uNDQ0aDMuNGMuOTA3IDAgMS42ODMuMzA3IDIuMzI2LjkyLjY0Mi42MTIuOTYzIDEuMzUzLjk2MyAyLjIxOXY0LjkzNXoiIC8+PC9nPjwvZz48L3N2Zz4=" alt="BankID logo" title="BankID logo">
+<body id="body">
+<div class="layout">
+    <header class="header">
+        <div class="viewport">
+            <div class="container">
+                <div class="logo_wrapper">
+                    <div class="img_wrapper">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTEiIGhlaWdodD0iMTciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmJhbmtpZF9sb2dvPC90aXRsZT48ZyBmaWxsPSIjNTU1Ij48Zz48cGF0aCBkPSJNNi40MjggMTZoLTQuODU2Yy0uMzE1IDAtLjU3MS0uMjM2LS41NzEtLjUyOXYtLjk0M2MwLS4yOTIuMjU2LS41MjkuNTcxLS41MjloNC44NTdjLjMxNSAwIC41NzEuMjM3LjU3MS41Mjl2Ljk0M2MtLjAwMS4yOTMtLjI1Ni41MjktLjU3Mi41MjkiIGlkPSJTaGFwZSIgLz48cGF0aCBkPSJNMjIuNDI5IDE2aC00Ljg1N2MtLjMxNSAwLS41NzEtLjIzNi0uNTcxLS41Mjl2LS45NDNjMC0uMjkyLjI1Ni0uNTI5LjU3MS0uNTI5aDQuODU3Yy4zMTUgMCAuNTcxLjIzNy41NzEuNTI5di45NDNjMCAuMjkzLS4yNTYuNTI5LS41NzEuNTI5IiBpZD0iU2hhcGUiIC8+PHBhdGggZD0iTTE0LjQzIDhoLTQuODU5Yy0uMzE1IDAtLjU3LS4yMzYtLjU3LS41Mjh2LS45NDNjMC0uMjkyLjI1Ni0uNTI5LjU3LS41MjloNC44NTljLjMxNSAwIC41Ny4yMzcuNTcuNTI5di45NDJjMCAuMjkyLS4yNTUuNTI5LS41Ny41MjkiIGlkPSJTaGFwZSIgLz48cGF0aCBkPSJNMjIuNDI5IDhoLTQuODU3Yy0uMzE1IDAtLjU3MS0uMjM2LS41NzEtLjUyOHYtLjk0M2MwLS4yOTIuMjU2LS41MjkuNTcxLS41MjloNC44NTdjLjMxNSAwIC41NzEuMjM3LjU3MS41Mjl2Ljk0MmMwIC4yOTItLjI1Ni41MjktLjU3MS41MjkiIGlkPSJTaGFwZSIgLz48cGF0aCBkPSJNNi40MjggNGgtNC44NTZjLS4zMTUgMC0uNTcxLS4yMzctLjU3MS0uNTI4di0uOTQ0YzAtLjI5Mi4yNTYtLjUyOC41NzEtLjUyOGg0Ljg1N2MuMzE1IDAgLjU3MS4yMzYuNTcxLjUyOHYuOTQ0Yy0uMDAxLjI5MS0uMjU2LjUyOC0uNTcyLjUyOCIgaWQ9IlNoYXBlIiAvPjxwYXRoIGQ9Ik0yMi40MjkgNGgtNC44NTdjLS4zMTUgMC0uNTcxLS4yMzctLjU3MS0uNTI4di0uOTQ0YzAtLjI5Mi4yNTYtLjUyOC41NzEtLjUyOGg0Ljg1N2MuMzE1IDAgLjU3MS4yMzYuNTcxLjUyOHYuOTQ0YzAgLjI5MS0uMjU2LjUyOC0uNTcxLjUyOCIgaWQ9IlNoYXBlIiAvPjxwYXRoIGQ9Ik02LjQyOCAxMmgtNC44NTZjLS4zMTUgMC0uNTcxLS4yMzctLjU3MS0uNTI4di0uOTQ0YzAtLjI5Mi4yNTYtLjUyOC41NzEtLjUyOGg0Ljg1N2MuMzE1IDAgLjU3MS4yMzYuNTcxLjUyOHYuOTQ0Yy0uMDAxLjI5MS0uMjU2LjUyOC0uNTcyLjUyOCIgaWQ9IlNoYXBlIiAvPjxwYXRoIGQ9Ik0xNC40MyAxMmgtNC44NTljLS4zMTUgMC0uNTctLjIzNy0uNTctLjUyOHYtLjk0NGMwLS4yOTIuMjU2LS41MjguNTctLjUyOGg0Ljg1OWMuMzE1IDAgLjU3LjIzNi41Ny41Mjh2Ljk0NGMwIC4yOTEtLjI1NS41MjgtLjU3LjUyOCIgLz48L2c+PGcgPjxwYXRoIGQ9Ik04MC41NzggMTQuNTE5aC4wMTRsLS4wMTQtMTIuMDQyIDQuNDYzLjAwMWMyLjE0MyAwIDMuNDU4IDEuMTkxIDMuNDU4IDMuNTQydjQuOTc4YzAgMi4zNDQtMS4yOSAzLjUxNS0zLjQ1OCAzLjUxNWwtNC40NjMuMDA0em00LjM5OCAxLjQ4MWMzLjE1NCAwIDUuMDI0LTEuNzQgNS4wMjQtNS4xOHYtNC42MzljMC0zLjUwMS0xLjk3Ni01LjE3OS01LjA1Ni01LjE3OWwtNC45NjYtLjAwMmMtLjI2NSAwLS40OTcuMDk2LS42ODkuMjg4LS4xOTIuMTk0LS4yODkuNDMtLjI4OS43MDN2MTMuMDE3YzAgLjI3My4wOTcuNTExLjI4OS43MDMuMTkyLjE5LjQyMy4yODkuNjg5LjI4OWg0Ljk5OHoiIC8+PHBhdGggZD0iTTc2LjYgMTUuMjU2YzAgLjIwNi0uMDc3LjM4Mi0uMjM1LjUyNi0uMTU4LjE0NC0uMzQ3LjIxNy0uNTcxLjIxNy0uMjE3IDAtLjQwNC0uMDcyLS41Ni0uMjE3LS4xNTgtLjE0NS0uMjM1LS4zMi0uMjM1LS41MjZ2LTEzLjUxMmMwLS4yMDUuMDc3LS4zOC4yMzUtLjUyNi4xNTYtLjE0NS4zNDMtLjIxNy41Ni0uMjE3LjIyMyAwIC40MTQuMDcyLjU3MS4yMTcuMTU4LjE0Ni4yMzUuMzIxLjIzNS41MjZ2MTMuNTEyeiIgLz48cGF0aCBkPSJNNzMgMTUuMjU4YzAgLjQ5NS0uMjUzLjc0Mi0uNzU4Ljc0Mi0uMjAxIDAtLjM3OC0uMDctLjUyOS0uMjEzbC00LjYxLTQuMzY0Yy0uNDEyLjQyNS0uOTI2Ljg5NC0xLjU0NyAxLjQxdjIuNDE5YzAgLjIwNS0uMDc3LjM4Mi0uMjMyLjUyNC0uMTU1LjE0NS0uMzM3LjIxNy0uNTQ1LjIxNy0uMjE3IDAtLjQtLjA3Mi0uNTUzLS4yMTctLjE1MS0uMTQzLS4yMjctLjMxOC0uMjI3LS41MjN2LTEzLjUxM2MwLS4yMDQuMDc2LS4zNzguMjI3LS41MjMuMTUyLS4xNDQuMzM1LS4yMTcuNTUzLS4yMTcuMjA5IDAgLjM5LjA3Mi41NDUuMjE3LjE1NS4xNDUuMjMyLjMyLjIzMi41MjN2OS4wODFsNi4xNTYtNS44MTNjLjE1Mi0uMTQ3LjMyNy0uMjIyLjUyOS0uMjIyLjUwNSAwIC43NTguMjQ4Ljc1OC43NCAwIC4yMTgtLjA3NS4zOTgtLjIyOC41MzlsLTQuNTY0IDQuMzMzIDQuNTY0IDQuMzIzYy4xNTIuMTM5LjIyOC4zMi4yMjguNTM2IiAvPjxwYXRoIGQ9Ik02MS45OTkgMTUuMjc0YzAgLjIwMS0uMDc3LjM3My0uMjMyLjUxMy0uMTU2LjE0Mi0uMzQuMjEzLS41NTQuMjEzLS41MTcgMC0uNzc2LS4yNDMtLjc3Ni0uNzI2di03LjE5M2MwLS40NDItLjE2Ny0uODIzLS41MDQtMS4xNDEtLjMzNS0uMzE3LS43NDItLjQ3Ny0xLjIyNC0uNDc3aC0zLjRjLS40NzIgMC0uODc2LjE1OS0xLjIxMS40NzctLjMzNi4zMTgtLjUwNC42OTgtLjUwNCAxLjE0MXY3LjE5M2MwIC4yMDEtLjA3OS4zNzMtLjIzOC41MTMtLjE1OC4xNDItLjM0NC4yMTMtLjU1OS4yMTMtLjIyIDAtLjQxLS4wNzEtLjU2NC0uMjEzLS4xNTYtLjE0LS4yMzItLjMxMi0uMjMyLS41MTN2LTcuMTkzYzAtLjg1MS4zMjUtMS41NzcuOTc1LTIuMTc4LjY0OS0uNjAyIDEuNDI5LS45MDMgMi4zMzYtLjkwM2gzLjRjLjkwOSAwIDEuNjg1LjMwMSAyLjMyNy45MDMuNjQzLjYwMS45NjMgMS4zMjcuOTYzIDIuMTc4djcuMTkzaC0uMDAxeiIgLz48cGF0aCBkPSJNNDguNTk1IDEyLjkxNnYtMi4wODFjLTIuMDk1LS4wMTQtMy45NTUtLjA2OS00LjU3NS4xMDUtMS4yNC4zNDUtMS41OTQgMS4xMDgtMS41OTQgMS45NzYgMCAuNDQ0LjE1MS44MjYuNDUzIDEuMTQzLjMwMi4zMTkuNjY5LjQ3OCAxLjEwMi40NzhoMy4wNmMuNDI1IDAgLjc5MS0uMTU4IDEuMDk1LS40NzguMzA3LS4zMTguNDU5LS42OTkuNDU5LTEuMTQzem0xLjQwNS4wMDRjMCAuODUtLjI4OSAxLjU3NS0uODY3IDIuMTc3LS41NzguNjAyLTEuMjc2LjkwMy0yLjA5My45MDNoLTMuMDZjLS44MjQgMC0xLjUyNy0uMzAxLTIuMTA4LS45MDUtLjU4Mi0uNjAyLS44NzItMS4zMjgtLjg3Mi0yLjE3OSAwLTEuNDQ3Ljc4MS0yLjYzNyAyLjM0Mi0zLjIyLjc1MS0uMjc3IDIuMzkzLS4yMjMgNS4yNTMtLjIwMnYtMS40MjFjMC0uNDQtLjE1Mi0uODE5LS40NTgtMS4xMzYtLjMwNS0uMzE2LS42Ny0uNDc1LTEuMDk1LS40NzVoLTMuMDZjLS4zMTUgMC0uNjI2LjA5OS0uODY3LjI2OC0uMjUuMTc3LS40NC40Ni0uNi42OTUtLjExNi4xNjktLjI4My4yMS0uNDgzLjIxLS4xOTMgMC0uMzU4LS4wNzMtLjQ5OC0uMjIyLS4xMzktLjE0OS0uMjEtLjMyMy0uMjEtLjUyMyAwLS4zNzkuMjUtLjcyMy43MDgtMS4xMzguNjE3LS41NiAxLjI5NC0uNzUyIDEuOTQ5LS43NTJoMy4wNmMuODE2IDAgMS41MTUuMzAxIDIuMDkzLjkwMy41NzkuNjAxLjg2NyAxLjMyNy44NjcgMi4xNzd2NC44NDF6IiAvPjxwYXRoIGQ9Ik0zNy40MzggMTIuODZ2LTQuOTM2YzAtLjQ1MS0uMTY4LS44MzgtLjUwNS0xLjE2My0uMzM1LS4zMjMtLjc0Mi0uNDg2LTEuMjIzLS40ODZoLTMuNGMtLjQ3NCAwLS44NzcuMTYyLTEuMjEzLjQ4Ni0uMzM2LjMyNC0uNTAzLjcxMi0uNTAzIDEuMTYzdjQuOTM1YzAgLjQ1Ny4xNjcuODQ3LjUwMyAxLjE2OC4zMzUuMzIuNzM5LjQ4IDEuMjEzLjQ4aDMuNGMuNDggMCAuODg4LS4xNiAxLjIyMy0uNDg2LjMzNy0uMzIzLjUwNS0uNzExLjUwNS0xLjE2MXptMS41NjIgMGMwIC44NjctLjMyMSAxLjYwNi0uOTYzIDIuMjE5LS42NDMuNjEzLTEuNDE5LjkyLTIuMzI2LjkyaC0zLjRjLS45MDggMC0xLjY4Ni0uMzA3LTIuMzM2LS45MjEtLjY1LS42MTMtLjk3NS0xLjM1My0uOTc1LTIuMjJ2LTExLjExOGMwLS4yMDQuMDc3LS4zNzguMjMyLS41MjMuMTU2LS4xNDQuMzQ0LS4yMTcuNTY1LS4yMTcuMjE1IDAgLjQuMDcyLjU1OC4yMTcuMTU5LjE0NC4yMzkuMzE5LjIzOS41MjN2My40OWMuNTA5LS4yOTYgMS4wODEtLjQ0NCAxLjcxNi0uNDQ0aDMuNGMuOTA3IDAgMS42ODMuMzA3IDIuMzI2LjkyLjY0Mi42MTIuOTYzIDEuMzUzLjk2MyAyLjIxOXY0LjkzNXoiIC8+PC9nPjwvZz48L3N2Zz4="
+                             alt="BankID logo" title="BankID logo">
+                    </div>
+                </div>
+                <div class="title_wrapper">
+                    <h1 class="block_vertical_center" tabindex="1010">
+                        <div>
+                            <span class="title">@ViewBag.bankIDTitle</span>
+                            <span class="subtitle" style="display: none;"></span>
+                        </div>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    @{
+        if (ViewBag.footer == true)
+        {
+            <footer class="footer">
+                <div class="viewport">
+                    <div class="container">
+                        <div class="button_icon_wrapper">
+                            <button class="buttonIcon" title="Åpne sertifikater" type="button" aria-haspopup="true">
+                                <span class="label" style="display: none;"></span>
+                                <img alt="" class="svg"
+                                     src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19jZXJ0aWZpY2F0ZTwvdGl0bGU+PGcgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTAgNi4yMDZjMCA0LjEzNyAzLjE5MiA5LjM0IDcuNSAxMS4zNzcgNC4yOTgtMi4wMzIgNy41LTcuMjQgNy41LTExLjM3N3YtNi4yMDZoLTE1djYuMjA2eiIgZmlsbD0iIzU1NSIvPjxwYXRoIGQ9Ik0xMC41IDMuNWwxIDEtNCA0LTEgMS0xLTEtMi0yIDEtMSAyIDIgNC00eiIgZmlsbD0iI2ZmZiIvPjwvZz48L3N2Zz4=">
+                            </button>
+                        </div>
+                        <div class="signature" id="signature">
+                            <div id="footerTitle " class="title">@ViewBag.footerTitle</div>
+                            <div id="footerContent" class="text">@ViewBag.footerContent</div>
                         </div>
                     </div>
-                    <div class="title_wrapper">
-                        <h1 class="block_vertical_center" tabindex="1010">
-                            <div>
-                                <span class="title">BankAxess</span>
-                                <span class="subtitle" style="display: none;"></span>
-                            </div>
-                        </h1>
-                    </div>
                 </div>
-            </div>
-            <div class="viewport viewport-menu_button">
-                <div class="container">
-                    <div class="button_icon_wrapper">
-                        <button class="buttonIcon">
-                            <span class="label">Meny</span>
-                            <img alt="" class="svg" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19tZW51PC90aXRsZT48cGF0aCBkPSJNMCA4djJoMTV2LTJoLTE1em0wLTR2MmgxNXYtMmgtMTV6bTAtNHYyaDE1di0yaC0xNXoiIGZpbGw9IiM1NTUiLz48L3N2Zz4=">
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <main class="body" role="main">
-            @RenderBody()
-        </main>
-        <footer class="footer">
-            <div class="viewport">
-                <div class="container">
-                    <div class="button_icon_wrapper">
-                        <button class="buttonIcon" title="Åpne sertifikater" type="button" aria-haspopup="true">
-                            <span class="label" style="display: none;"></span>
-                            <img alt="" class="svg" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19jZXJ0aWZpY2F0ZTwvdGl0bGU+PGcgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTAgNi4yMDZjMCA0LjEzNyAzLjE5MiA5LjM0IDcuNSAxMS4zNzcgNC4yOTgtMi4wMzIgNy41LTcuMjQgNy41LTExLjM3N3YtNi4yMDZoLTE1djYuMjA2eiIgZmlsbD0iIzU1NSIvPjxwYXRoIGQ9Ik0xMC41IDMuNWwxIDEtNCA0LTEgMS0xLTEtMi0yIDEtMSAyIDIgNC00eiIgZmlsbD0iI2ZmZiIvPjwvZz48L3N2Zz4=">
-                        </button>
-                    </div>
-                    <div class="signature">
-                        <div class="title">BankID brukersted</div>
-                        <div class="text">ACOS Sparebank</div>
-                    </div>
-                </div>
-            </div>
-            <div class="viewport"></div>
-        </footer>
-    </div>
+                <div class="viewport"></div>
+            </footer>
+        }
+    }
+</div>
 </body>
 </html>

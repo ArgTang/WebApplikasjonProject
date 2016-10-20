@@ -67,6 +67,8 @@ namespace GroupProject
 
             services.AddTransient<SeedData>();
             services.AddTransient<DbAccess>();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
 
         }
 
@@ -89,6 +91,7 @@ namespace GroupProject
 
             app.UseStaticFiles();
             app.UseIdentity();
+            app.UseSession();
             app.UseMvcWithDefaultRoute();
 
             seedData.SeedPersons().Wait();
