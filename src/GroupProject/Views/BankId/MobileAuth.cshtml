@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "shared/_bankid";
+    ViewBag.bankIDTitle = "Mobile Authentication";
+}
+<main class="body" role="main">
+    <div class="viewport animate">
+        <div class="scroller padding block_vertical_center full_width_height lm_view">
+            <div>
+                <div class="content_wrapper">
+                    <div class="content info_page">
+                        <div class="table">
+                            <div class="row">
+                                <div class="form_wrapper">
+                                    <div class="row label">
+                                        <label>Referanse</label>
+                                    </div>
+                                    <div class="title reference">
+                                        <span>Feilfri diamant</span>
+                                    </div>
+                                </div>
+                                <div class="illustration">
+                                    <div class="wrapper" title="Venter på bekreftelse">
+                                        <button id="submitButton" class="button" title="Neste" onclick="return false" style="float: right;">
+                                            <span class="label" style="display: none;"></span>
+                                            <img alt="" class="svg"
+                                                 src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19hcnJvd19yaWdodDwvdGl0bGU+PHBhdGggZD0iTTE5IDExbC01IDUgMiAyIDgtOC41MzEtOC04LjQ2OS0yIDIgNSA1aC0xOXYzaDE5eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row instructions">
+                            <span>Sjekk at referansene er like!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+    $("#submitButton")
+        .click(function() {
+            var request = $.ajax({
+                type: "post",
+                url: "bankid/auth",
+                data: {
+                    birthNumber: "06129437713",
+                    authToken: window.authToken
+                }
+            });
+
+            request.done(function (response) {
+                if (response === "authorized") {
+                    window.close();
+                }
+                console.log(response);
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                
+            });
+        });
+</script>

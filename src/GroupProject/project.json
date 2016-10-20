@@ -36,7 +36,7 @@
     "System.ComponentModel.Annotations": "4.1.0",
     "Microsoft.AspNetCore.Identity": "1.0.0",
     "Microsoft.AspNetCore.Session": "1.0.0",
-    "Microsoft.Extensions.Caching.Memory": "1.0.0" 
+    "Microsoft.Extensions.Caching.Memory": "1.0.0"
   },
 
   "tools": {

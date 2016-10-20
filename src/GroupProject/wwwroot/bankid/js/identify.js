@@ -34,7 +34,10 @@ if(submitButton && birthnumberInput){
     submitButton.addEventListener("click", function () {
         if(validate(birthnumberInput.value)){
             toggleErrorMessage();
-            post("bankid/identify", { birthnumber: birthnumberInput.value });
+            var sucsess = post("bankid/identify", { birthnumber: birthnumberInput.value });
+            if (sucsess) {
+                reference();
+            }
         }else{
             toggleErrorMessage();
         }
@@ -51,6 +54,7 @@ function toggleErrorMessage() {
 }
 
 function post(path, data) {
+    var result = true;
     var request = $.ajax({
         type: "POST",
         url: path,
@@ -62,13 +66,16 @@ function post(path, data) {
             window.location = "/loggedin";
         } else {
             $(".body").replaceWith(response);
+            result = true;
         }
     });
 
     request.fail(function (
         jqXHR, textStatus) {
         $(".body").replaceWith(error);
+        result= false;
     });
+    return result;
 }
 
 function error() {
