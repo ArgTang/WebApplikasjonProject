@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using GroupProject.Models;
 using System.Linq;
+using GroupProject.DAL;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 namespace GroupProject.Controllers
@@ -11,21 +12,32 @@ namespace GroupProject.Controllers
     [Authorize]
     public class UserController : Controller
     {
-        private PersonDbContext _persondbcontext { get; set; }
+        private readonly PersonDbContext _persondbcontext;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly DbAccess _access;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserController(SignInManager<ApplicationUser> signInManager, PersonDbContext persondbcontext)
+        public UserController(SignInManager<ApplicationUser> signInManager, 
+            PersonDbContext persondbcontext,
+            DbAccess dbAccess,
+            UserManager<ApplicationUser> userManager
+        )
         {
             this._signInManager = signInManager;
             _persondbcontext = persondbcontext;
+            _access = dbAccess;
+            _userManager = userManager;
         }
 
 
         // GET: /<controller>/
-        public IActionResult Index()
+        public async Task<ActionResult> Index()
         {
             ViewData["Title"] = "Logged in ACOS";
-            var konto = _persondbcontext.Kontoer.ToList();
+            var bruker = await _userManager.GetUserAsync(HttpContext.User); 
+            var konto = _access.getAccounts(bruker);
+            // sette inn dbacess i klassen
+
             return View(konto);
         }
 
