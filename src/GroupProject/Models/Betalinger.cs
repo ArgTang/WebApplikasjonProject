@@ -16,6 +16,10 @@ namespace GroupProject.Models
         [StringLength(100)]
         public string info { get; set; }
 
+        public string kid { get; set; }
+
+        public string tilKonto { get; set; }
+
         public bool utfort { get; set; }
         
         public DateTime datoUtfort { get; set; }
