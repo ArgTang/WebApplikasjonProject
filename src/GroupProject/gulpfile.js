@@ -8,6 +8,8 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var del = require('del');
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
 
 var paths = {
     scripts: [  'frontendsrc/scripts/**/*.js',
@@ -30,8 +32,13 @@ gulp.task('js:default', function () {
 });
 
 gulp.task('sass', function () {
+    var postPlugins = [
+        autoprefixer({ browsers: ['> 5%'], cascade: false })
+    ]
+
     return gulp.src(paths.sass)
       .pipe(sass().on('error', sass.logError))
+      .pipe(postcss(postPlugins))
       .pipe(gulp.dest(paths.webroot + '/css'));
 });
 
