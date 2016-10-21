@@ -44,7 +44,7 @@ namespace GroupProject.Controllers
         {
             ViewData["Title"] = "Logged in ACOS";
             var bruker = await _userManager.GetUserAsync(HttpContext.User);
-            var faktura = _access.getBetalinger(bruker);
+            var faktura = _access.getPayments(bruker);
             return View(faktura);
         }
 

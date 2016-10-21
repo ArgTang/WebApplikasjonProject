@@ -88,8 +88,14 @@ namespace GroupProject.Migrations
 
                     b.Property<DateTime>("datoUtfort");
 
+                    b.Property<string>("fraKonto");
+
                     b.Property<string>("info")
                         .HasAnnotation("MaxLength", 100);
+
+                    b.Property<string>("kid");
+
+                    b.Property<string>("tilKonto");
 
                     b.Property<bool>("utfort");
 

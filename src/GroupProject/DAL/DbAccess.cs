@@ -31,16 +31,22 @@ namespace GroupProject.DAL
             return person; 
         }
 
-        public List<Betalinger> getBetalinger(ApplicationUser applicationUser)
+        public List<Betalinger> getPayments(ApplicationUser applicationUser)
         {
-            var person = getPerson(applicationUser);
-            var konto = getAccounts(applicationUser);
+            
+            List<Betalinger> betalinger = new List<Betalinger>();
 
-            var list = new List<Betalinger>();
-
-            konto.ForEach(a => list.Concat(a?.betal).ToList());
-
-            return list;
+            foreach(Konto k in getAccounts(applicationUser))
+            {
+                foreach(Betalinger b in _persondbcontext.Betal.ToList())
+                {
+                    if (b.KontoerId.Equals(k.Id) && !b.utfort)
+                    {
+                        betalinger.Add(b);
+                    }
+                }
+            }
+            return betalinger;
            
         }
 
