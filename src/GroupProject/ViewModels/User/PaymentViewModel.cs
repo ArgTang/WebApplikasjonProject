@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GroupProject.ViewModels.User
@@ -8,7 +9,7 @@ namespace GroupProject.ViewModels.User
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Fra konto", Prompt = "Kontonummer")]
-        public string fromAccount { get; set; }
+        public IEnumerable<string> fromAccount { get; set; }
 
         [Required]
         [DataType(DataType.Text)]

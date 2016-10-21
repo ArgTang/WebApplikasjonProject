@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -46,9 +48,19 @@ namespace GroupProject.Controllers
             return View();
         }
 
-        public IActionResult Betal()
+        public async Task<ActionResult> Betal()
         {
             ViewData["Title"] = "Logged in ACOS";
+            var bruker = await _userManager.GetUserAsync(HttpContext.User);
+            List<Konto> accounts = _access.getAccounts(bruker);
+            foreach (Konto account in accounts)
+            {
+                
+            }
+            
+
+            ViewBag.fromAccount = accounts;
+
             return View();
         }
 
@@ -71,6 +83,14 @@ namespace GroupProject.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Pay()
+        {
+            
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
