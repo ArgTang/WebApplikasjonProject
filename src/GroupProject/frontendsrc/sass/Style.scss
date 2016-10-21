@@ -14,13 +14,14 @@ main {
     min-height:80vh;
 }
 
-nav * {
+nav a {
+    cursor: pointer;
     color:$base !important;
     transition: border-color 150ms ease-out;
     transition: color 150ms ease-out;
 }
 
-nav *:hover {
+nav a:hover {
     color:$accent !important;
 }
 
