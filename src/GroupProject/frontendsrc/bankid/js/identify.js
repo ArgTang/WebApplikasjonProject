@@ -48,9 +48,9 @@ if(submitButton && birthnumberInput){
 }
 
 
-/*document.body.addEventListener("click",function () {
+document.body.addEventListener("click",function () {
         toggleErrorMessage(false);
-},true);*/
+},true);
 
 function toggleErrorMessage(bool) {
     if (bool) {
