@@ -14,7 +14,10 @@ var autoprefixer = require('autoprefixer');
 var paths = {
     scripts: [  'frontendsrc/scripts/**/*.js',
                 'frontendsrc/scripts/**/*.ts',
-                'frontendsrc/scripts/**/*.map'],
+                'frontendsrc/scripts/**/*.map',
+                'frontendsrc/bankid/js/**/*.js',
+                'frontendsrc/bankid/js/**/*.ts',
+                'frontendsrc/bankid/js/**/*.map'],
     webroot: 'wwwroot/',
     frontroot: 'frontendsrc/'
 };

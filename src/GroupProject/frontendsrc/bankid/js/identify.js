@@ -1,4 +1,4 @@
-﻿function find( key ) {
+﻿function find(key) {
     return document.querySelector(key);
 }
 
