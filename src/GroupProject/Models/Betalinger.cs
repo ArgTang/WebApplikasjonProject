@@ -20,6 +20,8 @@ namespace GroupProject.Models
 
         public string tilKonto { get; set; }
 
+        public string fraKonto { get; set; }
+
         public bool utfort { get; set; }
         
         public DateTime datoUtfort { get; set; }

@@ -40,10 +40,12 @@ namespace GroupProject.Controllers
         }
 
 
-        public IActionResult Faktura()
+        public async Task<ActionResult> Faktura()
         {
             ViewData["Title"] = "Logged in ACOS";
-            return View();
+            var bruker = await _userManager.GetUserAsync(HttpContext.User);
+            var faktura = _access.getBetalinger(bruker);
+            return View(faktura);
         }
 
         public IActionResult Betal()
