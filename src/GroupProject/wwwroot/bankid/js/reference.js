@@ -3,10 +3,11 @@
 function reference() {
 
     //Simulate network delay
-    setTimeout(function() {
-            var request = $.ajax({
+    setTimeout(function () {
+        var request = $.ajax({
                 type: "post",
-                url: "bankid/auth"
+                url: "bankid/auth",
+                data: postData
             });
 
             request.done(function(response) {
@@ -14,6 +15,7 @@ function reference() {
                 newWindow.document.write(response);
                 newWindow.birthNumber = window.birthNumber;
                 newWindow.authToken = window.authToken;
+                newWindow.postData = postData;
 
                 //if foreground window is blocked
                 if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
@@ -21,11 +23,12 @@ function reference() {
                 } else {
                     var frequency = 3000; //every 2 seconds
 
-                  var interval = window.setInterval(function() {
-                            var checkRequest = $.ajax({
+                    var interval = window.setInterval(function () {
+                            postData.birthnumber = newWindow.birthNumber;
+                      var checkRequest = $.ajax({
                                 type: "post",
                                 url: "bankid/auth/check",
-                                data: { birthNumber: newWindow.birthNumber }
+                                data: postData
                             });
 
                             checkRequest.done(function(response) {
@@ -41,7 +44,6 @@ function reference() {
                             checkRequest.fail(function(jqXHR, textStatus) {
                                 $(".body").replaceWith(error);
                                 clearInterval(interval);
-                                console.log("error");
                             });
                         },
                         frequency);

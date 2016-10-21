@@ -2,6 +2,9 @@
     return document.querySelector(key);
 }
 
+var postData = {}
+postData.__RequestVerificationToken = $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val();
+
 function validate(birthNumber) {
 
     birthNumber = birthNumber.toString();
@@ -59,16 +62,23 @@ function toggleErrorMessage(bool) {
 }
 
 function post(path, data) {
+    if(data.birthnumber)
+        postData.birthnumber = data.birthnumber;
+    if (data.password)
+        postData.password = data.password;
+    if (data.authToken)
+        postData.authToken = data.authToken;
+
     var result = true;
     var request = $.ajax({
         type: "POST",
         url: path,
-        data: data
+        data: postData
     });
 
     request.done(function (response) {
         if (response === "loggedIn") {
-            window.top.location = "/loggedin";
+            window.top.location = "/user";
         } else {
             $(".body").replaceWith(response);
             result = true;
