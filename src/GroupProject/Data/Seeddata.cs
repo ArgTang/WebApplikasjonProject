@@ -85,7 +85,7 @@ namespace GroupProject.Data
                 new Konto
                 {
                     PersonerId = 1,
-                    kontoNr = "6543 00 2342",
+                    kontoNr = "6543002342",
                     saldo = 0,
                     CreatedDate = DateTime.Now,
                     createdBy = "geir",

@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace GroupProject.DAL
 {
@@ -23,6 +25,10 @@ namespace GroupProject.DAL
             var retur = person.konto?.ToList() ?? new List<Konto>();
 
             return retur;
+        }
+        public void addPayment(Betalinger betalinger)
+        {
+            _persondbcontext.Betal.AddRange(betalinger);
         }
     }
 }

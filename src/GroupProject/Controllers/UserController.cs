@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using GroupProject.Models;
 using System.Linq;
 using GroupProject.DAL;
+using GroupProject.ViewModels.User;
 
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -50,18 +51,21 @@ namespace GroupProject.Controllers
 
         public async Task<ActionResult> Betal()
         {
+            PaymentViewModel model = new PaymentViewModel();
             ViewData["Title"] = "Logged in ACOS";
-            var bruker = await _userManager.GetUserAsync(HttpContext.User);
-            List<Konto> accounts = _access.getAccounts(bruker);
-            foreach (Konto account in accounts)
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            ViewBag.fromAccountList = new List<Konto>();
+
+            foreach (Konto account in _access.getAccounts(user))
             {
-                
+                if (!account.kontoType.Equals("BSU"))//Dont add to list if account is BSU
+                {
+                    ViewBag.fromAccountList.Add(account);
+                }
             }
-            
 
-            ViewBag.fromAccount = accounts;
-
-            return View();
+            return View(model);
         }
 
         public IActionResult Oversikt()
@@ -70,13 +74,6 @@ namespace GroupProject.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Betal()
-        //{
-        //    ViewData["Title"] = "Logged in ACOS";
-        //    return View();
-        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -88,10 +85,46 @@ namespace GroupProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Pay()
+        public async Task<IActionResult> Betal(PaymentViewModel model)
         {
             
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            if (ModelState.IsValid)
+            {
+                int accountId = 0;
+
+                foreach (Konto k in _access.getAccounts(user))
+                {
+                    if (k.kontoNr.Equals(model.toAccount))
+                        accountId = k.Id;
+                }
+
+                _access.addPayment(new Betalinger{
+                    KontoerId = accountId,
+                    belop = 123.00,//Double.Parse(model.amount+","+model.fraction),
+                    info = model.paymentMessage,
+                    utfort = false,
+
+                    CreatedDate = DateTime.Now,
+                    createdBy = user.UserName,
+                    UpdatedDate = DateTime.Now,
+                    UpdatedBy = user.UserName
+                });
+
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.fromAccountList = new List<Konto>();
+
+            foreach (Konto account in _access.getAccounts(user))
+            {
+                if (!account.kontoType.Equals("BSU"))//Dont add to list if account is BSU
+                {
+                    ViewBag.fromAccountList.Add(account);
+                }
+            }
+
+            return View("Betal", model);
         }
     }
 }

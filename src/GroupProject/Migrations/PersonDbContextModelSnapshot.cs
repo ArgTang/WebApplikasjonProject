@@ -80,7 +80,7 @@ namespace GroupProject.Migrations
 
                     b.Property<DateTime>("UpdatedDate");
 
-                    b.Property<int>("belop");
+                    b.Property<double>("belop");
 
                     b.Property<string>("createdBy")
                         .IsRequired()

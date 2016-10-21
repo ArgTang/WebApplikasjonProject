@@ -11,7 +11,7 @@ namespace GroupProject.Models
     public class Betalinger : BaseModel
     {
         [Required(ErrorMessage = "Beløp må skrives inn")]
-        public int belop { get; set; }
+        public double belop { get; set; }
         
         [StringLength(100)]
         public string info { get; set; }
@@ -21,6 +21,7 @@ namespace GroupProject.Models
         public DateTime datoUtfort { get; set; }
 
         public virtual Konto Kontoer { get; set; }
+
         [Required]
         public int KontoerId { get; set; }
     }
