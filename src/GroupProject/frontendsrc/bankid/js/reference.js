@@ -10,7 +10,8 @@ function reference() {
                 data: postData
             });
 
-            request.done(function(response) {
+        request.done(function (response) {
+            if (window.birthNumber != null) {
                 var newWindow = window.open("", "Mobile Auth", "height=500px,width=400px", false);
                 newWindow.document.write(response);
                 newWindow.birthNumber = window.birthNumber;
@@ -23,9 +24,9 @@ function reference() {
                 } else {
                     var frequency = 3000; //every 2 seconds
 
-                    var interval = window.setInterval(function () {
+                    var interval = window.setInterval(function() {
                             postData.birthnumber = newWindow.birthNumber;
-                      var checkRequest = $.ajax({
+                            var checkRequest = $.ajax({
                                 type: "post",
                                 url: "bankid/auth/check",
                                 data: postData
@@ -35,7 +36,7 @@ function reference() {
                                 if (response === "authorized") {
                                     post("bankid/password", {});
                                     clearInterval(interval);
-                                }else if (response === "error") {
+                                } else if (response === "error") {
                                     $(".body").replaceWith(error);
                                     clearInterval(interval);
                                 }
@@ -48,9 +49,10 @@ function reference() {
                         },
                         frequency);
                 }
-
-
-            });
+            } else {
+                $(".body").replaceWith(error);
+            }
+        });
 
             request.fail(function(jqXHR, textStatus) {
                 $(".body").replaceWith(error);
