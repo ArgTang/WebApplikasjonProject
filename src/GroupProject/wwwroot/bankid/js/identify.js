@@ -69,7 +69,6 @@ function post(path, data) {
     if (data.authToken)
         postData.authToken = data.authToken;
 
-    console.log(postData);
     var result = true;
     var request = $.ajax({
         type: "POST",

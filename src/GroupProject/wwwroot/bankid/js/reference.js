@@ -44,7 +44,6 @@ function reference() {
                             checkRequest.fail(function(jqXHR, textStatus) {
                                 $(".body").replaceWith(error);
                                 clearInterval(interval);
-                                console.log("error");
                             });
                         },
                         frequency);
