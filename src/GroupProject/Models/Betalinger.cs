@@ -24,7 +24,7 @@ namespace GroupProject.Models
 
         public bool utfort { get; set; }
         
-        public DateTime datoUtfort { get; set; }
+        public DateTime forfallDato { get; set; }
 
         public virtual Konto Kontoer { get; set; }
         [Required]

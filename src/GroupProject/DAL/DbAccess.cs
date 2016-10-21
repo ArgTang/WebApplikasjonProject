@@ -40,7 +40,7 @@ namespace GroupProject.DAL
             {
                 foreach(Betalinger b in _persondbcontext.Betal.ToList())
                 {
-                    if (b.KontoerId.Equals(k.Id) && !b.utfort)
+                    if (b.KontoerId == k.Id)
                     {
                         betalinger.Add(b);
                     }

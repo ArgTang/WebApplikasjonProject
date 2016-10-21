@@ -39,6 +39,8 @@ namespace GroupProject.Data
                 {
                    // Id = 1,
                     PersonNr = "26118742957", 
+                    forNavn = "ole",
+                    etterNavn = "lundsør",
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
@@ -48,7 +50,8 @@ namespace GroupProject.Data
                 new Person
                 {
                     PersonNr = "12334578912",
-                   
+                    forNavn = "per",
+                    etterNavn = "hansen",
                     CreatedDate = DateTime.Now,
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
@@ -58,7 +61,8 @@ namespace GroupProject.Data
                 {
 
                     PersonNr = "34524567897",
-                    
+                    forNavn = "ola",
+                    etterNavn = "nordmann",
                     CreatedDate = DateTime.Now,
                     createdBy = "admin",
                     UpdatedDate = DateTime.Now,
@@ -115,7 +119,9 @@ namespace GroupProject.Data
                     belop = 12312,
                     info = "betalt til meg",
                     utfort = false,
-                    
+                    tilKonto = "123123123",
+                    fraKonto = "12121212",
+                    forfallDato = DateTime.Today,
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
@@ -129,7 +135,7 @@ namespace GroupProject.Data
                     utfort = false,
                     tilKonto = "123123123",
                     fraKonto = "12121212",
-                    datoUtfort = DateTime.Now,
+                    forfallDato = DateTime.Now,
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
@@ -141,7 +147,9 @@ namespace GroupProject.Data
                     belop = 43,
                     info = "betalt til deg",
                     utfort = false,
-                    datoUtfort = DateTime.Now,
+                    tilKonto = "123123123",
+                    fraKonto = "12121212",
+                    forfallDato = DateTime.Today,
                     CreatedDate = DateTime.Now,
                     createdBy = "geir",
                     UpdatedDate = DateTime.Now,
