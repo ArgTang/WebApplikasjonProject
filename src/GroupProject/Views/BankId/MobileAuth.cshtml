@@ -39,22 +39,25 @@
     </div>
 </main>
 <script>
+    var data = {
+        birthNumber: window.authToken,
+        authToken: window.authToken
+    };
+    data.__RequestVerificationToken = window.postData.__RequestVerificationToken;
+
+    console.log(data);
     $("#submitButton")
         .click(function() {
             var request = $.ajax({
                 type: "post",
                 url: "bankid/auth",
-                data: {
-                    birthNumber: "06129437713",
-                    authToken: window.authToken
-                }
-            });
+                data: data
+        });
 
             request.done(function (response) {
                 if (response === "authorized") {
                     window.close();
                 }
-                console.log(response);
             });
 
             request.fail(function (jqXHR, textStatus) {
