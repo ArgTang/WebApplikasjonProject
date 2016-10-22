@@ -9,26 +9,25 @@ namespace GroupProject.DAL
     public class DbAccess
     {
         private PersonDbContext _persondbcontext { get; set; }
+
         public DbAccess(PersonDbContext personDbContext)
         {
             _persondbcontext = personDbContext;
         }
-        public List<Konto> getAccounts (ApplicationUser applicationUser)
+
+        public List<Konto> getAccounts(ApplicationUser applicationUser)
         {
             var person = getPerson(applicationUser);
-            var retur = person.konto?.ToList() ?? new List<Konto>();
-            return retur;
+            return person.konto?.ToList() ?? new List<Konto>();
         }
 
         private Person getPerson(ApplicationUser applicationUser)
         {
-            String personNr = applicationUser.UserName;
+            string personNr = applicationUser.UserName;
 
-            var person = _persondbcontext.Person
-                .Include(s => s.konto)
-                .Single(p => p.PersonNr == personNr);
-
-            return person; 
+            return _persondbcontext.Person
+                                   .Include(s => s.konto)
+                                   .Single(p => p.PersonNr == personNr);
         }
 
         public List<Betalinger> getPayments(ApplicationUser applicationUser)
@@ -47,13 +46,11 @@ namespace GroupProject.DAL
                 }
             }
             return betalinger;
-           
         }
 
-        public void endreBetaling(Betalinger betal)
+        public void changePayment(Betalinger betal)
         {
             _persondbcontext.Betal.Update(betal);
-
             _persondbcontext.SaveChanges();
         }
     }

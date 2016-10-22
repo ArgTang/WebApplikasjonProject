@@ -1,16 +1,15 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using GroupProject.Models
-@using GroupProject.ViewModels
+﻿@*@using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SigninManager
-@inject UserManager<ApplicationUser> UserManager
+@inject UserManager<ApplicationUser> UserManager*@
 
 
 <section class="container">
     @*@if (SigninManager.IsSignedIn(User))
         {*@
     <h1>Dagligbank</h1>
-    <h3>Velkommen @UserManager.GetUserName(User)</h3>
-    <h3>Din forrige innlogging i nettbanken var 20 september 2016 kl 10.09</h3>
+    <h3>Velkommen @ViewData["Name"]</h3>
+
+    <h3>Din forrige innlogging i nettbanken var @ViewData["LastLogin"]</h3>
 
 
     @*}

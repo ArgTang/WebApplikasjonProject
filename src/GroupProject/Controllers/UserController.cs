@@ -29,14 +29,17 @@ namespace GroupProject.Controllers
             _access = dbAccess;
             _userManager = userManager;
         }
+
         // GET: /<controller>/
         public async Task<ActionResult> Index()
         {
-            ViewData["Title"] = "Logged in ACOS";
-            var bruker = await _userManager.GetUserAsync(HttpContext.User); 
-            var konto = _access.getAccounts(bruker);
-            // sette inn dbacess i klassen
-            return View(konto);
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            ViewData["Name"] = $"{user.firstName} {user.lastName}";
+            ViewData["LastLogin"] = user.lastLogin;
+
+            var accounts = _access.getAccounts(user);
+            return View(accounts);
         }
 
 
