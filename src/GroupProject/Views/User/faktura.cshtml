@@ -15,7 +15,7 @@
                 <th>Forfallsdato:</th>
                 <th>Sum:</th>
                 <th>Valg:</th>
-                        <a onclick="deleteInvoice(@betal.Id)" class="btn">Delete</a>
+                        
             </tr>
            
                 @foreach (Betalinger betal in Model.payments)
@@ -36,7 +36,8 @@
                         <td>
                             @if (betal.utfort == false)
                             {
-                                <a asp-action="Betal" asp-route-id="@betal.Id" class="btn">Edit</a> 
+                                <a asp-action="Betal" asp-route-id="@betal.Id" class="btn">Edit</a>
+                                <a onclick="deleteInvoice(@betal.Id)" class="btn">Delete</a>
                             }
                         </td>
                     </tr>
