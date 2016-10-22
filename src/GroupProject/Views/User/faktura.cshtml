@@ -1,4 +1,4 @@
-@model GroupProject.ViewModels.User.FakruraViewModel
+@model GroupProject.ViewModels.User.FakturaViewModel
 
 <section class="container">
     <table class="table table-hover">
@@ -9,9 +9,9 @@
         </thead>
         <tbody>
             <tr>
-                <th>Mottaker:</th>
                 <th>Fra Konto:</th>
-                <th>Til konto:</th>
+                <th>Mottaker:</th>      
+                <th>konto:</th>
                 <th>Forfallsdato:</th>
                 <th>Sum:</th>
                 <th>Valg:</th>
@@ -20,25 +20,25 @@
                 @foreach (Betalinger betal in Model.payments)
                 {
                     <tr>
-                    <td>@betal.mottaker</td>
-                    @foreach (Konto konto in Model.accounts){
-                        if (betal.fraKonto.Equals(konto.kontoNr))
-                        {
-                            <td>@konto.kontoType
-                                <small>(@betal.fraKonto.Insert(4," ").Insert(7," ")) </small >
-                            </td>
-                        }
-                    } 
-                    <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
-                    <td>@betal.forfallDato.ToString("dd.MM.yyyy")</td>
-                    <td>@betal.belop<span class="currency" style="margin-left: 5px">Kr</span></td>
-                    <td>
-                    @if (betal.utfort == false)
-                    {
-                        <a asp-action="Betal" asp-route-id="@betal.Id" class="btn">Edit</a> 
-                        <a asp-action="deleteInvoice" asp-route-id="@betal.Id" class="btn">Delete</a>
-                    }
-                    </td>
+                        @foreach (Konto konto in Model.accounts) {
+                            if (betal.fraKonto.Equals(konto.kontoNr))
+                            {
+                                <td>@konto.kontoType
+                                    <small>(@betal.fraKonto.Insert(4," ").Insert(7," ")) </small >
+                                </td>
+                            }
+                        } 
+                        <td>@betal.mottaker</td>
+                        <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
+                        <td>@betal.forfallDato.ToString("dd.MM.yyyy")</td>
+                        <td>@betal.belop<span class="currency" style="margin-left: 5px">Kr</span></td>
+                        <td>
+                            @if (betal.utfort == false)
+                            {
+                                <a asp-action="Betal" asp-route-id="@betal.Id" class="btn">Edit</a> 
+                                <a asp-action="deleteInvoice" asp-route-id="@betal.Id" class="btn">Delete</a>
+                            }
+                        </td>
                     </tr>
                 }         
         </tbody>
