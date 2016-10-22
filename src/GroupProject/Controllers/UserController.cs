@@ -64,6 +64,7 @@ namespace GroupProject.Controllers
             var user = await _userManager.GetUserAsync(HttpContext.User);
             ViewBag.fromAccountList = new List<Konto>();
 
+            //TODO change to linq
             foreach (Konto account in _access.getAccounts(user))
             {
                 if (!account.kontoType.Equals("BSU"))//Dont add to list if account is BSU
