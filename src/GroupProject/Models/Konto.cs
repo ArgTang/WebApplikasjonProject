@@ -13,9 +13,11 @@ namespace GroupProject.Models
     {
         [Required(ErrorMessage = "KontoNr må skrives inn")]
         public string kontoNr { get; set; }
+
         [Required(ErrorMessage = "Saldo må skrives inn")]
         [Range(-10000.00, 10000000.00)]
         public decimal saldo { get; set; }
+
         [Required]
         [StringLength(30)]
         public string kontoType { get; set; }

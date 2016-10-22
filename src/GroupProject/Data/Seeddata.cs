@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GroupProject.Models;
@@ -118,7 +117,7 @@ namespace GroupProject.Data
                     tilKonto = "12341212341",
                     fraKonto = "65430023421",
                     mottaker = "ACOS Forsikring",
-                    forfallDato = DateTime.Today,
+                    forfallDato = DateTime.Today.AddDays(4),
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
@@ -132,7 +131,7 @@ namespace GroupProject.Data
                     tilKonto = "65430023421",
                     fraKonto = "12341212341",
                     mottaker = "ACOS Parkering",
-                    forfallDato = DateTime.Now,
+                    forfallDato = DateTime.Now.AddDays(14),
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
@@ -146,7 +145,7 @@ namespace GroupProject.Data
                     tilKonto = "65430023421",
                     fraKonto = "12341212341",
                     mottaker = "Bestemor",
-                    forfallDato = DateTime.Today,
+                    forfallDato = DateTime.Today.AddMonths(1),
                     CreatedDate = DateTime.Now,
                     createdBy = "geir",
                     UpdatedDate = DateTime.Now,
