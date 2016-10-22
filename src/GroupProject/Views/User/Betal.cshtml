@@ -1,4 +1,3 @@
-
 ﻿@using GroupProject.ViewModels.User
 @model PaymentViewModel
 
@@ -84,73 +83,3 @@
         })();
     </script>
 </section>
-
-@*<section class="container">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th><h1>Betalingsdetaljer</h1></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        Fra konto:
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" aria-label="...">
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Velg konto <span class="caret"></span></button>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#">Brukerkonto</a></li>
-                                            <li><a href="#">Sparekonto</a></li>
-                                        </ul>
-                                    </div><!-- /btn-group -->
-                                </div><!-- /input-group -->
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Til konto: <input type="text" name='Til konto' placeholder='Til konto' class="form-control" /></td>
-                </tr>
-                <tr>
-                    <td>Mottaker: <input type="text" name='Mottaker' placeholder='Mottaker' class="form-control" /></td>
-                </tr>
-            </tbody>
-            <tbody>
-                <tr>
-                    <td>Beløp: <input type="text" name='beløp' size="7" />,<input type="text" name='desimalbeløp' maxlength="2" size="2" /></td>
-                </tr>
-                <tr>
-                    <td class="container-fluid">
-                        Dato:
-                        <div class="form-group">
-                            <div class='input-group date' id='timepicker'>
-                                <input type='text' class="form-control" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>KID: <input type="text" name='KID' placeholder='KID nummer' class="form-control" /></td>
-                </tr>
-            </tbody>
-        </table>
-        <button type="submit" id="betalknapp" class="btn btn-default">Betal regning</button>
-        <script type="text/javascript">
-           (function () {
-                $('#timepicker').datetimepicker({
-                    dayViewHeaderFormat: 'MMM',
-                    minDate: moment.now(),
-                    format: "DD.MM",
-                    locale: 'nb'
-                });
-            })();
-        </script>
-    </section>*@
-
