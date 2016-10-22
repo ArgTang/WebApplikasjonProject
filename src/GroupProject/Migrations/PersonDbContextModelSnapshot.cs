@@ -53,6 +53,14 @@ namespace GroupProject.Migrations
                     b.Property<string>("UserName")
                         .HasAnnotation("MaxLength", 256);
 
+                    b.Property<string>("firstName")
+                        .IsRequired();
+
+                    b.Property<DateTime>("lastLogin");
+
+                    b.Property<string>("lastName")
+                        .IsRequired();
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")

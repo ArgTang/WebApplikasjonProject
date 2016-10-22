@@ -1,5 +1,4 @@
-
-@model IEnumerable<Betalinger>
+@model GroupProject.ViewModels.User.FakruraViewModel
 
 <section class="container">
     <table class="table table-hover">
@@ -10,21 +9,29 @@
         </thead>
         <tbody>
             <tr>
-                <th>Faktura id:</th>
+                <th>Mottaker:</th>
                 <th>Fra Konto:</th>
                 <th>Til konto:</th>
                 <th>Forfallsdato:</th>
                 <th>Sum:</th>
                 <th>Valg:</th>
             </tr>
-            
-                @foreach (Betalinger betal in Model)
+           
+                @foreach (Betalinger betal in Model.payments)
             {
             <tr>
                 <td>@betal.mottaker</td>
-                <td>@betal.fraKonto</td>
-                <td>@betal.tilKonto</td>
-                <td>@betal.forfallDato</td>
+                @foreach (Konto konto in Model.accounts)
+                {
+                    if (betal.fraKonto.Equals(konto.kontoNr))
+                    {
+                        <td>@konto.kontoType
+                            <small>(@betal.fraKonto.Insert(4," ").Insert(7," ")) </small >
+                        </td>
+                    }
+                } 
+                <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
+                <td>@betal.forfallDato.ToString("dd.MM.yyyy")</td>
                 <td>@betal.belop<span class="currency" style="margin-left: 5px">Kr</span></td>
                 <td>@if (betal.utfort == false)
                 {

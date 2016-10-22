@@ -30,9 +30,5 @@ namespace GroupProject.Models
         public DateTime forfallDato { get; set; }
 
         public string mottaker { get; set; }
-
-        public virtual Konto Kontoer { get; set; }
-
-        public int KontoerId { get; set; }
     }
 }

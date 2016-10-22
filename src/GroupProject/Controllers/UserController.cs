@@ -7,11 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using GroupProject.Models;
 using System.Linq;
 using GroupProject.DAL;
-<<<<<<<
 using GroupProject.ViewModels.User;
-=======
-using System;
->>>>>>>
 
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -53,8 +49,14 @@ namespace GroupProject.Controllers
         public async Task<ActionResult> Faktura()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var faktura = _access.getPayments(user);
-            return View(faktura);
+            FakruraViewModel model = new FakruraViewModel();
+
+            model.payments = _access.getPayments(user);
+            model.payments.Sort((x,y) => x.forfallDato.CompareTo(y.forfallDato));
+
+            model.accounts = _access.getAccounts(user);
+            
+            return View(model);
         }
 
         public async Task<ActionResult> Betal()
@@ -74,12 +76,6 @@ namespace GroupProject.Controllers
             }
 
             return View(model);
-        }
-
-        public IActionResult Oversikt()
-        {
-            ViewData["Title"] = "Logged in ACOS";
-            return View();
         }
 
 
@@ -119,7 +115,7 @@ namespace GroupProject.Controllers
                    
                 });
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Faktura");
             }
 
             ViewBag.fromAccountList = new List<Konto>();
