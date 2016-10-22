@@ -48,8 +48,8 @@ namespace GroupProject.Controllers
         public async Task<ActionResult> Faktura()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var invoices = _access.getPayments(user);
-            return View(invoices);
+            var faktura = _access.getPayments(user);
+            return View(faktura);
         }
 
         [HttpGet]
