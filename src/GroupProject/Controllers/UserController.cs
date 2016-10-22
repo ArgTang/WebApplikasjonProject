@@ -157,5 +157,16 @@ namespace GroupProject.Controllers
 
             return View("Betal", model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            user.lastLogin = DateTime.Now;
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
     }
 }
