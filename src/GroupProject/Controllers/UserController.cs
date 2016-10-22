@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using GroupProject.Models;
 using System.Linq;
 using GroupProject.DAL;
+using System;
 
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -45,15 +46,13 @@ namespace GroupProject.Controllers
 
         public async Task<ActionResult> Faktura()
         {
-            ViewData["Title"] = "Logged in ACOS";
-            var bruker = await _userManager.GetUserAsync(HttpContext.User);
-            var faktura = _access.getPayments(bruker);
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var faktura = _access.getPayments(user);
             return View(faktura);
         }
 
         public IActionResult Betal()
         {
-            ViewData["Title"] = "Logged in ACOS";
             return View();
         }
 
@@ -75,6 +74,9 @@ namespace GroupProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            user.lastLogin = DateTime.Now;
+
             await _signInManager.SignOutAsync();
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
