@@ -22,9 +22,9 @@ namespace GroupProject.Models
         public DbSet<Betalinger> Betal { set; get; }
         public DbSet<Konto> Kontoer { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //}
     }
 }

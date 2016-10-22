@@ -18,18 +18,17 @@ namespace GroupProject.Models
 
         public string kid { get; set; }
 
+        [Required]
         public string tilKonto { get; set; }
-
+        
+        [Required]
         public string fraKonto { get; set; }
 
         public bool utfort { get; set; }
         
+        [Required]
         public DateTime forfallDato { get; set; }
 
-        public virtual Konto Kontoer { get; set; }
-        [Required]
-        public int KontoerId { get; set; }
-
-        public string toName { get; internal set; }
+        public string mottaker { get; set; }
     }
 }
