@@ -6,6 +6,7 @@ using GroupProject.Models;
 using System.Linq;
 using GroupProject.DAL;
 using System;
+using GroupProject.ViewModels.User;
 
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -47,18 +48,51 @@ namespace GroupProject.Controllers
         public async Task<ActionResult> Faktura()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var faktura = _access.getPayments(user);
-            return View(faktura);
+            var invoices = _access.getPayments(user);
+            return View(invoices);
         }
 
-        public IActionResult Betal()
+        [HttpGet]
+        public async Task<IActionResult> Betal(int? id)
         {
+            //if no invoice is asked for go to form
+            if (id == null) {
+                return View();
+            }
+
+            var invoice = new Betalinger();
+
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            invoice = _access.getInvoice(user, (int)id);
+            
+            //this sucks any other way?
+            if ( invoice != null ) {
+                var model = new PaymentViewModel();
+
+                model.amount = (int) invoice.belop;
+                model.fraction = invoice.belop - (int) invoice.belop;
+                model.date = invoice.forfallDato;
+                model.fromAccount = invoice.fraKonto;
+                model.toAccount = invoice.tilKonto;
+                model.kid = invoice.kid ?? "";
+                model.paymentMessage = invoice.info ?? "";
+                model.reciever = invoice.toName;
+
+                return View(model);
+            }
+
             return View();
         }
 
         public IActionResult Oversikt()
         {
             ViewData["Title"] = "Logged in ACOS";
+            return View();
+        }
+
+
+        public IActionResult deleteInvoice(Betalinger invoice)
+        {
             return View();
         }
 
