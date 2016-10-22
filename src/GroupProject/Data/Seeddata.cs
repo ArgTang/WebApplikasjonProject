@@ -21,8 +21,9 @@ namespace GroupProject.Data
         public async Task SeedPersons()
         {
             // kun for resetting av database, bør kjøres ved updates
-            //_personDbContext.Database.EnsureDeleted();
-            //_personDbContext.Database.EnsureCreated();
+            _personDbContext.Database.EnsureDeleted();
+            _personDbContext.Database.EnsureCreated();
+
             if (!await _personDbContext.Users.AnyAsync())
             {
                 var newUser = new ApplicationUser
@@ -74,7 +75,7 @@ namespace GroupProject.Data
                 _personDbContext.AddRange(new Konto
                 {
                     PersonerId = 1,
-                    kontoNr = "1234121234",
+                    kontoNr = "12341212341",
                     saldo = 100202,
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
@@ -85,7 +86,7 @@ namespace GroupProject.Data
                 new Konto
                 {
                     PersonerId = 1,
-                    kontoNr = "6543 00 2342",
+                    kontoNr = "65430023421",
                     saldo = 0,
                     CreatedDate = DateTime.Now,
                     createdBy = "geir",
@@ -96,7 +97,7 @@ namespace GroupProject.Data
                 new Konto
                 {
                     PersonerId = 1,
-                    kontoNr = "4321004121",
+                    kontoNr = "43210041211",
                     saldo = 231,
                     CreatedDate = DateTime.Now,
                     createdBy = "bjarne",
@@ -111,13 +112,12 @@ namespace GroupProject.Data
             {
                 _personDbContext.AddRange(new Betalinger
                 {
-                    KontoerId = 3,
-                    belop = 12312,
+                    belop = (decimal) 12312.25,
                     info = "betalt til meg",
-                    toName = "ole",
                     utfort = false,
-                    tilKonto = "123123123",
-                    fraKonto = "12121212",
+                    tilKonto = "12341212341",
+                    fraKonto = "65430023421",
+                    mottaker = "ACOS Forsikring",
                     forfallDato = DateTime.Today,
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
@@ -126,13 +126,12 @@ namespace GroupProject.Data
                 },
                 new Betalinger
                 {
-                    KontoerId = 1,
-                    belop = 5675,
+                    belop = (decimal) 5675.00,
                     info = "betalt til meg",
-                    toName = "ole",
                     utfort = false,
-                    tilKonto = "123123123",
-                    fraKonto = "12121212",
+                    tilKonto = "65430023421",
+                    fraKonto = "12341212341",
+                    mottaker = "ACOS Parkering",
                     forfallDato = DateTime.Now,
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
@@ -141,13 +140,12 @@ namespace GroupProject.Data
                 },
                 new Betalinger
                 {
-                    KontoerId = 2,
-                    belop = 43,
+                    belop = (decimal) 1.00,
                     info = "betalt til deg",
-                    toName = "ole",
                     utfort = false,
-                    tilKonto = "123123123",
-                    fraKonto = "12121212",
+                    tilKonto = "65430023421",
+                    fraKonto = "12341212341",
+                    mottaker = "Bestemor",
                     forfallDato = DateTime.Today,
                     CreatedDate = DateTime.Now,
                     createdBy = "geir",

@@ -1,41 +1,68 @@
-
-@model IEnumerable<Betalinger>
+@model GroupProject.ViewModels.User.FakruraViewModel
 
 <section class="container">
     <table class="table table-hover">
         <thead>
-            <tr>
-                <h2>Oversikt over betalinger til forfall</h2>
-            </tr>
+        <tr>
+            <h2>Oversikt over betalinger til forfall</h2>
+        </tr>
         </thead>
         <tbody>
-            <tr>
-                <th>Faktura id:</th>
-                <th>Fra Konto:</th>
-                <th>Til konto:</th>
-                <th>Forfallsdato:</th>
-                <th>Sum:</th>
-                <th>Valg:</th>
+        <tr>
+            <th>Mottaker:</th>
+            <th>Fra Konto:</th>
+            <th>Til konto:</th>
+            <th>Forfallsdato:</th>
+            <th>Sum:</th>
+            <th>Valg:</th>
+        </tr>
+           
+        @foreach (Betalinger betal in Model.payments)
+        {
+            <tr id="invoiceId_@betal.Id">
+                <td>@betal.mottaker</td>
+                @foreach (Konto konto in Model.accounts){
+                    if (betal.fraKonto.Equals(konto.kontoNr))
+                    {
+                        <td>@konto.kontoType
+                            <small>(@betal.fraKonto.Insert(4," ").Insert(7," ")) </small >
+                        </td>
+                    }
+                } 
+                <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
+                <td>@betal.forfallDato.ToString("dd.MM.yyyy")</td>
+                <td>@betal.belop<span class="currency" style="margin-left: 5px">Kr</span></td>
+                <td>
+                    @if (betal.utfort == false)
+                    {
+                        <a asp-action="Betal" asp-route-id="@betal.Id" class="btn">Edit</a> 
+                        <a onclick="deleteInvoice(@betal.Id)" class="btn">Delete</a>
+                       
+                    }
+                </td>
             </tr>
-            
-            @foreach (var betal in Model)
-            {
-                <tr>
-                    <td>@betal.Id</td>
-                    <td>@betal.fraKonto</td>
-                    <td>@betal.tilKonto</td>
-                    <td>@betal.forfallDato.Date</td>
-                    <td>@betal.belop</td>
-
-                    <td>
-                        @if (betal.utfort == false)
-                        {
-                            <a asp-action="Betal" asp-route-id="@betal.Id" class="btn">Edit</a> 
-                            <a asp-action="deleteInvoice" asp-route-id="@betal.Id" class="btn">Delete</a>
-                        }
-                    </td>
-                </tr>
-            }         
+        }         
         </tbody>
     </table>
+    @Html.AntiForgeryToken()
 </section>
+<script>
+
+    function deleteInvoice(id) {
+        var request = $.ajax({
+            type: "POST",
+            url: "faktura/delete/"+id,
+            data: { __RequestVerificationToken: $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val() }
+        });
+
+        request.done(function (response) {
+            if (response === "success") {
+                $("invoiceId_" + id).outerHTML = "";
+            }
+        });
+
+        request.fail(function (jqXHR, textStatus) {
+            console.log("buuu");
+        });
+    }
+</script>

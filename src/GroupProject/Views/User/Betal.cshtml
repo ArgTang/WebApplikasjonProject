@@ -1,5 +1,7 @@
-﻿@using GroupProject.ViewModels.User
-@model PaymentViewModel
+
+@using GroupProject.Models
+@using GroupProject.ViewModels
+@model GroupProject.ViewModels.User.PaymentViewModel
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js" integrity="sha256-4PIvl58L9q7iwjT654TQJM+C/acEyoG738iL8B8nhXg=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/locale/nb.js" integrity="sha256-bBhNwlhUe+cu0QF9FOQsYP6ToTgNAGnVnPX+jpEdfDM=" crossorigin="anonymous"></script>
@@ -8,19 +10,21 @@
 
 <section class="container">
     <h2>Betalingsdetaljer</h2>
-    <form asp-controller="User" asp-action="Index" method="post" class="form-horizontal" role="form">
+    <form asp-controller="User" asp-action="Betal" class="form-horizontal" role="form">
         <div class="form-group">
             <div class="col-sm-10">
                 <label asp-for="toAccount"></label>
-                <input asp-for="toAccount" class="form-control"  MaxLength="11">
+                <input asp-for="toAccount" class="form-control" autocomplete="off">
                 <span asp-validation-for="toAccount" class="text-danger"></span>
             </div>
         </div>
-
+        
         <div class="form-group">
             <div class="col-sm-10">
                 <label asp-for="fromAccount"></label>
-                <input asp-for="fromAccount" class="form-control">
+                <select asp-for="fromAccount" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.fromAccountList, "kontoNr", "kontoType"))">
+                </select>
                 <span asp-validation-for="fromAccount" class="text-danger"></span>
             </div>
         </div>
@@ -28,7 +32,7 @@
         <div class="form-group">
             <div class="col-sm-10">
                 <label asp-for="reciever"></label>
-                <input asp-for="reciever" class="form-control">
+                <input asp-for="reciever" class="form-control" autocomplete="off">
                 <span asp-validation-for="reciever" class="text-danger"></span>
             </div>
         </div>
@@ -36,7 +40,7 @@
         <div class="form-group">
             <div class="col-sm-10">
                 <label asp-for="paymentMessage"></label>
-                <input asp-for="paymentMessage" class="form-control">
+                <input asp-for="paymentMessage" class="form-control" autocomplete="off">
                 <span asp-validation-for="paymentMessage" class="text-danger"></span>
             </div>
         </div>
@@ -45,17 +49,17 @@
             <div class="col-sm-10">
                 <label asp-for="amount"></label>
                 <p class="flex">
-                    <input asp-for="amount" class="form-control"> , 
-                    <input asp-for="fraction" class="form-control" MaxLength="2">
+                    <input asp-for="amount" class="form-control" autocomplete="off"> , 
+                    <input asp-for="fraction" class="form-control" autocomplete="off" value="00">
                 </p>
-                <span asp-validation-for="amount" class="text-danger" ></span>
+                <span asp-validation-for="amount" class="text-danger"></span><span asp-validation-for="fraction" class="text-danger"></span>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-10">
                 <label asp-for="date"></label>
-                    <input asp-for="date" class="form-control" id="timepickerr" />
+                    <input asp-for="date" class="form-control" id="datePicker" autocomplete="off"/>
                 <span asp-validation-for="date" class="text-danger"></span>
             </div>
         </div>
@@ -63,7 +67,7 @@
         <div class="form-group">
             <div class="col-sm-10">
                 <label asp-for="kid"></label>
-                <input asp-for="kid" class="form-control" MaxLength="25" MinLengt="2">
+                <input asp-for="kid" class="form-control" autocomplete="off">
                 <span asp-validation-for="kid" class="text-danger"></span>
             </div>
         </div>
@@ -73,11 +77,11 @@
     </form>
 
     <script type="text/javascript">
-       (function () {
-            $('#timepickerr').datetimepicker({
-                dayViewHeaderFormat: 'MMM',
+        (function () {
+            $('#datePicker').datetimepicker({
+                dayViewHeaderFormat: 'MMMM',
                 minDate: moment.now(),
-                format: "DD.MM.YY",
+                format: "DD/MM/YY",
                 locale: 'nb'
             });
         })();
