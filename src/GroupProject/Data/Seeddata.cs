@@ -28,7 +28,10 @@ namespace GroupProject.Data
                 var newUser = new ApplicationUser
                 {
                     UserName = "26118742957",
-                    Email = "olelundsor@gmail.com"
+                    Email = "olelundsor@gmail.com",
+                    firstName = "ole",
+                    lastName = "lundsør",
+                    lastLogin = DateTime.Now
                 };
                 var identityResult = await _userManager.CreateAsync(newUser, "123456789Ole");
             }
@@ -37,8 +40,7 @@ namespace GroupProject.Data
             {
                 _personDbContext.AddRange(new Person
                 {
-                   // Id = 1,
-                    PersonNr = "26118742957",
+                    PersonNr = "26118742957", 
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
