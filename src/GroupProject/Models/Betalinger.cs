@@ -11,14 +11,20 @@ namespace GroupProject.Models
     public class Betalinger : BaseModel
     {
         [Required(ErrorMessage = "Beløp må skrives inn")]
-        public int belop { get; set; }
+        public double belop { get; set; }
         
         [StringLength(100)]
         public string info { get; set; }
 
+        public string kid { get; set; }
+
+        public string tilKonto { get; set; }
+
+        public string fraKonto { get; set; }
+
         public bool utfort { get; set; }
         
-        public DateTime datoUtfort { get; set; }
+        public DateTime forfallDato { get; set; }
 
         public virtual Konto Kontoer { get; set; }
         [Required]
