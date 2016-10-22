@@ -49,7 +49,7 @@ namespace GroupProject.Controllers
         public async Task<ActionResult> Faktura()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            FakruraViewModel model = new FakruraViewModel();
+            var model = new FakturaViewModel();
             model.payments = _access.getPayments(user);
             model.payments.Sort((x, y) => x.forfallDato.CompareTo(y.forfallDato));
 
