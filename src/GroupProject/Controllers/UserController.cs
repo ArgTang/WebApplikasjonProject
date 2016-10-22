@@ -62,16 +62,7 @@ namespace GroupProject.Controllers
         public async Task<IActionResult> Betal(int? id)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            ViewBag.fromAccountList = new List<Konto>();
-
-            //TODO change to linq
-            foreach (Konto account in _access.getAccounts(user))
-            {
-                if (!account.kontoType.Equals("BSU"))//Dont add to list if account is BSU
-                {
-                    ViewBag.fromAccountList.Add(account);
-                }
-            }
+            ViewBag.fromAccountList = _access.getAccounts(user).Where(item => item.kontoType != "BSU");
 
             //if no invoice is asked for go to form
             if (id == null)
@@ -140,15 +131,7 @@ namespace GroupProject.Controllers
                 return RedirectToAction("Faktura");
             }
 
-            ViewBag.fromAccountList = new List<Konto>();
-
-            foreach (Konto account in _access.getAccounts(user))
-            {
-                if (!account.kontoType.Equals("BSU"))//Dont add to list if account is BSU
-                {
-                    ViewBag.fromAccountList.Add(account);
-                }
-            }
+            ViewBag.fromAccountList = _access.getAccounts(user).Where(item => item.kontoType != "BSU");
 
             return View("Betal", model);
         }
