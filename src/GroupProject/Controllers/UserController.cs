@@ -124,7 +124,7 @@ namespace GroupProject.Controllers
                 _access.addPayment(new Betalinger{
                     tilKonto = model.toAccount,
                     fraKonto = model.fromAccount,
-                    belop = new Decimal(Double.Parse(model.amount+","+model.fraction)),
+                    belop = new Decimal(Double.Parse(model.amount + "," + model.fraction)),
                     info = model.paymentMessage,
                     utfort = false,
                     kid = model.kid,
