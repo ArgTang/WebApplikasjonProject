@@ -86,10 +86,16 @@ namespace GroupProject.Migrations
                         .IsRequired()
                         .HasAnnotation("MaxLength", 50);
 
-                    b.Property<DateTime>("datoUtfort");
+                    b.Property<DateTime>("forfallDato");
+
+                    b.Property<string>("fraKonto");
 
                     b.Property<string>("info")
                         .HasAnnotation("MaxLength", 100);
+
+                    b.Property<string>("kid");
+
+                    b.Property<string>("tilKonto");
 
                     b.Property<bool>("utfort");
 
@@ -155,6 +161,14 @@ namespace GroupProject.Migrations
                     b.Property<string>("createdBy")
                         .IsRequired()
                         .HasAnnotation("MaxLength", 50);
+
+                    b.Property<string>("etterNavn")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 30);
+
+                    b.Property<string>("forNavn")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 30);
 
                     b.HasKey("Id");
 
