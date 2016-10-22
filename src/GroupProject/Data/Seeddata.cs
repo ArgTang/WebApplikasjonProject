@@ -114,6 +114,7 @@ namespace GroupProject.Data
                 {
                     belop = (decimal) 12312.25,
                     info = "betalt til meg",
+                    toName = "ole",
                     utfort = false,
                     tilKonto = "12341212341",
                     fraKonto = "65430023421",
@@ -128,6 +129,7 @@ namespace GroupProject.Data
                 {
                     belop = (decimal) 5675.00,
                     info = "betalt til meg",
+                    toName = "ole",
                     utfort = false,
                     tilKonto = "65430023421",
                     fraKonto = "12341212341",
@@ -142,6 +144,7 @@ namespace GroupProject.Data
                 {
                     belop = (decimal) 1.00,
                     info = "betalt til deg",
+                    toName = "ole",
                     utfort = false,
                     tilKonto = "65430023421",
                     fraKonto = "12341212341",

@@ -7,7 +7,12 @@ using Microsoft.AspNetCore.Identity;
 using GroupProject.Models;
 using System.Linq;
 using GroupProject.DAL;
+<<<<<<<
 using GroupProject.ViewModels.User;
+=======
+using System;
+using GroupProject.ViewModels.User;
+>>>>>>>
 
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -51,12 +56,36 @@ namespace GroupProject.Controllers
             var user = await _userManager.GetUserAsync(HttpContext.User);
             FakruraViewModel model = new FakruraViewModel();
 
-            model.payments = _access.getPayments(user);
-            model.payments.Sort((x,y) => x.forfallDato.CompareTo(y.forfallDato));
+        [HttpGet]
+        public async Task<IActionResult> Betal(int? id)
+        {
+            //if no invoice is asked for go to form
+            if (id == null) {
+                return View();
+            }
 
-            model.accounts = _access.getAccounts(user);
+            var invoice = new Betalinger();
+
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            invoice = _access.getInvoice(user, (int)id);
             
-            return View(model);
+            //this sucks any other way?
+            if ( invoice != null ) {
+                var model = new PaymentViewModel();
+
+                model.amount = (int) invoice.belop;
+                model.fraction = invoice.belop - (int) invoice.belop;
+                model.date = invoice.forfallDato;
+                model.fromAccount = invoice.fraKonto;
+                model.toAccount = invoice.tilKonto;
+                model.kid = invoice.kid ?? "";
+                model.paymentMessage = invoice.info ?? "";
+                model.reciever = invoice.toName;
+
+                return View(model);
+            }
+
+            return View();
         }
 
         public async Task<ActionResult> Betal()
@@ -78,6 +107,23 @@ namespace GroupProject.Controllers
             return View(model);
         }
 
+<<<<<<<
+
+=======
+
+        public IActionResult deleteInvoice(Betalinger invoice)
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Betal()
+        //{
+        //    ViewData["Title"] = "Logged in ACOS";
+        //    return View();
+        //}
+>>>>>>>
 
         [HttpPost]
         [ValidateAntiForgeryToken]
