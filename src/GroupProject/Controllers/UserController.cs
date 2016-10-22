@@ -152,5 +152,13 @@ namespace GroupProject.Controllers
 
             return View("Betal", model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("user/faktura/delete")]
+        public async Task<IActionResult> deleteInvoice(int? id)
+        {
+             
+        }
     }
 }
