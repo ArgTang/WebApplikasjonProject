@@ -51,7 +51,7 @@ namespace GroupProject.Controllers
         public async Task<ActionResult> Faktura()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            FakruraViewModel model = new FakruraViewModel();
+            var model = new FakturaViewModel();
             model.payments = _access.getPayments(user);
             model.payments.Sort((x, y) => x.forfallDato.CompareTo(y.forfallDato));
 
@@ -64,16 +64,7 @@ namespace GroupProject.Controllers
         public async Task<IActionResult> Betal(int? id)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            ViewBag.fromAccountList = new List<Konto>();
-
-            //TODO change to linq
-            foreach (Konto account in _access.getAccounts(user))
-            {
-                if (!account.kontoType.Equals("BSU"))//Dont add to list if account is BSU
-                {
-                    ViewBag.fromAccountList.Add(account);
-                }
-            }
+            ViewBag.fromAccountList = _access.getAccounts(user).Where(item => item.kontoType != "BSU");
 
             //if no invoice is asked for go to form
             if (id == null)
@@ -105,58 +96,6 @@ namespace GroupProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
-        {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-            user.lastLogin = DateTime.Now;
-
-            await _signInManager.SignOutAsync();
-            return RedirectToAction(nameof(HomeController.Index), "Home");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Betal(PaymentViewModel model)
-        {
-            
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-            if (ModelState.IsValid)
-            {
-
-                _access.addPayment(new Betalinger{
-                    tilKonto = model.toAccount,
-                    fraKonto = model.fromAccount,
-                    belop = new Decimal(Double.Parse(model.amount+","+model.fraction)),
-                    info = model.paymentMessage,
-                    utfort = false,
-                    kid = model.kid,
-                    mottaker = model.reciever,
-                    forfallDato = model.date,
-                    CreatedDate = DateTime.Now,
-                    createdBy = user.UserName,
-                    UpdatedDate = DateTime.Now,
-                    UpdatedBy = user.UserName
-                   
-                });
-
-                return RedirectToAction("Faktura");
-            }
-
-            ViewBag.fromAccountList = new List<Konto>();
-
-            foreach (Konto account in _access.getAccounts(user))
-            {
-                if (!account.kontoType.Equals("BSU"))//Dont add to list if account is BSU
-                {
-                    ViewBag.fromAccountList.Add(account);
-                }
-            }
-
-            return View("Betal", model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         [Route("user/faktura/delete")]
         public async Task<IActionResult> deleteInvoice()
         {
@@ -184,6 +123,39 @@ namespace GroupProject.Controllers
                 return Content("error");
             }
             return Content("error");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Betal(PaymentViewModel model)
+        {
+            
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            if (ModelState.IsValid)
+            {
+
+                _access.addPayment(new Betalinger{
+                    tilKonto = model.toAccount,
+                    fraKonto = model.fromAccount,
+                    belop = new Decimal(Double.Parse(model.amount + "," + model.fraction)),
+                    info = model.paymentMessage,
+                    utfort = false,
+                    kid = model.kid,
+                    mottaker = model.reciever,
+                    forfallDato = model.date,
+                    CreatedDate = DateTime.Now,
+                    createdBy = user.UserName,
+                    UpdatedDate = DateTime.Now,
+                    UpdatedBy = user.UserName
+                   
+                });
+
+                return RedirectToAction("Faktura");
+            }
+
+            ViewBag.fromAccountList = _access.getAccounts(user).Where(item => item.kontoType != "BSU");
+
+            return View("Betal", model);
         }
     }
 }

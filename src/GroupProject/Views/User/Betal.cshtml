@@ -1,3 +1,5 @@
+﻿﻿@using GroupProject.ViewModels.User
+@model PaymentViewModel
 
 @using GroupProject.Models
 @using GroupProject.ViewModels
@@ -52,7 +54,8 @@
                     <input asp-for="amount" class="form-control" autocomplete="off"> , 
                     <input asp-for="fraction" class="form-control" autocomplete="off" value="00">
                 </p>
-                <span asp-validation-for="amount" class="text-danger"></span><span asp-validation-for="fraction" class="text-danger"></span>
+                <span asp-validation-for="amount" class="text-danger"></span>
+                <span asp-validation-for="fraction" class="text-danger"></span>
             </div>
         </div>
 
