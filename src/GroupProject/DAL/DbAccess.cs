@@ -26,7 +26,6 @@ namespace GroupProject.DAL
         private Person getPerson(ApplicationUser applicationUser)
         {
             string personNr = applicationUser.UserName;
-
             return _persondbcontext.Person
                                    .Include(s => s.konto)
                                    .Single(p => p.PersonNr == personNr);
@@ -34,7 +33,6 @@ namespace GroupProject.DAL
 
         public List<Betalinger> getPayments(ApplicationUser applicationUser)
         {
-            
             List<Betalinger> betalinger = new List<Betalinger>();
 
             foreach(Konto k in getAccounts(applicationUser))
@@ -59,6 +57,12 @@ namespace GroupProject.DAL
         {
             _persondbcontext.Betal.AddRange(betalinger);
             _persondbcontext.SaveChanges();
+        }
+
+        internal Betalinger getInvoice(ApplicationUser user, int id)
+        {
+            var payments = getPayments(user);
+            return payments.Find(invoice => invoice.Id == id);
         }
     }
 }
