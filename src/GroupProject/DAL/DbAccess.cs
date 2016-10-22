@@ -42,7 +42,7 @@ namespace GroupProject.DAL
             {
                 foreach(Betalinger b in _persondbcontext.Betal.ToList())
                 {
-                    if (b.KontoerId == k.Id)
+                    if (b.fraKonto == k.kontoNr)
                     {
                         betalinger.Add(b);
                     }
@@ -61,6 +61,7 @@ namespace GroupProject.DAL
         public void addPayment(Betalinger betalinger)
         {
             _persondbcontext.Betal.AddRange(betalinger);
+            _persondbcontext.SaveChanges();
         }
     }
 }

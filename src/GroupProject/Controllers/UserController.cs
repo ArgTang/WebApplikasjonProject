@@ -93,24 +93,21 @@ namespace GroupProject.Controllers
             var user = await _userManager.GetUserAsync(HttpContext.User);
             if (ModelState.IsValid)
             {
-                int accountId = 0;
-
-                foreach (Konto k in _access.getAccounts(user))
-                {
-                    if (k.kontoNr.Equals(model.toAccount))
-                        accountId = k.Id;
-                }
 
                 _access.addPayment(new Betalinger{
-                    KontoerId = accountId,
-                    belop = 123.00,//Double.Parse(model.amount+","+model.fraction),
+                    tilKonto = model.toAccount,
+                    fraKonto = model.fromAccount,
+                    belop = new Decimal(Double.Parse(model.amount+","+model.fraction)),
                     info = model.paymentMessage,
                     utfort = false,
-
+                    kid = model.kid,
+                    mottaker = model.reciever,
+                    forfallDato = model.date,
                     CreatedDate = DateTime.Now,
                     createdBy = user.UserName,
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = user.UserName
+                   
                 });
 
                 return RedirectToAction("Index");

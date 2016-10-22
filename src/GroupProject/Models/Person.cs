@@ -19,14 +19,6 @@ namespace GroupProject.Models
         [StringLength(11, MinimumLength = 11)]
         public string PersonNr { get; set; }
 
-        [Required]
-        [MaxLength(30)]
-        public string forNavn { get; set; }
-
-        [Required]
-        [MaxLength(30)]
-        public string etterNavn { get; set; }
-
         //[Required(ErrorMessage = "Epost må skrives inn")]
         //[StringLength(100)]
         //[DataType(DataType.EmailAddress)]

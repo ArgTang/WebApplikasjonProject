@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using GroupProject.Annotations;
 
 namespace GroupProject.ViewModels.User
 {
@@ -8,11 +9,13 @@ namespace GroupProject.ViewModels.User
         [Required(ErrorMessage = "Du må skrive inn et kontonummer.")]
         [DataType(DataType.Text)]
         [Display(Name = "Fra konto", Prompt = "Kontonummer")]
+        [Unlike("toAccount",ErrorMessage = "Kan ikke overføre til samme konto")]
         public string fromAccount { get; set; }
 
         [Required(ErrorMessage = "Du må skrive inn et kontonummer.")]
         [DataType(DataType.Text)]
         [StringLength(11,ErrorMessage ="Kontonummeret må inneholde 11 siffer"),MinLength(11, ErrorMessage = "Kontonummeret må inneholde 11 siffer")]
+        [Unlike("fromAccount", ErrorMessage = "Kan ikke overføre fra samme konto")]
         [Display(Name = "Til konto", Prompt = "Kontonummer")]
         public string toAccount { get; set; }
 
@@ -34,7 +37,7 @@ namespace GroupProject.ViewModels.User
         public string fraction { get; set; }
 
         [Required(ErrorMessage = "Du må skrive inn et dato.")]
-        [DataType(DataType.Text)]
+        [DataType(DataType.DateTime)]
         [Display(Name = "Dato", Prompt = "Dato")]
         public DateTime date { get; set; }
 
