@@ -1,6 +1,6 @@
 @model GroupProject.ViewModels.User.FakruraViewModel
 
-<section class="container">
+<section class="container" id="__AjaxAntiForgeryForm">
     <table class="table table-hover">
         <thead>
         <tr>
@@ -47,22 +47,21 @@
     @Html.AntiForgeryToken()
 </section>
 <script>
-
     function deleteInvoice(id) {
         var request = $.ajax({
             type: "POST",
-            url: "faktura/delete/"+id,
-            data: { __RequestVerificationToken: $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val() }
+            url: "faktura/delete",
+            data: {id:id,__RequestVerificationToken: $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val() }
         });
 
         request.done(function (response) {
             if (response === "success") {
-                $("invoiceId_" + id).outerHTML = "";
+                document.getElementById("invoiceId_" + id).outerHTML = "";
             }
         });
 
         request.fail(function (jqXHR, textStatus) {
-            console.log("buuu");
+            
         });
     }
 </script>

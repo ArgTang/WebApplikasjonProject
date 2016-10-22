@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using GroupProject.Models;
 using System.Linq;
+using GroupProject.Annotations;
 using GroupProject.DAL;
 using GroupProject.ViewModels.User;
+using Microsoft.AspNetCore.Http;
 
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -156,9 +158,32 @@ namespace GroupProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("user/faktura/delete")]
-        public async Task<IActionResult> deleteInvoice(int? id)
+        public async Task<IActionResult> deleteInvoice()
         {
-             
+            try
+            {
+                IFormCollection form = Request.Form;
+
+                if (form.ContainsKey("id"))
+                {
+                    var user = await _userManager.GetUserAsync(HttpContext.User);
+                    int id = int.Parse(form["id"]);
+
+                    if (id > 0)
+                    {
+                        if (_access.deleteInvoice(user, id))
+                        {
+                            return Content("success");
+                        }
+                    }
+                }
+            }
+            //If no body is specified
+            catch (Exception)
+            {
+                return Content("error");
+            }
+            return Content("error");
         }
     }
 }

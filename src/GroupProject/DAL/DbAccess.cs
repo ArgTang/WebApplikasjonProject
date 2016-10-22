@@ -64,5 +64,19 @@ namespace GroupProject.DAL
             var payments = getPayments(user);
             return payments.Find(invoice => invoice.Id == id);
         }
+
+        internal bool deleteInvoice(ApplicationUser user, int id)
+        {
+            Betalinger betaling = getInvoice(user, id);
+
+            if (betaling != null)
+            {
+                _persondbcontext.Betal.Remove(betaling);
+                _persondbcontext.SaveChanges();
+                return true;
+            }
+            return false;
+
+        }
     }
 }
