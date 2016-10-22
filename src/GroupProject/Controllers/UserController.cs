@@ -61,16 +61,26 @@ namespace GroupProject.Controllers
         [HttpGet]
         public async Task<IActionResult> Betal(int? id)
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            ViewBag.fromAccountList = new List<Konto>();
+
+            foreach (Konto account in _access.getAccounts(user))
+            {
+                if (!account.kontoType.Equals("BSU"))//Dont add to list if account is BSU
+                {
+                    ViewBag.fromAccountList.Add(account);
+                }
+            }
+
             //if no invoice is asked for go to form
-            if (id == null) {
+            if (id == null)
+            {
                 return View();
             }
 
             var invoice = new Betalinger();
-
-            var user = await _userManager.GetUserAsync(HttpContext.User);
             invoice = _access.getInvoice(user, (int)id);
-            
+
             //this sucks any other way?
             if ( invoice != null ) {
                 var model = new PaymentViewModel();
@@ -88,25 +98,6 @@ namespace GroupProject.Controllers
             }
 
             return View();
-        }
-
-        public async Task<ActionResult> Betal()
-        {
-            PaymentViewModel model = new PaymentViewModel();
-            ViewData["Title"] = "Logged in ACOS";
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-
-            ViewBag.fromAccountList = new List<Konto>();
-
-            foreach (Konto account in _access.getAccounts(user))
-            {
-                if (!account.kontoType.Equals("BSU"))//Dont add to list if account is BSU
-                {
-                    ViewBag.fromAccountList.Add(account);
-                }
-            }
-
-            return View(model);
         }
 
         [HttpPost]
