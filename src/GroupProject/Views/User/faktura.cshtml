@@ -18,29 +18,29 @@
             </tr>
            
                 @foreach (Betalinger betal in Model.payments)
-            {
-            <tr>
-                <td>@betal.mottaker</td>
-                @foreach (Konto konto in Model.accounts)
                 {
-                    if (betal.fraKonto.Equals(konto.kontoNr))
-                    {
-                        <td>@konto.kontoType
-                            <small>(@betal.fraKonto.Insert(4," ").Insert(7," ")) </small >
-                        </td>
-                    }
-                } 
-                <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
-                <td>@betal.forfallDato.ToString("dd.MM.yyyy")</td>
-                <td>@betal.belop<span class="currency" style="margin-left: 5px">Kr</span></td>
-                        @if (betal.utfort == false)
+                    <tr>
+                    <td>@betal.mottaker</td>
+                    @foreach (Konto konto in Model.accounts){
+                        if (betal.fraKonto.Equals(konto.kontoNr))
                         {
-                            <a asp-action="Betal" asp-route-id="@betal.Id" class="btn">Edit</a> 
-                            <a asp-action="deleteInvoice" asp-route-id="@betal.Id" class="btn">Delete</a>
+                            <td>@konto.kontoType
+                                <small>(@betal.fraKonto.Insert(4," ").Insert(7," ")) </small >
+                            </td>
                         }
+                    } 
+                    <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
+                    <td>@betal.forfallDato.ToString("dd.MM.yyyy")</td>
+                    <td>@betal.belop<span class="currency" style="margin-left: 5px">Kr</span></td>
+                    <td>
+                    @if (betal.utfort == false)
+                    {
+                        <a asp-action="Betal" asp-route-id="@betal.Id" class="btn">Edit</a> 
+                        <a asp-action="deleteInvoice" asp-route-id="@betal.Id" class="btn">Delete</a>
+                    }
                     </td>
-                </tr>
-            }         
+                    </tr>
+                }         
         </tbody>
     </table>
 </section>
