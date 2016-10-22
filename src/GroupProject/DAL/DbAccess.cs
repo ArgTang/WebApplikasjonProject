@@ -35,8 +35,9 @@ namespace GroupProject.DAL
 
             foreach(Konto k in getAccounts(applicationUser))
             {
-                foreach(Betalinger b in _persondbcontext.Betal.ToList())
-                {
+                //TODO this is **really** bad for performance 
+                //we should find a way to get Invoices from person.account not all invoices in the whole DB!!
+                foreach ( Betalinger b in _persondbcontext.Betal.ToList() ) {
                     if (b.KontoerId == k.Id)
                     {
                         betalinger.Add(b);
