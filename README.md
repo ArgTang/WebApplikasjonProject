@@ -12,6 +12,7 @@ We are Using these Technologies:
 * Jquery 3 datepicker
 * Node.js running Gulp.js for helping with compiling and moving scss and ts/js files into wwwrot
 * gulp.js
+* fixer.io for currency values 
 
 
 ## Compile
