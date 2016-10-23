@@ -77,7 +77,7 @@ namespace GroupProject.Controllers
 
                         ViewBag.birthNumber = birthNr;
                         byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
-                        byte[] key = Guid.NewGuid().ToByteArray();
+                        byte[] key = System.Text.Encoding.Unicode.GetBytes(Guid.NewGuid().ToString("N"));
                         string token = Convert.ToBase64String(time.Concat(key).ToArray());
                         HttpContext.Session.SetString(tokenKey, token);
                         HttpContext.Session.SetInt32(authKey, 0);
@@ -192,7 +192,6 @@ namespace GroupProject.Controllers
             //If no body is specified
             catch (Exception)
             {
-                HttpContext.Session.Clear();
                 return View("Error");
             }
             return Content("error");

@@ -39,29 +39,24 @@
         </div>
     </header>
     @RenderBody()
-    @{
-        if (ViewBag.footer == true)
-        {
-            <footer class="footer">
-                <div class="viewport">
-                    <div class="container">
-                        <div class="button_icon_wrapper">
-                            <button class="buttonIcon" title="Åpne sertifikater" type="button" aria-haspopup="true">
-                                <span class="label" style="display: none;"></span>
-                                <img alt="" class="svg"
-                                     src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19jZXJ0aWZpY2F0ZTwvdGl0bGU+PGcgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTAgNi4yMDZjMCA0LjEzNyAzLjE5MiA5LjM0IDcuNSAxMS4zNzcgNC4yOTgtMi4wMzIgNy41LTcuMjQgNy41LTExLjM3N3YtNi4yMDZoLTE1djYuMjA2eiIgZmlsbD0iIzU1NSIvPjxwYXRoIGQ9Ik0xMC41IDMuNWwxIDEtNCA0LTEgMS0xLTEtMi0yIDEtMSAyIDIgNC00eiIgZmlsbD0iI2ZmZiIvPjwvZz48L3N2Zz4=">
-                            </button>
-                        </div>
-                        <div class="signature" id="signature">
-                            <div id="footerTitle " class="title">@ViewBag.footerTitle</div>
-                            <div id="footerContent" class="text">@ViewBag.footerContent</div>
-                        </div>
-                    </div>
+    <footer class="footer">
+        <div class="viewport">
+            <div class="container">
+                <div class="button_icon_wrapper">
+                    <button class="buttonIcon" title="Åpne sertifikater" type="button" aria-haspopup="true">
+                        <span class="label" style="display: none;"></span>
+                        <img alt="" class="svg"
+                                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19jZXJ0aWZpY2F0ZTwvdGl0bGU+PGcgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTAgNi4yMDZjMCA0LjEzNyAzLjE5MiA5LjM0IDcuNSAxMS4zNzcgNC4yOTgtMi4wMzIgNy41LTcuMjQgNy41LTExLjM3N3YtNi4yMDZoLTE1djYuMjA2eiIgZmlsbD0iIzU1NSIvPjxwYXRoIGQ9Ik0xMC41IDMuNWwxIDEtNCA0LTEgMS0xLTEtMi0yIDEtMSAyIDIgNC00eiIgZmlsbD0iI2ZmZiIvPjwvZz48L3N2Zz4=">
+                    </button>
                 </div>
-                <div class="viewport"></div>
-            </footer>
-        }
-    }
+                <div class="signature" id="signature">
+                    <div id="footerTitle " class="title">@ViewBag.footerTitle</div>
+                    <div id="footerContent" class="text">@ViewBag.footerContent</div>
+                </div>
+            </div>
+        </div>
+        <div class="viewport"></div>
+    </footer>
 </div>
     <environment names="Development">
         <script src="js/identify.js"></script>
