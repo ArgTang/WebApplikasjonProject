@@ -1,5 +1,7 @@
 # WebApplikasjonProject
 
++ code for this project can alway be found here: https://github.com/ArgTang/WebApplikasjonProject
+
 This is our projecct for WebApplication subject fall 2016.
 The project has two parts over the semester.
 
