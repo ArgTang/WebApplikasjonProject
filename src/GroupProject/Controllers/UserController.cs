@@ -67,7 +67,7 @@ namespace GroupProject.Controllers
             ViewBag.fromAccountList = _access.getAccounts(user).Where(item => item.kontoType != "BSU");
 
             //if no invoice is asked for go to form
-            if (id == null)
+            if (id == null || id == 0)
             {
                 return View();
             }
@@ -91,7 +91,7 @@ namespace GroupProject.Controllers
                 return View(model);
             }
 
-            return View();
+            return View("FakturaNotFound");
         }
 
         [HttpPost]
@@ -127,14 +127,37 @@ namespace GroupProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Betal(PaymentViewModel model)
+        public async Task<IActionResult> Betal(PaymentViewModel model, int? id)
         {
 
             ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+
             if (ModelState.IsValid)
             {
+                if (id != null)
+                {
+                    Betalinger betaling = _access.getInvoice(user, (int)id);
+                    if (betaling != null)
+                    {
+                        betaling.tilKonto = model.toAccount;
+                        betaling.fraKonto = model.fromAccount;
+                        betaling.belop = new Decimal(Double.Parse(model.amount + "," + model.fraction));
+                        betaling.info = model.paymentMessage;
+                        betaling.utfort = false;
+                        betaling.kid = model.kid;
+                        betaling.mottaker = model.reciever;
+                        betaling.forfallDato = model.date;
+                        betaling.UpdatedDate = DateTime.Now;
+                        betaling.UpdatedBy = user.UserName;
 
-                _access.addPayment(new Betalinger{
+                        _access.changePayment(betaling);
+
+                        return RedirectToAction("Faktura");
+                    }
+                    
+                }  
+                _access.addPayment(new Betalinger
+                {
                     tilKonto = model.toAccount,
                     fraKonto = model.fromAccount,
                     belop = new Decimal(Double.Parse(model.amount + "," + model.fraction)),
@@ -147,9 +170,8 @@ namespace GroupProject.Controllers
                     createdBy = user.UserName,
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = user.UserName
-                   
-                });
 
+                });
                 return RedirectToAction("Faktura");
             }
 

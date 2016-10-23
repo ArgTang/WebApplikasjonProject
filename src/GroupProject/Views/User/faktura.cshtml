@@ -20,7 +20,7 @@
            
                 @foreach (Betalinger betal in Model.payments)
                 {
-                    <tr>
+                    <tr id="invoiceId_@betal.Id">
                         @foreach (Konto konto in Model.accounts) {
                             if (betal.fraKonto.Equals(konto.kontoNr))
                             {
@@ -36,8 +36,8 @@
                         <td>
                             @if (betal.utfort == false)
                             {
-                                <a asp-action="Betal" asp-route-id="@betal.Id" class="btn">Edit</a>
-                                <a onclick="deleteInvoice(@betal.Id)" class="btn">Delete</a>
+                                <a asp-action="Betal" asp-route-id="@betal.Id" class="btn">Endre</a>
+                                <a onclick="deleteInvoice(@betal.Id)" class="btn">Slett</a>
                             }
                         </td>
                     </tr>
