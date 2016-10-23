@@ -28,6 +28,20 @@ namespace GroupProject.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private PersonDbContext _personDbContext { get; set; }
 
+        private readonly String[] referanser = {
+            "SMAL SKOLE",
+            "IMMUN BANK",
+            "DYKTIG KASSE",
+            "RIK STUDENT",
+            "SIKKER BANK",
+            "RIK BANK",
+            "ENORM BANK",
+            "SVIDD MIDDAG",
+            "MYK HJELM",
+            "UTRO HAMSTER",
+            "SUR LAKS"
+        };
+
         public BankIdController(PersonDbContext personDbcontext,
             SignInManager<ApplicationUser> signInManager
         )
@@ -72,6 +86,10 @@ namespace GroupProject.Controllers
                             HttpContext.Session.SetString(tokenKey, token);
                             HttpContext.Session.SetInt32(authKey, 0);
 
+                            Random r = new Random();
+                            int rInt = r.Next(0, referanser.Length); //for ints
+
+                            ViewBag.reference = referanser[rInt];
                             ViewBag.authToken = token;
 
                             return View("Reference");
