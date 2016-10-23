@@ -24,6 +24,7 @@ You also need Node.js installed. Gulp should run from visual studio, if not run 
 
 You want to initialise the Db you need to run some commands from the commandline
 navigate into the projectfolder `src/Groupproject` and run these commnads ` dotnet ef migrations add migrationname` and`dotnet ef database update`
+theres also a readme file in the projectfile that explains this in more detail
 
 ## Login
 Username for demo user is 26118742957
