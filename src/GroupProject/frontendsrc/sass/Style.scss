@@ -124,16 +124,26 @@ button:hover {
 }
 
 .bankidWrapper{
+    position: absolute;
     width: 500px;
     height: 400px;
     position: absolute;
     right: 0;
 }
-.hide {
-    display: none;
+
+.fadeOut {
+    opacity: 0;
+    transform: translateX(200%);
+}
+
+iframe {
+    transition: all 400ms ease-in;
 }
 
 small{
     color: $base;
 }
 
+.box-shadow {
+    box-shadow: -0.3rem 0.3rem 2rem #444;
+}
