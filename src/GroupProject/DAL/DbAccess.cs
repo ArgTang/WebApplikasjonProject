@@ -1,13 +1,18 @@
 ﻿using GroupProject.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 
 namespace GroupProject.DAL
 {
+    /**
+     * 
+     * This is DbAccess *All* queryes to the DB goes in here
+     * 
+     * PersonDBcontext gets injected from startup.cs 
+     */
+     
+         
     public class DbAccess
     {
         private PersonDbContext _persondbcontext { get; set; }

@@ -1,8 +1,5 @@
 # Groupproject
 
-+ we have two db context need to run these commands __twice__ with context flag
-+ for cmd `--context ProfileContext` for prfilecontext
-
 ## Connecting to the database
 
 To make sure we can connect to the database we need to run some commands in the commandline.
