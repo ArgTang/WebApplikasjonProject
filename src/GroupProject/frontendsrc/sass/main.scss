@@ -44,3 +44,12 @@
 .infobubble_wrapper .infobubble_container .infobubble {
     width: auto;
 }
+
+//firefox support
+.table > .row > *, .content.document.download .link_document_wrapper > .row > *{
+    display:block;
+}
+
+.content.info_page .row .illustration, .content.info_page .row .illustration .icon{
+    float: right;
+}
