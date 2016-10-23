@@ -6,14 +6,26 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/app.min.js",
+    "outputFileName": "wwwroot/css/bid.min.css",
     "inputFiles": [
-      "wwwroot/js/app.js"
+      "wwwroot/css/bid.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/main.min.css",
+    "inputFiles": [
+      "wwwroot/css/main.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/index.min.js",
+    "inputFiles": [
+      "wwwroot/js/index.js"
     ],
     "minify": {
       "enabled": true,
       "renameLocals": true
     },
     "sourceMap": false
-  },
+  }
 ]
