@@ -1,5 +1,7 @@
 # WebApplikasjonProject
 
++ code for this project can alway be found here: https://github.com/ArgTang/WebApplikasjonProject
+
 This is our projecct for WebApplication subject fall 2016.
 The project has two parts over the semester.
 
@@ -14,6 +16,7 @@ We are Using these Technologies:
 * gulp.js
 * fixer.io for currency values 
 
+* __Travis__ we have enlisted Travis to do builds on all our pull requests, to help us cooperate easier
 
 ## Compile
 
