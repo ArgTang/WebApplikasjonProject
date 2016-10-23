@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using GroupProject.Models;
 using System.Linq;
+using GroupProject.Annotations;
 using GroupProject.DAL;
 using GroupProject.ViewModels.User;
+using Microsoft.AspNetCore.Http;
 
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -36,20 +38,20 @@ namespace GroupProject.Controllers
         // GET: /<controller>/
         public async Task<ActionResult> Index()
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
 
             ViewData["Name"] = $"{user.firstName} {user.lastName}";
             ViewData["LastLogin"] = user.lastLogin;
 
-            var accounts = _access.getAccounts(user);
+            List<Konto> accounts = _access.getAccounts(user);
             return View(accounts);
         }
 
 
         public async Task<ActionResult> Faktura()
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-            var model = new FakturaViewModel();
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+            FakturaViewModel model = new FakturaViewModel();
             model.payments = _access.getPayments(user);
             model.payments.Sort((x, y) => x.forfallDato.CompareTo(y.forfallDato));
 
@@ -61,7 +63,7 @@ namespace GroupProject.Controllers
         [HttpGet]
         public async Task<IActionResult> Betal(int? id)
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
             ViewBag.fromAccountList = _access.getAccounts(user).Where(item => item.kontoType != "BSU");
 
             //if no invoice is asked for go to form
@@ -70,12 +72,12 @@ namespace GroupProject.Controllers
                 return View();
             }
 
-            var invoice = new Betalinger();
+            Betalinger invoice = new Betalinger();
             invoice = _access.getInvoice(user, (int)id);
 
             //this sucks any other way?
             if ( invoice != null ) {
-                var model = new PaymentViewModel();
+                PaymentViewModel model = new PaymentViewModel();
 
                 model.amount = ((int) invoice.belop).ToString();
                 model.fraction = (invoice.belop - (int) invoice.belop).ToString();
@@ -94,21 +96,41 @@ namespace GroupProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
+        [Route("user/faktura/delete")]
+        public async Task<IActionResult> deleteInvoice()
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-            user.lastLogin = DateTime.Now;
+            try
+            {
+                IFormCollection form = Request.Form;
 
-            await _signInManager.SignOutAsync();
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+                if (form.ContainsKey("id"))
+                {
+                    ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+                    int id = int.Parse(form["id"]);
+
+                    if (id > 0)
+                    {
+                        if (_access.deleteInvoice(user, id))
+                        {
+                            return Content("success");
+                        }
+                    }
+                }
+            }
+            //If no body is specified
+            catch (Exception)
+            {
+                return Content("error");
+            }
+            return Content("error");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Betal(PaymentViewModel model)
         {
-            
-            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
             if (ModelState.IsValid)
             {
 
@@ -134,6 +156,17 @@ namespace GroupProject.Controllers
             ViewBag.fromAccountList = _access.getAccounts(user).Where(item => item.kontoType != "BSU");
 
             return View("Betal", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+            user.lastLogin = DateTime.Now;
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }
