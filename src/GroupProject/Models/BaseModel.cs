@@ -4,6 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
+/**
+ * 
+ * All models inherit these values in will be in the DB.
+ * 
+ */
+
 namespace GroupProject.Models
 {
     public class BaseModel
