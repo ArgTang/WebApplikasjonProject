@@ -19,3 +19,13 @@ We are Using these Technologies:
 To get this to compile you need to have .net Core 1.0.1 installed and update visual studio with the latest release.
 You can get the tools from here: https://www.microsoft.com/net/core#windows  
 You also need Node.js installed. Gulp should run from visual studio, if not run `npm i -g gulp-cli`
+
+## Database
+
+You want to initialise the Db you need to run some commands from the commandline
+navigate into the projectfolder `src/Groupproject` and run these commnads ` dotnet ef migrations add migrationname` and`dotnet ef database update`
+
+## Login
+Username for demo user is 26118742957
+Password is 123456789Ole
+this can also be found in Data/Seeddata
