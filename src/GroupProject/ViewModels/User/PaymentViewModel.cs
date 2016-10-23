@@ -37,8 +37,9 @@ namespace GroupProject.ViewModels.User
         public string fraction { get; set; }
 
         [Required(ErrorMessage = "Du må skrive inn et dato.")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Text)]
         [Display(Name = "Dato", Prompt = "Dato")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime date { get; set; }
 
         [DataType(DataType.Text)]
