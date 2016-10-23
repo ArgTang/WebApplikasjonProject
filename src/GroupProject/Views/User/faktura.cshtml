@@ -20,7 +20,7 @@
            
                 @foreach (Betalinger betal in Model.payments)
                 {
-                    <tr>
+                    <tr id="invoiceId_@betal.Id">
                         @foreach (Konto konto in Model.accounts) {
                             if (betal.fraKonto.Equals(konto.kontoNr))
                             {
