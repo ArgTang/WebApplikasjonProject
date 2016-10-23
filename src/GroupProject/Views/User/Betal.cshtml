@@ -22,7 +22,7 @@
                     <select asp-for="fromAccount" class="form-control">
                         @foreach (Konto konto in ViewBag.fromAccountList)
                         {
-                            <option value="@konto.kontoNr">@konto.kontoType (@konto.kontoNr.Insert(4, "").Insert(7, ""))</option>
+                            <option value="@konto.kontoNr">@konto.kontoType (@konto.kontoNr.Insert(4, " ").Insert(7, " "))</option>
                         }
                     </select>
                     <span asp-validation-for="fromAccount" class="text-danger"></span>
@@ -73,7 +73,19 @@
                 </div>
             </div>
 
-            <button class="btn btn-default btn-lg">Legg betaling til forfall</button>
+            <button type="submit" class="btn btn-default btn-lg">
+                @if ( Model == null ) {
+                    @:Legg betaling
+                } else {
+                        @:Endre betaling og legg
+                }
+                    til forfall
+            </button>
+
+            @if ( Model != null ) {
+                <a asp-action="Faktura" class="btn btn-default btn-lg">tilbake</a>
+            } 
+
             <div asp-validation-summary="All" class="text-danger"></div>
         </form>
 
@@ -82,7 +94,7 @@
             $('#datePicker').datetimepicker({
                 dayViewHeaderFormat: 'MMMM',
                 minDate: moment.now(),
-                format: "DD/MM/YY",
+                format: "DD/MM/YYYY",
                 locale: 'nb'
             });
         })();
