@@ -16,6 +16,7 @@ function reference() {
                 newWindow.document.write(response);
                 newWindow.birthNumber = window.birthNumber;
                 newWindow.authToken = window.authToken;
+                newWindow.reference = window.reference;
                 newWindow.postData = postData;
 
                 //if foreground window is blocked
