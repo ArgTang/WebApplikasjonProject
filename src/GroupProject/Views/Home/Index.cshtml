@@ -1,22 +1,12 @@
 ﻿
 <section>
-    <div class="bankidWrapper hide">
+    <section class="bankidWrapper hide">
         <iframe frameborder="0" border="0" cellspacing="0" height="100%" width="100%" src="bankid"></iframe>
-    </div>
-    <header id="headerbilde" alt="Ett bilde av en familie"></header>
-    <div id="kurser">
-        @await Html.PartialAsync("Partials/CurrencyFeed")
-    </div>
+    </section>
 
-    @*<h1>Personer</h1>
-    <ul>
-            @foreach ( var person in Model ) {
-                <li>Personnr: @person.PersonNr</li>
-                <li>createdBy: @person.createdBy</li>
-                <li>UpdatedBy: @person.UpdatedBy</li>
-                <li>CreatedDate: @person.CreatedDate</li>
-            }
-    </ul>*@
+    <header id="headerbilde" alt="Ett bilde av en familie">
+        @await Html.PartialAsync("Partials/CurrencyFeed")
+    </header>
 
     <section class="container">
         @await Component.InvokeAsync("Login")

@@ -14,13 +14,14 @@ main {
     min-height:80vh;
 }
 
-nav * {
+nav a {
+    cursor: pointer;
     color:$base !important;
     transition: border-color 150ms ease-out;
     transition: color 150ms ease-out;
 }
 
-nav *:hover {
+nav a:hover {
     color:$accent !important;
 }
 
@@ -39,7 +40,6 @@ nav *:hover {
     }
 
     .navbar-nav:first-child {
-
         margin-left: 5rem;
 
         li:not(:last-child) {
@@ -56,12 +56,23 @@ nav *:hover {
     background-position: center 20%;
     min-height: 50rem;
     height: 80vh;
-    background-size:cover;   
+    background-size:cover;  
+    
+    #currencyfeed {
+        position:relative;
+        top: 40%;
+        left: 2%;
+    } 
 }
 
 #currencyfeed {
+    color:$base;
     max-width: 14rem;
     font-size: .8em;
+
+    .panel-heading {
+        color:$base
+    }
 
     .panel-body {
         padding: 0;
@@ -76,6 +87,7 @@ nav *:hover {
     }
 
     td {
+        padding-left: 1.2rem;
         opacity:1;
         transition: all ease-in-out 500ms;
     }
@@ -104,19 +116,23 @@ button:hover {
 
 .footer {
     background-color:#f8f8f8;                 
-    left: 0;
-    width: 100%;
+    padding: 1rem 0;
+
     :last-child {
         margin-bottom:0;
     }   
 }
 
-    .bankidWrapper{
+.bankidWrapper{
     width: 500px;
     height: 400px;
     position: absolute;
-        right: 0;
+    right: 0;
 }
-    .hide {
-        display: none;
-    }
+.hide {
+    display: none;
+}
+
+small{
+    color: $base;
+}
