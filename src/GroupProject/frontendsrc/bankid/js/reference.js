@@ -1,8 +1,7 @@
-﻿
-
-function reference() {
+﻿function reference() {
 
     //Simulate network delay
+    var delay = 1700;
     setTimeout(function () {
         var request = $.ajax({
                 type: "post",
@@ -12,7 +11,7 @@ function reference() {
 
         request.done(function (response) {
             if (window.birthNumber != null) {
-                var newWindow = window.open("", "Mobile Auth", "height=500px,width=400px", false);
+                var newWindow = window.open("", "Mobile Auth", "height=500px, width=450px", false);
                 newWindow.document.write(response);
                 newWindow.birthNumber = window.birthNumber;
                 newWindow.authToken = window.authToken;
@@ -26,41 +25,39 @@ function reference() {
                     var frequency = 3000; //every 2 seconds
 
                     var interval = window.setInterval(function() {
-                            postData.birthnumber = newWindow.birthNumber;
-                            var checkRequest = $.ajax({
-                                type: "post",
-                                url: "bankid/auth/check",
-                                data: postData
-                            });
+                        postData.birthnumber = newWindow.birthNumber;
+                        var checkRequest = $.ajax({
+                            type: "post",
+                            url: "bankid/auth/check",
+                            data: postData
+                        });
 
-                            checkRequest.done(function(response) {
-                                if (response === "authorized") {
-                                    post("bankid/password", {});
-                                    clearInterval(interval);
-                                } else if (response === "error") {
-                                    $(".body").replaceWith(error);
-                                    clearInterval(interval);
-                                }
-                            });
-
-                            checkRequest.fail(function(jqXHR, textStatus) {
+                        checkRequest.done(function(response) {
+                            if (response === "authorized") {
+                                post("bankid/password", {});
+                                clearInterval(interval);
+                            } else if (response === "error") {
                                 $(".body").replaceWith(error);
                                 clearInterval(interval);
-                            });
-                        },
-                        frequency);
+                            }
+                        });
+
+                        checkRequest.fail(function(jqXHR, textStatus) {
+                            $(".body").replaceWith(error);
+                            clearInterval(interval);
+                        });
+                    },
+                    frequency);
                 }
             } else {
                 $(".body").replaceWith(error);
             }
         });
 
-            request.fail(function(jqXHR, textStatus) {
-                $(".body").replaceWith(error);
-            });
-
-
-        },
-        1700);
+        request.fail(function(jqXHR, textStatus) {
+            $(".body").replaceWith(error);
+        });
+    },
+    delay);
 
 }
