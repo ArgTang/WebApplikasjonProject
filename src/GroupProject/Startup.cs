@@ -13,8 +13,17 @@ using GroupProject.DAL;
 
 namespace GroupProject
 {
+    /**
+     * 
+     * This is Startup.cs where alot of magic is configured
+     * 
+     */
     public class Startup
     {
+        /**
+         * Startup sets config file for each enviroment
+         * ex Connectionstring is found in appsettings.json
+         */
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -31,6 +40,15 @@ namespace GroupProject
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
+
+        /**
+        * 
+        * Here we add all the services(and frameworks) we use throughout our Application 
+        * These are injected into the classes that asks for them
+        * Dependency Injection is a big part of .net core, this is the method that starts this prosess
+        * 
+        * We also set the requirements for new passwords here 
+        */
         public void ConfigureServices(IServiceCollection services)
         {
             

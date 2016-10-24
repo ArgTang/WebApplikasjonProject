@@ -15,7 +15,7 @@
                                         <label>Referanse</label>
                                     </div>
                                     <div class="title reference">
-                                        <span>Feilfri diamant</span>
+                                        <span id="refWord"></span>
                                     </div>
                                 </div>
                                 <div class="illustration">
@@ -39,20 +39,20 @@
     </div>
 </main>
 <script>
+    document.getElementById("refWord").textContent = window.reference;
     var data = {
         birthNumber: window.authToken,
         authToken: window.authToken
     };
     data.__RequestVerificationToken = window.postData.__RequestVerificationToken;
 
-    console.log(data);
     $("#submitButton")
         .click(function() {
             var request = $.ajax({
                 type: "post",
                 url: "bankid/auth",
                 data: data
-        });
+            });
 
             request.done(function (response) {
                 if (response === "authorized") {

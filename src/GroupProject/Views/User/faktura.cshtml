@@ -1,31 +1,67 @@
+@model GroupProject.ViewModels.User.FakturaViewModel
 
-﻿<section class="container">
+<section class="container" id="__AjaxAntiForgeryForm">
     <table class="table table-hover">
         <thead>
-            <tr>
-                <h2>Oversikt over betalinger til forfall</h2>
-            </tr>
+        <tr>
+            <h2>Oversikt over betalinger til forfall</h2>
+        </tr>
         </thead>
         <tbody>
             <tr>
-                <th>Faktura id:</th>
                 <th>Fra Konto:</th>
-                <th>Til konto:</th>
+                <th>Mottaker:</th>      
+                <th>konto:</th>
                 <th>Forfallsdato:</th>
                 <th>Sum:</th>
                 <th>Valg:</th>
+                        
             </tr>
-            <tr>
-                <td>1</td>
-                <td>6543 00 2342</td>
-                <td>2254 22 7948</td>
-                <td>22.10.2016</td>
-                <td>500,00</td>
-                <td>
-                    <button id="endreknapp" type="submit" class="btn btn-default">Endre</button> 
-                    <button id="slettknapp" type="submit" class="btn btn-default">Slett</button>
-                    </td>
-            </tr>
+           
+                @foreach (Betalinger betal in Model.payments)
+                {
+                    <tr id="invoiceId_@betal.Id">
+                        @foreach (Konto konto in Model.accounts) {
+                            if (betal.fraKonto.Equals(konto.kontoNr))
+                            {
+                                <td>@konto.kontoType
+                                    <small>(@betal.fraKonto.Insert(4," ").Insert(7," ")) </small >
+                                </td>
+                            }
+                        } 
+                        <td>@betal.mottaker</td>
+                        <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
+                        <td>@betal.forfallDato.ToString("dd.MM.yyyy")</td>
+                        <td>@betal.belop<span class="currency" style="margin-left: 5px">Kr</span></td>
+                        <td>
+                            @if (betal.utfort == false)
+                            {
+                                <a asp-action="Betal" asp-route-id="@betal.Id" class="btn">Endre</a>
+                                <a onclick="deleteInvoice(@betal.Id)" class="btn">Slett</a>
+                            }
+                        </td>
+                    </tr>
+                }         
         </tbody>
     </table>
+    @Html.AntiForgeryToken()
 </section>
+<script>
+    function deleteInvoice(id) {
+        var request = $.ajax({
+            type: "POST",
+            url: "faktura/delete",
+            data: {id:id,__RequestVerificationToken: $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val() }
+        });
+
+        request.done(function (response) {
+            if (response === "success") {
+                document.getElementById("invoiceId_" + id).outerHTML = "";
+            }
+        });
+
+        request.fail(function (jqXHR, textStatus) {
+            
+        });
+    }
+</script>

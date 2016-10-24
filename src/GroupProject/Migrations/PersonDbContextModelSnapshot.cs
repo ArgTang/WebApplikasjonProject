@@ -53,6 +53,14 @@ namespace GroupProject.Migrations
                     b.Property<string>("UserName")
                         .HasAnnotation("MaxLength", 256);
 
+                    b.Property<string>("firstName")
+                        .IsRequired();
+
+                    b.Property<DateTime>("lastLogin");
+
+                    b.Property<string>("lastName")
+                        .IsRequired();
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -80,16 +88,26 @@ namespace GroupProject.Migrations
 
                     b.Property<DateTime>("UpdatedDate");
 
-                    b.Property<int>("belop");
+                    b.Property<decimal>("belop");
 
                     b.Property<string>("createdBy")
                         .IsRequired()
                         .HasAnnotation("MaxLength", 50);
 
-                    b.Property<DateTime>("datoUtfort");
+                    b.Property<DateTime>("forfallDato");
+
+                    b.Property<string>("fraKonto")
+                        .IsRequired();
 
                     b.Property<string>("info")
                         .HasAnnotation("MaxLength", 100);
+
+                    b.Property<string>("kid");
+
+                    b.Property<string>("mottaker");
+
+                    b.Property<string>("tilKonto")
+                        .IsRequired();
 
                     b.Property<bool>("utfort");
 

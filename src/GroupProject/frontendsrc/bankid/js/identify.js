@@ -53,12 +53,14 @@ document.body.addEventListener("click",function () {
 },true);
 
 function toggleErrorMessage(bool) {
-    if (bool) {
-        infobubble.classList.remove("hide-error");
-    } else {
-        infobubble.classList.add("hide-error");
+    if (infobubble) {
+        if (bool) {
+            infobubble.classList.remove("hide-error");
+        } else {
+            infobubble.classList.add("hide-error");
+        }
     }
-    
+
 }
 
 function post(path, data) {
