@@ -26,3 +26,13 @@ Administrasjon av kunder, konto og betalinger.
 * Innloggingsmekanisme for admin-brukere.
 * Logging av endringer til database.
 * Logging av feilsituasjoner til fil. Det betyr bla. de som kan oppstå når databasen aksesseres.
+
+
+## evauliering
+
+* Design / layout tilsvarende løsningen i tidligere prosjektoppgaver.
+* Funksjonalitet.
+* Ryddig og forståelig kode.
+* Lagdeling.
+* Kompletthet av enhetstest for denne løsningen (ikke nødvendig å lage det for tidligere deler).
+* Bruk av versjonskontroll.
