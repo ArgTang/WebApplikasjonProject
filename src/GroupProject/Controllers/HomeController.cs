@@ -18,9 +18,9 @@ namespace GroupProject.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ILogger<HomeController> _logger;
+        //private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly SignInManager<ApplicationUser> _signInManager;
+        //private readonly ILogger<HomeController> _logger;
 
         private PersonDbContext _personDbContext { get; set; }
 
