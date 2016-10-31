@@ -7,6 +7,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GroupProject.Data
 {
+    /**
+     * SeedData
+     * 
+     * This class is inputting some demo data into the database.
+     * But only if the DB is empty
+     * 
+     * if you need to change data in this file, or the DB model comment in these lines:
+     *      _personDbContext.Database.EnsureDeleted();
+     *      _personDbContext.Database.EnsureCreated();
+     *      
+     * These will do a hard reset on the DB. This operation is compute heavy and will
+     * add time to the startup of the Application.            
+     */
     public class SeedData
     {
         private readonly UserManager<ApplicationUser> _userManager;

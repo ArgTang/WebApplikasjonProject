@@ -12,7 +12,13 @@ using GroupProject.ViewModels.User;
 using Microsoft.AspNetCore.Http;
 
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+/**
+ * 
+ * This is the User Controller, Only logged in users can visit these links
+ * 
+ */ 
+
+
 namespace GroupProject.Controllers
 {
     [Authorize]
@@ -152,7 +158,7 @@ namespace GroupProject.Controllers
 
                         _access.changePayment(betaling);
 
-                        return RedirectToAction("Faktura");
+                        return RedirectToAction(nameof(UserController.Faktura));
                     }
                     
                 }  
@@ -172,7 +178,7 @@ namespace GroupProject.Controllers
                     UpdatedBy = user.UserName
 
                 });
-                return RedirectToAction("Faktura");
+                return RedirectToAction(nameof(UserController.Faktura));
             }
 
             ViewBag.fromAccountList = _access.getAccounts(user).Where(item => item.kontoType != "BSU");

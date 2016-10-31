@@ -4,6 +4,12 @@ using GroupProject.Annotations;
 
 namespace GroupProject.ViewModels.User
 {
+    /**
+     * 
+     * This is where all validation display names and prompts for 
+     * when the user wants to make or change a payment
+     */
+
     public class PaymentViewModel
     {
         [Required(ErrorMessage = "Du må skrive inn et kontonummer.")]
