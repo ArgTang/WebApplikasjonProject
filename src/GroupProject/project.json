@@ -46,7 +46,6 @@
     "Microsoft.EntityFrameworkCore.Tools": {
       "version": "1.0.0-preview2-final",
       "imports": [
-        "portable-net45+win8+dnxcore50",
         "portable-net45+win8"
       ]
     }
@@ -55,7 +54,6 @@
   "frameworks": {
     "netcoreapp1.0": {
       "imports": [
-        "dotnet5.6",
         "portable-net45+win8"
       ]
     }
