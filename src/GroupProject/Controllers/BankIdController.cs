@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GroupProject.Annotations;
 using Microsoft.AspNetCore.Mvc;
-using GroupProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using GroupProject.Models;
-using Microsoft.AspNetCore.Antiforgery;
-using Microsoft.AspNetCore.Antiforgery.Internal;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
-using Microsoft.AspNetCore.Server.Kestrel;
-using Microsoft.Extensions.Primitives;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+/**
+ * This Controller Do all the magic for logging into the application
+ * 
+ * We use Identity _signinManager to do validate user and his personal password.
+ * 
+ */
 
 namespace GroupProject.Controllers
 {
@@ -42,16 +40,14 @@ namespace GroupProject.Controllers
             "SUR LAKS"
         };
 
-        public BankIdController(PersonDbContext personDbcontext,
+        public BankIdController(
+            PersonDbContext personDbcontext,
             SignInManager<ApplicationUser> signInManager
         )
         {
             _personDbContext = personDbcontext;
-
             this._signInManager = signInManager;
-
         }
-        
 
         // GET: /bankid
         public IActionResult Index()
@@ -66,14 +62,18 @@ namespace GroupProject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult PostIdentify()
         {
-                try
-                {
-                    IFormCollection form = Request.Form;
+            try
+            {
+                IFormCollection form = Request.Form;
                     
-                    if (form.ContainsKey(birthKey))
+                if (form.ContainsKey(birthKey))
+                {
+                    BirthNumber birthNumber = new BirthNumber();
+                    String birthNr = form[birthKey];
+
+                    if (birthNumber.IsValid(form[birthKey].ToString()) && _personDbContext.Users.Any(p => p.NormalizedUserName == form[birthKey]))
                     {
-                        BirthNumber birthNumber = new BirthNumber();
-                        String birthNr = form[birthKey];
+                        HttpContext.Session.SetString(birthKey,birthNr);
 
                         if (birthNumber.IsValid(form[birthKey].ToString()) && _personDbContext.Users.Any(p => p.NormalizedUserName == form[birthKey]))
                         {
@@ -88,20 +88,20 @@ namespace GroupProject.Controllers
                             HttpContext.Session.SetInt32(authKey, 0);
 
                             Random r = new Random();
-                            int rInt = r.Next(0, referanser.Length); //for ints
+                            int rInt = r.Next(0, referanser.Length);
 
                             ViewBag.reference = referanser[rInt];
                             ViewBag.authToken = token;
 
-                            return View("Reference");
-                        }
+                        return View("Reference");
                     }
                 }
-                //If no body is specified
-                catch (Exception)
-                {
-                    return View("Error");
-                }
+            }
+            //If no body is specified
+            catch (Exception)
+            {
+                return View("Error");
+            }
             return View("Error");
         }
 
@@ -237,7 +237,5 @@ namespace GroupProject.Controllers
             }
             return Content("");
         }
-        
-
     }
 }
