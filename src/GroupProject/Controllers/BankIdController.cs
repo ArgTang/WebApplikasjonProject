@@ -78,11 +78,12 @@ namespace GroupProject.Controllers
                         if (birthNumber.IsValid(form[birthKey].ToString()) && _personDbContext.Users.Any(p => p.NormalizedUserName == form[birthKey]))
                         {
                             HttpContext.Session.SetString(birthKey,birthNr);
-
                             ViewBag.birthNumber = birthNr;
+
                             byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
-                            byte[] key = System.Text.Encoding.Unicode.GetBytes(Guid.NewGuid().ToString("N")); 
+                            byte[] key = Guid.NewGuid().ToByteArray();
                             string token = Convert.ToBase64String(time.Concat(key).ToArray());
+                            token = token.Replace('+', '/');
                             HttpContext.Session.SetString(tokenKey, token);
                             HttpContext.Session.SetInt32(authKey, 0);
 
