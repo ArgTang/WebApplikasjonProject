@@ -57,6 +57,7 @@ namespace GroupProject.Controllers
         }
 
         // POST: /bankid/identify
+        // AJAX
         [HttpPost]
         [Route("bankid/identify")]
         [ValidateAntiForgeryToken]
@@ -107,6 +108,7 @@ namespace GroupProject.Controllers
         }
 
         // POST: /bankid/password
+        // AJAX
         [HttpPost]
         [Route("bankid/reference")]
         [ValidateAntiForgeryToken]
@@ -116,6 +118,7 @@ namespace GroupProject.Controllers
         }
 
         // POST: /bankid/password
+        // AJAX
         [HttpPost]
         [Route("bankid/password")]
         [ValidateAntiForgeryToken]
@@ -126,6 +129,7 @@ namespace GroupProject.Controllers
         }
 
         // POST: /bankid/password
+        // AJAX
         [HttpPost]
         [Route("bankid/login")]
         [ValidateAntiForgeryToken]
@@ -165,6 +169,8 @@ namespace GroupProject.Controllers
             }
         }
 
+        // POST: /bankid/auth
+        // AJAX
         [HttpPost]
         [Route("bankid/auth")]
         [ValidateAntiForgeryToken]
@@ -202,7 +208,9 @@ namespace GroupProject.Controllers
             }
             return Content("error");
         }
-        
+
+        // POST: /bankid/auth/check
+        // AJAX
         [HttpPost]
         [Route("bankid/auth/check")]
         [ValidateAntiForgeryToken]
