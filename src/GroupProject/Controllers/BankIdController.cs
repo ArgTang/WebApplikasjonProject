@@ -65,7 +65,7 @@ namespace GroupProject.Controllers
             try
             {
                 IFormCollection form = Request.Form;
-                    
+
                 if (form.ContainsKey(birthKey))
                 {
                     BirthNumber birthNumber = new BirthNumber();
@@ -73,11 +73,11 @@ namespace GroupProject.Controllers
 
                     if (birthNumber.IsValid(form[birthKey].ToString()) && _personDbContext.Users.Any(p => p.NormalizedUserName == form[birthKey]))
                     {
-                        HttpContext.Session.SetString(birthKey,birthNr);
+                        HttpContext.Session.SetString(birthKey, birthNr);
 
                         if (birthNumber.IsValid(form[birthKey].ToString()) && _personDbContext.Users.Any(p => p.NormalizedUserName == form[birthKey]))
                         {
-                            HttpContext.Session.SetString(birthKey,birthNr);
+                            HttpContext.Session.SetString(birthKey, birthNr);
                             ViewBag.birthNumber = birthNr;
 
                             byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
@@ -93,7 +93,8 @@ namespace GroupProject.Controllers
                             ViewBag.reference = referanser[rInt];
                             ViewBag.authToken = token;
 
-                        return View("Reference");
+                            return View("Reference");
+                        }
                     }
                 }
             }
