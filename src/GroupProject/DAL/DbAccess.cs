@@ -85,5 +85,10 @@ namespace GroupProject.DAL
             return false;
 
         }
+
+        public void notBSU(ApplicationUser user)
+        {
+            this.getAccounts(user).Where(item => item.kontoType != "BSU");
+        }
     }
 }
