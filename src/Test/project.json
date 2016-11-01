@@ -1,10 +1,12 @@
 {
     "version": "1.0.0-*",
     "testRunner": "xunit",
-    "dependencies": {
-      "xunit": "2.2.0-beta3-build3402",
-        "dotnet-test-xunit": "2.2.0-preview2-build1029"
-    },
+  "dependencies": {
+    "GroupProject": "1.0.0",
+    "Microsoft.AspNetCore.TestHost": "1.0.0",
+    "xunit": "2.2.0-beta3-build3402",
+    "dotnet-test-xunit": "2.2.0-preview2-build1029"
+  },
     "frameworks": {
         "netcoreapp1.0": {
             "dependencies": {
