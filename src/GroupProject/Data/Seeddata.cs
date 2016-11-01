@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using GroupProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using GroupProject.DAL;
 
 namespace GroupProject.Data
 {

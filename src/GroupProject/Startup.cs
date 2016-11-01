@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using GroupProject.Models;
 using System;
 using GroupProject.DAL;
+using GroupProject.BLL;
 
 namespace GroupProject
 {
@@ -85,6 +86,7 @@ namespace GroupProject
 
             services.AddTransient<SeedData>();
             services.AddTransient<DbAccess>();
+            services.AddTransient<UserBLL>();
             services.AddDistributedMemoryCache();
             services.AddSession();
 
