@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using GroupProject.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using GroupProject.Models;
 using Microsoft.AspNetCore.Http;
 using GroupProject.DAL;
 

@@ -1,11 +1,6 @@
 ﻿using GroupProject.DAL;
-using GroupProject.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GroupProject.BLL
 {
@@ -13,11 +8,15 @@ namespace GroupProject.BLL
     {
         private PersonDbContext _persondbcontext { get; set; }
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public UserBLL(PersonDbContext personDbContext, UserManager<ApplicationUser> userManager)
+        public UserBLL(PersonDbContext personDbContext, 
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager)
         {
             _persondbcontext = personDbContext;
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public List<Konto> getAccounts(ApplicationUser user)
@@ -62,6 +61,7 @@ namespace GroupProject.BLL
             var dbAccess = new DbAccess(_persondbcontext);
             dbAccess.notBSU(user);
         }
+
 
     }
 }
