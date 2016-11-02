@@ -1,5 +1,5 @@
 ﻿@model GroupProject.ViewModels.User.PaymentViewModel
-
+<script type="text/javascript" src="C:\Users\CAFJ\Documents\WebApplikasjonProject\src\GroupProject\frontendsrc\scripts\app.js" integrity="sha256-4PIvl58L9q7iwjT654TQJM+C/acEyoG738iL8B8nhXg=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js" integrity="sha256-4PIvl58L9q7iwjT654TQJM+C/acEyoG738iL8B8nhXg=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/locale/nb.js" integrity="sha256-bBhNwlhUe+cu0QF9FOQsYP6ToTgNAGnVnPX+jpEdfDM=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js" integrity="sha256-I8vGZkA2jL0PptxyJBvewDVqNXcgIhcgeqi+GD/aw34=" crossorigin="anonymous"></script>
@@ -22,7 +22,7 @@
                     <select asp-for="fromAccount" class="form-control">
                         @foreach (Konto konto in ViewBag.fromAccountList)
                         {
-                            <option value="@konto.kontoNr">@konto.kontoType (@konto.kontoNr.Insert(4, " ").Insert(7, " "))</option>
+                            <option value="@konto.kontoNr">@konto.kontoType (@konto.kontoNr.Insert(4, " ").Insert(7, " ")) @konto.saldo kr</option>
                         }
                     </select>
                     <span asp-validation-for="fromAccount" class="text-danger"></span>

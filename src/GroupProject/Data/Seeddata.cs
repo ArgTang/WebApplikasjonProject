@@ -34,7 +34,7 @@ namespace GroupProject.Data
         {
             // kun for resetting av database, bør kjøres ved updates
             //_personDbContext.Database.EnsureDeleted();
-            //_personDbContext.Database.EnsureCreated();
+            _personDbContext.Database.EnsureCreated();
 
             if (!await _personDbContext.Users.AnyAsync())
             {
@@ -47,6 +47,16 @@ namespace GroupProject.Data
                     lastLogin = DateTime.Now
                 };
                 var identityResult = await _userManager.CreateAsync(newUser, "123456789Ole");
+
+                //var newAdminUser = new ApplicationUser
+                //{
+                //    UserName = "12345678911",
+                //    Email = "admin@admin.no",
+                //    firstName = "Admin",
+                //    lastName = "Adminsen",
+                //    lastLogin = DateTime.Now
+                //};
+                //var identityAdminResult = await _userManager.CreateAsync(newAdminUser, "12345678911Admin");
             }
 
             if (!_personDbContext.Person.Any())
