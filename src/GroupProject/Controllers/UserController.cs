@@ -28,13 +28,11 @@ namespace GroupProject.Controllers
         private readonly UserBLL _userBLL;
 
         public UserController(SignInManager<ApplicationUser> signInManager, 
-            PersonDbContext persondbcontext,
             UserManager<ApplicationUser> userManager, 
             UserBLL userBLL
         )
         {
             this._signInManager = signInManager;
-            _persondbcontext = persondbcontext;
             _userManager = userManager;
             _userBLL = userBLL;
         }
