@@ -56,12 +56,5 @@ namespace GroupProject.BLL
             return dbAccess.deleteInvoice(user, id);
         }
 
-        public void notBSU(ApplicationUser user)
-        {
-            var dbAccess = new DbAccess(_persondbcontext);
-            dbAccess.notBSU(user);
-        }
-
-
     }
 }
