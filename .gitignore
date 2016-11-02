@@ -252,3 +252,5 @@ src/GroupProject/Migrations
 
 src/GroupProject/scripts/*.js
 src/GroupProject/scripts/*.js.map
+
+.vscode/
