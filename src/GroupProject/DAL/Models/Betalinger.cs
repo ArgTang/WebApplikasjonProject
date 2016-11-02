@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GroupProject.Models
+namespace GroupProject.DAL
 {
     [Table("Betalinger")]
     public class Betalinger : BaseModel

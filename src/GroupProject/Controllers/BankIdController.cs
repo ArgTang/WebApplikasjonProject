@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using GroupProject.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using GroupProject.Models;
 using Microsoft.AspNetCore.Http;
+using GroupProject.DAL;
 
 /**
  * This Controller Do all the magic for logging into the application
