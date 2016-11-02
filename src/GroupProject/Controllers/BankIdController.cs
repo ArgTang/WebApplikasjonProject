@@ -65,7 +65,7 @@ namespace GroupProject.Controllers
             try
             {
                 IFormCollection form = Request.Form;
-                    
+
                 if (form.ContainsKey(birthKey))
                 {
                     BirthNumber birthNumber = new BirthNumber();
@@ -73,22 +73,28 @@ namespace GroupProject.Controllers
 
                     if (birthNumber.IsValid(form[birthKey].ToString()) && _personDbContext.Users.Any(p => p.NormalizedUserName == form[birthKey]))
                     {
-                        HttpContext.Session.SetString(birthKey,birthNr);
+                        HttpContext.Session.SetString(birthKey, birthNr);
 
-                        ViewBag.birthNumber = birthNr;
-                        byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
-                        byte[] key = System.Text.Encoding.Unicode.GetBytes(Guid.NewGuid().ToString("N"));
-                        string token = Convert.ToBase64String(time.Concat(key).ToArray());
-                        HttpContext.Session.SetString(tokenKey, token);
-                        HttpContext.Session.SetInt32(authKey, 0);
+                        if (birthNumber.IsValid(form[birthKey].ToString()) && _personDbContext.Users.Any(p => p.NormalizedUserName == form[birthKey]))
+                        {
+                            HttpContext.Session.SetString(birthKey, birthNr);
+                            ViewBag.birthNumber = birthNr;
 
-                        Random r = new Random();
-                        int rInt = r.Next(0, referanser.Length); //for ints
+                            byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
+                            byte[] key = Guid.NewGuid().ToByteArray();
+                            string token = Convert.ToBase64String(time.Concat(key).ToArray());
+                            token = token.Replace('+', '/');
+                            HttpContext.Session.SetString(tokenKey, token);
+                            HttpContext.Session.SetInt32(authKey, 0);
 
-                        ViewBag.reference = referanser[rInt];
-                        ViewBag.authToken = token;
+                            Random r = new Random();
+                            int rInt = r.Next(0, referanser.Length);
 
-                        return View("Reference");
+                            ViewBag.reference = referanser[rInt];
+                            ViewBag.authToken = token;
+
+                            return View("Reference");
+                        }
                     }
                 }
             }

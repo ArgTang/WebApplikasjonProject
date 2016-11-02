@@ -42,9 +42,9 @@
     document.getElementById("refWord").textContent = window.reference;
     var data = {
         birthNumber: window.authToken,
-        authToken: window.authToken
+        authToken: window.authToken,
+        __RequestVerificationToken: window.postData.__RequestVerificationToken
     };
-    data.__RequestVerificationToken = window.postData.__RequestVerificationToken;
 
     $("#submitButton")
         .click(function() {
