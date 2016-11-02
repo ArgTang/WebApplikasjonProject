@@ -53,7 +53,7 @@ namespace GroupProject.ViewModels.User
         public DateTime date { get; set; }
 
         [DataType(DataType.Text)]
-        [RegularExpression("([0-9])", ErrorMessage = "KID nummer kan kun ha tall")]
+        [RegularExpression("[0-9]+", ErrorMessage = "KID nummer kan kun ha tall")]
         [StringLength(25,ErrorMessage ="KID-nummeret må være mellom 2 og 25 tegn langt"), MinLength(2,ErrorMessage = "KID-nummeret må være mellom 2 og 25 tegn langt")]
         [Display(Name = "KID", Prompt = "KID nummer")]
         public string kid { get; set; }
