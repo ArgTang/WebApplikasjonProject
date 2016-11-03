@@ -11,8 +11,12 @@ namespace GroupProject.DAL
         {
         }
 
-        public DbSet<Person> Person { set; get; }
-        public DbSet<Betalinger> Betal { set; get; }
-        public DbSet<Konto> Kontoer { get; set; }
+        public PersonDbContext()
+        {
+        }
+
+        public virtual DbSet<Person> Person { set; get; }
+        public virtual DbSet<Betalinger> Betal { set; get; }
+        public virtual DbSet<Konto> Kontoer { get; set; }
     }
 }
