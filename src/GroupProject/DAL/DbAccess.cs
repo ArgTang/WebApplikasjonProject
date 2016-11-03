@@ -1,7 +1,7 @@
-﻿using GroupProject.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using GroupProject.Models;
 
 namespace GroupProject.DAL
 {
@@ -11,8 +11,8 @@ namespace GroupProject.DAL
      * 
      * PersonDBcontext gets injected from startup.cs 
      */
-     
-         
+
+
     public class DbAccess
     {
         private PersonDbContext _persondbcontext { get; set; }

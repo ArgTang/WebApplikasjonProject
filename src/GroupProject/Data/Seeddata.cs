@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using GroupProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using GroupProject.DAL;
+using GroupProject.Models;
 
 namespace GroupProject.Data
 {

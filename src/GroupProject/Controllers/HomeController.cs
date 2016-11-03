@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GroupProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
+using GroupProject.Models;
 
 /**
  * 
