@@ -149,7 +149,6 @@ namespace GroupProject.Controllers
                     {
                         betaling.konto = account;
                         betaling.tilKonto = model.toAccount;
-                        //betaling.fraKonto = model.ko;
                         betaling.belop = new Decimal(Double.Parse(model.amount + "," + model.fraction));
                         betaling.info = model.paymentMessage;
                         betaling.utfort = false;
