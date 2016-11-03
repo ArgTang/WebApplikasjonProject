@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using GroupProject.DAL;
+using GroupProject.Models;
 
 namespace GroupProject.Migrations
 {
@@ -16,7 +16,7 @@ namespace GroupProject.Migrations
                 .HasAnnotation("ProductVersion", "1.0.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("GroupProject.Models.ApplicationUser", b =>
+            modelBuilder.Entity("GroupProject.DAL.ApplicationUser", b =>
                 {
                     b.Property<string>("Id");
 
@@ -73,14 +73,14 @@ namespace GroupProject.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("GroupProject.Models.Betalinger", b =>
+            modelBuilder.Entity("GroupProject.DAL.Betalinger", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<int>("KontoerId");
+                    b.Property<int?>("KontoId");
 
                     b.Property<string>("UpdatedBy")
                         .IsRequired()
@@ -113,12 +113,12 @@ namespace GroupProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("KontoerId");
+                    b.HasIndex("KontoId");
 
                     b.ToTable("Betalinger");
                 });
 
-            modelBuilder.Entity("GroupProject.Models.Konto", b =>
+            modelBuilder.Entity("GroupProject.DAL.Konto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -153,7 +153,7 @@ namespace GroupProject.Migrations
                     b.ToTable("Konto");
                 });
 
-            modelBuilder.Entity("GroupProject.Models.Person", b =>
+            modelBuilder.Entity("GroupProject.DAL.Person", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -286,17 +286,16 @@ namespace GroupProject.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("GroupProject.Models.Betalinger", b =>
+            modelBuilder.Entity("GroupProject.DAL.Betalinger", b =>
                 {
-                    b.HasOne("GroupProject.Models.Konto", "Kontoer")
+                    b.HasOne("GroupProject.DAL.Konto")
                         .WithMany("betal")
-                        .HasForeignKey("KontoerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("KontoId");
                 });
 
-            modelBuilder.Entity("GroupProject.Models.Konto", b =>
+            modelBuilder.Entity("GroupProject.DAL.Konto", b =>
                 {
-                    b.HasOne("GroupProject.Models.Person", "Personer")
+                    b.HasOne("GroupProject.DAL.Person", "Personer")
                         .WithMany("konto")
                         .HasForeignKey("PersonerId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -312,7 +311,7 @@ namespace GroupProject.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("GroupProject.Models.ApplicationUser")
+                    b.HasOne("GroupProject.DAL.ApplicationUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -320,7 +319,7 @@ namespace GroupProject.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("GroupProject.Models.ApplicationUser")
+                    b.HasOne("GroupProject.DAL.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -333,7 +332,7 @@ namespace GroupProject.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("GroupProject.Models.ApplicationUser")
+                    b.HasOne("GroupProject.DAL.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

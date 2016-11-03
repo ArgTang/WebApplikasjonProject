@@ -9,6 +9,7 @@ using GroupProject.DAL;
 using GroupProject.ViewModels.User;
 using Microsoft.AspNetCore.Http;
 using GroupProject.BLL;
+using GroupProject.Models;
 
 /**
  * 

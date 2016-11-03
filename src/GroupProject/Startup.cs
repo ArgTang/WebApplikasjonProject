@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
 using GroupProject.DAL;
 using GroupProject.BLL;
+using GroupProject.Models;
 
 namespace GroupProject
 {
