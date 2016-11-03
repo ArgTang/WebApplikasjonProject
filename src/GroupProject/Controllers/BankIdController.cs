@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using GroupProject.DAL;
+using GroupProject.Models;
 
 /**
  * This Controller Do all the magic for logging into the application
@@ -57,6 +58,7 @@ namespace GroupProject.Controllers
         }
 
         // POST: /bankid/identify
+        // AJAX
         [HttpPost]
         [Route("bankid/identify")]
         [ValidateAntiForgeryToken]
@@ -107,6 +109,7 @@ namespace GroupProject.Controllers
         }
 
         // POST: /bankid/password
+        // AJAX
         [HttpPost]
         [Route("bankid/reference")]
         [ValidateAntiForgeryToken]
@@ -116,16 +119,18 @@ namespace GroupProject.Controllers
         }
 
         // POST: /bankid/password
+        // AJAX
         [HttpPost]
         [Route("bankid/password")]
         [ValidateAntiForgeryToken]
         public IActionResult Password()
         {
-            ViewBag.error = "hide-error";
+            ViewBag.error = "hide";
             return View();
         }
 
         // POST: /bankid/password
+        // AJAX
         [HttpPost]
         [Route("bankid/login")]
         [ValidateAntiForgeryToken]
@@ -165,6 +170,8 @@ namespace GroupProject.Controllers
             }
         }
 
+        // POST: /bankid/auth
+        // AJAX
         [HttpPost]
         [Route("bankid/auth")]
         [ValidateAntiForgeryToken]
@@ -202,7 +209,9 @@ namespace GroupProject.Controllers
             }
             return Content("error");
         }
-        
+
+        // POST: /bankid/auth/check
+        // AJAX
         [HttpPost]
         [Route("bankid/auth/check")]
         [ValidateAntiForgeryToken]
