@@ -33,8 +33,8 @@ namespace GroupProject.Data
         public async Task SeedPersons()
         {
             // kun for resetting av database, bør kjøres ved updates
-            //_personDbContext.Database.EnsureDeleted();
-            //_personDbContext.Database.EnsureCreated();
+            _personDbContext.Database.EnsureDeleted();
+            _personDbContext.Database.EnsureCreated();
 
             if (!await _personDbContext.Users.AnyAsync())
             {
@@ -93,7 +93,7 @@ namespace GroupProject.Data
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "ole",
-                    kontoType = "Brukerkonto"
+                    kontoType = Konto.kontoNavn.Brukskonto
                 },
                 new Konto
                 {
@@ -104,7 +104,7 @@ namespace GroupProject.Data
                     createdBy = "geir",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "geir",
-                    kontoType = "Sparekonto"
+                    kontoType = Konto.kontoNavn.Sparekonto
                 },
                 new Konto
                 {
@@ -115,7 +115,7 @@ namespace GroupProject.Data
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "bjarne",
-                    kontoType = "BSU"
+                    kontoType = Konto.kontoNavn.BSU
                 });
 
             }
