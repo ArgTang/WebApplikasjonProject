@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace GroupProject.Models
+namespace GroupProject.DAL
 {
     public class ApplicationUser:IdentityUser
     {
