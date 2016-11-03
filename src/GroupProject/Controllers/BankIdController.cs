@@ -124,7 +124,7 @@ namespace GroupProject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Password()
         {
-            ViewBag.error = "hide-error";
+            ViewBag.error = "hide";
             return View();
         }
 

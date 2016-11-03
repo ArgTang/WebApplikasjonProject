@@ -28,6 +28,7 @@ namespace GroupProject.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly DbAccess _access;
         private readonly UserManager<ApplicationUser> _userManager;
+        private ApplicationUser user;
 
         public UserController(SignInManager<ApplicationUser> signInManager, 
             PersonDbContext persondbcontext,
@@ -39,6 +40,7 @@ namespace GroupProject.Controllers
             _persondbcontext = persondbcontext;
             _access = dbAccess;
             _userManager = userManager;
+
         }
 
         // GET: /<controller>/
