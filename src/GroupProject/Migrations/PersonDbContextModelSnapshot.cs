@@ -53,6 +53,8 @@ namespace GroupProject.Migrations
                     b.Property<string>("UserName")
                         .HasAnnotation("MaxLength", 256);
 
+                    b.Property<string>("adresse");
+
                     b.Property<string>("firstName")
                         .IsRequired();
 
@@ -60,6 +62,10 @@ namespace GroupProject.Migrations
 
                     b.Property<string>("lastName")
                         .IsRequired();
+
+                    b.Property<string>("postal");
+
+                    b.Property<string>("zipcode");
 
                     b.HasKey("Id");
 
@@ -80,7 +86,7 @@ namespace GroupProject.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<int>("KontoerId");
+                    b.Property<int?>("KontoId");
 
                     b.Property<string>("UpdatedBy")
                         .IsRequired()
@@ -113,7 +119,7 @@ namespace GroupProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("KontoerId");
+                    b.HasIndex("KontoId");
 
                     b.ToTable("Betalinger");
                 });
@@ -288,10 +294,9 @@ namespace GroupProject.Migrations
 
             modelBuilder.Entity("GroupProject.Models.Betalinger", b =>
                 {
-                    b.HasOne("GroupProject.Models.Konto", "Kontoer")
+                    b.HasOne("GroupProject.Models.Konto")
                         .WithMany("betal")
-                        .HasForeignKey("KontoerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("KontoId");
                 });
 
             modelBuilder.Entity("GroupProject.Models.Konto", b =>

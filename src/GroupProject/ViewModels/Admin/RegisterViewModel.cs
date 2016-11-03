@@ -45,13 +45,13 @@ namespace GroupProject.ViewModels.Admin
         [RegularExpression("/^[0-9]{4}/", ErrorMessage = "Telefonnummeret kan kun inneholde 8 siffer")]
         public string zipcode { get; set; }
 
-        //poststed
-        public string postal { get; set; }
+        ////poststed
+        //public string postal { get; set; }
         
 
         [DataType(DataType.EmailAddress)]
-        [Display(Name ="Vennlisk skriv inn din ", Prompt ="Epostadresse")]
-
+        [Display(Name ="Vennlisk skriv inn din epostadresse", Prompt ="Epostadresse")]
+        [Required(ErrorMessage ="Dette feltet må være utfylt")]
         public string epost { get; set; }
 
 

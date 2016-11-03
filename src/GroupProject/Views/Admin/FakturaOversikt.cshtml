@@ -1,0 +1,70 @@
+﻿@model GroupProject.ViewModels.Admin.FakturaViewModel
+
+<section class="container" id="__AjaxAntiForgeryForm">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <h2>Oversikt over betalinger til forfall</h2>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Fra Konto:</th>
+                <th>Mottaker:</th>
+                <th>konto:</th>
+                <th>Forfallsdato:</th>
+                <th>Sum:</th>
+                <th>Valg:</th>
+
+            </tr>
+
+            @foreach (Betalinger betal in Model.payments)
+            {
+                <tr id="invoiceId_@betal.Id">
+                    @foreach (Konto konto in Model.accounts)
+                    {
+                        if (betal.fraKonto.Equals(konto.kontoNr))
+                        {
+                            <td>
+                                @konto.kontoType
+                            <small>(@betal.fraKonto.Insert(4, " ").Insert(7, " ")) </small>
+                        </td>
+                        }
+                    }
+                    <td>@betal.mottaker</td>
+                    <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
+                    <td>@betal.forfallDato.ToString("dd.MM.yyyy")</td>
+                    <td>@betal.belop<span class="currency" style="margin-left: 5px">Kr</span></td>
+                    <td>
+                        @if (betal.utfort == false)
+                        {
+                                <a onclick="deleteInvoice(@betal.Id)" class="btn">Slett</a>
+                                <a onclick="payInvoice(@betal.Id)" class="btn">Betal</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.AntiForgeryToken()
+</section>
+<script>
+    function deleteInvoice(id) {
+        var request = $.ajax({
+            type: "POST",
+            url: "faktura/delete",
+            data: {id:id,__RequestVerificationToken: $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val() }
+        });
+
+        request.done(function (response) {
+            if (response === "success") {
+                document.getElementById("invoiceId_" + id).outerHTML = "";
+            }
+        });
+
+        request.fail(function (jqXHR, textStatus) {
+
+        });
+    }
+</script>
+
