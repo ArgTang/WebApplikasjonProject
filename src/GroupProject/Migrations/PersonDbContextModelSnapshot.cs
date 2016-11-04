@@ -140,9 +140,7 @@ namespace GroupProject.Migrations
                     b.Property<string>("kontoNr")
                         .IsRequired();
 
-                    b.Property<string>("kontoType")
-                        .IsRequired()
-                        .HasAnnotation("MaxLength", 30);
+                    b.Property<int>("kontoType");
 
                     b.Property<decimal>("saldo");
 
@@ -288,7 +286,7 @@ namespace GroupProject.Migrations
 
             modelBuilder.Entity("GroupProject.DAL.Betalinger", b =>
                 {
-                    b.HasOne("GroupProject.DAL.Konto")
+                    b.HasOne("GroupProject.DAL.Konto", "Konto")
                         .WithMany("betal")
                         .HasForeignKey("KontoId");
                 });

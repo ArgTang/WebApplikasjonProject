@@ -18,14 +18,18 @@ namespace GroupProject.DAL
         [Range(-10000.00, 10000000.00)]
         public decimal saldo { get; set; }
 
-        [Required]
-        [StringLength(30)]
-        public string kontoType { get; set; }
+        public enum kontoNavn
+        {
+            BSU,
+            Sparekonto,
+            Brukskonto
+        }
 
-        public virtual Person Personer { get; set; }
-        [Required]
-        public int PersonerId { get; set; }
+        public kontoNavn kontoType { get; set; }
 
-        public virtual ICollection<Betalinger> betal { get; set; }
+        [Required]
+        public virtual Person person { get; set; }
+
+        public virtual List<Betalinger> betal { get; set; } = new List<Betalinger>();
     }
 }

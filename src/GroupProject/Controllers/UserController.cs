@@ -66,7 +66,7 @@ namespace GroupProject.Controllers
         public async Task<IActionResult> Betal(int? id)
         {
             ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
-            ViewBag.fromAccountList = _userBLL.getAccounts(user).Where(item => item.kontoType != "BSU");
+            ViewBag.fromAccountList = _userBLL.getAccounts(user).Where(item => item.kontoType != Konto.kontoNavn.BSU);
 
             //if no invoice is asked for go to form
             if (id == null || id == 0)
@@ -80,11 +80,10 @@ namespace GroupProject.Controllers
             //this sucks any other way?
             if ( invoice != null ) {
                 PaymentViewModel model = new PaymentViewModel();
-
                 model.amount = ((int) invoice.belop).ToString();
                 model.fraction = (invoice.belop - (int) invoice.belop).ToString();
                 model.date = invoice.forfallDato;
-                model.fromAccount = invoice.fraKonto;
+                model.fromAccount = invoice.konto.kontoNr;
                 model.toAccount = invoice.tilKonto;
                 model.kid = invoice.kid ?? "";
                 model.paymentMessage = invoice.info ?? "";
@@ -136,13 +135,20 @@ namespace GroupProject.Controllers
 
             if (ModelState.IsValid)
             {
+                //Get Account
+                var account = _userBLL.getAccounts(user).Find(acc => acc.kontoNr == model.fromAccount);
+                if ( account == null ) {
+                    ModelState.AddModelError("Konto", "Kunne ikke finne konto, vennligst prøv igjenn");
+                    return View();
+                }
+
                 if (id != null)
                 {
                     Betalinger betaling = _userBLL.getInvoice(user, (int)id);
                     if (betaling != null)
                     {
+                        betaling.konto = account;
                         betaling.tilKonto = model.toAccount;
-                        betaling.fraKonto = model.fromAccount;
                         betaling.belop = new Decimal(Double.Parse(model.amount + "," + model.fraction));
                         betaling.info = model.paymentMessage;
                         betaling.utfort = false;
@@ -153,15 +159,15 @@ namespace GroupProject.Controllers
                         betaling.UpdatedBy = user.UserName;
 
                         _userBLL.changePayment(betaling);
-
                         return RedirectToAction(nameof(UserController.Faktura));
                     }
                     
                 }
-                _userBLL.addPayment(new Betalinger
+
+                _userBLL.addPayment(new Betalinger 
                 {
-                    tilKonto = model.toAccount,
-                    fraKonto = model.fromAccount,
+                    konto = account,
+                    tilKonto = model.toAccount,                    
                     belop = new Decimal(Double.Parse(model.amount + "," + model.fraction)),
                     info = model.paymentMessage,
                     utfort = false,
@@ -177,7 +183,7 @@ namespace GroupProject.Controllers
                 return RedirectToAction(nameof(UserController.Faktura));
             }
 
-            ViewBag.fromAccountList = _userBLL.getAccounts(user).Where(item => item.kontoType != "BSU");
+            ViewBag.fromAccountList = _userBLL.getAccounts(user).Where(item => item.kontoType != Konto.kontoNavn.BSU);
 
             return View("Betal", model);
         }

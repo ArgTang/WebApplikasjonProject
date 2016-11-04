@@ -21,14 +21,14 @@ namespace GroupProject.DAL
         [Required]
         public string tilKonto { get; set; }
         
-        [Required]
-        public string fraKonto { get; set; }
-
         public bool utfort { get; set; }
         
         [Required]
         public DateTime forfallDato { get; set; }
 
         public string mottaker { get; set; }
+
+        [Required]
+        public virtual Konto konto { get; set; }
     }
 }
