@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using GroupProject.Models;
+using GroupProject.DAL;
 
 namespace GroupProject.Migrations
 {
@@ -286,7 +286,7 @@ namespace GroupProject.Migrations
 
             modelBuilder.Entity("GroupProject.DAL.Betalinger", b =>
                 {
-                    b.HasOne("GroupProject.DAL.Konto")
+                    b.HasOne("GroupProject.DAL.Konto", "Konto")
                         .WithMany("betal")
                         .HasForeignKey("KontoId");
                 });

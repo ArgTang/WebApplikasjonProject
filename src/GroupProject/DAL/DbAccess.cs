@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using GroupProject.Models;
 
 namespace GroupProject.DAL
 {
@@ -38,20 +37,16 @@ namespace GroupProject.DAL
 
         public List<Betalinger> getPayments(ApplicationUser applicationUser)
         {
-            List<Betalinger> betalinger = new List<Betalinger>();
+            var kontoListe = _persondbcontext.Person
+                                   .Include(s => s.konto)
+                                   .ThenInclude(k => k.betal)
+                                   .Single(p => p.PersonNr == applicationUser.UserName);
 
-            foreach(Konto k in getAccounts(applicationUser))
-            {
-                //TODO this is **really** bad for performance 
-                //we should find a way to get Invoices from person.account not all invoices in the whole DB!!
-                foreach(Betalinger b in _persondbcontext.Betal.ToList())
-                {
-                    if (b.fraKonto == k.kontoNr)
-                    {
-                        betalinger.Add(b);
-                    }
-                }
+            List<Betalinger> betalinger = new List<Betalinger>();
+            foreach (Konto k in kontoListe.konto ) {
+                betalinger.AddRange(k.betal);
             }
+
             return betalinger;
         }
 
