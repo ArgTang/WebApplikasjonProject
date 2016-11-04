@@ -140,9 +140,7 @@ namespace GroupProject.Migrations
                     b.Property<string>("kontoNr")
                         .IsRequired();
 
-                    b.Property<string>("kontoType")
-                        .IsRequired()
-                        .HasAnnotation("MaxLength", 30);
+                    b.Property<int>("kontoType");
 
                     b.Property<decimal>("saldo");
 

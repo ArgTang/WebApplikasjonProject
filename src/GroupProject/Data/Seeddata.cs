@@ -97,7 +97,7 @@ namespace GroupProject.Data
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "ole",
-                    kontoType = "Brukerkonto"
+                    kontoType = Konto.kontoNavn.Brukskonto
                 });
 
                 kontoliste.Add(
@@ -109,7 +109,7 @@ namespace GroupProject.Data
                         createdBy = "geir",
                         UpdatedDate = DateTime.Now,
                         UpdatedBy = "geir",
-                        kontoType = "Sparekonto"
+                        kontoType = Konto.kontoNavn.Sparekonto
                     }
                 );
 
@@ -121,7 +121,7 @@ namespace GroupProject.Data
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "bjarne",
-                    kontoType = "BSU"
+                    kontoType = Konto.kontoNavn.BSU
                 });
                 
                 _personDbContext.Person.First().konto = kontoliste;

@@ -66,7 +66,7 @@ namespace GroupProject.Controllers
         public async Task<IActionResult> Betal(int? id)
         {
             ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
-            ViewBag.fromAccountList = _userBLL.getAccounts(user).Where(item => item.kontoType != "BSU");
+            ViewBag.fromAccountList = _userBLL.getAccounts(user).Where(item => item.kontoType != Konto.kontoNavn.BSU);
 
             //if no invoice is asked for go to form
             if (id == null || id == 0)
@@ -183,7 +183,7 @@ namespace GroupProject.Controllers
                 return RedirectToAction(nameof(UserController.Faktura));
             }
 
-            ViewBag.fromAccountList = _userBLL.getAccounts(user).Where(item => item.kontoType != "BSU");
+            ViewBag.fromAccountList = _userBLL.getAccounts(user).Where(item => item.kontoType != Konto.kontoNavn.BSU);
 
             return View("Betal", model);
         }
