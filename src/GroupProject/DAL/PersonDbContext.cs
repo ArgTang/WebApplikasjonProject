@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace GroupProject.Models
+namespace GroupProject.DAL
 {
     public class PersonDbContext: IdentityDbContext<ApplicationUser>
     {
