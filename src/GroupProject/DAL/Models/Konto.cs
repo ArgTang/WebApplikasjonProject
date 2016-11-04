@@ -18,9 +18,6 @@ namespace GroupProject.DAL
         [Range(-10000.00, 10000000.00)]
         public decimal saldo { get; set; }
 
-        //[Required]
-        //[StringLength(30)]
-        //public string kontoType { get; set; }
         public enum kontoNavn
         {
             BSU,
