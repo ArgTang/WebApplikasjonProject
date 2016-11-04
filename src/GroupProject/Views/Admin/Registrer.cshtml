@@ -49,8 +49,8 @@
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="firstName" placeholder="Fornavn" class="form-control" type="text">
-                        <i class="form-control-feedback glyphicon glyphicon-ok" data-bv-icon-for="first_name"></i>
+                        <input name="firstName" placeholder="Fornavn" class="form-control" type="text" id="inputSuccess">
+                        @*<i class="form-control-feedback glyphicon glyphicon-ok" data-bv-icon-for="first_name"></i>*@
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="lastName" placeholder="Etternavn" class="form-control" type="text">
+                        <input name="lastName" placeholder="Etternavn" class="form-control" type="text" required>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                        <input name="phonenumber" placeholder="98989898" class="form-control" type="text">
+                        <input name="phonenumber" placeholder="98989898" class="form-control" type="text" required>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input name="adresse" placeholder="Adressse" class="form-control" type="text">
+                        <input name="adresse" placeholder="Adressse" class="form-control" type="text" required>
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input name="zipcode" placeholder="Postnummer" class="form-control" type="text">
+                        <input name="zipcode" placeholder="Postnummer" class="form-control" type="text" required>
                     </div>
                 </div>
             </div>
@@ -150,7 +150,7 @@
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input name="email" placeholder="E-post adresse" class="form-control" type="text">
+                        <input name="email" placeholder="E-post adresse" class="form-control" type="text" required>
                     </div>
                 </div>
             </div>
@@ -185,7 +185,20 @@
                     </div>
                 </div>
             </div>
-
+            <div class="form-group">
+                <label class="col-md-4 control-label">Kontotype</label>
+                <div class="col-md-6 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="konto" class="form-control selectpicker">
+                            <option value=" ">Vennligst velg type  konto</option>
+                            <option>Brukskonto</option>
+                            <option>Sparekonto</option>
+                            <option>BSU</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
             <!-- Button -->
             <div class="form-group">
@@ -197,12 +210,25 @@
         </fieldset>
     </form>
     </section>
+@*<style>
+#reg_form .has-error .control-label,
+#reg_form .has-error .help-block,
+#reg_form .has-error .form-control-feedback {
+    color: #f39c12;
+}
 
+#reg_form .has-success .control-label,
+#reg_form .has-success .help-block,
+#reg_form .has-success .form-control-feedback {
+    color: #18bc9c;
+}
+</style>*@
 @*<style>
     input i {
         display:none;
     }
-    input:valid + .glyphicon-ok {
+    input:valid{
+        background: url(../../wwwroot/images/check.svg);
         display:block !important;
     }
     input:valid {
@@ -212,8 +238,8 @@
     /*input:invalid {
         color:red;
     }*/
-</style>*@
-@*<script type="text/javascript">
+</style>*@     
+<script type="text/javascript">
 
        $(document).ready(function() {
         $('#reg_form').bootstrapValidator({
@@ -368,4 +394,4 @@
             });
     });
 
-    </script>*@
+    </script>
