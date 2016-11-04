@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
-using GroupProject.DAL;
+using GroupProject.Models;
 
 /**
  * 

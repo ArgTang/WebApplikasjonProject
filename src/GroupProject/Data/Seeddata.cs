@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GroupProject.DAL;
+using GroupProject.Models;
 
 namespace GroupProject.Data
 {
@@ -93,7 +94,7 @@ namespace GroupProject.Data
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "ole",
-                    kontoType = "Brukerkonto"
+                    kontoType = Konto.kontoNavn.Brukskonto
                 },
                 new Konto
                 {
@@ -104,7 +105,7 @@ namespace GroupProject.Data
                     createdBy = "geir",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "geir",
-                    kontoType = "Sparekonto"
+                    kontoType = Konto.kontoNavn.Sparekonto
                 },
                 new Konto
                 {
@@ -115,7 +116,7 @@ namespace GroupProject.Data
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "bjarne",
-                    kontoType = "BSU"
+                    kontoType = Konto.kontoNavn.BSU
                 });
 
             }

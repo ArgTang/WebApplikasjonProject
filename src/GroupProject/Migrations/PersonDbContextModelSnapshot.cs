@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using GroupProject.DAL;
+using GroupProject.Models;
 
 namespace GroupProject.Migrations
 {
@@ -140,9 +140,7 @@ namespace GroupProject.Migrations
                     b.Property<string>("kontoNr")
                         .IsRequired();
 
-                    b.Property<string>("kontoType")
-                        .IsRequired()
-                        .HasAnnotation("MaxLength", 30);
+                    b.Property<int>("kontoType");
 
                     b.Property<decimal>("saldo");
 

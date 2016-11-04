@@ -1,8 +1,8 @@
-﻿
+﻿using GroupProject.DAL;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace GroupProject.DAL
+namespace GroupProject.Models
 {
     public class PersonDbContext: IdentityDbContext<ApplicationUser>
     {
