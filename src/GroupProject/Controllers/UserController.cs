@@ -4,19 +4,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using GroupProject.Models;
 using System.Linq;
-using GroupProject.Annotations;
 using GroupProject.DAL;
 using GroupProject.ViewModels.User;
 using Microsoft.AspNetCore.Http;
-
+using GroupProject.BLL;
 
 /**
  * 
  * This is the User Controller, Only logged in users can visit these links
  * 
- */ 
+ */
 
 
 namespace GroupProject.Controllers
@@ -26,19 +24,17 @@ namespace GroupProject.Controllers
     {
         private readonly PersonDbContext _persondbcontext;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly DbAccess _access;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserBLL _userBLL;
 
         public UserController(SignInManager<ApplicationUser> signInManager, 
-            PersonDbContext persondbcontext,
-            DbAccess dbAccess,
-            UserManager<ApplicationUser> userManager
+            UserManager<ApplicationUser> userManager, 
+            UserBLL userBLL
         )
         {
             this._signInManager = signInManager;
-            _persondbcontext = persondbcontext;
-            _access = dbAccess;
             _userManager = userManager;
+            _userBLL = userBLL;
         }
 
         // GET: /<controller>/
@@ -49,7 +45,7 @@ namespace GroupProject.Controllers
             ViewData["Name"] = $"{user.firstName} {user.lastName}";
             ViewData["LastLogin"] = user.lastLogin;
 
-            List<Konto> accounts = _access.getAccounts(user);
+            List<Konto> accounts = _userBLL.getAccounts(user);
             return View(accounts);
         }
 
@@ -58,10 +54,10 @@ namespace GroupProject.Controllers
         {
             ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
             FakturaViewModel model = new FakturaViewModel();
-            model.payments = _access.getPayments(user);
+            model.payments = _userBLL.getPayments(user);
             model.payments.Sort((x, y) => x.forfallDato.CompareTo(y.forfallDato));
 
-            model.accounts = _access.getAccounts(user);
+            model.accounts = _userBLL.getAccounts(user);
 
             return View(model);
         }
@@ -70,7 +66,7 @@ namespace GroupProject.Controllers
         public async Task<IActionResult> Betal(int? id)
         {
             ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
-            ViewBag.fromAccountList = _access.getAccounts(user).Where(item => item.kontoType != "BSU");
+            ViewBag.fromAccountList = _userBLL.getAccounts(user).Where(item => item.kontoType != Konto.kontoNavn.BSU);
 
             //if no invoice is asked for go to form
             if (id == null || id == 0)
@@ -79,16 +75,15 @@ namespace GroupProject.Controllers
             }
 
             Betalinger invoice = new Betalinger();
-            invoice = _access.getInvoice(user, (int)id);
+            invoice = _userBLL.getInvoice(user, (int)id);
 
             //this sucks any other way?
             if ( invoice != null ) {
                 PaymentViewModel model = new PaymentViewModel();
-
                 model.amount = ((int) invoice.belop).ToString();
                 model.fraction = (invoice.belop - (int) invoice.belop).ToString();
                 model.date = invoice.forfallDato;
-                model.fromAccount = invoice.fraKonto;
+                model.fromAccount = invoice.konto.kontoNr;
                 model.toAccount = invoice.tilKonto;
                 model.kid = invoice.kid ?? "";
                 model.paymentMessage = invoice.info ?? "";
@@ -116,7 +111,7 @@ namespace GroupProject.Controllers
 
                     if (id > 0)
                     {
-                        if (_access.deleteInvoice(user, id))
+                        if (_userBLL.deleteInvoice(user, id))
                         {
                             return Content("success");
                         }
@@ -140,13 +135,20 @@ namespace GroupProject.Controllers
 
             if (ModelState.IsValid)
             {
+                //Get Account
+                var account = _userBLL.getAccounts(user).Find(acc => acc.kontoNr == model.fromAccount);
+                if ( account == null ) {
+                    ModelState.AddModelError("Konto", "Kunne ikke finne konto, vennligst prøv igjenn");
+                    return View();
+                }
+
                 if (id != null)
                 {
-                    Betalinger betaling = _access.getInvoice(user, (int)id);
+                    Betalinger betaling = _userBLL.getInvoice(user, (int)id);
                     if (betaling != null)
                     {
+                        betaling.konto = account;
                         betaling.tilKonto = model.toAccount;
-                        betaling.fraKonto = model.fromAccount;
                         betaling.belop = new Decimal(Double.Parse(model.amount + "," + model.fraction));
                         betaling.info = model.paymentMessage;
                         betaling.utfort = false;
@@ -156,16 +158,16 @@ namespace GroupProject.Controllers
                         betaling.UpdatedDate = DateTime.Now;
                         betaling.UpdatedBy = user.UserName;
 
-                        _access.changePayment(betaling);
-
+                        _userBLL.changePayment(betaling);
                         return RedirectToAction(nameof(UserController.Faktura));
                     }
                     
-                }  
-                _access.addPayment(new Betalinger
+                }
+
+                _userBLL.addPayment(new Betalinger 
                 {
-                    tilKonto = model.toAccount,
-                    fraKonto = model.fromAccount,
+                    konto = account,
+                    tilKonto = model.toAccount,                    
                     belop = new Decimal(Double.Parse(model.amount + "," + model.fraction)),
                     info = model.paymentMessage,
                     utfort = false,
@@ -181,7 +183,7 @@ namespace GroupProject.Controllers
                 return RedirectToAction(nameof(UserController.Faktura));
             }
 
-            ViewBag.fromAccountList = _access.getAccounts(user).Where(item => item.kontoType != "BSU");
+            ViewBag.fromAccountList = _userBLL.getAccounts(user).Where(item => item.kontoType != Konto.kontoNavn.BSU);
 
             return View("Betal", model);
         }

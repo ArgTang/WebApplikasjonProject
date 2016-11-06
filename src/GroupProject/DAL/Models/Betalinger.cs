@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GroupProject.Models
+namespace GroupProject.DAL
 {
     [Table("Betalinger")]
     public class Betalinger : BaseModel
@@ -21,14 +21,14 @@ namespace GroupProject.Models
         [Required]
         public string tilKonto { get; set; }
         
-        [Required]
-        public string fraKonto { get; set; }
-
         public bool utfort { get; set; }
         
         [Required]
         public DateTime forfallDato { get; set; }
 
         public string mottaker { get; set; }
+
+        [Required]
+        public virtual Konto konto { get; set; }
     }
 }

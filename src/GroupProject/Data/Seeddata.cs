@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using GroupProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using GroupProject.DAL;
+using System.Collections.Generic;
 
 namespace GroupProject.Data
 {
@@ -84,88 +85,115 @@ namespace GroupProject.Data
             _personDbContext.SaveChanges();
             if (!_personDbContext.Kontoer.Any())
             {
-                _personDbContext.AddRange(new Konto
-                {
-                    PersonerId = 1,
+
+                var person = _personDbContext.Person.First();
+
+                var kontoliste = new List<Konto>();
+                kontoliste.Add(new Konto {
+                    person = person,
                     kontoNr = "12341212341",
                     saldo = 100202,
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "ole",
-                    kontoType = "Brukerkonto"
-                },
-                new Konto
-                {
-                    PersonerId = 1,
-                    kontoNr = "65430023421",
-                    saldo = 0,
-                    CreatedDate = DateTime.Now,
-                    createdBy = "geir",
-                    UpdatedDate = DateTime.Now,
-                    UpdatedBy = "geir",
-                    kontoType = "Sparekonto"
-                },
-                new Konto
-                {
-                    PersonerId = 1,
+                    kontoType = Konto.kontoNavn.Brukskonto
+                });
+
+                kontoliste.Add(
+                    new Konto {
+                        person = person,
+                        kontoNr = "65430023421",
+                        saldo = 0,
+                        CreatedDate = DateTime.Now,
+                        createdBy = "geir",
+                        UpdatedDate = DateTime.Now,
+                        UpdatedBy = "geir",
+                        kontoType = Konto.kontoNavn.Sparekonto
+                    }
+                );
+
+                kontoliste.Add(new Konto {
+                    person = person,
                     kontoNr = "43210041211",
                     saldo = 231,
                     CreatedDate = DateTime.Now,
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "bjarne",
-                    kontoType = "BSU"
+                    kontoType = Konto.kontoNavn.BSU
                 });
-
+                
+                _personDbContext.Person.First().konto = kontoliste;
             }
             _personDbContext.SaveChanges();
             if (!_personDbContext.Betal.Any())
             {
-                _personDbContext.AddRange(new Betalinger
-                {
-                    belop = (decimal) 12312.25,
-                    info = "betalt til meg",
-                    utfort = false,
-                    tilKonto = "12341212341",
-                    fraKonto = "65430023421",
-                    mottaker = "ACOS Forsikring",
-                    forfallDato = DateTime.Today.AddDays(4),
-                    CreatedDate = DateTime.Now,
-                    createdBy = "ole",
-                    UpdatedDate = DateTime.Now,
-                    UpdatedBy = "ole"
-                },
-                new Betalinger
-                {
-                    belop = (decimal) 5675.00,
-                    info = "betalt til meg",
-                    utfort = false,
-                    tilKonto = "65430023421",
-                    fraKonto = "12341212341",
-                    mottaker = "ACOS Parkering",
-                    forfallDato = DateTime.Now.AddDays(14),
-                    CreatedDate = DateTime.Now,
-                    createdBy = "ole",
-                    UpdatedDate = DateTime.Now,
-                    UpdatedBy = "ole"
-                },
-                new Betalinger
-                {
-                    belop = (decimal) 1.00,
-                    info = "betalt til deg",
-                    utfort = false,
-                    tilKonto = "65430023421",
-                    fraKonto = "12341212341",
-                    mottaker = "Bestemor",
-                    forfallDato = DateTime.Today.AddMonths(1),
-                    CreatedDate = DateTime.Now,
-                    createdBy = "geir",
-                    UpdatedDate = DateTime.Now,
-                    UpdatedBy = "ole"
-                });
+
+                var kontoer = _personDbContext.Person.First().konto;
+                
+                var konto = kontoer.Single(k => k.kontoNr == "65430023421");
+                konto.betal.AddRange( new List<Betalinger> { 
+                    new Betalinger {
+                        konto = konto,
+                        belop = (decimal) 1312.25,
+                        info = "Bilforsikring",
+                        utfort = false,
+                        tilKonto = "12341212341",
+                        mottaker = "ACOS Forsikring",
+                        forfallDato = DateTime.Today.AddDays(4),
+                        CreatedDate = DateTime.Now,
+                        createdBy = "ole",
+                        UpdatedDate = DateTime.Now,
+                        UpdatedBy = "ole"
+                    },
+                    new Betalinger {
+                        konto = konto,
+                        belop = (decimal) 1400.65,
+                        info = "Resiseforsikring",
+                        utfort = false,
+                        tilKonto = "12341212341",
+                        mottaker = "ACOS Forsikring",
+                        forfallDato = DateTime.Today.AddDays(3),
+                        CreatedDate = DateTime.Now,
+                        createdBy = "ole",
+                        UpdatedDate = DateTime.Now,
+                        UpdatedBy = "ole"
+                    }}
+                );
+
+                konto = kontoer.Single(k => k.kontoNr == "12341212341");
+                konto.betal.AddRange( new List<Betalinger> { 
+                    new Betalinger {
+                        konto = konto,
+                        belop = (decimal) 5675.00,
+                        info = "Bot",
+                        utfort = false,
+                        tilKonto = "65430023421",
+                        mottaker = "ACOS Parkering",
+                        forfallDato = DateTime.Now.AddDays(14),
+                        CreatedDate = DateTime.Now,
+                        createdBy = "ole",
+                        UpdatedDate = DateTime.Now,
+                        UpdatedBy = "ole"
+                    },
+                    new Betalinger
+                    {
+                        konto = konto,
+                        belop = (decimal) 100.00,
+                        info = "betalt til deg",
+                        utfort = false,
+                        tilKonto = "65430023421",
+                        mottaker = "Bestemor",
+                        forfallDato = DateTime.Today.AddMonths(1),
+                        CreatedDate = DateTime.Now,
+                        createdBy = "geir",
+                        UpdatedDate = DateTime.Now,
+                        UpdatedBy = "ole"
+                    }}
+                );
             }
-            _personDbContext.SaveChanges();
+        _personDbContext.SaveChanges();
         }
     }
 }

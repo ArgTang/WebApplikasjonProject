@@ -12,4 +12,9 @@
         @await Component.InvokeAsync("Login")
     </section>*@
 </section>
-<script src="js/index.js"></script>
+<environment names="Development">
+    <script src="JS/index.js"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="~/JS/index.min.js"></script>
+</environment>

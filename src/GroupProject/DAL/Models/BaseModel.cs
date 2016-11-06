@@ -10,7 +10,7 @@ using System.Threading.Tasks;
  * 
  */
 
-namespace GroupProject.Models
+namespace GroupProject.DAL
 {
     public class BaseModel
     {
