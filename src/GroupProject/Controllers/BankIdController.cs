@@ -27,7 +27,7 @@ namespace GroupProject.Controllers
             SignInManager<ApplicationUser> signInManager
         )
         {
-            _bankIdBll = new BankIdBLL(HttpContext, signInManager, personDbcontext);
+            _bankIdBll = new BankIdBLL(signInManager, personDbcontext);
             
         }
 
@@ -60,7 +60,7 @@ namespace GroupProject.Controllers
                             ViewBag.birthNumber = birthNr;
 
                             ViewBag.reference = _bankIdBll.getRefWord();
-                            ViewBag.authToken = _bankIdBll.genToken();
+                            ViewBag.authToken = _bankIdBll.genToken(HttpContext);
 
                             return View("Reference");
                         }
@@ -109,9 +109,9 @@ namespace GroupProject.Controllers
                 if (form.ContainsKey(BankIdBLL.PASS_KEY))
                 {
 
-                    if (_bankIdBll.login().IsCompleted)
+                    if (await _bankIdBll.login(HttpContext))
                     {
-                        _bankIdBll.clearSession();
+                        _bankIdBll.clearSession(HttpContext);
                         return Content("loggedIn");
                     }
                     else
@@ -123,14 +123,14 @@ namespace GroupProject.Controllers
                 else
                 {
                     //HttpContext.Session.Remove(BankIdBLL.BIRTH_KEY);
-                    _bankIdBll.clearSession();
+                    _bankIdBll.clearSession(HttpContext);
                     return View("Error");
                 }
             }
             //If no body is specified
             catch (Exception)
             {
-                _bankIdBll.clearSession();
+                _bankIdBll.clearSession(HttpContext);
                 return View("Error");
             }
         }
@@ -148,7 +148,7 @@ namespace GroupProject.Controllers
 
                 if (form.ContainsKey(BankIdBLL.BIRTH_KEY) && form.ContainsKey(BankIdBLL.TOKEN_KEY))
                 {
-                    if (_bankIdBll.setAuthOk())
+                    if (_bankIdBll.setAuthOk(HttpContext))
                     {
                         return Content("authorized");
                     }
@@ -180,13 +180,7 @@ namespace GroupProject.Controllers
 
                 if (form.ContainsKey(BankIdBLL.BIRTH_KEY))
                 {
-                    if (_bankIdBll.isTokenValid())
-                    {
-                        _bankIdBll.clearSession();
-                        return Content("error");
-                    }
-
-                    if (_bankIdBll.isAuthOk())
+                    if (_bankIdBll.isAuthOk(HttpContext))
                     {
                         return Content("authorized");
                     }

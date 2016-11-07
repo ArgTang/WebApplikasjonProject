@@ -54,12 +54,12 @@ namespace GroupProject.Data
             {
                 _personDbContext.AddRange(new Person
                 {
-                    PersonNr = "26118742957", 
+                    PersonNr = "26118742957",
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "ole",
-                   
+
                 },
                 new Person
                 {
@@ -77,9 +77,9 @@ namespace GroupProject.Data
                     createdBy = "admin",
                     UpdatedDate = DateTime.Now,
                     UpdatedBy = "admin",
-                    
+
                 });
-                
+
 
             }
             _personDbContext.SaveChanges();
@@ -89,7 +89,8 @@ namespace GroupProject.Data
                 var person = _personDbContext.Person.First();
 
                 var kontoliste = new List<Konto>();
-                kontoliste.Add(new Konto {
+                kontoliste.Add(new Konto
+                {
                     person = person,
                     kontoNr = "12341212341",
                     saldo = 100202,
@@ -101,7 +102,8 @@ namespace GroupProject.Data
                 });
 
                 kontoliste.Add(
-                    new Konto {
+                    new Konto
+                    {
                         person = person,
                         kontoNr = "65430023421",
                         saldo = 0,
@@ -113,7 +115,8 @@ namespace GroupProject.Data
                     }
                 );
 
-                kontoliste.Add(new Konto {
+                kontoliste.Add(new Konto
+                {
                     person = person,
                     kontoNr = "43210041211",
                     saldo = 231,
@@ -123,7 +126,7 @@ namespace GroupProject.Data
                     UpdatedBy = "bjarne",
                     kontoType = Konto.kontoNavn.BSU
                 });
-                
+
                 _personDbContext.Person.First().konto = kontoliste;
             }
             _personDbContext.SaveChanges();
@@ -131,9 +134,9 @@ namespace GroupProject.Data
             {
 
                 var kontoer = _personDbContext.Person.First().konto;
-                
+
                 var konto = kontoer.Single(k => k.kontoNr == "65430023421");
-                konto.betal.AddRange( new List<Betalinger> { 
+                konto.betal.AddRange(new List<Betalinger> {
                     new Betalinger {
                         konto = konto,
                         belop = (decimal) 1312.25,
@@ -163,7 +166,7 @@ namespace GroupProject.Data
                 );
 
                 konto = kontoer.Single(k => k.kontoNr == "12341212341");
-                konto.betal.AddRange( new List<Betalinger> { 
+                konto.betal.AddRange(new List<Betalinger> {
                     new Betalinger {
                         konto = konto,
                         belop = (decimal) 5675.00,
@@ -193,7 +196,7 @@ namespace GroupProject.Data
                     }}
                 );
             }
-        _personDbContext.SaveChanges();
+            _personDbContext.SaveChanges();
         }
     }
 }

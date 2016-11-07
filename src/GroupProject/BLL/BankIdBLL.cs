@@ -10,13 +10,11 @@ namespace GroupProject.BLL
 {
     public class BankIdBLL
     {
-        private readonly HttpContext context;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly PersonDbContext _personDbContext;
 
-        public BankIdBLL(HttpContext context, SignInManager<ApplicationUser> signInManager, PersonDbContext personDbContext)
+        public BankIdBLL(SignInManager<ApplicationUser> signInManager, PersonDbContext personDbContext)
         {
-            this.context = context;
             _signInManager = signInManager;
             _personDbContext = personDbContext;
         }
@@ -48,19 +46,22 @@ namespace GroupProject.BLL
             return referanser[rInt];
         }
 
-        public String genToken()
+        public String genToken(HttpContext context)
         {
             byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
             byte[] key = Guid.NewGuid().ToByteArray();
             string token = Convert.ToBase64String(time.Concat(key).ToArray());
             token = token.Replace('+', '/');
-            context.Session.SetString(TOKEN_KEY, token);
-            context.Session.SetInt32(AUTH_KEY, 0);
+            if (context != null)
+            {
+                context.Session.SetString(TOKEN_KEY, token);
+                context.Session.SetInt32(AUTH_KEY, 0);
+            }
 
             return token;
         }
 
-        public Boolean isTokenValid()
+        public Boolean isTokenValid(HttpContext context)
         {
             String token = context.Session.GetString(TOKEN_KEY);
 
@@ -86,17 +87,17 @@ namespace GroupProject.BLL
             DateTime time = DateTime.FromBinary(BitConverter.ToInt64(data, 0));
             if (time > DateTime.UtcNow.AddMinutes(m))
             {
-                //Expired
-                return true;
+                //Not Expired
+                return false;
             }
-            //Not Expired
-            return false;
+            //Is Expired
+            return true;
         }
 
         //Used to set that the mobile authentication have been compleeted
-        public Boolean setAuthOk()
+        public Boolean setAuthOk(HttpContext context)
         {
-            if (isTokenValid())
+            if (isTokenValid(context))
             {
                 context.Session.SetInt32(AUTH_KEY,1);
                 return true;
@@ -104,23 +105,30 @@ namespace GroupProject.BLL
             return false;
         }
 
-        public Boolean isAuthOk()
+        public Boolean isAuthOk(HttpContext context)
         {
             if (context.Session.GetInt32(AUTH_KEY) == 1)
                 return true;
             return false;
         }
 
-        public void clearSession()
+        public void clearSession(HttpContext context)
         {
             context.Session.Clear();
         }
 
-        public async Task<SignInResult> login()
+        public async Task<Boolean> login(HttpContext context)
         {
-            return await _signInManager.PasswordSignInAsync(
+            var signInResult =  await _signInManager.PasswordSignInAsync(
                 context.Session.GetString(BIRTH_KEY), context.Request.Form[PASS_KEY], true, false);
-        
+
+            if (signInResult.Succeeded)
+            {
+                return true;
+            }
+
+            return false;
+
         }
 
         public Boolean userExists(String username)

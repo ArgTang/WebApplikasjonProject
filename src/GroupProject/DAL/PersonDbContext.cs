@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GroupProject.DAL
 {
-    public class PersonDbContext: IdentityDbContext<ApplicationUser>
+    public class PersonDbContext : IdentityDbContext<ApplicationUser>
     {
 
-        public PersonDbContext(DbContextOptions<PersonDbContext> options):base(options) 
+        public PersonDbContext(DbContextOptions<PersonDbContext> options) : base(options)
         {
         }
 
