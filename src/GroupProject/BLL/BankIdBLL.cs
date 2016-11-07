@@ -11,12 +11,12 @@ namespace GroupProject.BLL
     public class BankIdBLL
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly PersonDbContext _personDbContext;
+        private readonly DbAccess _dbAccess;
 
-        public BankIdBLL(SignInManager<ApplicationUser> signInManager, PersonDbContext personDbContext)
+        public BankIdBLL(SignInManager<ApplicationUser> signInManager, DbAccess dbAccess)
         {
             _signInManager = signInManager;
-            _personDbContext = personDbContext;
+            _dbAccess = dbAccess;
         }
 
         public static readonly String BIRTH_KEY = "birthNumber";
@@ -133,7 +133,7 @@ namespace GroupProject.BLL
 
         public Boolean userExists(String username)
         {
-            if (_personDbContext.Users.Any(p => p.NormalizedUserName == username))
+            if (_dbAccess.getPerson(username) != null)
                 return true;
             return false;
         }
