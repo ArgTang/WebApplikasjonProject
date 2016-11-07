@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,6 +34,12 @@ namespace GroupProject.DAL
             return _persondbcontext.Person
                                    .Include(s => s.konto)
                                    .Single(p => p.PersonNr == personNr);
+        }
+
+        public Person getPerson(String username)
+        {
+            return _persondbcontext.Person
+                                   .Single(p => p.PersonNr == username);
         }
 
         public List<Betalinger> getPayments(ApplicationUser applicationUser)
