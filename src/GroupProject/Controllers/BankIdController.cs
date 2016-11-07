@@ -23,11 +23,11 @@ namespace GroupProject.Controllers
         private readonly BankIdBLL _bankIdBll;
 
         public BankIdController(
-            PersonDbContext personDbcontext,
+            DbAccess dbAccess,
             SignInManager<ApplicationUser> signInManager
         )
         {
-            _bankIdBll = new BankIdBLL(signInManager, personDbcontext);
+            _bankIdBll = new BankIdBLL(signInManager, dbAccess);
             
         }
 
