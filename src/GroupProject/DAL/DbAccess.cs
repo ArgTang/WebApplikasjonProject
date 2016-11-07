@@ -39,7 +39,6 @@ namespace GroupProject.DAL
         public Person getPerson(String username)
         {
             return _persondbcontext.Person
-                                   .Include(s => s.konto)
                                    .Single(p => p.PersonNr == username);
         }
 
