@@ -107,9 +107,7 @@ namespace GroupProject.BLL
 
         public Boolean isAuthOk(HttpContext context)
         {
-            if (context.Session.GetInt32(AUTH_KEY) == 1)
-                return true;
-            return false;
+                return context.Session.GetInt32(AUTH_KEY) == 1;
         }
 
         public void clearSession(HttpContext context)
@@ -133,9 +131,7 @@ namespace GroupProject.BLL
 
         public Boolean userExists(String username)
         {
-            if (_dbAccess.getPerson(username) != null)
-                return true;
-            return false;
+                return _dbAccess.getPerson(username) != null;
         }
 
     }
