@@ -21,10 +21,12 @@ namespace GroupProject.DAL
 
         public DbAccess(PersonDbContext personDbContext, ILogger<DbAccess> logger)
         {
-            try{
+            try
+            {
                 _logger = logger;
                 _persondbcontext = personDbContext;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 _logger.LogError("A unhandled error accured accessing personDBContext :::: {Exception}", e);
             }
@@ -36,10 +38,12 @@ namespace GroupProject.DAL
             {
                 var person = getPerson(applicationUser);
                 return person.konto?.ToList() ?? new List<Konto>();
-            } catch( Exception e)
+            }
+            catch (Exception e)
             {
-                _logger.LogError("A unhandled error accured getting accounts with {ApplicationUser} :::: {Exception}", applicationUser, e);
-                return new List<Konto> { };
+                _logger.LogError("A unhandled error accured getting accounts with {ApplicationUser} :::: {Exception}",
+                    applicationUser, e);
+                return null;
             }
         }
 
@@ -54,8 +58,9 @@ namespace GroupProject.DAL
             }
             catch (Exception e)
             {
-                _logger.LogError("A unhandled error accured getting person with {ApplicationUser} :::: {Exception}", applicationUser, e);
-                return new Person { };
+                _logger.LogError("A unhandled error accured getting person with {ApplicationUser} :::: {Exception}",
+                    applicationUser, e);
+                return null;
             }
         }
 
@@ -64,12 +69,13 @@ namespace GroupProject.DAL
             try
             {
                 return _persondbcontext.Person
-                                   .Single(p => p.PersonNr == username);
+                    .Single(p => p.PersonNr == username);
             }
             catch (Exception e)
             {
-                _logger.LogError("A unhandled error accured getting person with {Username} :::: {Exception}", username, e);
-                return new Person { };
+                _logger.LogError("A unhandled error accured getting person with {Username} :::: {Exception}", username,
+                    e);
+                return null;
             }
         }
 
@@ -78,9 +84,9 @@ namespace GroupProject.DAL
             try
             {
                 var kontoListe = _persondbcontext.Person
-                                   .Include(s => s.konto)
-                                   .ThenInclude(k => k.betal)
-                                   .Single(p => p.PersonNr == applicationUser.UserName);
+                                                 .Include(s => s.konto)
+                                                 .ThenInclude(k => k.betal)
+                                                 .Single(p => p.PersonNr == applicationUser.UserName);
 
                 List<Betalinger> betalinger = new List<Betalinger>();
                 foreach (Konto k in kontoListe.konto)
@@ -92,8 +98,10 @@ namespace GroupProject.DAL
             }
             catch (Exception e)
             {
-                _logger.LogError("A unhandled error accured getting list of payments with {ApplicationUser} :::: {Exception}", applicationUser, e);
-                return new List<Betalinger> { };
+                _logger.LogError(
+                    "A unhandled error accured getting list of payments with {ApplicationUser} :::: {Exception}",
+                    applicationUser, e);
+                return null;
             }
         }
 
@@ -104,13 +112,14 @@ namespace GroupProject.DAL
             {
                 _persondbcontext.Betal.Update(betal);
                 _persondbcontext.SaveChanges();
-                _logger.LogInformation("Payment changed  {Payment}",betal);
+                _logger.LogInformation("Payment changed  {Payment}", betal);
             }
             catch (Exception e)
             {
                 _logger.LogError("A unhandled error accured changing {Betalinger} :::: {Exception}", betal, e);
             }
         }
+
         public void addPayment(Betalinger betalinger)
         {
             try
@@ -134,14 +143,15 @@ namespace GroupProject.DAL
             }
             catch (Exception e)
             {
-                _logger.LogError("A unhandled error accured getting invoice with {ApplicationUser} and {InvoiceID} :::: {Exception}", user, id, e);
-                return new Betalinger() { };
+                _logger.LogError(
+                    "A unhandled error accured getting invoice with {ApplicationUser} and {InvoiceID} :::: {Exception}",
+                    user, id, e);
+                return null;
             }
         }
 
         internal bool deleteInvoice(ApplicationUser user, int id)
         {
-
             try
             {
                 Betalinger betaling = getInvoice(user, id);
@@ -158,10 +168,145 @@ namespace GroupProject.DAL
             }
             catch (Exception e)
             {
-                _logger.LogError("A unhandled error accured deleting invoice with {ApplicationUser} and {InvoiceID} :::: {Exception}", user, id, e);
+                _logger.LogError(
+                    "A unhandled error accured deleting invoice with {ApplicationUser} and {InvoiceID} :::: {Exception}",
+                    user, id, e);
                 return false;
             }
+        }
 
+        public Betalinger getInvoice(int id)
+        {
+            try
+            {
+                return _persondbcontext.Betal
+                                       .Include(k => k.konto)
+                                       .Single(b => b.Id == id);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(
+                    "A unhandled error accured retriving invoices :::: {Exception}",
+                    e);
+                return null;
+            }
+        }
+
+        public Konto getAccount(String kontoNr)
+        {
+            try
+            {
+                return _persondbcontext.Kontoer
+                    .Single(k => k.kontoNr == kontoNr);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(
+                    "A unhandled error accured retriving invoices :::: {Exception}",
+                    e);
+                return null;
+            }
+        }
+
+        public void changeAccount(Konto konto)
+        {
+            try
+            {
+                _persondbcontext.Kontoer.Update(konto);
+                _persondbcontext.SaveChanges();
+                _logger.LogInformation("Account changed {Account}", konto);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(
+                  "A unhandled error accured changing {Account} :::: {Exception}",
+                  konto, e);
+            }
+            
+
+        }
+
+        public Betalinger getBetalinger(int id)
+        {
+            try
+            {
+                return _persondbcontext.Betal.Single(b => b.Id == id);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(
+                    "A unhandled error accured getting payment with {Id} :::: {Exception}",
+                    id, e);
+                return null;
+            }
+        }
+
+        public bool executeTransaction(Betalinger betaling)
+        {
+            try
+            {
+                Konto toAccount = getAccount(betaling.tilKonto);
+
+                if (toAccount != null)
+                {
+                    if (betaling.belop <= 0) return false;
+                    if (betaling.konto.saldo < betaling.belop) return false;
+
+                    betaling.konto.saldo -= betaling.belop;
+                    toAccount.saldo += betaling.belop;
+                    betaling.utfort = true;
+
+                    changeAccount(toAccount);
+                    changeAccount(betaling.konto);
+                    changePayment(betaling);
+
+                    _logger.LogInformation("Transaction made to account inside of bank {Invoice}", betaling);
+
+                    return true;
+                }
+                
+                if (betaling.belop <= 0) return false;
+                if (betaling.konto.saldo < betaling.belop) return false;
+
+                betaling.konto.saldo -= betaling.belop;
+                betaling.utfort = true;
+
+                changeAccount(betaling.konto);
+                changePayment(betaling);
+
+                _logger.LogInformation("Transaction made to account outside of bank {Invoice}", betaling);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(
+                    "A unhandled error accured executing {Invoice} :::: {Exception}",
+                    betaling, e);
+                return false;
+            }
+        }
+
+
+        public void executeMultipleTransaction(IEnumerable<int> ids)
+        {
+            try
+            {
+                foreach (int id in ids)
+                {
+                    Betalinger betaling = GetBetalinger(id);
+                    if (betaling != null)
+                    {
+                        executeTransaction(betaling);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(
+                   "A unhandled error accured executing {Invoices} :::: {Exception}",
+                   ids, e);
+            }
         }
     }
 }
