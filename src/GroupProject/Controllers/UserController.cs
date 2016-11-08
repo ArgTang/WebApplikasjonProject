@@ -22,17 +22,17 @@ namespace GroupProject.Controllers
     [Authorize]
     public class UserController : Controller
     {
-        private readonly PersonDbContext _persondbcontext;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly UserBLL _userBLL;
 
-        public UserController(SignInManager<ApplicationUser> signInManager, 
+        public UserController(
+            SignInManager<ApplicationUser> signInManager, 
             UserManager<ApplicationUser> userManager, 
             UserBLL userBLL
         )
         {
-            this._signInManager = signInManager;
+            _signInManager = signInManager;
             _userManager = userManager;
             _userBLL = userBLL;
         }

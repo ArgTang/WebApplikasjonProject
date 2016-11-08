@@ -1,0 +1,26 @@
+﻿@model List<Konto>
+
+<section class="container">
+    <h1>Velkommen til adminsiden!</h1>
+
+    <h2>Oversikt over dine kontoer</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Kontonummer</th>
+                <th>Bokført saldo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var konto in Model)
+            {
+                <tr>
+                    <td>@konto.kontoType</td>
+                    <td>@konto.kontoNr</td>
+                    <td id="saldo">@konto.saldo</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

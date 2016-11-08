@@ -38,6 +38,7 @@
                             {
                                 <a asp-action="Betal" asp-route-id="@betal.Id" class="btn">Endre</a>
                                 <a onclick="deleteInvoice(@betal.Id)" class="btn">Slett</a>
+                                <a onclick="payInvoice(@betal.Id)" class="btn">Betal</a>
                             }
                         </td>
                     </tr>
