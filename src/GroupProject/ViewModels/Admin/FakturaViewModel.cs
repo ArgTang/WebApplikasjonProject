@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using GroupProject.Models;
+using GroupProject.DAL;
 
 namespace GroupProject.ViewModels.Admin
 {
