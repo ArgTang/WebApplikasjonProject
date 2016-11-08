@@ -45,23 +45,22 @@
             <legend> Personlig informasjon </legend>
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label">Fornavn</label>
+                <label asp-for="firstName" class="col-md-4 control-label">Fornavn</label>
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="firstName" placeholder="Fornavn" class="form-control" type="text" id="inputSuccess">
-                        @*<i class="form-control-feedback glyphicon glyphicon-ok" data-bv-icon-for="first_name"></i>*@
+                        <input asp-for="firstName" class="form-control">
                     </div>
                 </div>
             </div>
             <!-- Text input-->
 
             <div class="form-group">
-                <label class="col-md-4 control-label">Etternavn</label>
+                <label asp-for="lastName" class="col-md-4 control-label">Etternavn</label>
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="lastName" placeholder="Etternavn" class="form-control" type="text" required>
+                        <input asp-for="lastName" class="form-control">
                     </div>
                 </div>
             </div>
@@ -70,11 +69,11 @@
             <!-- Text input-->
 
             <div class="form-group">
-                <label class="col-md-4 control-label">Telefonnummer</label>
+                <label asp-for="phonenumber" class="col-md-4 control-label">Telefonnummer</label>
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                        <input name="phonenumber" placeholder="98989898" class="form-control" type="text" required>
+                        <input asp-for="phonenumber" class="form-control">
                     </div>
                 </div>
             </div>
@@ -82,11 +81,11 @@
             <!-- Text input-->
 
             <div class="form-group">
-                <label class="col-md-4 control-label">Adresse</label>
+                <label asp-for="adresse" class="col-md-4 control-label">Adresse</label>
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input name="adresse" placeholder="Adressse" class="form-control" type="text" required>
+                        <input asp-for="adresse" class="form-control">
                     </div>
                 </div>
             </div>
@@ -94,11 +93,11 @@
             <!-- Text input-->
 
             <div class="form-group">
-                <label class="col-md-4 control-label">Postnummer</label>
+                <label asp-for="zipcode" class="col-md-4 control-label">Postnummer</label>
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input name="zipcode" placeholder="Postnummer" class="form-control" type="text" required>
+                        <input asp-for="zipcode"class="form-control">
                     </div>
                 </div>
             </div>
@@ -145,11 +144,11 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label">E-postadresse</label>
+                <label asp-for="epost" class="col-md-4 control-label">E-postadresse</label>
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input name="email" placeholder="E-post adresse" class="form-control" type="text" required>
+                        <input asp-for="epost" class="form-control">
                     </div>
                 </div>
             </div>
@@ -189,12 +188,11 @@
                 <div class="col-md-6 selectContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                        <select name="konto" class="form-control selectpicker">
-                            <option value="">Vennligst velg type  konto</option>
+                            <select asp-for="" asp-items="@Html.GetEnumSelectList<kontoNavn>()" class="form-control"></select>
+                            @*<option value="">Vennligst velg type  konto</option>
                             <option>Brukskonto</option>
                             <option>Sparekonto</option>
-                            <option>BSU</option>
-                        </select>
+                            <option>BSU</option>*@
                     </div>
                 </div>
             </div>
@@ -204,11 +202,11 @@
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4">
                     <button type="submit" class="btn btn-warning">Registrer ny bruker<span class="glyphicon glyphicon-send"></span>
-                    @if (GroupProject.ViewModels.Admin.RegisterViewModel == 0)
+                    @*@if (GroupProject.ViewModels.Admin.RegisterViewModel == 0)
                     {
                         @:Legg til 
 
-                    }
+                    }*@
                     </button>
                 </div>
             </div>

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using GroupProject.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace GroupProject.ViewModels.Admin
