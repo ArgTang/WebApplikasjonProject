@@ -6625,3 +6625,18 @@ WHERE [u].[Id] = @__id_0
 2016-11-08 15:58:25.619 +01:00 [Debug] Request did not match any routes.
 2016-11-08 15:58:25.622 +01:00 [Information] Request finished in 51.1533ms 404 
 2016-11-08 15:58:25.623 +01:00 [Debug] Connection id ""0HL07RMGGI8BB"" completed keep alive response.
+2016-11-08 17:18:06.043 +01:00 [Debug] Connection id ""0HL07RMGGI8BC"" received FIN.
+2016-11-08 17:18:06.043 +01:00 [Debug] Connection id ""0HL07RMGGI8BA"" received FIN.
+2016-11-08 17:18:06.043 +01:00 [Debug] Connection id ""0HL07RMGGI8BB"" received FIN.
+2016-11-08 17:18:06.043 +01:00 [Debug] Connection id ""0HL07RMGGI8BC"" disconnecting.
+2016-11-08 17:18:06.049 +01:00 [Debug] Connection id ""0HL07RMGGI8BC"" sending FIN.
+2016-11-08 17:18:06.075 +01:00 [Debug] Connection id ""0HL07RMGGI8BB"" disconnecting.
+2016-11-08 17:18:06.075 +01:00 [Debug] Connection id ""0HL07RMGGI8BC"" sent FIN with status "0".
+2016-11-08 17:18:06.075 +01:00 [Debug] Connection id ""0HL07RMGGI8BC"" stopped.
+2016-11-08 17:18:06.075 +01:00 [Debug] Connection id ""0HL07RMGGI8BB"" sending FIN.
+2016-11-08 17:18:06.075 +01:00 [Debug] Connection id ""0HL07RMGGI8BB"" sent FIN with status "0".
+2016-11-08 17:18:06.075 +01:00 [Debug] Connection id ""0HL07RMGGI8BB"" stopped.
+2016-11-08 17:18:06.049 +01:00 [Debug] Connection id ""0HL07RMGGI8BA"" disconnecting.
+2016-11-08 17:18:06.076 +01:00 [Debug] Connection id ""0HL07RMGGI8BA"" sending FIN.
+2016-11-08 17:18:06.076 +01:00 [Debug] Connection id ""0HL07RMGGI8BA"" sent FIN with status "0".
+2016-11-08 17:18:06.076 +01:00 [Debug] Connection id ""0HL07RMGGI8BA"" stopped.

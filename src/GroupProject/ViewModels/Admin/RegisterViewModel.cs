@@ -1,6 +1,9 @@
+
 ﻿using System.Collections.Generic;
 using GroupProject.DAL;
 using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+
 
 namespace GroupProject.ViewModels.Admin
 {
