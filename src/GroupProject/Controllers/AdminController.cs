@@ -33,5 +33,15 @@ namespace GroupProject.Controllers
         {
             return View();
         }
+
+        public IActionResult EndreBruker()
+        {
+            return View();
+        }
+
+        public IActionResult FakturaOversikt()
+        {
+            return View();
+        }
     }
 }

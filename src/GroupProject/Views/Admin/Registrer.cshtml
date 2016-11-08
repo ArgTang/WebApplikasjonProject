@@ -1,4 +1,4 @@
-﻿@model RegisterViewModel
+﻿@model GroupProject.ViewModels.Admin.RegisterViewModel
 
 @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js" integrity="sha256-uUVS/d3xM3l8YmucAkj1DeRt6U4Y+Xv3ePUgVVEVmVw=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js" integrity="sha256-g1QKGxqsp+x5JkuN/JjHl96je2wztgS5Wo4h4c7gm9M=" crossorigin="anonymous"></script>*@
@@ -54,7 +54,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Text input-->
 
             <div class="form-group">
@@ -191,7 +190,7 @@
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                         <select name="konto" class="form-control selectpicker">
-                            <option value=" ">Vennligst velg type  konto</option>
+                            <option value="">Vennligst velg type  konto</option>
                             <option>Brukskonto</option>
                             <option>Sparekonto</option>
                             <option>BSU</option>
@@ -204,12 +203,30 @@
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-warning">Registrer ny bruker<span class="glyphicon glyphicon-send"></span></button>
+                    <button type="submit" class="btn btn-warning">Registrer ny bruker<span class="glyphicon glyphicon-send"></span>
+                    @if (GroupProject.ViewModels.Admin.RegisterViewModel == 0)
+                    {
+                        @:Legg til 
+
+                    }
+                    </button>
                 </div>
             </div>
         </fieldset>
     </form>
     </section>
+
+@*<button type="submit" class="btn btn-default btn-lg">
+    @if (Model == null)
+    {
+        @:Legg betaling
+                }
+    else
+    {
+        @:Endre betaling og legg
+                }
+    til forfall
+</button>*@
 @*<style>
 #reg_form .has-error .control-label,
 #reg_form .has-error .help-block,
