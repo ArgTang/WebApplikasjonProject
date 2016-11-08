@@ -31,7 +31,7 @@ namespace GroupProject.Controllers
         // GET: /<controller>/
         public IActionResult Registrer()
         {
-            ViewBag.kontoNavn = Konto.kontoNavn;
+            //ViewBag.kontoNavn = Konto.kontoNavn;
             return View();
         }
 
