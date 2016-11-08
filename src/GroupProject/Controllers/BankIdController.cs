@@ -2,10 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using GroupProject.Annotations;
+using GroupProject.BLL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using GroupProject.DAL;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 /**
  * This Controller Do all the magic for logging into the application
@@ -18,35 +20,15 @@ namespace GroupProject.Controllers
 {
     public class BankIdController : Controller
     {
-        private readonly String birthKey = "birthNumber";
-        private readonly String passKey = "password";
-        private readonly String tokenKey = "authToken";
-        private readonly String authKey = "auth";
-
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private PersonDbContext _personDbContext { get; set; }
-
-        private readonly String[] referanser = {
-            "SMAL SKOLE",
-            "IMMUN BANK",
-            "DYKTIG KASSE",
-            "RIK STUDENT",
-            "SIKKER BANK",
-            "RIK BANK",
-            "ENORM BANK",
-            "SVIDD MIDDAG",
-            "MYK HJELM",
-            "UTRO HAMSTER",
-            "SUR LAKS"
-        };
+        private readonly BankIdBLL _bankIdBll;
 
         public BankIdController(
-            PersonDbContext personDbcontext,
+            DbAccess dbAccess,
             SignInManager<ApplicationUser> signInManager
         )
         {
-            _personDbContext = personDbcontext;
-            this._signInManager = signInManager;
+            _bankIdBll = new BankIdBLL(signInManager, dbAccess);
+            
         }
 
         // GET: /bankid
@@ -67,36 +49,21 @@ namespace GroupProject.Controllers
             {
                 IFormCollection form = Request.Form;
 
-                if (form.ContainsKey(birthKey))
+                if (form.ContainsKey(BankIdBLL.BIRTH_KEY))
                 {
                     BirthNumber birthNumber = new BirthNumber();
-                    String birthNr = form[birthKey];
+                    String birthNr = form[BankIdBLL.BIRTH_KEY];
 
-                    if (birthNumber.IsValid(form[birthKey].ToString()) && _personDbContext.Users.Any(p => p.NormalizedUserName == form[birthKey]))
-                    {
-                        HttpContext.Session.SetString(birthKey, birthNr);
-
-                        if (birthNumber.IsValid(form[birthKey].ToString()) && _personDbContext.Users.Any(p => p.NormalizedUserName == form[birthKey]))
+                        if (birthNumber.IsValid(form[BankIdBLL.BIRTH_KEY].ToString()) && _bankIdBll.userExists(form[BankIdBLL.BIRTH_KEY]))
                         {
-                            HttpContext.Session.SetString(birthKey, birthNr);
+                            HttpContext.Session.SetString(BankIdBLL.BIRTH_KEY, birthNr);
                             ViewBag.birthNumber = birthNr;
 
-                            byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
-                            byte[] key = Guid.NewGuid().ToByteArray();
-                            string token = Convert.ToBase64String(time.Concat(key).ToArray());
-                            token = token.Replace('+', '/');
-                            HttpContext.Session.SetString(tokenKey, token);
-                            HttpContext.Session.SetInt32(authKey, 0);
-
-                            Random r = new Random();
-                            int rInt = r.Next(0, referanser.Length);
-
-                            ViewBag.reference = referanser[rInt];
-                            ViewBag.authToken = token;
+                            ViewBag.reference = _bankIdBll.getRefWord();
+                            ViewBag.authToken = _bankIdBll.genToken(HttpContext);
 
                             return View("Reference");
                         }
-                    }
                 }
             }
             //If no body is specified
@@ -139,14 +106,12 @@ namespace GroupProject.Controllers
             {
                 IFormCollection form = Request.Form;
 
-                if (form.ContainsKey(passKey))
+                if (form.ContainsKey(BankIdBLL.PASS_KEY))
                 {
-                    String birthNr = HttpContext.Session.GetString(birthKey);
 
-                    var loginresults = await _signInManager.PasswordSignInAsync(birthNr, form[passKey], true, false);
-                    if (loginresults.Succeeded)
+                    if (await _bankIdBll.login(HttpContext))
                     {
-                        HttpContext.Session.Clear();
+                        _bankIdBll.clearSession(HttpContext);
                         return Content("loggedIn");
                     }
                     else
@@ -157,14 +122,15 @@ namespace GroupProject.Controllers
                 }
                 else
                 {
-                    HttpContext.Session.Remove(birthKey);
+                    //HttpContext.Session.Remove(BankIdBLL.BIRTH_KEY);
+                    _bankIdBll.clearSession(HttpContext);
                     return View("Error");
                 }
             }
             //If no body is specified
             catch (Exception)
             {
-                HttpContext.Session.Clear();
+                _bankIdBll.clearSession(HttpContext);
                 return View("Error");
             }
         }
@@ -180,21 +146,13 @@ namespace GroupProject.Controllers
             {
                 IFormCollection form = Request.Form;
 
-                if (form.ContainsKey(birthKey) && form.ContainsKey(tokenKey))
+                if (form.ContainsKey(BankIdBLL.BIRTH_KEY) && form.ContainsKey(BankIdBLL.TOKEN_KEY))
                 {
-                    String token = HttpContext.Session.GetString(tokenKey);
-
-                    if (token.Equals(form[tokenKey]))
+                    if (_bankIdBll.setAuthOk(HttpContext))
                     {
-                        //is token expired ?
-                        byte[] data = Convert.FromBase64String(token);
-                        DateTime time = DateTime.FromBinary(BitConverter.ToInt64(data, 0));
-                        if (time > DateTime.UtcNow.AddMinutes(-1))
-                        {
-                            HttpContext.Session.SetInt32(authKey, 1);
-                            return Content("authorized");
-                        }
+                        return Content("authorized");
                     }
+                   
                 }
                 else
                 {
@@ -220,19 +178,9 @@ namespace GroupProject.Controllers
             {
                 IFormCollection form = Request.Form;
 
-                if (form.ContainsKey(birthKey))
+                if (form.ContainsKey(BankIdBLL.BIRTH_KEY))
                 {
-                    String token = HttpContext.Session.GetString(tokenKey);
-                    //is token expired ?
-                    byte[] data = Convert.FromBase64String(token);
-                    DateTime time = DateTime.FromBinary(BitConverter.ToInt64(data, 0));
-                    if (time < DateTime.UtcNow.AddMinutes(-1))
-                    {
-                        HttpContext.Session.Clear();
-                        return Content("error");
-                    }
-
-                    if (HttpContext.Session.GetInt32(authKey) == 1)
+                    if (_bankIdBll.isAuthOk(HttpContext))
                     {
                         return Content("authorized");
                     }

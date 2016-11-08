@@ -80,8 +80,6 @@ namespace GroupProject.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<int?>("KontoId");
-
                     b.Property<string>("UpdatedBy")
                         .IsRequired()
                         .HasAnnotation("MaxLength", 50);
@@ -96,13 +94,13 @@ namespace GroupProject.Migrations
 
                     b.Property<DateTime>("forfallDato");
 
-                    b.Property<string>("fraKonto")
-                        .IsRequired();
-
                     b.Property<string>("info")
                         .HasAnnotation("MaxLength", 100);
 
                     b.Property<string>("kid");
+
+                    b.Property<int?>("kontoId")
+                        .IsRequired();
 
                     b.Property<string>("mottaker");
 
@@ -113,7 +111,7 @@ namespace GroupProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("KontoId");
+                    b.HasIndex("kontoId");
 
                     b.ToTable("Betalinger");
                 });
@@ -124,8 +122,6 @@ namespace GroupProject.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreatedDate");
-
-                    b.Property<int>("PersonerId");
 
                     b.Property<string>("UpdatedBy")
                         .IsRequired()
@@ -142,11 +138,13 @@ namespace GroupProject.Migrations
 
                     b.Property<int>("kontoType");
 
+                    b.Property<int>("personId");
+
                     b.Property<decimal>("saldo");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PersonerId");
+                    b.HasIndex("personId");
 
                     b.ToTable("Konto");
                 });
@@ -286,16 +284,17 @@ namespace GroupProject.Migrations
 
             modelBuilder.Entity("GroupProject.DAL.Betalinger", b =>
                 {
-                    b.HasOne("GroupProject.DAL.Konto", "Konto")
+                    b.HasOne("GroupProject.DAL.Konto", "konto")
                         .WithMany("betal")
-                        .HasForeignKey("KontoId");
+                        .HasForeignKey("kontoId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("GroupProject.DAL.Konto", b =>
                 {
-                    b.HasOne("GroupProject.DAL.Person", "Personer")
+                    b.HasOne("GroupProject.DAL.Person", "person")
                         .WithMany("konto")
-                        .HasForeignKey("PersonerId")
+                        .HasForeignKey("personId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
