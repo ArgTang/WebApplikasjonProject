@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GroupProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
+using GroupProject.DAL;
 
 /**
  * 
@@ -18,9 +18,9 @@ namespace GroupProject.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ILogger<HomeController> _logger;
+        //private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly SignInManager<ApplicationUser> _signInManager;
+        //private readonly ILogger<HomeController> _logger;
 
         private PersonDbContext _personDbContext { get; set; }
 

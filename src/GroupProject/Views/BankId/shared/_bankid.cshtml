@@ -5,15 +5,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <environment names="Development">
         <link rel="stylesheet" type="text/css" href="CSS/bid.css">
         <link rel="stylesheet" type="text/css" href="CSS/main.css">
-        <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     </environment>
     <environment names="Staging,Production">
-        <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="~/CSS/bid.css">
-        <link rel="stylesheet" type="text/css" href="~/CSS/main.css">
+        <link rel="stylesheet" type="text/css" href="~/CSS/bid.min.css">
+        <link rel="stylesheet" type="text/css" href="~/CSS/main.min.css">
     </environment>
 </head>
 <body id="body">
@@ -37,13 +36,41 @@
                 </div>
             </div>
         </div>
+        <div class="viewport" data-container="header_right">
+            <div class="container">
+                <div class="button_icon_wrapper">
+                    <button id="menuButton" class="buttonIcon" title="Åpne meny">
+                        <span class="label">Meny</span>
+                        <img alt="" class="svg" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19tZW51PC90aXRsZT48cGF0aCBkPSJNMCA4djJoMTV2LTJoLTE1em0wLTR2MmgxNXYtMmgtMTV6bTAtNHYyaDE1di0yaC0xNXoiIGZpbGw9IiM1NTUiLz48L3N2Zz4=">
+                    </button>
+                </div>
+                <div class="popover_wrapper hide" data-popover="menu" data-position="right top">
+                    <div class="popover arrow_box">
+                        <div class="arrow">
+                            <div class="border"></div>
+                            <div class="fill"></div>
+                        </div>
+                        <div class="wrapper">
+                            <div class="popover_container">
+                                <div role="menu" class="popover_contents menu">
+                                    <button id="cancelButton" role="menuitem" class="menu_item item">
+                                        <span>Avbryt BankID</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
     @RenderBody()
     <footer class="footer">
         <div class="viewport">
             <div class="container">
                 <div class="button_icon_wrapper">
-                    <button class="buttonIcon" title="Åpne sertifikater" type="button" aria-haspopup="true">
+                    <button id="menuButton" class="buttonIcon" title="Åpne sertifikater" type="button" aria-haspopup="true">
                         <span class="label" style="display: none;"></span>
                         <img alt="" class="svg"
                                 src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19jZXJ0aWZpY2F0ZTwvdGl0bGU+PGcgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTAgNi4yMDZjMCA0LjEzNyAzLjE5MiA5LjM0IDcuNSAxMS4zNzcgNC4yOTgtMi4wMzIgNy41LTcuMjQgNy41LTExLjM3N3YtNi4yMDZoLTE1djYuMjA2eiIgZmlsbD0iIzU1NSIvPjxwYXRoIGQ9Ik0xMC41IDMuNWwxIDEtNCA0LTEgMS0xLTEtMi0yIDEtMSAyIDIgNC00eiIgZmlsbD0iI2ZmZiIvPjwvZz48L3N2Zz4=">
@@ -60,10 +87,12 @@
 </div>
     <environment names="Development">
         <script src="js/identify.js"></script>
+        <script src="js/header.js"></script>
         <script src="js/reference.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="js/identify.js"></script>
+        <script src="js/header.js"></script>
         <script src="js/reference.js"></script>
     </environment>
 </body>

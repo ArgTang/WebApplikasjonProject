@@ -55,9 +55,9 @@ document.body.addEventListener("click",function () {
 function toggleErrorMessage(bool) {
     if (infobubble) {
         if (bool) {
-            infobubble.classList.remove("hide-error");
+            infobubble.classList.remove("hide");
         } else {
-            infobubble.classList.add("hide-error");
+            infobubble.classList.add("hide");
         }
     }
 
@@ -65,7 +65,7 @@ function toggleErrorMessage(bool) {
 
 function post(path, data) {
     if(data.birthnumber)
-        postData.birthnumber = data.birthnumber;
+        postData.birthnumber  = data.birthnumber;
     if (data.password)
         postData.password = data.password;
     if (data.authToken)

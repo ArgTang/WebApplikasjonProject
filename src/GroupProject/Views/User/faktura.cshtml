@@ -20,12 +20,12 @@
            
                 @foreach (Betalinger betal in Model.payments)
                 {
-                    <tr id="invoiceId_@betal.Id">
+                    <tr id="invoiceId_@betal.Id">   
                         @foreach (Konto konto in Model.accounts) {
-                            if (betal.fraKonto.Equals(konto.kontoNr))
+                            if (betal.konto.kontoNr.Equals(konto.kontoNr))
                             {
                                 <td>@konto.kontoType
-                                    <small>(@betal.fraKonto.Insert(4," ").Insert(7," ")) </small >
+                                    <small>(@betal.konto.kontoNr.Insert(4," ").Insert(7," ")) </small >
                                 </td>
                             }
                         } 
