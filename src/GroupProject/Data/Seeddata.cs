@@ -34,8 +34,8 @@ namespace GroupProject.Data
         public async Task SeedPersons()
         {
             // kun for resetting av database, bør kjøres ved updates
-            _personDbContext.Database.EnsureDeleted();
-            _personDbContext.Database.EnsureCreated();
+            //_personDbContext.Database.EnsureDeleted();
+            //_personDbContext.Database.EnsureCreated();
 
             if (!await _personDbContext.Users.AnyAsync())
             {
