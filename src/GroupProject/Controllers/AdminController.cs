@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+=======
+﻿using Microsoft.AspNetCore.Mvc;
+>>>>>>> c2e9bb83cdc7829dae04b6028899786c478fa733
 using Microsoft.AspNetCore.Identity;
 using GroupProject.DAL;
 using GroupProject.ViewModels.Admin;
@@ -14,16 +18,17 @@ namespace GroupProject.Controllers
     public class AdminController : Controller
     {
 
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly DbAccess _access;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly DbAccess _access;       
 
-        public AdminController(SignInManager<ApplicationUser> signInManager,
-        DbAccess dbAccess,
-        UserManager<ApplicationUser> userManager
-)
+        public AdminController(
+            SignInManager<ApplicationUser> signInManager,
+            DbAccess dbAccess,
+            UserManager<ApplicationUser> userManager
+        )
         {
-            this._signInManager = signInManager;
+            _signInManager = signInManager;
             _access = dbAccess;
             _userManager = userManager;
         }
