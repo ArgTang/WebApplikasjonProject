@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-=======
-﻿using Microsoft.AspNetCore.Mvc;
->>>>>>> c2e9bb83cdc7829dae04b6028899786c478fa733
 using Microsoft.AspNetCore.Identity;
 using GroupProject.DAL;
 using GroupProject.ViewModels.Admin;
@@ -15,6 +11,7 @@ using GroupProject.ViewModels.Admin;
 
 namespace GroupProject.Controllers
 {
+
     public class AdminController : Controller
     {
 
@@ -36,7 +33,7 @@ namespace GroupProject.Controllers
         // GET: /<controller>/
         public IActionResult Registrer()
         {
-            //ViewBag.kontoNavn = Konto.kontoNavn;
+            ViewBag.kontoNavn = Konto.kontoNavn.Brukskonto;
             return View();
         }
 

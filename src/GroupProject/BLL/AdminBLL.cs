@@ -13,9 +13,9 @@ namespace GroupProject.BLL
 
     public class AdminBLL
     {
-        public List<Enum> getAccountName()
-        { 
+        //public List<Enum> getAccountName()
+        //{ 
            
-        }
+        //}
     }
 }

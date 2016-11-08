@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
-<<<<<<< HEAD
-=======
 using GroupProject.DAL;
->>>>>>> c2e9bb83cdc7829dae04b6028899786c478fa733
 using System.ComponentModel.DataAnnotations;
 
 namespace GroupProject.ViewModels.Admin
 {
     public class RegisterViewModel
     {
+
         //fornavn
         [DataType(DataType.Text)]
         [Display(Name = "Vennligst skriv inn ditt fornavn", Prompt = "Fornavn")]
@@ -53,8 +51,15 @@ namespace GroupProject.ViewModels.Admin
         
 
         [DataType(DataType.EmailAddress)]
-        [Display(Name ="Vennlisk skriv inn din epostadresse", Prompt ="Epostadresse")]
+        [Display(Name = "Vennligst skriv inn din epostadresse", Prompt ="Epostadresse")]
         [Required(ErrorMessage ="Dette feltet må være utfylt")]
         public string epost { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Vennligst skriv inn ett gyldig fødselsnummer", Prompt = "Fødselsnummer")]
+        [Required(ErrorMessage = "Dette feltet må være utfylt")]
+        [StringLength(11, ErrorMessage = "Ett gyldig fødselsnummer kan kun inneholde 11 siffer")]
+        [RegularExpression("/^[0-9]{11}/", ErrorMessage = "Ett gyldig fødselsnummer kan kun inneholde 11 siffer")]
+        public string sokBruker { get; set; }
     }
 }
