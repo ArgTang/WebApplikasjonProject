@@ -151,8 +151,7 @@ namespace GroupProject.Controllers
         public async Task<IActionResult> Logout()
         {
             ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
-            user.lastLogin = DateTime.Now;
-            await _signInManager.SignOutAsync();
+            _userBLL.logout(user);
 
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }

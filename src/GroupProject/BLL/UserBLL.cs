@@ -103,6 +103,12 @@ namespace GroupProject.BLL
             model.reciever = invoice.mottaker;
             return model;
         }
+
+        public async void logout(ApplicationUser user)
+        {
+            user.lastLogin = DateTime.Now;
+            await _signInManager.SignOutAsync();
+        }
     }
 }
 
