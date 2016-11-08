@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using GroupProject.DAL;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
+using Microsoft.Extensions.Logging;
 
 /**
  * This Controller Do all the magic for logging into the application
@@ -21,14 +22,16 @@ namespace GroupProject.Controllers
     public class BankIdController : Controller
     {
         private readonly BankIdBLL _bankIdBll;
+        private readonly ILogger<BankIdController> _logger;
 
         public BankIdController(
             DbAccess dbAccess,
-            SignInManager<ApplicationUser> signInManager
+            SignInManager<ApplicationUser> signInManager,
+            ILogger<BankIdController> logger
         )
         {
             _bankIdBll = new BankIdBLL(signInManager, dbAccess);
-            
+            _logger = logger;
         }
 
         // GET: /bankid
@@ -69,6 +72,7 @@ namespace GroupProject.Controllers
             //If no body is specified
             catch (Exception)
             {
+                _logger.LogError("No form specified on '~/bankid/identify'");
                 return View("Error");
             }
             return View("Error");
@@ -130,6 +134,7 @@ namespace GroupProject.Controllers
             //If no body is specified
             catch (Exception)
             {
+                _logger.LogError("No form specified on '~/bankid/login'");
                 _bankIdBll.clearSession(HttpContext);
                 return View("Error");
             }
@@ -162,6 +167,7 @@ namespace GroupProject.Controllers
             //If no body is specified
             catch (Exception)
             {
+                _logger.LogError("No form specified on '~/bankid/auth'");
                 return View("Error");
             }
             return Content("error");
@@ -190,6 +196,7 @@ namespace GroupProject.Controllers
             //If no body is specified
             catch (Exception)
             {
+                _logger.LogError("No form specified on '~/bankid/auth/check'");
                 return View("MobileAuth");
             }
             return Content("");
