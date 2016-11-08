@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-<<<<<<< HEAD
-=======
-using GroupProject.DAL;
->>>>>>> c2e9bb83cdc7829dae04b6028899786c478fa733
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace GroupProject.ViewModels.Admin
 {
