@@ -45,18 +45,14 @@ namespace GroupProject.Controllers
             ViewData["Name"] = $"{user.firstName} {user.lastName}";
             ViewData["LastLogin"] = user.lastLogin;
 
-            List<Konto> accounts = _userBLL.getAccounts(user);
-            return View(accounts);
+            return View(_userBLL.getAccounts(user));
         }
-
 
         public async Task<ActionResult> Faktura()
         {
             ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
             FakturaViewModel model = new FakturaViewModel();
-            model.payments = _userBLL.getPayments(user);
-            model.payments.Sort((x, y) => x.forfallDato.CompareTo(y.forfallDato));
-
+            model.payments = _userBLL.getSortedPayments(user);
             model.accounts = _userBLL.getAccounts(user);
 
             return View(model);
@@ -66,8 +62,7 @@ namespace GroupProject.Controllers
         public async Task<IActionResult> Betal(int? id)
         {
             ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
-            ViewBag.fromAccountList = _userBLL.getAccounts(user).Where(item => item.kontoType != Konto.kontoNavn.BSU);
-
+            ViewBag.fromAccountList = _userBLL.getAccountNotBSU(user);
             //if no invoice is asked for go to form
             if (id == null || id == 0)
             {
@@ -77,19 +72,9 @@ namespace GroupProject.Controllers
             Betalinger invoice = new Betalinger();
             invoice = _userBLL.getInvoice(user, (int)id);
 
-            //this sucks any other way?
             if ( invoice != null ) {
-                PaymentViewModel model = new PaymentViewModel();
-                model.amount = ((int) invoice.belop).ToString();
-                model.fraction = (invoice.belop - (int) invoice.belop).ToString();
-                model.date = invoice.forfallDato;
-                model.fromAccount = invoice.konto.kontoNr;
-                model.toAccount = invoice.tilKonto;
-                model.kid = invoice.kid ?? "";
-                model.paymentMessage = invoice.info ?? "";
-                model.reciever = invoice.mottaker;
-
-                return View(model);
+                             
+                return View(_userBLL.changeInvoice(invoice));
             }
 
             return View("FakturaNotFound");
@@ -136,7 +121,7 @@ namespace GroupProject.Controllers
             if (ModelState.IsValid)
             {
                 //Get Account
-                var account = _userBLL.getAccounts(user).Find(acc => acc.kontoNr == model.fromAccount);
+                var account = _userBLL.checkAccount(user, model);
                 if ( account == null ) {
                     ModelState.AddModelError("Konto", "Kunne ikke finne konto, vennligst prøv igjenn");
                     return View();
@@ -147,43 +132,16 @@ namespace GroupProject.Controllers
                     Betalinger betaling = _userBLL.getInvoice(user, (int)id);
                     if (betaling != null)
                     {
-                        betaling.konto = account;
-                        betaling.tilKonto = model.toAccount;
-                        betaling.belop = new Decimal(Double.Parse(model.amount + "," + model.fraction));
-                        betaling.info = model.paymentMessage;
-                        betaling.utfort = false;
-                        betaling.kid = model.kid;
-                        betaling.mottaker = model.reciever;
-                        betaling.forfallDato = model.date;
-                        betaling.UpdatedDate = DateTime.Now;
-                        betaling.UpdatedBy = user.UserName;
-
-                        _userBLL.changePayment(betaling);
+                        _userBLL.changePayment(model,betaling,account,user);
+                        
                         return RedirectToAction(nameof(UserController.Faktura));
                     }
-                    
                 }
-
-                _userBLL.addPayment(new Betalinger 
-                {
-                    konto = account,
-                    tilKonto = model.toAccount,                    
-                    belop = new Decimal(Double.Parse(model.amount + "," + model.fraction)),
-                    info = model.paymentMessage,
-                    utfort = false,
-                    kid = model.kid,
-                    mottaker = model.reciever,
-                    forfallDato = model.date,
-                    CreatedDate = DateTime.Now,
-                    createdBy = user.UserName,
-                    UpdatedDate = DateTime.Now,
-                    UpdatedBy = user.UserName
-
-                });
+                _userBLL.addPayment(model,account,user);
                 return RedirectToAction(nameof(UserController.Faktura));
             }
 
-            ViewBag.fromAccountList = _userBLL.getAccounts(user).Where(item => item.kontoType != Konto.kontoNavn.BSU);
+            ViewBag.fromAccountList = _userBLL.getAccountNotBSU(user);
 
             return View("Betal", model);
         }

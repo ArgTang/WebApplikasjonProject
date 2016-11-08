@@ -1,7 +1,10 @@
 ﻿using GroupProject.DAL;
+using GroupProject.ViewModels.User;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GroupProject.BLL
 {
@@ -25,22 +28,49 @@ namespace GroupProject.BLL
             return _dbAccess.getAccounts(user);
         }
 
-        public List<Betalinger> getPayments(ApplicationUser user)
+        public List<Betalinger> getSortedPayments(ApplicationUser user)
         {
-            return _dbAccess.getPayments(user);
+            List<Betalinger> list = _dbAccess.getPayments(user);
+            list.Sort((x, y) => x.forfallDato.CompareTo(y.forfallDato));
+            return list;
+        }
+
+        public void changePayment(PaymentViewModel model, Betalinger betaling, Konto account, ApplicationUser user)
+        {
+            betaling.konto = account;
+            betaling.tilKonto = model.toAccount;
+            betaling.belop = new Decimal(Double.Parse(model.amount + "," + model.fraction));
+            betaling.info = model.paymentMessage;
+            betaling.utfort = false;
+            betaling.kid = model.kid;
+            betaling.mottaker = model.reciever;
+            betaling.forfallDato = model.date;
+            betaling.UpdatedDate = DateTime.Now;
+            betaling.UpdatedBy = user.UserName;
+            _dbAccess.changePayment(betaling);
+        }
+
+        public void addPayment(PaymentViewModel model, Konto account, ApplicationUser user)
+        {
+            Betalinger betaling = new Betalinger();
+            betaling.konto = account;
+            betaling.tilKonto = model.toAccount;
+            betaling.belop = new Decimal(Double.Parse(model.amount + "," + model.fraction));
+            betaling.info = model.paymentMessage;
+            betaling.utfort = false;
+            betaling.kid = model.kid;
+            betaling.mottaker = model.reciever;
+            betaling.forfallDato = model.date;
+            betaling.CreatedDate = DateTime.Now;
+            betaling.createdBy = user.UserName;
+            betaling.UpdatedDate = DateTime.Now;
+            betaling.UpdatedBy = user.UserName;
             
-        }
-
-        public void changePayment(Betalinger betal)
-        {
-            _dbAccess.changePayment(betal);
-        }
-
-        public void addPayment(Betalinger betal)
-        {
-            _dbAccess.addPayment(betal);
+            _dbAccess.addPayment(betaling);
         }
         
+
+
         internal Betalinger getInvoice(ApplicationUser user, int id)
         {
             return _dbAccess.getInvoice(user, id);
@@ -50,6 +80,30 @@ namespace GroupProject.BLL
         {
             return _dbAccess.deleteInvoice(user, id);
         }
+        public IEnumerable<Konto> getAccountNotBSU(ApplicationUser user)
+        {
+            return getAccounts(user).Where(item => item.kontoType != Konto.kontoNavn.BSU);
+        }
 
+        public Konto checkAccount(ApplicationUser user, PaymentViewModel model)
+        {
+            return getAccounts(user).Find(acc => acc.kontoNr == model.fromAccount);
+        }
+
+        public PaymentViewModel changeInvoice(Betalinger invoice)
+        {
+            PaymentViewModel model = new PaymentViewModel();
+            model.amount = ((int)invoice.belop).ToString();
+            model.fraction = (invoice.belop - (int)invoice.belop).ToString();
+            model.date = invoice.forfallDato;
+            model.fromAccount = invoice.konto.kontoNr;
+            model.toAccount = invoice.tilKonto;
+            model.kid = invoice.kid ?? "";
+            model.paymentMessage = invoice.info ?? "";
+            model.reciever = invoice.mottaker;
+            return model;
+        }
     }
 }
+
+
