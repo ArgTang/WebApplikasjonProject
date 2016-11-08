@@ -1,14 +1,16 @@
 ﻿using GroupProject.DAL;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace GroupProject.DAL
 {
-    public class PersonDbContext: IdentityDbContext<ApplicationUser>
+    public class PersonDbContext : IdentityDbContext<ApplicationUser>
     {
 
-        public PersonDbContext(DbContextOptions<PersonDbContext> options):base(options) 
+        public PersonDbContext(DbContextOptions<PersonDbContext> options) : base(options)
         {
+
         }
 
         public DbSet<Person> Person { set; get; }

@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
 using GroupProject.DAL;
 using GroupProject.BLL;
+using Serilog;
+using Serilog.Filters;
 
 namespace GroupProject
 {
@@ -26,6 +28,17 @@ namespace GroupProject
          */
         public Startup(IHostingEnvironment env)
         {
+            Log.Logger = new Serilog.LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .Enrich.FromLogContext()
+            .WriteTo.Seq("http://localhost:5341")
+            .WriteTo.RollingFile("Logs/Acos_log_ALL-LOGS___.txt")
+            .WriteTo.Logger(lc => lc
+                .Filter.ByIncludingOnly(e => e.Level == Serilog.Events.LogEventLevel.Error)
+                .Filter.ByIncludingOnly(Matching.FromSource<DbAccess>())
+                .WriteTo.RollingFile("Logs/Acos_log_DATABASE-ERROR___.txt"))
+            .CreateLogger();
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional:true, reloadOnChange:true)
@@ -34,6 +47,8 @@ namespace GroupProject
 
 
             Configuration = builder.Build();
+
+            
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -96,6 +111,8 @@ namespace GroupProject
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.AddSerilog();
+
 
             if (env.IsDevelopment())
             {
