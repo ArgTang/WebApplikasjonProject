@@ -24,9 +24,7 @@ namespace GroupProject.DAL
             try{
                 _logger = logger;
                 _persondbcontext = personDbContext;
-                _logger.LogError("A unhandled error accured accessing personDBContext :::: {Exception}");
-            }
-            catch(Exception e)
+            }catch(Exception e)
             {
                 _logger.LogError("A unhandled error accured accessing personDBContext :::: {Exception}", e);
             }
