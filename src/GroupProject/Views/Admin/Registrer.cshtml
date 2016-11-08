@@ -1,0 +1,412 @@
+﻿@model GroupProject.ViewModels.Admin.RegisterViewModel
+
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js" integrity="sha256-uUVS/d3xM3l8YmucAkj1DeRt6U4Y+Xv3ePUgVVEVmVw=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js" integrity="sha256-g1QKGxqsp+x5JkuN/JjHl96je2wztgS5Wo4h4c7gm9M=" crossorigin="anonymous"></script>*@
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+
+@*<section class="container">
+    <h2>@ViewData["Title"]</h2>
+    <form asp-controller="Home" asp-action="Register" method="post" class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">E-postadresse</label>
+            <divp class="col-sm-10">
+                <input asp-for="username" class="form-control" id="username" placeholder="Brukernavn">
+                <span asp-validation-for="username" class="text-danger"></span>
+            </divp>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">Passord</label>
+            <div class="col-sm-10">
+                <input asp-for="password" type="password" class="form-control" id="password" placeholder="Passord">
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword" class="col-sm-2 control-label">Gjenta password</label>
+            <div class="col-sm-10">
+                <input asp-for="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Gjenta passord">
+                <span asp-validation-for="confirmPassword" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-default">Registrer</button>
+        </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </form>
+</section>*@
+<section class="container">
+    <form class="form-horizontal" action="" method="post" id="reg_form">
+        <fieldset>
+            <!-- Form Name -->
+            <legend> Personlig informasjon </legend>
+            <!-- Text input-->
+            <div class="form-group">
+                <label asp-for="firstName" class="col-md-4 control-label">Fornavn</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input asp-for="firstName" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label asp-for="lastName" class="col-md-4 control-label">Etternavn</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input asp-for="lastName" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label asp-for="phonenumber" class="col-md-4 control-label">Telefonnummer</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input asp-for="phonenumber" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label asp-for="adresse" class="col-md-4 control-label">Adresse</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input asp-for="adresse" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label asp-for="zipcode" class="col-md-4 control-label">Postnummer</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input asp-for="zipcode"class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Select Basic -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Poststed</label>
+                <div class="col-md-6 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="poststed" class="form-control selectpicker">
+                            <option value=" ">Vennligst velg ditt poststed</option>
+                            <option>Østfold</option>
+                            <option>Akershus</option>
+                            <option>Oslo</option>
+                            <option>Hedmark</option>
+                            <option>Oppland</option>
+                            <option>Buskerud</option>
+                            <option>Vestfold</option>
+                            <option>Telemark</option>
+                            <option>Aust-Agder</option>
+                            <option>Vest-Agder</option>
+                            <option>Rogaland</option>
+                            <option>Hordaland</option>
+                            <option>Sogn og Fjordane</option>
+                            <option>Møre og Romsdal</option>
+                            <option>Sør-Trøndelag</option>
+                            <option>Nord-Trøndelag</option>
+                            <option>Nordland</option>
+                            <option>Troms</option>
+                            <option>Finnmark</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+        </fieldset>
+        <fieldset>
+            <!-- Form Name -->
+            <legend>Konto informasjon</legend>
+
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label asp-for="epost" class="col-md-4 control-label">E-postadresse</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input asp-for="epost" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group has-feedback">
+                <label for="password" class="col-md-4 control-label">Passord</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input class="form-control" id="userPw" type="password" placeholder="Passord"
+                               name="password" data-minLength="5"
+                               data-error="some error"
+                               required />
+                        <span class="glyphicon form-control-feedback"></span>
+                        <span class="help-block with-errors"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group has-feedback">
+                <label for="confirmPassword" class="col-md-4 control-label">Confirm Password</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input class="form-control" id="userPw2" type="password" placeholder="Bekreft passord"
+                               name="confirmPassword" data-match="#confirmPassword" data-minLength="5"
+                               data-match-error="some error 2"
+                               required />
+                        <span class="glyphicon form-control-feedback"></span>
+                        <span class="help-block with-errors"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Kontotype</label>
+                <div class="col-md-6 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                            <select asp-for="" asp-items="@Html.GetEnumSelectList<kontoNavn>()" class="form-control"></select>
+                            @*<option value="">Vennligst velg type  konto</option>
+                            <option>Brukskonto</option>
+                            <option>Sparekonto</option>
+                            <option>BSU</option>*@
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-warning">Registrer ny bruker<span class="glyphicon glyphicon-send"></span>
+                    @*@if (GroupProject.ViewModels.Admin.RegisterViewModel == 0)
+                    {
+                        @:Legg til 
+
+                    }*@
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    </section>
+
+@*<button type="submit" class="btn btn-default btn-lg">
+    @if (Model == null)
+    {
+        @:Legg betaling
+                }
+    else
+    {
+        @:Endre betaling og legg
+                }
+    til forfall
+</button>*@
+@*<style>
+#reg_form .has-error .control-label,
+#reg_form .has-error .help-block,
+#reg_form .has-error .form-control-feedback {
+    color: #f39c12;
+}
+
+#reg_form .has-success .control-label,
+#reg_form .has-success .help-block,
+#reg_form .has-success .form-control-feedback {
+    color: #18bc9c;
+}
+</style>*@
+@*<style>
+    input i {
+        display:none;
+    }
+    input:valid{
+        background: url(../../wwwroot/images/check.svg);
+        display:block !important;
+    }
+    input:valid {
+        content:"\e014";
+        position:absolute;
+    }
+    /*input:invalid {
+        color:red;
+    }*/
+</style>*@     
+<script type="text/javascript">
+
+       $(document).ready(function() {
+        $('#reg_form').bootstrapValidator({
+            // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                firstName: {
+                    validators: {
+                        regexp: {
+                            regexp: /^[a-z æøå]+$/i,
+                            message: 'Navnet kan kun inneholde bokstaver eller mellomrom'
+                        },
+                            notEmpty: {
+                            message: 'Vennligst skriv inn ditt fornavn'
+                        }
+                    }
+                },
+                 lastName: {
+                    validators: {
+                         regexp: {
+                             regexp: /^[a-z æøå]+$/i,
+                             message: 'Navnet kan kun inneholde bokstaver eller mellomrom'
+                        },
+                        notEmpty: {
+                            message: 'Vennligst skriv inn ditt fornavn'
+                        }
+                    }
+                },
+
+                phonenumber: {
+                    validators: {
+                        regexp: {
+                            regexp: /^[0-9]{8}/,
+                            message: 'Telefonnummeret kan kun inneholde 8 siffer'
+                        },
+                        stringLength: {
+                            min: 8,
+                            max: 8,
+                        },
+                        notEmpty: {
+                            message: 'Vennligst skriv inn ditt telfonnummer'
+                        }
+                    }
+                },
+                adresse: {
+                    validators: {
+                         stringLength: {
+                            min: 8,
+                        },
+                        notEmpty: {
+                            message: 'Vennligst skriv inn din adresse'
+                        }
+                    }
+                },
+                city: {
+                    validators: {
+                         stringLength: {
+                            min: 4,
+                        },
+                        notEmpty: {
+                            message: 'Vennligst skriv inn byen du bor i'
+                        }
+                    }
+                },
+                state: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Vennligst skriv inn ditt telfonnummer'
+                        }
+                    }
+                },
+                zip: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Vennligst skriv inn ditt postnummer'
+                        },
+                        zipCode: {
+                            message: 'Vennligst skriv inn ditt postnummer'
+                        }
+                    }
+                },
+            comment: {
+                    validators: {
+                          stringLength: {
+                            min: 10,
+                            max: 200,
+                            message:'Please enter at least 10 characters and no more than 200'
+                        },
+                        notEmpty: {
+                            message: 'Please supply a description about yourself'
+                        }
+                        }
+                     },
+         email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please supply your email address'
+                        },
+                        emailAddress: {
+                            message: 'Please supply a valid email address'
+                        }
+                    }
+                },
+
+        password: {
+            validators: {
+                regexp: {
+                    regexp: /^[0-9]{8}/,
+                    message: 'Telefonnummeret kan kun inneholde 8 siffer'
+                },
+                    identical: {
+                        field: 'confirmPassword',
+                        message: 'Confirm your password below - type same password please'
+                    }
+                }
+            },
+            confirmPassword: {
+                validators: {
+                    identical: {
+                        field: 'password',
+                        message: 'The password and its confirm are not the same'
+                    }
+                }
+             },
+
+
+                }
+            })
+
+
+            .on('success.form.bv', function(e) {
+                $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                    $('#reg_form').data('bootstrapValidator').resetForm();
+
+                // Prevent form submission
+                e.preventDefault();
+
+                // Get the form instance
+                var $form = $(e.target);
+
+                // Get the BootstrapValidator instance
+                var bv = $form.data('bootstrapValidator');
+
+                // Use Ajax to submit form data
+                $.post($form.attr('action'), $form.serialize(), function(result) {
+                    console.log(result);
+                }, 'json');
+            });
+    });
+
+    </script>
