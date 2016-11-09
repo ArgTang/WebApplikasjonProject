@@ -82,7 +82,7 @@ namespace GroupProject.BLL
             return false;
         }
 
-        private Boolean isTokenExpired(String token, int? minutes)
+        private bool isTokenExpired(String token, int? minutes)
         {
             //Default 1 minute
             int m = -1;
@@ -140,13 +140,14 @@ namespace GroupProject.BLL
 
         internal async Task<bool> checkAdmin(HttpContext context)
         {
-            var AppUser = await _userManager.GetUserAsync(context.User);
-            return await _userManager.IsInRoleAsync(AppUser, "Admin");
+            var sec = context.Session.GetString(BIRTH_KEY);
+            var currUser = await _userManager.FindByNameAsync(sec);
+            return await _userManager.IsInRoleAsync(currUser, "Admin");
         }
 
-        public Boolean userExists(String username)
+        public bool userExists(string username)
         {
-                return _dbAccess.getPerson(username) != null;
+            return _dbAccess.getPerson(username) != null;
         }
     }
 }

@@ -121,18 +121,13 @@ namespace GroupProject.Controllers
                         return View("Password");
                     }
 
-
-                    var foo = _bankIdBll.checkAdmin(HttpContext);
-
-                    if ( foo.Result ) {
-                        return Ok("loggedInAdmin");
-                    } else {
-                        return Ok("loggedIn");
-                    }
+                    var foo = await _bankIdBll.checkAdmin(HttpContext);
+                    _bankIdBll.clearSession(HttpContext);
+                    
+                    return Ok(foo ? "loggedInAdmin" : "loggedIn");
                 }
                 else
                 {
-                    //HttpContext.Session.Remove(BankIdBLL.BIRTH_KEY);
                     _bankIdBll.clearSession(HttpContext);
                     return View("Error");
                 }
