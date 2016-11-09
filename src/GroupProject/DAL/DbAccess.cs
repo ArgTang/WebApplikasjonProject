@@ -275,13 +275,13 @@ namespace GroupProject.DAL
         }
 
 
-        public void executeMultipleTransaction(IEnumerable<int> ids)
+        public void executeMultipleTransaction(IEnumerable<string> ids)
         {
             try
             {
-                foreach (int id in ids)
+                foreach (string id in ids)
                 {
-                    Betalinger betaling = getBetaling(id);
+                    Betalinger betaling = getBetaling(Int32.Parse(id));
                     if (betaling != null)
                     {
                         executeTransaction(betaling);

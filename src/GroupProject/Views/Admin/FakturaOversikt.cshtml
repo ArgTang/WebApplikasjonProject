@@ -1,6 +1,7 @@
 ﻿@model GroupProject.ViewModels.Admin.FakturaViewModel
 
 <section class="container" id="__AjaxAntiForgeryForm">
+    <div id="errorMessage"></div>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -46,27 +47,68 @@
         </tbody>
     </table>
     <tr>
-        <a onclick="" class="btn">Betal alle</a>
+        <a onclick="deleteInvoice()" class="btn">Betal alle</a>
+        @Html.AntiForgeryToken()
     </tr>
 </section>
+
 <script>
-    function deleteInvoice(id) {
+    function deleteInvoice() {
+        var checkedCheckboxes = getCheckedBoxes();
         var request = $.ajax({
             type: "POST",
-            url: "admin/betal/delete",
-            data: {id:id,__RequestVerificationToken: $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val() }
+            url: "betal",
+            data: {
+                __RequestVerificationToken: $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val(),
+                checkBox: checkedCheckboxes
+            }
         });
 
         request.done(function (response) {
-            if (response === "success") {
-                document.getElementById("invoiceId_" + id).outerHTML = "";
+            switch (response) {
+                case "Error":
+                    showError();
+                case "Success":
+                    showMessage();
             }
         });
 
         request.fail(function (jqXHR, textStatus) {
-
+            showError();
         });
     }
 
+    function getCheckedBoxes() {
+        var checkboxes = document.getElementsByName("isPayed");
+        var checkboxesChecked = [];
+
+        for (var i = 0; i < checkboxes.length; i++) {
+
+            if (checkboxes[i].checked) {
+                checkboxesChecked.push(checkboxes[i].value);
+            }
+        }
+        return checkboxesChecked;
+    }
+
+    function showError() {
+        var p = document.createElement("p");
+        var text = document.createTextNode("Det oppstod en feil ved betaling");
+        var div = document.getElementById("errorMessage");
+        p.classList.add("bg-danger");
+        p.appendChild(text);
+
+        div.appendChild(p);
+    }
+
+    function showMessage() {
+        var p = document.createElement("p");
+        var text = document.createTextNode("Betalingen var vellykket");
+        var div = document.getElementById("errorMessage");
+        p.classList.add("bg-success");
+        p.appendChild(text);
+
+        div.appendChild(p);
+    }
 </script>
 
