@@ -12,8 +12,9 @@ branches:
 script:
   - cd src/GroupProject/
   - dotnet restore
+  - dotnet restore
   - npm install
   - dotnet --verbose build -c Release
-  - cd ..Test
+  - cd ../Test
   - dotnet restore
   - dotnet test
