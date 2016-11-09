@@ -15,6 +15,7 @@ script:
   - npm install
   - dotnet --verbose build -c Release
   #- dotnet test ../test
+  - cd ..
   - pwd
   - cd ../test
   - dotnet test
