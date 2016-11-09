@@ -76,6 +76,11 @@ namespace GroupProject
 
             services.AddMvc();
 
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+            //});
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
