@@ -117,6 +117,13 @@ namespace GroupProject.DAL
             }
         }
 
+        internal void updateLoginDate(ApplicationUser user)
+        {
+            user.lastLogin = DateTime.Now;
+            _persondbcontext.Update(user);
+            _persondbcontext.SaveChanges();
+        }
+
         internal Betalinger getInvoice(ApplicationUser user, int id)
         {
             try
