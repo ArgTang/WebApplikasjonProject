@@ -1,3 +1,4 @@
+﻿
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -97,7 +98,7 @@ namespace GroupProject.DAL
             }
         }
 
-        public void changePayment(Betalinger betal)
+        public void updatePayment(Betalinger betal)
         {
 
             try
