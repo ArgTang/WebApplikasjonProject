@@ -28,7 +28,7 @@ namespace GroupProject.DAL
         public kontoNavn kontoType { get; set; }
 
         [Required]
-        public virtual Person person { get; set; }
+        public virtual ApplicationUser user { get; set; }
 
         public virtual List<Betalinger> betal { get; set; } = new List<Betalinger>();
     }
