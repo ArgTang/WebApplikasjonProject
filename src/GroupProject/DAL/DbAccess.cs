@@ -3,6 +3,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+ using GroupProject.Class;
  using Microsoft.AspNetCore.Identity;
  using Microsoft.Extensions.Logging;
 
@@ -217,7 +218,7 @@ namespace GroupProject.DAL
         {
             try
             {
-                return _persondbcontext.Betal.Single(b => b.Id == id);
+                return _persondbcontext.Betal.Include(k => k.konto).Single(b => b.Id == id);
             }
             catch (Exception e)
             {
@@ -275,25 +276,42 @@ namespace GroupProject.DAL
         }
 
 
-        public void executeMultipleTransaction(IEnumerable<int> ids)
+        public PaymentJson executeMultipleTransaction(IEnumerable<string> ids)
         {
+            PaymentJson json = new PaymentJson();
             try
             {
-                foreach (int id in ids)
+                
+                foreach (string id in ids)
                 {
-                    Betalinger betaling = getBetaling(id);
+                    Betalinger betaling = getBetaling(Int32.Parse(id));
                     if (betaling != null)
                     {
-                        executeTransaction(betaling);
+                        if (!executeTransaction(betaling))
+                        {
+                            betaling.konto.betal = null;
+                            json.falsePayments.Add(betaling);
+                            json.error = true;
+                        }
+                        else
+                        {
+                            betaling.konto.betal = null;
+                            json.sucsessfullPayments.Add(betaling);
+                        }
+                            
                     }
                 }
+                return json;
             }
             catch (Exception e)
             {
                 _logger.LogError(
                    "A unhandled error accured executing {Invoices} :::: {Exception}",
                    ids, e);
+
+                json.error = true;
             }
+            return json;
         }
 
         public List<Betalinger> getAllPayments()

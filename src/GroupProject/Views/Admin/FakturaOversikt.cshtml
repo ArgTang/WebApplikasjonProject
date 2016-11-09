@@ -1,6 +1,7 @@
 ﻿@model GroupProject.ViewModels.Admin.FakturaViewModel
 
 <section class="container" id="__AjaxAntiForgeryForm">
+    <div id="errorMessage"></div>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -13,6 +14,7 @@
             <th>Mottaker:</th>
             <th>konto:</th>
             <th>Forfallsdato:</th>
+            <th>Saldo:</th>
             <th>Sum:</th>
             <th>Valg:</th>
 
@@ -21,19 +23,17 @@
         @foreach (Betalinger betal in Model.payments)
         {
             <tr id="invoiceId_@betal.Id">
-                @foreach (Konto konto in Model.accounts)
-                {
-                    if (betal.konto.kontoNr.Equals(konto.kontoNr))
-                    {
-                        <td>
-                            @konto.kontoType
-                            <small>(@betal.konto.kontoNr.Insert(4, " ").Insert(7, " ")) </small>
-                        </td>
-                    }
-                }
+                <td id="@betal.konto.kontoNr">
+                    @betal.konto.kontoType
+                    <small>(@betal.konto.kontoNr.Insert(4, " ").Insert(7, " ")) </small>
+                </td>
                 <td>@betal.mottaker</td>
                 <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
                 <td>@betal.forfallDato.ToString("dd.MM.yyyy")</td>
+                <td id="saldo_@betal.Id">
+                    @betal.konto.saldo
+                    <span class="currency" style="margin-left: 5px">Kr</span>
+                </td>
                 <td>@betal.belop<span class="currency" style="margin-left: 5px">Kr</span></td>
                 <td>
                     @if (betal.utfort == false)
@@ -46,27 +46,106 @@
         </tbody>
     </table>
     <tr>
-        <a onclick="" class="btn">Betal alle</a>
+        <a onclick="deleteInvoice()" class="btn">Betal alle</a>
+        @Html.AntiForgeryToken()
     </tr>
 </section>
+
 <script>
-    function deleteInvoice(id) {
+    function deleteInvoice() {
+        var checkedCheckboxes = getCheckedBoxes();
         var request = $.ajax({
             type: "POST",
-            url: "admin/betal/delete",
-            data: {id:id,__RequestVerificationToken: $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val() }
-        });
-
-        request.done(function (response) {
-            if (response === "success") {
-                document.getElementById("invoiceId_" + id).outerHTML = "";
+            url: "betal",
+            data: {
+                __RequestVerificationToken: $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val(),
+                checkBox: checkedCheckboxes
             }
         });
 
-        request.fail(function (jqXHR, textStatus) {
+        request.done(function (response) {
+            console.log(JSON.parse(response));
+            doResponse(JSON.parse(response));
+        });
 
+        request.fail(function (jqXHR, textStatus) {
+            showError();
         });
     }
 
+    function getCheckedBoxes() {
+        var checkboxes = document.getElementsByName("isPayed");
+        var checkboxesChecked = [];
+
+        for (var i = 0; i < checkboxes.length; i++) {
+
+            if (checkboxes[i].checked) {
+                checkboxesChecked.push(checkboxes[i].value);
+            }
+        }
+        return checkboxesChecked;
+    }
+
+    function doResponse(response) {
+        if (response.error) showError();
+
+        success(response.sucsessfullPayments);
+        failed(response.falsePayments);
+    }
+
+    function failed(falsePays) {
+        if (falsePays != null && falsePays.length > 0) {
+            falsePays.forEach(function (pay) {
+                var tr = document.getElementById("invoiceId_" + pay.Id);
+                    tr.classList.add("bg-danger");
+            });
+        }
+    }
+
+    function success(successPays) {
+        if (successPays != null && successPays.length>0) {
+            showMessage();
+            var trs = [];
+            successPays.forEach(function (pay) {
+                var tr = document.getElementById("invoiceId_" + pay.Id);
+                tr.classList.add("bg-success");
+                trs.push(tr);
+            });
+            setTimeout(function () {
+                trs.forEach(function(tr) {
+                    tr.outerHTML = "";
+                });
+            }, 3000);
+
+        }
+    }
+
+    function showError() {
+        var p = document.createElement("p");
+        var text = document.createTextNode("En eller flere betalinger feilet");
+        var div = document.getElementById("errorMessage");
+        p.classList.add("bg-danger");
+        p.appendChild(text);
+
+        div.appendChild(p);
+        setTimeout(function() {
+            div.removeChild(p);
+        },3000);
+    }
+
+    function showMessage() {
+        var p = document.createElement("p");
+        var text = document.createTextNode("Betalingen var vellykket");
+        var div = document.getElementById("errorMessage");
+        p.classList.add("bg-success");
+        p.appendChild(text);
+
+        div.appendChild(p);
+
+        div.appendChild(p);
+        setTimeout(function () {
+            div.removeChild(p);
+        }, 3000);
+    }
 </script>
 
