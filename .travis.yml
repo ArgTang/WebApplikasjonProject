@@ -16,10 +16,4 @@ script:
   - dotnet --verbose build -c Release
   - cd ..Test
   - dotnet restore
-  - dotnet test ../Test
-  #- cd ..
-  #- pwd
-  #- ls
-  #- cd Test
-  #- ls
-  #- dotnet test
+  - dotnet test
