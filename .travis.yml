@@ -14,6 +14,8 @@ script:
   - dotnet restore
   - npm install
   - dotnet --verbose build -c Release
+  - cd ..Test
+  - dotnet restore
   - dotnet test ../Test
   #- cd ..
   #- pwd
