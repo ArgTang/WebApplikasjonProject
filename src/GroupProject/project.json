@@ -28,7 +28,6 @@
     "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0",
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
-    "Microsoft.Framework.Logging": "1.0.0-beta8",
     "Serilog.Extensions.Logging": "1.2.0",
     "Microsoft.NETCore.App": {
       "type": "platform",
