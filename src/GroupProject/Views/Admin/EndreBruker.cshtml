@@ -37,36 +37,40 @@
                     </div>
                 </div>
             </div>
+            <!-- Fornavn -->
             <div class="form-group">
                 <label asp-for="firstName" class="col-md-4 control-label">Fornavn</label>
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input asp-for="firstName" class="form-control" />
                     </div>
                     <span asp-validation-for="firstName" class="text-danger"></span>
                 </div>
             </div>
+            <!-- Etternavn -->
             <div class="form-group">
                 <label asp-for="lastName" class="col-md-4 control-label">Etternavn</label>
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input asp-for="lastName" class="form-control" />
                     </div>
                     <span asp-validation-for="lastName" class="text-danger"></span>
                 </div>
             </div>
+            <!-- Telefonnummer -->
             <div class="form-group">
                 <label asp-for="phonenumber" class="col-md-4 control-label">Telefonnummer</label>
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
                         <input asp-for="phonenumber" class="form-control" />
                     </div>
                     <span asp-validation-for="phonenumber" class="text-danger"></span>
                 </div>
             </div>
+            <!-- Adresse -->
             <div class="form-group">
                 <label asp-for="adresse" class="col-md-4 control-label">Adresse</label>
                 <div class="col-md-6  inputGroupContainer">
@@ -77,22 +81,30 @@
                     <span asp-validation-for="adresse" class="text-danger"></span>
                 </div>
             </div>
+            <!-- postnummer -->
+            
             <div class="form-group">
-                <label asp-for="zipcode" class="col-md-4 control-label">Postnummer</label>
-                <div class="col-md-6  inputGroupContainer">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input asp-for="zipcode" maxlength="4" class="form-control"/>
-                        <input class="form-control" disabled />
+                <div class="form-inline">
+                    <label asp-for="zipcode" class="col-md-4 control-label">Postnummer</label>
+                    <div class="col-md-6  inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                            <input asp-for="zipcode" maxlength="4" class="form-control" id="zipCode">
+                        </div>    
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
+                            <input class="form-control" disabled="disabled" id="postal">
+                        </div>
                     </div>
                     <span asp-validation-for="zipcode" class="text-danger"></span>
                 </div>
             </div>
+            <!-- Epost -->
             <div class="form-group">
                 <label asp-for="epost" class="col-md-4 control-label">Epost</label>
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                         <input asp-for="epost" class="form-control" />
                     </div>
                     <span asp-validation-for="epost" class="text-danger"></span>
@@ -102,13 +114,37 @@
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-outline-success">Lagre endringer <span class="glyphicon glyphicon-send"></span>
-                    </button>
+                    <button type="submit" class="btn btn-outline-success">Lagre endringer <span class="glyphicon glyphicon-send"></span></button>
                 </div>
             </div>
          </fieldset>
     </form>
 </section>
-<script>
 
+<script>
+    //DETTE ER AJAX TOR!!!!
+    $("#zipCode").keyup(function () {
+        var zipCode = $("#zipCode");
+        getPostal(zipCode.val());
+    });
+
+    function getPostal(zipcode) {
+        var bringUrl = "https://api.bring.com/shippingguide/api/postalCode.json?clientUrl=www.acos-sparebank.no&country=NO&pnr=";
+        var postal = $("#postal");
+        var request = $.ajax({
+            type: "GET",
+            url: bringUrl + zipcode
+        });
+
+        request.done(function (response) {
+            postal.val(response.result);
+        });
+
+        request.fail(function (
+            jqXHR,
+            textStatus) {
+            postal.val("Kunne ikke hente poststed");
+        });
+    }
 </script>
+
