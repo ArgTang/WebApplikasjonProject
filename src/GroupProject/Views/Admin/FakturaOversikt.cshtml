@@ -3,51 +3,53 @@
 <section class="container" id="__AjaxAntiForgeryForm">
     <table class="table table-hover">
         <thead>
-            <tr>
-                <h2>Oversikt over alle betalinger som ligger til forfall</h2>
-            </tr>
+        <tr>
+            <h2>Oversikt over alle betalinger som ligger til forfall</h2>
+        </tr>
         </thead>
         <tbody>
-            <tr>
-                <th>Fra Konto:</th>
-                <th>Mottaker:</th>
-                <th>konto:</th>
-                <th>Forfallsdato:</th>
-                <th>Sum:</th>
-                <th>Valg:</th>
+        <tr>
+            <th>Fra Konto:</th>
+            <th>Mottaker:</th>
+            <th>konto:</th>
+            <th>Forfallsdato:</th>
+            <th>Sum:</th>
+            <th>Valg:</th>
 
-            </tr>
+        </tr>
 
-            @foreach (Betalinger betal in Model.payments)
-            {
-                <tr id="invoiceId_@betal.Id">
-                    @foreach (Konto konto in Model.accounts)
+        @foreach (Betalinger betal in Model.payments)
+        {
+            <tr id="invoiceId_@betal.Id">
+                @foreach (Konto konto in Model.accounts)
+                {
+                    if (betal.konto.kontoNr.Equals(konto.kontoNr))
                     {
-                        if (betal.fraKonto.Equals(konto.kontoNr))
-                        {
-                            <td>
-                                @konto.kontoType
-                            <small>(@betal.fraKonto.Insert(4, " ").Insert(7, " ")) </small>
+                        <td>
+                            @konto.kontoType
+                            <small>(@betal.konto.kontoNr.Insert(4, " ").Insert(7, " ")) </small>
                         </td>
-                        }
                     }
-                    <td>@betal.mottaker</td>
-                    <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
-                    <td>@betal.forfallDato.ToString("dd.MM.yyyy")</td>
-                    <td>@betal.belop<span class="currency" style="margin-left: 5px">Kr</span></td>
-                    <td>
-                        @if (betal.utfort == false)
-                        {
+                }
+                <td>@betal.mottaker</td>
+                <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
+                <td>@betal.forfallDato.ToString("dd.MM.yyyy")</td>
+                <td>@betal.belop<span class="currency" style="margin-left: 5px">Kr</span></td>
+                <td>
+                    @if (betal.utfort == false)
+                    {
+                                @*<label><input type="checkbox" value="">Slett</label>
                                 <a onclick="deleteInvoice(@betal.Id)" class="btn">Slett</a>
-                                <a onclick="payInvoice(@betal.Id)" class="btn">Betal</a>
-                        }
-                    </td>
-                </tr>
-            }
-            <tr>a onclick="" class="btn">Betal alle</a></tr>
+                                <a onclick="payInvoice(@betal.Id)" class="btn">Betal</a>*@
+                        <label><input type="checkbox" name="isPayed" value="">Betal</label>
+                    }
+                </td>
+            </tr>
+        }
+            
         </tbody>
     </table>
-    @Html.AntiForgeryToken()
+    <tr><a onclick="" class="btn">Betal alle</a></tr>
 </section>
 <script>
     function deleteInvoice(id) {

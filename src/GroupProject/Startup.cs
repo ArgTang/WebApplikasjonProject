@@ -76,6 +76,11 @@ namespace GroupProject
 
             services.AddMvc();
 
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+            //});
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
@@ -101,6 +106,7 @@ namespace GroupProject
             services.AddTransient<SeedData>();
             services.AddTransient<DbAccess>();
             services.AddTransient<UserBLL>();
+            services.AddTransient<AdminBLL>();
             services.AddDistributedMemoryCache();
             services.AddSession();
 

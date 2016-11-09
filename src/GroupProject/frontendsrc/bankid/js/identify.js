@@ -79,11 +79,16 @@ function post(path, data) {
     });
 
     request.done(function (response) {
-        if (response === "loggedIn") {
-            window.top.location = "/user";
-        } else {
-            $(".body").replaceWith(response);
-            result = true;
+        switch (response) {
+            case "loggedIn":
+                window.top.location = "/User";
+                break;
+            case "loggedInAdmin":
+                window.top.location = "/Admin";
+                break;
+            default:
+                $(".body").replaceWith(response);
+                result = true;
         }
     });
 
@@ -97,19 +102,19 @@ function post(path, data) {
 
 function error() {
     return `
-        <main class ="body no-footer">
-    <div class ="viewport animate">
-        <div class ="scroller padding block_vertical_center full_width_height lm_view">
+<main class="body no-footer">
+    <div class="viewport animate">
+        <div class="scroller padding block_vertical_center full_width_height lm_view">
             <div>
-                <div class ="content error">
-                    <div class ="message">
+                <div class="content error">
+                    <div class="message">
                         <h2>Det har oppstått en feil.</h2>
                         <p>Vennligst prøv igjen senere.</p>
                     </div>
-                    <div class ="call_to_action_wrapper">
-                        <div class ="button_icon_wrapper">
-                            <button class ="button" title="Neste" type="submit" onclick="location.href = '';">
-                                <span class ="label" style="display: none;"></span>
+                    <div class="call_to_action_wrapper">
+                        <div class="button_icon_wrapper">
+                            <button class="button" title="Neste" type="submit" onclick="location.href = '';">
+                                <span class="label" style="display: none;"></span>
                                 <img alt="" class ="svg" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPmljb19hcnJvd19yaWdodDwvdGl0bGU+PHBhdGggZD0iTTE5IDExbC01IDUgMiAyIDgtOC41MzEtOC04LjQ2OS0yIDIgNSA1aC0xOXYzaDE5eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==">
                             </button>
                         </div>

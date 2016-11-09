@@ -77,8 +77,7 @@ namespace GroupProject.DAL
             }
             catch (Exception e)
             {
-                _logger.LogError("A unhandled error accured getting person with {Username} :::: {Exception}", username,
-                    e);
+                _logger.LogError("A unhandled error accured getting person with {Username} :::: {Exception}", username, e);
                 return null;
             }
         }
@@ -116,7 +115,7 @@ namespace GroupProject.DAL
             {
                 _persondbcontext.Betal.Update(betal);
                 _persondbcontext.SaveChanges();
-                _logger.LogInformation("Payment changed  {Payment}", betal);
+                _logger.LogInformation("Payment updated  {Payment}", betal);
             }
             catch (Exception e)
             {
@@ -313,6 +312,7 @@ namespace GroupProject.DAL
             }
         }
 
+
         public async void addUser(ApplicationUser user, String password)
         {
             try
@@ -323,6 +323,33 @@ namespace GroupProject.DAL
             catch (Exception e)
             {
                 _logger.LogError("A unhandled error accured adding {user} :::: {Exception}", user, e);
+            }
+        }
+        public List<Betalinger> getAllPayments()
+        {
+            try
+            {
+                return _persondbcontext.Betal.Include(b => b.konto).ToList();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(
+                    "A unhandled error accured getting all payment :::: {Exception}", e);
+                return null;
+            }
+        }
+
+        public List<Konto> getAllAccounts()
+        {
+            try
+            {
+                return _persondbcontext.Kontoer.ToList();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(
+                    "A unhandled error accured getting all payment :::: {Exception}", e);
+                return null;
             }
         }
     }
