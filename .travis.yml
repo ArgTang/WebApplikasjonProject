@@ -14,4 +14,6 @@ script:
   - dotnet restore
   - npm install
   - dotnet --verbose build -c Release
-  - dotnet test ../test/
+  #- dotnet test ../test
+  - cd src/test
+  - dotnet test
