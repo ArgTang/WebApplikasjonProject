@@ -12,8 +12,6 @@ namespace GroupProject.DAL
         {
 
         }
-
-        public DbSet<Person> Person { set; get; }
         public DbSet<Betalinger> Betal { set; get; }
         public DbSet<Konto> Kontoer { get; set; }
     }

@@ -3,7 +3,8 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.Logging;
+ using Microsoft.AspNetCore.Identity;
+ using Microsoft.Extensions.Logging;
 
 namespace GroupProject.DAL
 {
@@ -19,13 +20,15 @@ namespace GroupProject.DAL
     {
         private PersonDbContext _persondbcontext { get; set; }
         private readonly ILogger<DbAccess> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public DbAccess(PersonDbContext personDbContext, ILogger<DbAccess> logger)
+        public DbAccess(PersonDbContext personDbContext, ILogger<DbAccess> logger, UserManager<ApplicationUser> userManager )
         {
             try
             {
                 _logger = logger;
                 _persondbcontext = personDbContext;
+                _userManager = userManager;
             }
             catch (Exception e)
             {
@@ -37,8 +40,7 @@ namespace GroupProject.DAL
         {
             try
             {
-                var person = getPerson(applicationUser);
-                return person.konto?.ToList() ?? new List<Konto>();
+                return _persondbcontext.Kontoer.Where(x => x.user == applicationUser).ToList();
             }
             catch (Exception e)
             {
@@ -48,29 +50,12 @@ namespace GroupProject.DAL
             }
         }
 
-        private Person getPerson(ApplicationUser applicationUser)
-        {
-            try
-            {
-                string personNr = applicationUser.UserName;
-                return _persondbcontext.Person
-                    .Include(s => s.konto)
-                    .Single(p => p.PersonNr == personNr);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError("A unhandled error accured getting person with {ApplicationUser} :::: {Exception}",
-                    applicationUser, e);
-                return null;
-            }
-        }
 
-        public Person getPerson(String username)
+        public ApplicationUser getPerson(String username)
         {
             try
             {
-                return _persondbcontext.Person
-                    .Single(p => p.PersonNr == username);
+                return _persondbcontext.Users.Single(x => x.UserName == username);
             }
             catch (Exception e)
             {
@@ -83,10 +68,12 @@ namespace GroupProject.DAL
         {
             try
             {
-                var kontoListe = _persondbcontext.Person
+                var kontoListe = _persondbcontext.Users
                                                  .Include(s => s.konto)
                                                  .ThenInclude(k => k.betal)
-                                                 .Single(p => p.PersonNr == applicationUser.UserName);
+                                                 .Single(p => p.UserName == applicationUser.UserName);
+
+                
 
                 List<Betalinger> betalinger = new List<Betalinger>();
                 foreach (Konto k in kontoListe.konto)

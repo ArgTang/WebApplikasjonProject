@@ -42,8 +42,8 @@ namespace GroupProject.Data
         public async Task SeedPersons()
         {
             // kun for resetting av database, bør kjøres ved updates
-            //_personDbContext.Database.EnsureDeleted();
-            //_personDbContext.Database.EnsureCreated();
+            _personDbContext.Database.EnsureDeleted();
+            _personDbContext.Database.EnsureCreated();
 
             if (!await _personDbContext.Users.AnyAsync())
             {
@@ -75,46 +75,16 @@ namespace GroupProject.Data
                 await _userManager.AddToRoleAsync(adminUser, roleName);
             }
 
-            if (!_personDbContext.Person.Any())
-            {
-                _personDbContext.AddRange(new Person
-                {
-                    PersonNr = "26118742957",
-                    CreatedDate = DateTime.Now,
-                    createdBy = "ole",
-                    UpdatedDate = DateTime.Now,
-                    UpdatedBy = "ole",
-
-                },
-                new Person
-                {
-                    PersonNr = "20058348741",
-                    CreatedDate = DateTime.Now,
-                    createdBy = "bjarne",
-                    UpdatedDate = DateTime.Now,
-                    UpdatedBy = "bjarne"
-                },
-                new Person
-                {
-
-                    PersonNr = "34524567897",
-                    CreatedDate = DateTime.Now,
-                    createdBy = "admin",
-                    UpdatedDate = DateTime.Now,
-                    UpdatedBy = "admin",
-
-                });
-            }
             _personDbContext.SaveChanges();
 
             if (!_personDbContext.Kontoer.Any())
             {
-                var person = _personDbContext.Person.First();
+                var person = _personDbContext.Users.First();
 
                 var kontoliste = new List<Konto>();
                 kontoliste.Add(new Konto
                 {
-                    person = person,
+                    user = person,
                     kontoNr = "12341212341",
                     saldo = 100202,
                     CreatedDate = DateTime.Now,
@@ -127,7 +97,7 @@ namespace GroupProject.Data
                 kontoliste.Add(
                     new Konto
                     {
-                        person = person,
+                        user = person,
                         kontoNr = "65430023421",
                         saldo = 0,
                         CreatedDate = DateTime.Now,
@@ -140,7 +110,7 @@ namespace GroupProject.Data
 
                 kontoliste.Add(new Konto
                 {
-                    person = person,
+                    user = person,
                     kontoNr = "43210041211",
                     saldo = 231,
                     CreatedDate = DateTime.Now,
@@ -150,14 +120,14 @@ namespace GroupProject.Data
                     kontoType = Konto.kontoNavn.BSU
                 });
 
-                _personDbContext.Person.First().konto = kontoliste;
+                _personDbContext.Users.First().konto = kontoliste;
             }
             _personDbContext.SaveChanges();
 
             if (!_personDbContext.Betal.Any())
             {
 
-                var kontoer = _personDbContext.Person.First().konto;
+                var kontoer = _personDbContext.Users.First().konto;
 
                 var konto = kontoer.Single(k => k.kontoNr == "65430023421");
                 konto.betal.AddRange(new List<Betalinger> {
