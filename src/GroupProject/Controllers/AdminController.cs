@@ -1,7 +1,9 @@
 ﻿
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using GroupProject.DAL;
+using GroupProject.ViewModels.Admin;
 using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -30,7 +32,7 @@ namespace GroupProject.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         { 
-            return View(nameof(FakturaOversikt));
+            return RedirectToAction("FakturaOversikt");
         }
 
         // GET: /<controller>/
@@ -47,7 +49,10 @@ namespace GroupProject.Controllers
 
         public IActionResult FakturaOversikt()
         {
-            return View();
+            FakturaViewModel fvm = new FakturaViewModel();
+            fvm.payments = _access.getAllPayments();
+            fvm.accounts = _access.getAllAccounts();
+            return View(fvm);
         }
     }
 }

@@ -308,5 +308,33 @@ namespace GroupProject.DAL
                    ids, e);
             }
         }
+
+        public List<Betalinger> getAllPayments()
+        {
+            try
+            {
+                return _persondbcontext.Betal.Include(b => b.konto).ToList();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(
+                    "A unhandled error accured getting all payment :::: {Exception}", e);
+                return null;
+            }
+        }
+
+        public List<Konto> getAllAccounts()
+        {
+            try
+            {
+                return _persondbcontext.Kontoer.ToList();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(
+                    "A unhandled error accured getting all payment :::: {Exception}", e);
+                return null;
+            }
+        }
     }
 }
