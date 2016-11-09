@@ -53,8 +53,8 @@ namespace GroupProject.DAL
             {
                 string personNr = applicationUser.UserName;
                 return _persondbcontext.Person
-                                       .Include(s => s.konto)
-                                       .Single(p => p.PersonNr == personNr);
+                    .Include(s => s.konto)
+                    .Single(p => p.PersonNr == personNr);
             }
             catch (Exception e)
             {
@@ -226,7 +226,7 @@ namespace GroupProject.DAL
 
         }
 
-        public Betalinger getBetalinger(int id)
+        public Betalinger getBetaling(int id)
         {
             try
             {
@@ -294,7 +294,7 @@ namespace GroupProject.DAL
             {
                 foreach (int id in ids)
                 {
-                    Betalinger betaling = GetBetalinger(id);
+                    Betalinger betaling = getBetaling(id);
                     if (betaling != null)
                     {
                         executeTransaction(betaling);
