@@ -98,7 +98,7 @@ namespace GroupProject.DAL
             }
         }
 
-        public void changePayment(Betalinger betal)
+        public void updatePayment(Betalinger betal)
         {
 
             try

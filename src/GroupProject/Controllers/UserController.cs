@@ -130,7 +130,7 @@ namespace GroupProject.Controllers
                     Betalinger betaling = _userBLL.getInvoice(user, (int)id);
                     if (betaling != null)
                     {
-                        _userBLL.changePayment(model,betaling,account,user);
+                        _userBLL.updatePayment(model,betaling,account,user);
                         
                         return RedirectToAction(nameof(UserController.Faktura));
                     }

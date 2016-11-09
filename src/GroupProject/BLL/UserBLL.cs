@@ -49,11 +49,11 @@ namespace GroupProject.BLL
             betaling.UpdatedDate = DateTime.Now;
         }
 
-        public void changePayment(PaymentViewModel model, Betalinger betaling, Konto account, ApplicationUser user)
+        public void updatePayment(PaymentViewModel model, Betalinger betaling, Konto account, ApplicationUser user)
         {
             betaling.konto = account;
             Payment(model, betaling, user);
-            _dbAccess.changePayment(betaling);
+            _dbAccess.updatePayment(betaling);
         }
 
         public void addPayment(PaymentViewModel model, Konto account, ApplicationUser user)
