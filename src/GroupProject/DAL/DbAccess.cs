@@ -74,8 +74,7 @@ namespace GroupProject.DAL
             }
             catch (Exception e)
             {
-                _logger.LogError("A unhandled error accured getting person with {Username} :::: {Exception}", username,
-                    e);
+                _logger.LogError("A unhandled error accured getting person with {Username} :::: {Exception}", username, e);
                 return null;
             }
         }
@@ -113,7 +112,7 @@ namespace GroupProject.DAL
             {
                 _persondbcontext.Betal.Update(betal);
                 _persondbcontext.SaveChanges();
-                _logger.LogInformation("Payment changed  {Payment}", betal);
+                _logger.LogInformation("Payment updated  {Payment}", betal);
             }
             catch (Exception e)
             {
@@ -259,7 +258,7 @@ namespace GroupProject.DAL
 
                     changeAccount(toAccount);
                     changeAccount(betaling.konto);
-                    changePayment(betaling);
+                    updatePayment(betaling);
 
                     _logger.LogInformation("Transaction made to account inside of bank {Invoice}", betaling);
 
@@ -273,7 +272,7 @@ namespace GroupProject.DAL
                 betaling.utfort = true;
 
                 changeAccount(betaling.konto);
-                changePayment(betaling);
+                updatePayment(betaling);
 
                 _logger.LogInformation("Transaction made to account outside of bank {Invoice}", betaling);
 
