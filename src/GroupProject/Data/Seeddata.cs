@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GroupProject.DAL;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace GroupProject.Data
 {
@@ -24,13 +25,20 @@ namespace GroupProject.Data
     public class SeedData
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private PersonDbContext _personDbContext;
 
-        public SeedData(PersonDbContext context, UserManager<ApplicationUser> userManager)
+        public SeedData(
+            PersonDbContext context, 
+            UserManager<ApplicationUser> userManager, 
+            RoleManager<IdentityRole> rolemanager
+        )
         {
             _userManager = userManager;
             _personDbContext = context;
+            _roleManager = rolemanager;
         }
+
         public async Task SeedPersons()
         {
             // kun for resetting av database, bør kjøres ved updates
@@ -43,11 +51,28 @@ namespace GroupProject.Data
                 {
                     UserName = "26118742957",
                     Email = "olelundsor@gmail.com",
-                    firstName = "ole",
-                    lastName = "lundsør",
+                    firstName = "Ole",
+                    lastName = "Lundsør",
                     lastLogin = DateTime.Now
                 };
                 var identityResult = await _userManager.CreateAsync(newUser, "123456789Ole");
+
+                //Admin user
+                //http://prag.matisk.com/ssn/ Personnummer generator
+                var adminUser = new ApplicationUser {
+                    UserName = "20058348741",
+                    Email = "olelundsor@hotmail.com",
+                    firstName = "Ole",
+                    lastName = "Lundsør (Admin)",
+                    lastLogin = DateTime.Now
+                };
+                var adminResult = await _userManager.CreateAsync(adminUser, "20058348741Ole");
+                _personDbContext.SaveChanges();
+
+                //https://github.com/jalelegenda/snikrs/blob/3c05d40ed51c494a8461b820364b6a20602f7c01/src/SNIKRS.Infrastructure/EntityFramework/KinderGardenDbContextSeed.cs
+                string roleName = "Admin";
+                var adminRole = (await _roleManager.CreateAsync(new IdentityRole(roleName)));
+                await _userManager.AddToRoleAsync(adminUser, roleName);
             }
 
             if (!_personDbContext.Person.Any())
@@ -63,7 +88,7 @@ namespace GroupProject.Data
                 },
                 new Person
                 {
-                    PersonNr = "12334578912",
+                    PersonNr = "26118742943",
                     CreatedDate = DateTime.Now,
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
@@ -79,13 +104,11 @@ namespace GroupProject.Data
                     UpdatedBy = "admin",
 
                 });
-
-
             }
             _personDbContext.SaveChanges();
+
             if (!_personDbContext.Kontoer.Any())
             {
-
                 var person = _personDbContext.Person.First();
 
                 var kontoliste = new List<Konto>();
@@ -130,6 +153,7 @@ namespace GroupProject.Data
                 _personDbContext.Person.First().konto = kontoliste;
             }
             _personDbContext.SaveChanges();
+
             if (!_personDbContext.Betal.Any())
             {
 

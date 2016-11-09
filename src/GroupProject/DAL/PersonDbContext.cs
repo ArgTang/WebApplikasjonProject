@@ -1,6 +1,7 @@
 ﻿using GroupProject.DAL;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace GroupProject.DAL
 {
@@ -9,6 +10,7 @@ namespace GroupProject.DAL
 
         public PersonDbContext(DbContextOptions<PersonDbContext> options) : base(options)
         {
+
         }
 
         public PersonDbContext()

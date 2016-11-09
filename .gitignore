@@ -249,6 +249,7 @@ src/GroupProject/wwwroot/js
 src/GroupProject/wwwroot/lib
 src/GroupProject/wwwroot/css
 src/GroupProject/Migrations
+src/GroupProject/Logs
 
 src/GroupProject/scripts/*.js
 src/GroupProject/scripts/*.js.map
