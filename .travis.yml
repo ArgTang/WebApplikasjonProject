@@ -17,5 +17,7 @@ script:
   #- dotnet test ../test
   - cd ..
   - pwd
-  - cd ../test
+  - ls
+  - cd test
+  - ls
   - dotnet test
