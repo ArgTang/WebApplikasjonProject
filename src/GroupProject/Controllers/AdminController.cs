@@ -43,5 +43,14 @@ namespace GroupProject.Controllers
             fvm.accounts = _AdminBLL.getAllAccounts();
             return View(fvm);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("faktura/betal")]
+        public IActionResult Betal()
+        {
+            
+            return Content("");
+        }
     }
 }

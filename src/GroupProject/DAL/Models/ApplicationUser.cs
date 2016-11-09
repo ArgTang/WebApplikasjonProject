@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GroupProject.DAL
@@ -18,7 +19,9 @@ namespace GroupProject.DAL
 
         public string postal { get; set; }
 
-    [Required]
+        [Required]
         public DateTime lastLogin { get; set; }
+
+        public virtual List<Konto> konto { get; set; } = new List<Konto>();
     }
 }
