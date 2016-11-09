@@ -1,10 +1,8 @@
-﻿
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Mvc;
 using GroupProject.DAL;
 using GroupProject.ViewModels.Admin;
 using Microsoft.AspNetCore.Authorization;
+using GroupProject.BLL;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,20 +11,11 @@ namespace GroupProject.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
+        private readonly AdminBLL _AdminBLL;
 
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly DbAccess _access;       
-
-        public AdminController(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
-            DbAccess dbAccess
-        )
+        public AdminController(AdminBLL adminBLL)
         {
-            _signInManager = signInManager;            
-            _userManager = userManager;
-            _access = dbAccess;
+            _AdminBLL = adminBLL;
         }
 
         // GET: /<controller>/
@@ -50,8 +39,8 @@ namespace GroupProject.Controllers
         public IActionResult FakturaOversikt()
         {
             FakturaViewModel fvm = new FakturaViewModel();
-            fvm.payments = _access.getAllPayments();
-            fvm.accounts = _access.getAllAccounts();
+            fvm.payments = _AdminBLL.getALLPayments();
+            fvm.accounts = _AdminBLL.getAllAccounts();
             return View(fvm);
         }
     }

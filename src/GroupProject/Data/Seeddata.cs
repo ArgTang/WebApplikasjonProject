@@ -34,8 +34,8 @@ namespace GroupProject.Data
             RoleManager<IdentityRole> rolemanager
         )
         {
-            _userManager = userManager;
             _personDbContext = context;
+            _userManager = userManager;            
             _roleManager = rolemanager;
         }
 
@@ -88,7 +88,7 @@ namespace GroupProject.Data
                 },
                 new Person
                 {
-                    PersonNr = "26118742943",
+                    PersonNr = "20058348741",
                     CreatedDate = DateTime.Now,
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
