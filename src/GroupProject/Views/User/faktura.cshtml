@@ -1,4 +1,4 @@
-@model GroupProject.ViewModels.User.FakturaViewModel
+﻿@model GroupProject.ViewModels.User.FakturaViewModel
 
 <section class="container" id="__AjaxAntiForgeryForm">
     <table class="table table-hover">
@@ -38,7 +38,7 @@
                             {
                                 <a asp-action="Betal" asp-route-id="@betal.Id" class="btn">Endre</a>
                                 <a onclick="deleteInvoice(@betal.Id)" class="btn">Slett</a>
-                                <a onclick="payInvoice(@betal.Id)" class="btn">Betal</a>
+                                @*<a onclick="payInvoice(@betal.Id)" class="btn">Betal</a>*@
                             }
                         </td>
                     </tr>
@@ -47,6 +47,9 @@
     </table>
     @Html.AntiForgeryToken()
 </section>
+<section class="container">
+    <p>NB! Betalinger som ligger til forfall vil bli gjennomført 4 ganger daglig. Administrator har mulighet til å tvinge igjennom en betaling.</p>
+</section>
 <script>
     function deleteInvoice(id) {
         var request = $.ajax({
@@ -54,15 +57,12 @@
             url: "faktura/delete",
             data: {id:id,__RequestVerificationToken: $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val() }
         });
-
         request.done(function (response) {
             if (response === "success") {
                 document.getElementById("invoiceId_" + id).outerHTML = "";
             }
         });
-
-        request.fail(function (jqXHR, textStatus) {
-            
+        request.fail(function (jqXHR, textStatus) {    
         });
     }
 </script>

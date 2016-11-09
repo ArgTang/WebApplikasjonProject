@@ -38,8 +38,10 @@
                     <td>
                         @if (betal.utfort == false)
                         {
+                                @*<label><input type="checkbox" value="">Slett</label>
                                 <a onclick="deleteInvoice(@betal.Id)" class="btn">Slett</a>
-                                <a onclick="payInvoice(@betal.Id)" class="btn">Betal</a>
+                                <a onclick="payInvoice(@betal.Id)" class="btn">Betal</a>*@
+                                <label><input type="checkbox" name="isPayed" value="">Betal</label>
                         }
                     </td>
                 </tr>

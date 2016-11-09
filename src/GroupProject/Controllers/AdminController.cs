@@ -1,3 +1,4 @@
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using GroupProject.DAL;
@@ -35,7 +36,7 @@ namespace GroupProject.Controllers
         // GET: /<controller>/
         public IActionResult Registrer()
         {
-            //ViewBag.kontoNavn = Konto.kontoNavn;
+            ViewBag.kontoNavn = Konto.kontoNavn.Brukskonto;
             return View();
         }
 
