@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using GroupProject.DAL;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 /**
  * This Controller Do all the magic for logging into the application
@@ -26,11 +27,12 @@ namespace GroupProject.Controllers
 
         public BankIdController(
             DbAccess dbAccess,
+            UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<BankIdController> logger
         )
         {
-            _bankIdBll = new BankIdBLL(signInManager, dbAccess);
+            _bankIdBll = new BankIdBLL(signInManager, userManager, dbAccess);
             _logger = logger;
         }
 
@@ -57,16 +59,16 @@ namespace GroupProject.Controllers
                     BirthNumber birthNumber = new BirthNumber();
                     String birthNr = form[BankIdBLL.BIRTH_KEY];
 
-                        if (birthNumber.IsValid(form[BankIdBLL.BIRTH_KEY].ToString()) && _bankIdBll.userExists(form[BankIdBLL.BIRTH_KEY]))
-                        {
-                            HttpContext.Session.SetString(BankIdBLL.BIRTH_KEY, birthNr);
-                            ViewBag.birthNumber = birthNr;
+                    if (birthNumber.IsValid(form[BankIdBLL.BIRTH_KEY].ToString()) && _bankIdBll.userExists(form[BankIdBLL.BIRTH_KEY]))
+                    {
+                        HttpContext.Session.SetString(BankIdBLL.BIRTH_KEY, birthNr);
+                        ViewBag.birthNumber = birthNr;
 
-                            ViewBag.reference = _bankIdBll.getRefWord();
-                            ViewBag.authToken = _bankIdBll.genToken(HttpContext);
+                        ViewBag.reference = _bankIdBll.getRefWord();
+                        ViewBag.authToken = _bankIdBll.genToken(HttpContext);
 
-                            return View("Reference");
-                        }
+                        return View("Reference");
+                    }
                 }
             }
             //If no body is specified
@@ -112,21 +114,20 @@ namespace GroupProject.Controllers
 
                 if (form.ContainsKey(BankIdBLL.PASS_KEY))
                 {
+                    var loggedIn = await _bankIdBll.loginA(HttpContext);
 
-                    if (await _bankIdBll.login(HttpContext))
-                    {
-                        _bankIdBll.clearSession(HttpContext);
-                        return Content("loggedIn");
-                    }
-                    else
-                    {
+                    if(!loggedIn) {
                         ViewBag.error = "show-error";
                         return View("Password");
                     }
+
+                    var foo = await _bankIdBll.checkAdmin(HttpContext);
+                    _bankIdBll.clearSession(HttpContext);
+                    
+                    return Ok(foo ? "loggedInAdmin" : "loggedIn");
                 }
                 else
                 {
-                    //HttpContext.Session.Remove(BankIdBLL.BIRTH_KEY);
                     _bankIdBll.clearSession(HttpContext);
                     return View("Error");
                 }
