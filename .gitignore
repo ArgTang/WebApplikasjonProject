@@ -253,5 +253,6 @@ src/GroupProject/Logs
 
 src/GroupProject/scripts/*.js
 src/GroupProject/scripts/*.js.map
+.vscode/
 
 .vscode/

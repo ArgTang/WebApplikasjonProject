@@ -31,7 +31,7 @@ namespace GroupProject.BLL
             return _access.executeTransaction(betalinger);
         }
 
-        public void executeTransactions(IEnumerable<int> ids )
+        public void executeTransactions(IEnumerable<int> ids)
         {
             _access.executeMultipleTransaction(ids);
         }
