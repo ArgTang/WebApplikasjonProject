@@ -147,7 +147,7 @@ namespace GroupProject.BLL
 
         public bool userExists(string username)
         {
-            return _dbAccess.getPerson(username) != null;
+            return _userManager.FindByNameAsync(username) != null;
         }
     }
 }

@@ -28,10 +28,8 @@
     @await Html.PartialAsync("footer")
 
     <environment names="Development">
-        <script src="JS/app.js"></script>
     </environment>
     <environment names="Staging,Production">
-        <script src="~/JS/app.min.js"></script>
     </environment>
 
     @RenderSection("scripts", required: false)
