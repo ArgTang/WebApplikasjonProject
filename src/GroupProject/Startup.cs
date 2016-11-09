@@ -32,11 +32,11 @@ namespace GroupProject
             .MinimumLevel.Debug()
             .Enrich.FromLogContext()
             .WriteTo.Seq("http://localhost:5341")
-            .WriteTo.RollingFile("Acos_log_ALL-LOGS___{date}.txt")
+            .WriteTo.RollingFile("Logs/Acos_log_ALL-LOGS___.txt")
             .WriteTo.Logger(lc => lc
                 .Filter.ByIncludingOnly(e => e.Level == Serilog.Events.LogEventLevel.Error)
                 .Filter.ByIncludingOnly(Matching.FromSource<DbAccess>())
-                .WriteTo.RollingFile("Acos_log_DATABASE-ERROR___{date}.txt"))
+                .WriteTo.RollingFile("Logs/Acos_log_DATABASE-ERROR___.txt"))
             .CreateLogger();
 
             var builder = new ConfigurationBuilder()
