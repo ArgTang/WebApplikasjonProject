@@ -7,16 +7,15 @@ using System.Collections.Generic;
 
 namespace GroupProject.BLL
 {
-    //private DbAccess _dbAccess { get; set; }
-    //private readonly UserManager<ApplicationUser> _userManager;
-    //private readonly SignInManager<ApplicationUser> _signInManager;
-
     public class AdminBLL
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly DbAccess _access;
 
-        public AdminBLL(UserManager<ApplicationUser> userManager, DbAccess dbAccess)
+        public AdminBLL(
+            UserManager<ApplicationUser> userManager, 
+            DbAccess dbAccess
+        )
         {
             _userManager = userManager;
             _access = dbAccess;
@@ -35,6 +34,16 @@ namespace GroupProject.BLL
         public void executeTransactions(IEnumerable<int> ids )
         {
             _access.executeMultipleTransaction(ids);
+        }
+
+        internal List<Betalinger> getALLPayments()
+        {
+            return _access.getAllPayments();
+        }
+
+        internal List<Konto> getAllAccounts()
+        {
+            return _access.getAllAccounts();
         }
     }
 }

@@ -34,16 +34,16 @@ namespace GroupProject.Data
             RoleManager<IdentityRole> rolemanager
         )
         {
-            _userManager = userManager;
             _personDbContext = context;
+            _userManager = userManager;            
             _roleManager = rolemanager;
         }
 
         public async Task SeedPersons()
         {
             // kun for resetting av database, bør kjøres ved updates
-            //_personDbContext.Database.EnsureDeleted();
-            //_personDbContext.Database.EnsureCreated();
+            _personDbContext.Database.EnsureDeleted();
+            _personDbContext.Database.EnsureCreated();
 
             if (!await _personDbContext.Users.AnyAsync())
             {
@@ -88,7 +88,7 @@ namespace GroupProject.Data
                 },
                 new Person
                 {
-                    PersonNr = "26118742943",
+                    PersonNr = "20058348741",
                     CreatedDate = DateTime.Now,
                     createdBy = "bjarne",
                     UpdatedDate = DateTime.Now,
