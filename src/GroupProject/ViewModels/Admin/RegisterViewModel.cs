@@ -58,23 +58,16 @@ namespace GroupProject.ViewModels.Admin
         [Required(ErrorMessage ="Dette feltet må være utfylt")]
         public string epost { get; set; }
 
-<<<<<<< HEAD
         [DataType(DataType.Password)]
         [Display(Name = "Vennlisk skriv inn ditt passorde", Prompt = "Passord")]
         [Required(ErrorMessage = "Dette feltet må være utfylt")]
         public string passord { get; set; }
 
         [DataType(DataType.Text)]
-        [Display(Name = "Vennlisk skriv inn ditt passorde", Prompt = "Passord")]
-        [Required(ErrorMessage = "Dette feltet må være utfylt")]
-        public string personNr { get; set; }
-=======
-        [DataType(DataType.Text)]
         [Display(Name = "Vennligst skriv inn ett gyldig fødselsnummer", Prompt = "Fødselsnummer")]
         [Required(ErrorMessage = "Dette feltet må være utfylt")]
         [StringLength(11, ErrorMessage = "Ett gyldig fødselsnummer kan kun inneholde 11 siffer")]
         [RegularExpression("/^[0-9]{11}/", ErrorMessage = "Ett gyldig fødselsnummer kan kun inneholde 11 siffer")]
         public string sokBruker { get; set; }
->>>>>>> master
     }
 }

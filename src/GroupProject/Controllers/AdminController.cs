@@ -12,41 +12,22 @@ namespace GroupProject.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        private readonly AdminBLL _AdminBLL;
+        private readonly AdminBLL _adminBLL;
 
-<<<<<<< HEAD
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly AdminBLL _adminBLL;       
-
-        public AdminController(
-            SignInManager<ApplicationUser> signInManager,
-            AdminBLL adminBLL,
-            UserManager<ApplicationUser> userManager
-        )
-        {
-            _signInManager = signInManager;
-            _userManager = userManager;
-            _adminBLL = adminBLL;
-=======
         public AdminController(AdminBLL adminBLL)
         {
-            _AdminBLL = adminBLL;
+            _adminBLL = adminBLL;
         }
 
         // GET: /<controller>/
         public IActionResult Index()
         { 
             return RedirectToAction("FakturaOversikt");
->>>>>>> master
         }
 
         public IActionResult Registrer()
         {
-<<<<<<< HEAD
-=======
             ViewBag.kontoNavn = Konto.kontoNavn.Brukskonto;
->>>>>>> master
             return View();
         }
 
@@ -72,8 +53,8 @@ namespace GroupProject.Controllers
         public IActionResult FakturaOversikt()
         {
             FakturaViewModel fvm = new FakturaViewModel();
-            fvm.payments = _AdminBLL.getALLPayments();
-            fvm.accounts = _AdminBLL.getAllAccounts();
+            fvm.payments = _adminBLL.getALLPayments();
+            fvm.accounts = _adminBLL.getAllAccounts();
             return View(fvm);
         }
     }
