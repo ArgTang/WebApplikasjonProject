@@ -51,5 +51,15 @@ namespace GroupProject.ViewModels.Admin
         [Display(Name ="Vennlisk skriv inn din epostadresse", Prompt ="Epostadresse")]
         [Required(ErrorMessage ="Dette feltet må være utfylt")]
         public string epost { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Vennlisk skriv inn ditt passorde", Prompt = "Passord")]
+        [Required(ErrorMessage = "Dette feltet må være utfylt")]
+        public string passord { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Vennlisk skriv inn ditt passorde", Prompt = "Passord")]
+        [Required(ErrorMessage = "Dette feltet må være utfylt")]
+        public string personNr { get; set; }
     }
 }

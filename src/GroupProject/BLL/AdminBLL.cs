@@ -1,4 +1,5 @@
 ﻿using GroupProject.DAL;
+using GroupProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,21 @@ namespace GroupProject.BLL
         public void executeTransactions(IEnumerable<int> ids )
         {
             _access.executeMultipleTransaction(ids);
+        }
+
+        public void addUser(ViewModels.Admin.RegisterViewModel model)
+        {
+            ApplicationUser user = new ApplicationUser();
+            user.firstName = model.firstName;
+            user.lastName = model.lastName;
+            user.PhoneNumber = model.phonenumber;
+            user.zipcode = model.zipcode;
+            user.adresse = model.adresse;
+            user.Email = model.epost;
+            user.PasswordHash = model.passord;
+            //user.personNr = model.personNr;
+
+            _access.addUser(user, user.PasswordHash);
         }
     }
 }

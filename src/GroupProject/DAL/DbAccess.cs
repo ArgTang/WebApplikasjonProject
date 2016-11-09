@@ -1,9 +1,10 @@
 ﻿
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
 
 namespace GroupProject.DAL
 {
@@ -17,15 +18,17 @@ namespace GroupProject.DAL
 
     public class DbAccess
     {
-        private PersonDbContext _persondbcontext { get; set; }
+        private readonly PersonDbContext _persondbcontext;
         private readonly ILogger<DbAccess> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public DbAccess(PersonDbContext personDbContext, ILogger<DbAccess> logger)
+        public DbAccess(PersonDbContext personDbContext, ILogger<DbAccess> logger, UserManager<ApplicationUser> userManager)
         {
             try
             {
                 _logger = logger;
                 _persondbcontext = personDbContext;
+                _userManager = userManager;
             }
             catch (Exception e)
             {
@@ -307,6 +310,19 @@ namespace GroupProject.DAL
                 _logger.LogError(
                    "A unhandled error accured executing {Invoices} :::: {Exception}",
                    ids, e);
+            }
+        }
+
+        public async void addUser(ApplicationUser user, String password)
+        {
+            try
+            {
+                var identityResult = await _userManager.CreateAsync(user, password);
+                _logger.LogInformation("Person added  {Person}", user);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("A unhandled error accured adding {user} :::: {Exception}", user, e);
             }
         }
     }

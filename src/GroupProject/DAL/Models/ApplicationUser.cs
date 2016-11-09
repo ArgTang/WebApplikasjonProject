@@ -20,5 +20,6 @@ namespace GroupProject.DAL
 
     [Required]
         public DateTime lastLogin { get; set; }
+
     }
 }
