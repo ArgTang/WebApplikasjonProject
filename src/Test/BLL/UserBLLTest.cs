@@ -42,7 +42,7 @@ namespace Test.BLL
            
             var personMock = CreateDbSetMock(new List<Person> { person });
             //http://stackoverflow.com/questions/20002873/entity-framework-6-mocking-include-method-on-dbset/21979183#21979183
-            personMock.Setup(x => x.Include(It.IsAny<string>())).Returns(personMock.Object);
+            //personMock.Setup(x => x.Include(It.IsAny<string>())).Returns(personMock.Object);
             //personMock.Setup(s => s.Include(It.IsAny<Expression<Func<EntityType, bool>>>())).Returns(personMock.Object);
 
             var DbMock = new Mock<PersonDbContext>();

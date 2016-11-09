@@ -17,14 +17,14 @@ namespace GroupProject.Controllers
         private readonly DbAccess _access;       
 
         public AdminController(
-            SignInManager<ApplicationUser> signInManager,
-            DbAccess dbAccess,
-            UserManager<ApplicationUser> userManager
+            SignInManager<ApplicationUser> signInManager,            
+            UserManager<ApplicationUser> userManager,
+            DbAccess dbAccess
         )
         {
-            _signInManager = signInManager;
-            _access = dbAccess;
+            _signInManager = signInManager;            
             _userManager = userManager;
+            _access = dbAccess;
         }
 
         // GET: /<controller>/

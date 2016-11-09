@@ -14,9 +14,11 @@ namespace GroupProject.BLL
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public UserBLL(DbAccess dbAccess, 
+        public UserBLL(
+            DbAccess dbAccess, 
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager
+        )
         {
             _dbAccess = dbAccess;
             _userManager = userManager;
