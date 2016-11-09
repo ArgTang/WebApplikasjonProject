@@ -18,17 +18,15 @@ namespace GroupProject.DAL
 
     public class DbAccess
     {
-        private PersonDbContext _persondbcontext { get; set; }
+        private readonly PersonDbContext _persondbcontext;
         private readonly ILogger<DbAccess> _logger;
-        private readonly UserManager<ApplicationUser> _userManager;
 
-        public DbAccess(PersonDbContext personDbContext, ILogger<DbAccess> logger, UserManager<ApplicationUser> userManager )
+        public DbAccess( PersonDbContext personDbContext, ILogger<DbAccess> logger )
         {
             try
             {
                 _logger = logger;
                 _persondbcontext = personDbContext;
-                _userManager = userManager;
             }
             catch (Exception e)
             {
@@ -72,8 +70,6 @@ namespace GroupProject.DAL
                                                  .Include(s => s.konto)
                                                  .ThenInclude(k => k.betal)
                                                  .Single(p => p.UserName == applicationUser.UserName);
-
-                
 
                 List<Betalinger> betalinger = new List<Betalinger>();
                 foreach (Konto k in kontoListe.konto)
