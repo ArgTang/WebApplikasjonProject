@@ -39,6 +39,11 @@
     </form>
 </section>*@
 <section class="container">
+    @if (ViewBag.success)
+    {
+        <p>Brukeren er registrert</p>
+    }
+    
     <form class="form-horizontal" action="" method="post" id="reg_form">
         <fieldset>
             <!-- Form Name -->

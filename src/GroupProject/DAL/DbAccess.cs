@@ -318,7 +318,7 @@ namespace GroupProject.DAL
             try
             {
                 var identityResult = await _userManager.CreateAsync(user, password);
-                _logger.LogInformation("Person added  {Person}", user);
+                _logger.LogInformation("Person added  {user}", user);
             }
             catch (Exception e)
             {

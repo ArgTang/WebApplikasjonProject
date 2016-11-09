@@ -47,10 +47,9 @@ namespace GroupProject.BLL
             user.zipcode = model.zipcode;
             user.adresse = model.adresse;
             user.Email = model.epost;
-            user.PasswordHash = model.passord;
             //user.personNr = model.personNr;
 
-            _access.addUser(user, user.PasswordHash);
+            _access.addUser(user, model.passord);
         }
     }
 }
