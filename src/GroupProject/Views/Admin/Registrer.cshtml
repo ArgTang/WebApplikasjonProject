@@ -68,7 +68,7 @@
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input asp-for="zipcode"class="form-control">
+                        <input asp-for="zipcode"class="form-control" id="zipCode">
                     </div>
                     <span asp-validation-for="zipcode" class="text-danger"></span>
                 </div>
@@ -81,28 +81,7 @@
                 <div class="col-md-6 selectContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                        <select name="poststed" class="form-control selectpicker">
-                            <option value="">Vennligst velg ditt poststed</option>
-                            <option>Østfold</option>
-                            <option>Akershus</option>
-                            <option>Oslo</option>
-                            <option>Hedmark</option>
-                            <option>Oppland</option>
-                            <option>Buskerud</option>
-                            <option>Vestfold</option>
-                            <option>Telemark</option>
-                            <option>Aust-Agder</option>
-                            <option>Vest-Agder</option>
-                            <option>Rogaland</option>
-                            <option>Hordaland</option>
-                            <option>Sogn og Fjordane</option>
-                            <option>Møre og Romsdal</option>
-                            <option>Sør-Trøndelag</option>
-                            <option>Nord-Trøndelag</option>
-                            <option>Nordland</option>
-                            <option>Troms</option>
-                            <option>Finnmark</option>
-                        </select>
+                        <input class="form-control" disabled="disabled" id="postal">
                     </div>
                 </div>
             </div>
@@ -161,8 +140,8 @@
                 <div class="col-md-6 selectContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                            @*<select asp-for="" asp-items="@Html.GetEnumSelectList<kontoNavn>()" class="form-control"></select>*@
-                            @*<option value="">Vennligst velg type  konto</option>
+                        @*<select asp-for="" asp-items="@Html.GetEnumSelectList<kontoNavn>()" class="form-control"></select>*@
+                        @*<option value="">Vennligst velg type  konto</option>
                             <option>Brukskonto</option>
                             <option>Sparekonto</option>
                             <option>BSU</option>*@
@@ -175,8 +154,7 @@
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4">
                     <button type="submit" class="btn btn-warning">Registrer ny bruker<span class="glyphicon glyphicon-send"></span>
-                    @*@if (GroupProject.ViewModels.Admin.RegisterViewModel == 0)
-                    {
+                        @*@if (GroupProject.ViewModels.Admin.RegisterViewModel == 0){
                         @:Legg til 
 
                     }*@
@@ -185,4 +163,30 @@
             </div>
         </fieldset>
     </form>
-    </section>
+</section>
+
+<script>
+    $("#zipCode").keyup(function () {
+        var zipCode = $("#zipCode");
+        getPostal(zipCode.val());
+    });
+
+    function getPostal(zipcode) {
+        var bringUrl = "https://api.bring.com/shippingguide/api/postalCode.json?clientUrl=www.acos-sparebank.no&country=NO&pnr=";
+        var postal = $("#postal");
+        var request = $.ajax({
+            type: "GET",
+            url: bringUrl + zipcode
+        });
+
+        request.done(function (response) {
+            postal.val(response.result);
+        });
+
+        request.fail(function (
+            jqXHR,
+            textStatus) {
+            postal.val("Kunne ikke hente poststed");
+        });
+    }
+</script>
