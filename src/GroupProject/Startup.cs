@@ -106,6 +106,7 @@ namespace GroupProject
             services.AddTransient<SeedData>();
             services.AddTransient<DbAccess>();
             services.AddTransient<UserBLL>();
+            services.AddTransient<AdminBLL>();
             services.AddDistributedMemoryCache();
             services.AddSession();
 

@@ -1,6 +1,5 @@
 ﻿using GroupProject.DAL;
 using GroupProject.ViewModels.User;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -10,13 +9,15 @@ namespace GroupProject.BLL
 {
     public class UserBLL
     {
-        private DbAccess _dbAccess { get; set; }
+        private readonly DbAccess _dbAccess;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public UserBLL(DbAccess dbAccess, 
+        public UserBLL(
+            DbAccess dbAccess, 
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager
+        )
         {
             _dbAccess = dbAccess;
             _userManager = userManager;
@@ -35,7 +36,7 @@ namespace GroupProject.BLL
             return list;
         }
 
-        private void Payment(PaymentViewModel model, Betalinger betaling, ApplicationUser user)
+        private void updatePaymentModel(PaymentViewModel model, Betalinger betaling, ApplicationUser user)
         {
             betaling.tilKonto = model.toAccount;
             betaling.belop = new Decimal(Double.Parse(model.amount + "," + model.fraction));
@@ -52,7 +53,7 @@ namespace GroupProject.BLL
         public void updatePayment(PaymentViewModel model, Betalinger betaling, Konto account, ApplicationUser user)
         {
             betaling.konto = account;
-            Payment(model, betaling, user);
+            updatePaymentModel(model, betaling, user);
             _dbAccess.updatePayment(betaling);
         }
 
@@ -60,7 +61,7 @@ namespace GroupProject.BLL
         {
             Betalinger betaling = new Betalinger();
             betaling.konto = account;
-            Payment(model, betaling, user);
+            updatePaymentModel(model, betaling, user);
             betaling.UpdatedBy = user.UserName;
             
             _dbAccess.addPayment(betaling);
