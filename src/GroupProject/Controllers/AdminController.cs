@@ -19,8 +19,8 @@ namespace GroupProject.Controllers
         private readonly DbAccess _access;       
 
         public AdminController(
-            SignInManager<ApplicationUser> signInManager,            
             UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
             DbAccess dbAccess
         )
         {
