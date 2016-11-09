@@ -259,7 +259,7 @@ namespace GroupProject.DAL
 
                     changeAccount(toAccount);
                     changeAccount(betaling.konto);
-                    changePayment(betaling);
+                    updatePayment(betaling);
 
                     _logger.LogInformation("Transaction made to account inside of bank {Invoice}", betaling);
 
@@ -273,7 +273,7 @@ namespace GroupProject.DAL
                 betaling.utfort = true;
 
                 changeAccount(betaling.konto);
-                changePayment(betaling);
+                updatePayment(betaling);
 
                 _logger.LogInformation("Transaction made to account outside of bank {Invoice}", betaling);
 
