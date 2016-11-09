@@ -17,7 +17,6 @@ namespace GroupProject.DAL
         {
         }
 
-        public virtual DbSet<Person> Person { set; get; }
         public virtual DbSet<Betalinger> Betal { set; get; }
         public virtual DbSet<Konto> Kontoer { get; set; }
     }
