@@ -14,10 +14,10 @@ script:
   - dotnet restore
   - npm install
   - dotnet --verbose build -c Release
-  #- dotnet test ../test
-  - cd ..
-  - pwd
-  - ls
-  - cd test
-  - ls
-  - dotnet test
+  - dotnet test ../Test
+  #- cd ..
+  #- pwd
+  #- ls
+  #- cd Test
+  #- ls
+  #- dotnet test
