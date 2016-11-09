@@ -13,9 +13,28 @@ namespace GroupProject.BLL
 
     public class AdminBLL
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly DbAccess _access;
+
+        public AdminBLL(UserManager<ApplicationUser> userManager, DbAccess dbAccess)
+        {
+            _userManager = userManager;
+            _access = dbAccess;
+        }
+
         public List<Enum> getAccountName()
         {
             return new List<Enum> { };
+        }
+
+        public bool executeTransaction(Betalinger betalinger)
+        {
+            return _access.executeTransaction(betalinger);
+        }
+
+        public void executeTransactions(IEnumerable<int> ids )
+        {
+            _access.executeMultipleTransaction(ids);
         }
     }
 }
