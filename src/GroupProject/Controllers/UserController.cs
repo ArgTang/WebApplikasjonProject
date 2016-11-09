@@ -72,7 +72,7 @@ namespace GroupProject.Controllers
 
             if ( invoice != null ) {
                              
-                return View(_userBLL.changeInvoice(invoice));
+                return View(_userBLL.convertToViewModel(invoice));
             }
 
             return View("FakturaNotFound");

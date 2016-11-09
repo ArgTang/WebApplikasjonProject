@@ -35,25 +35,8 @@ namespace GroupProject.BLL
             return list;
         }
 
-        public void changePayment(PaymentViewModel model, Betalinger betaling, Konto account, ApplicationUser user)
+        private void Payment(PaymentViewModel model, Betalinger betaling, ApplicationUser user)
         {
-            betaling.konto = account;
-            betaling.tilKonto = model.toAccount;
-            betaling.belop = new Decimal(Double.Parse(model.amount + "," + model.fraction));
-            betaling.info = model.paymentMessage;
-            betaling.utfort = false;
-            betaling.kid = model.kid;
-            betaling.mottaker = model.reciever;
-            betaling.forfallDato = model.date;
-            betaling.UpdatedDate = DateTime.Now;
-            betaling.UpdatedBy = user.UserName;
-            _dbAccess.changePayment(betaling);
-        }
-
-        public void addPayment(PaymentViewModel model, Konto account, ApplicationUser user)
-        {
-            Betalinger betaling = new Betalinger();
-            betaling.konto = account;
             betaling.tilKonto = model.toAccount;
             betaling.belop = new Decimal(Double.Parse(model.amount + "," + model.fraction));
             betaling.info = model.paymentMessage;
@@ -64,6 +47,20 @@ namespace GroupProject.BLL
             betaling.CreatedDate = DateTime.Now;
             betaling.createdBy = user.UserName;
             betaling.UpdatedDate = DateTime.Now;
+        }
+
+        public void changePayment(PaymentViewModel model, Betalinger betaling, Konto account, ApplicationUser user)
+        {
+            betaling.konto = account;
+            Payment(model, betaling, user);
+            _dbAccess.changePayment(betaling);
+        }
+
+        public void addPayment(PaymentViewModel model, Konto account, ApplicationUser user)
+        {
+            Betalinger betaling = new Betalinger();
+            betaling.konto = account;
+            Payment(model, betaling, user);
             betaling.UpdatedBy = user.UserName;
             
             _dbAccess.addPayment(betaling);
@@ -90,7 +87,7 @@ namespace GroupProject.BLL
             return getAccounts(user).Find(acc => acc.kontoNr == model.fromAccount);
         }
 
-        public PaymentViewModel changeInvoice(Betalinger invoice)
+        public PaymentViewModel convertToViewModel(Betalinger invoice)
         {
             PaymentViewModel model = new PaymentViewModel();
             model.amount = ((int)invoice.belop).ToString();
