@@ -1,0 +1,801 @@
+2016-11-09 10:31:12.664 +01:00 [Debug] Connection id ""0HL07RMGGI8BD"" started.
+2016-11-09 10:31:12.675 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/Registrer  
+2016-11-09 10:31:12.676 +01:00 [Debug] The request path "/Admin/Registrer" does not match a supported file type
+2016-11-09 10:31:12.676 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:31:12.677 +01:00 [Debug] Executing action "GroupProject.Controllers.AdminController.Registrer (GroupProject)"
+2016-11-09 10:31:12.679 +01:00 [Information] Executing action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)" with arguments (null) - ModelState is Valid
+2016-11-09 10:31:12.679 +01:00 [Debug] Executed action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)", returned result "Microsoft.AspNetCore.Mvc.ViewResult".
+2016-11-09 10:31:12.680 +01:00 [Debug] View lookup cache miss for view '"Registrer"' in controller '"Admin"'.
+2016-11-09 10:31:12.680 +01:00 [Debug] The view '"Registrer"' was found.
+2016-11-09 10:31:12.682 +01:00 [Information] Executing ViewResult, running view at path "/Views/Admin/Registrer.cshtml".
+2016-11-09 10:31:12.685 +01:00 [Debug] View lookup cache miss for view '"loggedinadminnavigation"' in controller '"Admin"'.
+2016-11-09 10:31:12.692 +01:00 [Debug] Code generation for the Razor file at '"/Views/Shared/loggedinadminnavigation.cshtml"' started.
+2016-11-09 10:31:12.738 +01:00 [Debug] Code generation for the Razor file at '"/Views/Shared/loggedinadminnavigation.cshtml"' completed in 45.1591ms.
+2016-11-09 10:31:12.738 +01:00 [Debug] Compilation of the generated code for the Razor file at '"/Views/Shared/loggedinadminnavigation.cshtml"' started.
+2016-11-09 10:31:12.802 +01:00 [Debug] Compilation of the generated code for the Razor file at '"/Views/Shared/loggedinadminnavigation.cshtml"' completed in 64.2555ms.
+2016-11-09 10:31:12.817 +01:00 [Debug] An antiforgery cookie token was reused.
+2016-11-09 10:31:12.818 +01:00 [Debug] View lookup cache miss for view '"footer"' in controller '"Admin"'.
+2016-11-09 10:31:12.829 +01:00 [Information] Executed action "GroupProject.Controllers.AdminController.Registrer (GroupProject)" in 150.7897ms
+2016-11-09 10:31:12.836 +01:00 [Information] Request finished in 162.8666ms 200 text/html; charset=utf-8
+2016-11-09 10:31:12.837 +01:00 [Debug] Connection id ""0HL07RMGGI8BD"" completed keep alive response.
+2016-11-09 10:31:12.846 +01:00 [Debug] Connection id ""0HL07RMGGI8BE"" started.
+2016-11-09 10:31:12.856 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/css/style.css  
+2016-11-09 10:31:12.861 +01:00 [Information] The file "/css/style.css" was not modified
+2016-11-09 10:31:12.861 +01:00 [Debug] Handled. Status code: 304 File: "/css/style.css"
+2016-11-09 10:31:12.864 +01:00 [Information] Request finished in 13.8075ms 304 text/css
+2016-11-09 10:31:12.866 +01:00 [Debug] Connection id ""0HL07RMGGI8BE"" completed keep alive response.
+2016-11-09 10:31:12.916 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/JS/app.js  
+2016-11-09 10:31:12.918 +01:00 [Debug] The request path "/Admin/JS/app.js" does not match an existing file
+2016-11-09 10:31:12.919 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:31:12.919 +01:00 [Debug] No actions matched the current request
+2016-11-09 10:31:12.919 +01:00 [Debug] Request did not match any routes.
+2016-11-09 10:31:12.945 +01:00 [Information] Request finished in 18.3466ms 404 
+2016-11-09 10:31:12.945 +01:00 [Debug] Connection id ""0HL07RMGGI8BD"" completed keep alive response.
+2016-11-09 10:31:16.913 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/EndreBruker  
+2016-11-09 10:31:16.913 +01:00 [Debug] The request path "/Admin/EndreBruker" does not match a supported file type
+2016-11-09 10:31:16.914 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:31:16.914 +01:00 [Debug] Executing action "GroupProject.Controllers.AdminController.EndreBruker (GroupProject)"
+2016-11-09 10:31:16.916 +01:00 [Information] Executing action method "GroupProject.Controllers.AdminController.EndreBruker (GroupProject)" with arguments (null) - ModelState is Valid
+2016-11-09 10:31:16.917 +01:00 [Debug] Executed action method "GroupProject.Controllers.AdminController.EndreBruker (GroupProject)", returned result "Microsoft.AspNetCore.Mvc.ViewResult".
+2016-11-09 10:31:16.917 +01:00 [Debug] View lookup cache miss for view '"EndreBruker"' in controller '"Admin"'.
+2016-11-09 10:31:16.924 +01:00 [Debug] Code generation for the Razor file at '"/Views/Admin/EndreBruker.cshtml"' started.
+2016-11-09 10:31:16.937 +01:00 [Debug] Code generation for the Razor file at '"/Views/Admin/EndreBruker.cshtml"' completed in 12.4466ms.
+2016-11-09 10:31:16.937 +01:00 [Debug] Compilation of the generated code for the Razor file at '"/Views/Admin/EndreBruker.cshtml"' started.
+2016-11-09 10:31:17.008 +01:00 [Debug] Compilation of the generated code for the Razor file at '"/Views/Admin/EndreBruker.cshtml"' completed in 71.1146ms.
+2016-11-09 10:31:17.009 +01:00 [Debug] The view '"EndreBruker"' was found.
+2016-11-09 10:31:17.012 +01:00 [Information] Executing ViewResult, running view at path "/Views/Admin/EndreBruker.cshtml".
+2016-11-09 10:31:17.023 +01:00 [Debug] View lookup cache hit for view '"loggedinadminnavigation"' in controller '"Admin"'.
+2016-11-09 10:31:17.023 +01:00 [Debug] An antiforgery cookie token was reused.
+2016-11-09 10:31:17.023 +01:00 [Debug] View lookup cache hit for view '"footer"' in controller '"Admin"'.
+2016-11-09 10:31:17.035 +01:00 [Information] Executed action "GroupProject.Controllers.AdminController.EndreBruker (GroupProject)" in 117.6431ms
+2016-11-09 10:31:17.041 +01:00 [Information] Request finished in 127.2524ms 200 text/html; charset=utf-8
+2016-11-09 10:31:17.041 +01:00 [Debug] Connection id ""0HL07RMGGI8BE"" completed keep alive response.
+2016-11-09 10:31:17.058 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/JS/app.js  
+2016-11-09 10:31:17.060 +01:00 [Debug] The request path "/Admin/JS/app.js" does not match an existing file
+2016-11-09 10:31:17.060 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:31:17.060 +01:00 [Debug] No actions matched the current request
+2016-11-09 10:31:17.060 +01:00 [Debug] Request did not match any routes.
+2016-11-09 10:31:17.066 +01:00 [Information] Request finished in 5.9355ms 404 
+2016-11-09 10:31:17.067 +01:00 [Debug] Connection id ""0HL07RMGGI8BD"" completed keep alive response.
+2016-11-09 10:31:17.133 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/JS/app.js  
+2016-11-09 10:31:17.134 +01:00 [Debug] The request path "/Admin/JS/app.js" does not match an existing file
+2016-11-09 10:31:17.134 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:31:17.134 +01:00 [Debug] No actions matched the current request
+2016-11-09 10:31:17.134 +01:00 [Debug] Request did not match any routes.
+2016-11-09 10:31:17.137 +01:00 [Information] Request finished in 7.9813ms 404 
+2016-11-09 10:31:17.137 +01:00 [Debug] Connection id ""0HL07RMGGI8BE"" completed keep alive response.
+2016-11-09 10:31:18.605 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/FakturaOversikt  
+2016-11-09 10:31:18.606 +01:00 [Debug] The request path "/Admin/FakturaOversikt" does not match a supported file type
+2016-11-09 10:31:18.606 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:31:18.611 +01:00 [Debug] Executing action "GroupProject.Controllers.AdminController.FakturaOversikt (GroupProject)"
+2016-11-09 10:31:18.614 +01:00 [Information] Executing action method "GroupProject.Controllers.AdminController.FakturaOversikt (GroupProject)" with arguments (null) - ModelState is Valid
+2016-11-09 10:31:18.615 +01:00 [Debug] Executed action method "GroupProject.Controllers.AdminController.FakturaOversikt (GroupProject)", returned result "Microsoft.AspNetCore.Mvc.ViewResult".
+2016-11-09 10:31:18.615 +01:00 [Debug] View lookup cache miss for view '"FakturaOversikt"' in controller '"Admin"'.
+2016-11-09 10:31:18.617 +01:00 [Debug] Code generation for the Razor file at '"/Views/Admin/FakturaOversikt.cshtml"' started.
+2016-11-09 10:31:18.624 +01:00 [Debug] Code generation for the Razor file at '"/Views/Admin/FakturaOversikt.cshtml"' completed in 7.2311ms.
+2016-11-09 10:31:18.624 +01:00 [Debug] Compilation of the generated code for the Razor file at '"/Views/Admin/FakturaOversikt.cshtml"' started.
+2016-11-09 10:31:18.745 +01:00 [Debug] Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException occurred, checking if Entity Framework recorded this exception as resulting from a failed database operation.
+2016-11-09 10:31:18.745 +01:00 [Debug] Entity Framework did not record any exceptions due to failed database operations. This means the current exception is not a failed Entity Framework database operation, or the current exception occurred from a DbContext that was not obtained from request services.
+2016-11-09 10:31:18.853 +01:00 [Error] An unhandled exception has occurred while executing the request
+Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException: One or more compilation failures occurred:
+/Views/Admin/FakturaOversikt.cshtml(26,35): error CS1061: 'Betalinger' does not contain a definition for 'fraKonto' and no extension method 'fraKonto' accepting a first argument of type 'Betalinger' could be found (are you missing a using directive or an assembly reference?)
+/Views/Admin/FakturaOversikt.cshtml(30,44): error CS1061: 'Betalinger' does not contain a definition for 'fraKonto' and no extension method 'fraKonto' accepting a first argument of type 'Betalinger' could be found (are you missing a using directive or an assembly reference?)
+   at Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationResult.EnsureSuccessful()
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.CompilerCache.CreateCacheEntry(String relativePath, String normalizedPath, Func`2 compile)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.CompilerCache.GetOrAdd(String relativePath, Func`2 compile)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewResult.<ExecuteResultAsync>d__26.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResultAsync>d__32.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResultFilterAsync>d__31.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAllResultFiltersAsync>d__29.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResourceFilterAsync>d__23.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAsync>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.<Invoke>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Session.SessionMiddleware.<Invoke>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.VisualStudio.Web.BrowserLink.Runtime.BrowserLinkMiddleware.<ExecuteWithFilter>d__7.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__6.MoveNext()
+2016-11-09 10:31:18.920 +01:00 [Information] Request finished in 315.7622ms 500 text/html; charset=utf-8
+2016-11-09 10:31:18.920 +01:00 [Debug] Connection id ""0HL07RMGGI8BD"" completed keep alive response.
+2016-11-09 10:33:28.474 +01:00 [Debug] Connection id ""0HL07RMGGI8BE"" received FIN.
+2016-11-09 10:33:28.475 +01:00 [Debug] Connection id ""0HL07RMGGI8BD"" received FIN.
+2016-11-09 10:33:28.475 +01:00 [Debug] Connection id ""0HL07RMGGI8BE"" disconnecting.
+2016-11-09 10:33:28.475 +01:00 [Debug] Connection id ""0HL07RMGGI8BE"" sending FIN.
+2016-11-09 10:33:28.475 +01:00 [Debug] Connection id ""0HL07RMGGI8BF"" started.
+2016-11-09 10:33:28.475 +01:00 [Debug] Connection id ""0HL07RMGGI8BD"" disconnecting.
+2016-11-09 10:33:28.475 +01:00 [Debug] Connection id ""0HL07RMGGI8BD"" sending FIN.
+2016-11-09 10:33:28.476 +01:00 [Debug] Connection id ""0HL07RMGGI8BD"" sent FIN with status "0".
+2016-11-09 10:33:28.475 +01:00 [Debug] Connection id ""0HL07RMGGI8BE"" sent FIN with status "0".
+2016-11-09 10:33:28.501 +01:00 [Debug] Connection id ""0HL07RMGGI8BD"" stopped.
+2016-11-09 10:33:28.501 +01:00 [Debug] Connection id ""0HL07RMGGI8BE"" stopped.
+2016-11-09 10:33:28.506 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/  
+2016-11-09 10:33:28.507 +01:00 [Debug] The request path "/" does not match a supported file type
+2016-11-09 10:33:28.507 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:33:28.507 +01:00 [Debug] Executing action "GroupProject.Controllers.HomeController.Index (GroupProject)"
+2016-11-09 10:33:28.511 +01:00 [Information] Executing action method "GroupProject.Controllers.HomeController.Index (GroupProject)" with arguments (null) - ModelState is Valid
+2016-11-09 10:33:28.512 +01:00 [Debug] Executed action method "GroupProject.Controllers.HomeController.Index (GroupProject)", returned result "Microsoft.AspNetCore.Mvc.ViewResult".
+2016-11-09 10:33:28.512 +01:00 [Debug] View lookup cache miss for view '"Index"' in controller '"Home"'.
+2016-11-09 10:33:28.512 +01:00 [Debug] The view '"Index"' was found.
+2016-11-09 10:33:28.517 +01:00 [Information] Executing ViewResult, running view at path "/Views/Home/Index.cshtml".
+2016-11-09 10:33:28.517 +01:00 [Debug] View lookup cache miss for view '"Partials/CurrencyFeed"' in controller '"Home"'.
+2016-11-09 10:33:28.517 +01:00 [Debug] View lookup cache miss for view '"_Layout"' in controller '"Home"'.
+2016-11-09 10:33:28.517 +01:00 [Debug] View lookup cache miss for view '"navigation"' in controller '"Home"'.
+2016-11-09 10:33:28.517 +01:00 [Debug] View lookup cache miss for view '"footer"' in controller '"Home"'.
+2016-11-09 10:33:28.534 +01:00 [Information] Executed action "GroupProject.Controllers.HomeController.Index (GroupProject)" in 23.7208ms
+2016-11-09 10:33:28.541 +01:00 [Information] Request finished in 34.2008ms 200 text/html; charset=utf-8
+2016-11-09 10:33:28.541 +01:00 [Debug] Connection id ""0HL07RMGGI8BF"" completed keep alive response.
+2016-11-09 10:33:28.567 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/JS/index.js  
+2016-11-09 10:33:28.571 +01:00 [Information] The file "/JS/index.js" was not modified
+2016-11-09 10:33:28.571 +01:00 [Debug] Handled. Status code: 304 File: "/JS/index.js"
+2016-11-09 10:33:28.575 +01:00 [Information] Request finished in 10.1573ms 304 application/javascript
+2016-11-09 10:33:28.576 +01:00 [Debug] Connection id ""0HL07RMGGI8BF"" completed keep alive response.
+2016-11-09 10:33:28.587 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/bankid  
+2016-11-09 10:33:28.587 +01:00 [Debug] The request path "/bankid" does not match a supported file type
+2016-11-09 10:33:28.587 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:33:28.588 +01:00 [Debug] Executing action "GroupProject.Controllers.BankIdController.Index (GroupProject)"
+2016-11-09 10:33:28.591 +01:00 [Information] Executing action method "GroupProject.Controllers.BankIdController.Index (GroupProject)" with arguments (null) - ModelState is Valid
+2016-11-09 10:33:28.593 +01:00 [Warning] Accessing expired session, Key:"8da7cba8-8072-a07a-ac7a-442d49b2ad49"
+2016-11-09 10:33:28.593 +01:00 [Debug] Executed action method "GroupProject.Controllers.BankIdController.Index (GroupProject)", returned result "Microsoft.AspNetCore.Mvc.ViewResult".
+2016-11-09 10:33:28.593 +01:00 [Debug] View lookup cache miss for view '"Identify"' in controller '"BankId"'.
+2016-11-09 10:33:28.594 +01:00 [Debug] The view '"Identify"' was found.
+2016-11-09 10:33:28.596 +01:00 [Information] Executing ViewResult, running view at path "/Views/BankId/Identify.cshtml".
+2016-11-09 10:33:28.596 +01:00 [Debug] An antiforgery cookie token was reused.
+2016-11-09 10:33:28.597 +01:00 [Debug] View lookup cache miss for view '"shared/_bankid"' in controller '"BankId"'.
+2016-11-09 10:33:28.601 +01:00 [Debug] Connection id ""0HL07RMGGI8BG"" started.
+2016-11-09 10:33:28.610 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/images/happy-min.jpg  
+2016-11-09 10:33:28.620 +01:00 [Information] Executed action "GroupProject.Controllers.BankIdController.Index (GroupProject)" in 25.5417ms
+2016-11-09 10:33:28.621 +01:00 [Information] The file "/images/happy-min.jpg" was not modified
+2016-11-09 10:33:28.621 +01:00 [Debug] Handled. Status code: 304 File: "/images/happy-min.jpg"
+2016-11-09 10:33:28.628 +01:00 [Information] Request finished in 19.7226ms 304 image/jpeg
+2016-11-09 10:33:28.629 +01:00 [Debug] Connection id ""0HL07RMGGI8BG"" completed keep alive response.
+2016-11-09 10:33:28.639 +01:00 [Information] Request finished in 48.4684ms 200 text/html; charset=utf-8
+2016-11-09 10:33:28.639 +01:00 [Debug] Connection id ""0HL07RMGGI8BF"" completed keep alive response.
+2016-11-09 10:33:28.700 +01:00 [Debug] Connection id ""0HL07RMGGI8BH"" started.
+2016-11-09 10:33:28.701 +01:00 [Debug] Connection id ""0HL07RMGGI8BI"" started.
+2016-11-09 10:33:28.701 +01:00 [Debug] Connection id ""0HL07RMGGI8BJ"" started.
+2016-11-09 10:33:28.701 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/CSS/main.css  
+2016-11-09 10:33:28.713 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/CSS/bid.css  
+2016-11-09 10:33:28.721 +01:00 [Information] The file "/CSS/main.css" was not modified
+2016-11-09 10:33:28.721 +01:00 [Debug] Handled. Status code: 304 File: "/CSS/main.css"
+2016-11-09 10:33:28.736 +01:00 [Information] The file "/CSS/bid.css" was not modified
+2016-11-09 10:33:28.737 +01:00 [Debug] Handled. Status code: 304 File: "/CSS/bid.css"
+2016-11-09 10:33:28.743 +01:00 [Information] Request finished in 59.3155ms 304 text/css
+2016-11-09 10:33:28.745 +01:00 [Debug] Connection id ""0HL07RMGGI8BF"" completed keep alive response.
+2016-11-09 10:33:28.754 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/js/identify.js  
+2016-11-09 10:33:28.755 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/js/reference.js  
+2016-11-09 10:33:28.758 +01:00 [Information] The file "/js/identify.js" was not modified
+2016-11-09 10:33:28.758 +01:00 [Debug] Handled. Status code: 304 File: "/js/identify.js"
+2016-11-09 10:33:28.766 +01:00 [Information] The file "/js/reference.js" was not modified
+2016-11-09 10:33:28.766 +01:00 [Debug] Handled. Status code: 304 File: "/js/reference.js"
+2016-11-09 10:33:28.771 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/js/header.js  
+2016-11-09 10:33:28.774 +01:00 [Information] Request finished in 56.3728ms 304 application/javascript
+2016-11-09 10:33:28.778 +01:00 [Debug] Connection id ""0HL07RMGGI8BI"" completed keep alive response.
+2016-11-09 10:33:28.785 +01:00 [Information] The file "/js/header.js" was not modified
+2016-11-09 10:33:28.785 +01:00 [Debug] Handled. Status code: 304 File: "/js/header.js"
+2016-11-09 10:33:28.787 +01:00 [Information] Request finished in 84.2151ms 304 application/javascript
+2016-11-09 10:33:28.791 +01:00 [Debug] Connection id ""0HL07RMGGI8BH"" completed keep alive response.
+2016-11-09 10:33:28.795 +01:00 [Information] Request finished in 13.8453ms 304 application/javascript
+2016-11-09 10:33:28.795 +01:00 [Debug] Connection id ""0HL07RMGGI8BJ"" completed keep alive response.
+2016-11-09 10:33:28.800 +01:00 [Information] Request finished in 50.7817ms 304 text/css
+2016-11-09 10:33:28.800 +01:00 [Debug] Connection id ""0HL07RMGGI8BG"" completed keep alive response.
+2016-11-09 10:33:33.371 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/Registrer  
+2016-11-09 10:33:33.372 +01:00 [Debug] The request path "/Admin/Registrer" does not match a supported file type
+2016-11-09 10:33:33.373 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:33:33.373 +01:00 [Debug] Executing action "GroupProject.Controllers.AdminController.Registrer (GroupProject)"
+2016-11-09 10:33:33.377 +01:00 [Information] Executing action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)" with arguments (null) - ModelState is Valid
+2016-11-09 10:33:33.377 +01:00 [Debug] Executed action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)", returned result "Microsoft.AspNetCore.Mvc.ViewResult".
+2016-11-09 10:33:33.377 +01:00 [Debug] View lookup cache hit for view '"Registrer"' in controller '"Admin"'.
+2016-11-09 10:33:33.377 +01:00 [Debug] The view '"Registrer"' was found.
+2016-11-09 10:33:33.381 +01:00 [Information] Executing ViewResult, running view at path "/Views/Admin/Registrer.cshtml".
+2016-11-09 10:33:33.383 +01:00 [Debug] View lookup cache hit for view '"loggedinadminnavigation"' in controller '"Admin"'.
+2016-11-09 10:33:33.383 +01:00 [Debug] An antiforgery cookie token was reused.
+2016-11-09 10:33:33.383 +01:00 [Debug] View lookup cache hit for view '"footer"' in controller '"Admin"'.
+2016-11-09 10:33:33.397 +01:00 [Information] Executed action "GroupProject.Controllers.AdminController.Registrer (GroupProject)" in 21.7315ms
+2016-11-09 10:33:33.408 +01:00 [Information] Request finished in 32.5306ms 200 text/html; charset=utf-8
+2016-11-09 10:33:33.409 +01:00 [Debug] Connection id ""0HL07RMGGI8BF"" completed keep alive response.
+2016-11-09 10:33:33.429 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/JS/app.js  
+2016-11-09 10:33:33.430 +01:00 [Debug] The request path "/Admin/JS/app.js" does not match an existing file
+2016-11-09 10:33:33.431 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:33:33.431 +01:00 [Debug] No actions matched the current request
+2016-11-09 10:33:33.431 +01:00 [Debug] Request did not match any routes.
+2016-11-09 10:33:33.434 +01:00 [Information] Request finished in 7.4582ms 404 
+2016-11-09 10:33:33.434 +01:00 [Debug] Connection id ""0HL07RMGGI8BI"" completed keep alive response.
+2016-11-09 10:33:33.466 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/JS/app.js  
+2016-11-09 10:33:33.467 +01:00 [Debug] The request path "/Admin/JS/app.js" does not match an existing file
+2016-11-09 10:33:33.468 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:33:33.468 +01:00 [Debug] No actions matched the current request
+2016-11-09 10:33:33.468 +01:00 [Debug] Request did not match any routes.
+2016-11-09 10:33:33.476 +01:00 [Information] Request finished in 6.9408ms 404 
+2016-11-09 10:33:33.476 +01:00 [Debug] Connection id ""0HL07RMGGI8BH"" completed keep alive response.
+2016-11-09 10:35:45.282 +01:00 [Debug] Connection id ""0HL07RMGGI8BG"" received FIN.
+2016-11-09 10:35:45.282 +01:00 [Debug] Connection id ""0HL07RMGGI8BI"" received FIN.
+2016-11-09 10:35:45.282 +01:00 [Debug] Connection id ""0HL07RMGGI8BG"" disconnecting.
+2016-11-09 10:35:45.282 +01:00 [Debug] Connection id ""0HL07RMGGI8BG"" sending FIN.
+2016-11-09 10:35:45.282 +01:00 [Debug] Connection id ""0HL07RMGGI8BG"" sent FIN with status "0".
+2016-11-09 10:35:45.282 +01:00 [Debug] Connection id ""0HL07RMGGI8BG"" stopped.
+2016-11-09 10:35:45.282 +01:00 [Debug] Connection id ""0HL07RMGGI8BI"" disconnecting.
+2016-11-09 10:35:45.283 +01:00 [Debug] Connection id ""0HL07RMGGI8BI"" sending FIN.
+2016-11-09 10:35:45.283 +01:00 [Debug] Connection id ""0HL07RMGGI8BI"" sent FIN with status "0".
+2016-11-09 10:35:45.282 +01:00 [Debug] Connection id ""0HL07RMGGI8BJ"" received FIN.
+2016-11-09 10:35:45.288 +01:00 [Debug] Connection id ""0HL07RMGGI8BI"" stopped.
+2016-11-09 10:35:45.288 +01:00 [Debug] Connection id ""0HL07RMGGI8BF"" received FIN.
+2016-11-09 10:35:45.288 +01:00 [Debug] Connection id ""0HL07RMGGI8BJ"" disconnecting.
+2016-11-09 10:35:45.313 +01:00 [Debug] Connection id ""0HL07RMGGI8BH"" received FIN.
+2016-11-09 10:35:45.315 +01:00 [Debug] Connection id ""0HL07RMGGI8BF"" disconnecting.
+2016-11-09 10:35:45.315 +01:00 [Debug] Connection id ""0HL07RMGGI8BH"" disconnecting.
+2016-11-09 10:35:45.319 +01:00 [Debug] Connection id ""0HL07RMGGI8BJ"" sending FIN.
+2016-11-09 10:35:45.319 +01:00 [Debug] Connection id ""0HL07RMGGI8BK"" started.
+2016-11-09 10:35:45.319 +01:00 [Debug] Connection id ""0HL07RMGGI8BF"" sending FIN.
+2016-11-09 10:35:45.319 +01:00 [Debug] Connection id ""0HL07RMGGI8BH"" sending FIN.
+2016-11-09 10:35:45.319 +01:00 [Debug] Connection id ""0HL07RMGGI8BH"" sent FIN with status "0".
+2016-11-09 10:35:45.321 +01:00 [Debug] Connection id ""0HL07RMGGI8BH"" stopped.
+2016-11-09 10:35:45.323 +01:00 [Debug] Connection id ""0HL07RMGGI8BF"" sent FIN with status "0".
+2016-11-09 10:35:45.323 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/Registrer  
+2016-11-09 10:35:45.323 +01:00 [Debug] Connection id ""0HL07RMGGI8BF"" stopped.
+2016-11-09 10:35:45.323 +01:00 [Debug] Connection id ""0HL07RMGGI8BJ"" sent FIN with status "0".
+2016-11-09 10:35:45.323 +01:00 [Debug] Connection id ""0HL07RMGGI8BJ"" stopped.
+2016-11-09 10:35:45.324 +01:00 [Debug] The request path "/Admin/Registrer" does not match a supported file type
+2016-11-09 10:35:45.324 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:35:45.324 +01:00 [Debug] Executing action "GroupProject.Controllers.AdminController.Registrer (GroupProject)"
+2016-11-09 10:35:45.327 +01:00 [Information] Executing action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)" with arguments (null) - ModelState is Valid
+2016-11-09 10:35:45.328 +01:00 [Debug] Executed action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)", returned result "Microsoft.AspNetCore.Mvc.ViewResult".
+2016-11-09 10:35:45.328 +01:00 [Debug] View lookup cache hit for view '"Registrer"' in controller '"Admin"'.
+2016-11-09 10:35:45.328 +01:00 [Debug] The view '"Registrer"' was found.
+2016-11-09 10:35:45.330 +01:00 [Information] Executing ViewResult, running view at path "/Views/Admin/Registrer.cshtml".
+2016-11-09 10:35:45.332 +01:00 [Debug] View lookup cache hit for view '"loggedinadminnavigation"' in controller '"Admin"'.
+2016-11-09 10:35:45.332 +01:00 [Debug] An antiforgery cookie token was reused.
+2016-11-09 10:35:45.333 +01:00 [Debug] View lookup cache hit for view '"footer"' in controller '"Admin"'.
+2016-11-09 10:35:45.355 +01:00 [Information] Executed action "GroupProject.Controllers.AdminController.Registrer (GroupProject)" in 27.2373ms
+2016-11-09 10:35:45.373 +01:00 [Information] Request finished in 40.7995ms 200 text/html; charset=utf-8
+2016-11-09 10:35:45.373 +01:00 [Debug] Connection id ""0HL07RMGGI8BK"" completed keep alive response.
+2016-11-09 10:35:45.436 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/JS/app.js  
+2016-11-09 10:35:45.438 +01:00 [Debug] The request path "/Admin/JS/app.js" does not match an existing file
+2016-11-09 10:35:45.439 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:35:45.439 +01:00 [Debug] No actions matched the current request
+2016-11-09 10:35:45.439 +01:00 [Debug] Request did not match any routes.
+2016-11-09 10:35:45.442 +01:00 [Information] Request finished in 9.2066ms 404 
+2016-11-09 10:35:45.442 +01:00 [Debug] Connection id ""0HL07RMGGI8BK"" completed keep alive response.
+2016-11-09 10:37:36.629 +01:00 [Debug] Connection id ""0HL07RMGGI8BK"" received FIN.
+2016-11-09 10:37:36.630 +01:00 [Debug] Connection id ""0HL07RMGGI8BK"" disconnecting.
+2016-11-09 10:37:36.630 +01:00 [Debug] Connection id ""0HL07RMGGI8BK"" sending FIN.
+2016-11-09 10:37:36.631 +01:00 [Debug] Connection id ""0HL07RMGGI8BK"" sent FIN with status "0".
+2016-11-09 10:37:36.631 +01:00 [Debug] Connection id ""0HL07RMGGI8BK"" stopped.
+2016-11-09 10:51:27.294 +01:00 [Debug] Connection id ""0HL07RMGGI8BL"" started.
+2016-11-09 10:51:27.300 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/user  
+2016-11-09 10:51:27.301 +01:00 [Debug] The request path "/user" does not match a supported file type
+2016-11-09 10:51:27.301 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:51:27.301 +01:00 [Debug] Executing action "GroupProject.Controllers.UserController.Index (GroupProject)"
+2016-11-09 10:51:27.304 +01:00 [Information] Authorization failed for user: null.
+2016-11-09 10:51:27.308 +01:00 [Warning] Authorization failed for the request at filter '"Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter"'.
+2016-11-09 10:51:27.310 +01:00 [Information] Executing ChallengeResult with authentication schemes ([]).
+2016-11-09 10:51:27.314 +01:00 [Information] AuthenticationScheme: "Identity.Application" was challenged.
+2016-11-09 10:51:27.317 +01:00 [Information] Request finished in 20.424ms 302 
+2016-11-09 10:51:27.317 +01:00 [Debug] Connection id ""0HL07RMGGI8BL"" completed keep alive response.
+2016-11-09 10:51:27.323 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Home/Login?ReturnUrl=%2Fuser  
+2016-11-09 10:51:27.324 +01:00 [Debug] The request path "/Home/Login" does not match a supported file type
+2016-11-09 10:51:27.324 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:51:27.325 +01:00 [Debug] No actions matched the current request
+2016-11-09 10:51:27.325 +01:00 [Debug] Request did not match any routes.
+2016-11-09 10:51:27.330 +01:00 [Information] Request finished in 3.8648ms 404 
+2016-11-09 10:51:27.330 +01:00 [Debug] Connection id ""0HL07RMGGI8BL"" completed keep alive response.
+2016-11-09 10:51:39.751 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Home/Login?ReturnUrl=%2Fuser  
+2016-11-09 10:51:39.752 +01:00 [Debug] The request path "/Home/Login" does not match a supported file type
+2016-11-09 10:51:39.752 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:51:39.752 +01:00 [Debug] No actions matched the current request
+2016-11-09 10:51:39.752 +01:00 [Debug] Request did not match any routes.
+2016-11-09 10:51:39.756 +01:00 [Information] Request finished in 8.9688ms 404 
+2016-11-09 10:51:39.756 +01:00 [Debug] Connection id ""0HL07RMGGI8BL"" completed keep alive response.
+2016-11-09 10:51:50.609 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Home/Login?ReturnUrl=%2Fuser  
+2016-11-09 10:51:50.609 +01:00 [Debug] The request path "/Home/Login" does not match a supported file type
+2016-11-09 10:51:50.610 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:51:50.610 +01:00 [Debug] No actions matched the current request
+2016-11-09 10:51:50.610 +01:00 [Debug] Request did not match any routes.
+2016-11-09 10:51:50.612 +01:00 [Information] Request finished in 4.2924ms 404 
+2016-11-09 10:51:50.613 +01:00 [Debug] Connection id ""0HL07RMGGI8BL"" completed keep alive response.
+2016-11-09 10:52:39.992 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Home/Login?ReturnUrl=%2Fuser  
+2016-11-09 10:52:39.996 +01:00 [Debug] The request path "/Home/Login" does not match a supported file type
+2016-11-09 10:52:39.996 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:52:39.996 +01:00 [Debug] No actions matched the current request
+2016-11-09 10:52:39.996 +01:00 [Debug] Request did not match any routes.
+2016-11-09 10:52:39.998 +01:00 [Information] Request finished in 7.3355ms 404 
+2016-11-09 10:52:39.999 +01:00 [Debug] Connection id ""0HL07RMGGI8BL"" completed keep alive response.
+2016-11-09 10:52:41.907 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/  
+2016-11-09 10:52:41.907 +01:00 [Debug] The request path "/" does not match a supported file type
+2016-11-09 10:52:41.908 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:52:41.908 +01:00 [Debug] Executing action "GroupProject.Controllers.HomeController.Index (GroupProject)"
+2016-11-09 10:52:41.912 +01:00 [Information] Executing action method "GroupProject.Controllers.HomeController.Index (GroupProject)" with arguments (null) - ModelState is Valid
+2016-11-09 10:52:41.913 +01:00 [Debug] Executed action method "GroupProject.Controllers.HomeController.Index (GroupProject)", returned result "Microsoft.AspNetCore.Mvc.ViewResult".
+2016-11-09 10:52:41.914 +01:00 [Debug] View lookup cache hit for view '"Index"' in controller '"Home"'.
+2016-11-09 10:52:41.915 +01:00 [Debug] The view '"Index"' was found.
+2016-11-09 10:52:41.918 +01:00 [Information] Executing ViewResult, running view at path "/Views/Home/Index.cshtml".
+2016-11-09 10:52:41.919 +01:00 [Debug] View lookup cache hit for view '"Partials/CurrencyFeed"' in controller '"Home"'.
+2016-11-09 10:52:41.920 +01:00 [Debug] View lookup cache hit for view '"_Layout"' in controller '"Home"'.
+2016-11-09 10:52:41.920 +01:00 [Debug] View lookup cache hit for view '"navigation"' in controller '"Home"'.
+2016-11-09 10:52:41.921 +01:00 [Debug] View lookup cache hit for view '"footer"' in controller '"Home"'.
+2016-11-09 10:52:41.968 +01:00 [Information] Executed action "GroupProject.Controllers.HomeController.Index (GroupProject)" in 58.304ms
+2016-11-09 10:52:41.973 +01:00 [Information] Request finished in 67.7302ms 200 text/html; charset=utf-8
+2016-11-09 10:52:41.973 +01:00 [Debug] Connection id ""0HL07RMGGI8BL"" completed keep alive response.
+2016-11-09 10:52:42.017 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/bankid  
+2016-11-09 10:52:42.018 +01:00 [Debug] The request path "/bankid" does not match a supported file type
+2016-11-09 10:52:42.018 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 10:52:42.018 +01:00 [Debug] Executing action "GroupProject.Controllers.BankIdController.Index (GroupProject)"
+2016-11-09 10:52:42.023 +01:00 [Information] Executing action method "GroupProject.Controllers.BankIdController.Index (GroupProject)" with arguments (null) - ModelState is Valid
+2016-11-09 10:52:42.026 +01:00 [Warning] Accessing expired session, Key:"8da7cba8-8072-a07a-ac7a-442d49b2ad49"
+2016-11-09 10:52:42.027 +01:00 [Debug] Executed action method "GroupProject.Controllers.BankIdController.Index (GroupProject)", returned result "Microsoft.AspNetCore.Mvc.ViewResult".
+2016-11-09 10:52:42.027 +01:00 [Debug] View lookup cache hit for view '"Identify"' in controller '"BankId"'.
+2016-11-09 10:52:42.027 +01:00 [Debug] The view '"Identify"' was found.
+2016-11-09 10:52:42.034 +01:00 [Information] Executing ViewResult, running view at path "/Views/BankId/Identify.cshtml".
+2016-11-09 10:52:42.035 +01:00 [Debug] An antiforgery cookie token was reused.
+2016-11-09 10:52:42.035 +01:00 [Debug] View lookup cache hit for view '"shared/_bankid"' in controller '"BankId"'.
+2016-11-09 10:52:42.057 +01:00 [Information] Executed action "GroupProject.Controllers.BankIdController.Index (GroupProject)" in 36.544ms
+2016-11-09 10:52:42.062 +01:00 [Information] Request finished in 46.1311ms 200 text/html; charset=utf-8
+2016-11-09 10:52:42.063 +01:00 [Debug] Connection id ""0HL07RMGGI8BL"" completed keep alive response.
+2016-11-09 10:54:06.629 +01:00 [Debug] Connection id ""0HL07RMGGI8BL"" received FIN.
+2016-11-09 10:54:06.629 +01:00 [Debug] Connection id ""0HL07RMGGI8BL"" disconnecting.
+2016-11-09 10:54:06.633 +01:00 [Debug] Connection id ""0HL07RMGGI8BL"" sending FIN.
+2016-11-09 10:54:06.640 +01:00 [Debug] Connection id ""0HL07RMGGI8BL"" sent FIN with status "0".
+2016-11-09 10:54:06.640 +01:00 [Debug] Connection id ""0HL07RMGGI8BL"" stopped.
+2016-11-09 11:22:51.262 +01:00 [Debug] Connection id ""0HL07RMGGI8BM"" started.
+2016-11-09 11:22:51.266 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/Registrer  
+2016-11-09 11:22:51.271 +01:00 [Debug] The request path "/Admin/Registrer" does not match a supported file type
+2016-11-09 11:22:51.272 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 11:22:51.272 +01:00 [Debug] Executing action "GroupProject.Controllers.AdminController.Registrer (GroupProject)"
+2016-11-09 11:22:51.276 +01:00 [Information] Executing action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)" with arguments (null) - ModelState is Valid
+2016-11-09 11:22:51.276 +01:00 [Debug] Executed action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)", returned result "Microsoft.AspNetCore.Mvc.ViewResult".
+2016-11-09 11:22:51.276 +01:00 [Debug] View lookup cache miss for view '"Registrer"' in controller '"Admin"'.
+2016-11-09 11:22:51.278 +01:00 [Debug] Code generation for the Razor file at '"/Views/Admin/Registrer.cshtml"' started.
+2016-11-09 11:22:51.352 +01:00 [Debug] Code generation for the Razor file at '"/Views/Admin/Registrer.cshtml"' completed in 73.872ms.
+2016-11-09 11:22:51.352 +01:00 [Debug] Compilation of the generated code for the Razor file at '"/Views/Admin/Registrer.cshtml"' started.
+2016-11-09 11:22:51.548 +01:00 [Debug] Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException occurred, checking if Entity Framework recorded this exception as resulting from a failed database operation.
+2016-11-09 11:22:51.548 +01:00 [Debug] Entity Framework did not record any exceptions due to failed database operations. This means the current exception is not a failed Entity Framework database operation, or the current exception occurred from a DbContext that was not obtained from request services.
+2016-11-09 11:22:51.581 +01:00 [Error] An unhandled exception has occurred while executing the request
+Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException: One or more compilation failures occurred:
+ibadfpgl.ff2(1118,3862): error CS1031: Type expected
+ibadfpgl.ff2(1118,3914): error CS1061: 'RegisterViewModel' does not contain a definition for 'kontoType' and no extension method 'kontoType' accepting a first argument of type 'RegisterViewModel' could be found (are you missing a using directive or an assembly reference?)
+   at Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationResult.EnsureSuccessful()
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.CompilerCache.CreateCacheEntry(String relativePath, String normalizedPath, Func`2 compile)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.CompilerCache.GetOrAdd(String relativePath, Func`2 compile)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewResult.<ExecuteResultAsync>d__26.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResultAsync>d__32.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResultFilterAsync>d__31.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAllResultFiltersAsync>d__29.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResourceFilterAsync>d__23.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAsync>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.<Invoke>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Session.SessionMiddleware.<Invoke>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.VisualStudio.Web.BrowserLink.Runtime.BrowserLinkMiddleware.<ExecuteWithFilter>d__7.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__6.MoveNext()
+2016-11-09 11:22:51.602 +01:00 [Information] Request finished in 335.4964ms 500 text/html; charset=utf-8
+2016-11-09 11:22:51.602 +01:00 [Debug] Connection id ""0HL07RMGGI8BM"" completed keep alive response.
+2016-11-09 11:23:04.961 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/Registrer  
+2016-11-09 11:23:04.962 +01:00 [Debug] The request path "/Admin/Registrer" does not match a supported file type
+2016-11-09 11:23:04.962 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 11:23:04.963 +01:00 [Debug] Executing action "GroupProject.Controllers.AdminController.Registrer (GroupProject)"
+2016-11-09 11:23:04.965 +01:00 [Information] Executing action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)" with arguments (null) - ModelState is Valid
+2016-11-09 11:23:04.965 +01:00 [Debug] Executed action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)", returned result "Microsoft.AspNetCore.Mvc.ViewResult".
+2016-11-09 11:23:04.965 +01:00 [Debug] View lookup cache miss for view '"Registrer"' in controller '"Admin"'.
+2016-11-09 11:23:04.969 +01:00 [Debug] Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException occurred, checking if Entity Framework recorded this exception as resulting from a failed database operation.
+2016-11-09 11:23:04.969 +01:00 [Debug] Entity Framework did not record any exceptions due to failed database operations. This means the current exception is not a failed Entity Framework database operation, or the current exception occurred from a DbContext that was not obtained from request services.
+2016-11-09 11:23:05.001 +01:00 [Error] An unhandled exception has occurred while executing the request
+Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException: One or more compilation failures occurred:
+ibadfpgl.ff2(1118,3862): error CS1031: Type expected
+ibadfpgl.ff2(1118,3914): error CS1061: 'RegisterViewModel' does not contain a definition for 'kontoType' and no extension method 'kontoType' accepting a first argument of type 'RegisterViewModel' could be found (are you missing a using directive or an assembly reference?)
+   at Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationResult.EnsureSuccessful()
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.CompilerCache.CreateCacheEntry(String relativePath, String normalizedPath, Func`2 compile)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.CompilerCache.GetOrAdd(String relativePath, Func`2 compile)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewResult.<ExecuteResultAsync>d__26.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResultAsync>d__32.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResultFilterAsync>d__31.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAllResultFiltersAsync>d__29.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResourceFilterAsync>d__23.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAsync>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.<Invoke>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Session.SessionMiddleware.<Invoke>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.VisualStudio.Web.BrowserLink.Runtime.BrowserLinkMiddleware.<ExecuteWithFilter>d__7.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__6.MoveNext()
+2016-11-09 11:23:05.016 +01:00 [Information] Request finished in 55.5782ms 500 text/html; charset=utf-8
+2016-11-09 11:23:05.016 +01:00 [Debug] Connection id ""0HL07RMGGI8BM"" completed keep alive response.
+2016-11-09 11:23:15.262 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/Registrer  
+2016-11-09 11:23:15.262 +01:00 [Debug] The request path "/Admin/Registrer" does not match a supported file type
+2016-11-09 11:23:15.263 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 11:23:15.263 +01:00 [Debug] Executing action "GroupProject.Controllers.AdminController.Registrer (GroupProject)"
+2016-11-09 11:23:15.267 +01:00 [Information] Executing action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)" with arguments (null) - ModelState is Valid
+2016-11-09 11:23:15.267 +01:00 [Debug] Executed action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)", returned result "Microsoft.AspNetCore.Mvc.ViewResult".
+2016-11-09 11:23:15.268 +01:00 [Debug] View lookup cache miss for view '"Registrer"' in controller '"Admin"'.
+2016-11-09 11:23:15.271 +01:00 [Debug] Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException occurred, checking if Entity Framework recorded this exception as resulting from a failed database operation.
+2016-11-09 11:23:15.271 +01:00 [Debug] Entity Framework did not record any exceptions due to failed database operations. This means the current exception is not a failed Entity Framework database operation, or the current exception occurred from a DbContext that was not obtained from request services.
+2016-11-09 11:23:15.301 +01:00 [Error] An unhandled exception has occurred while executing the request
+Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException: One or more compilation failures occurred:
+ibadfpgl.ff2(1118,3862): error CS1031: Type expected
+ibadfpgl.ff2(1118,3914): error CS1061: 'RegisterViewModel' does not contain a definition for 'kontoType' and no extension method 'kontoType' accepting a first argument of type 'RegisterViewModel' could be found (are you missing a using directive or an assembly reference?)
+   at Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationResult.EnsureSuccessful()
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.CompilerCache.CreateCacheEntry(String relativePath, String normalizedPath, Func`2 compile)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.CompilerCache.GetOrAdd(String relativePath, Func`2 compile)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewResult.<ExecuteResultAsync>d__26.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResultAsync>d__32.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResultFilterAsync>d__31.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAllResultFiltersAsync>d__29.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResourceFilterAsync>d__23.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAsync>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.<Invoke>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Session.SessionMiddleware.<Invoke>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.VisualStudio.Web.BrowserLink.Runtime.BrowserLinkMiddleware.<ExecuteWithFilter>d__7.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__6.MoveNext()
+2016-11-09 11:23:15.319 +01:00 [Information] Request finished in 56.684ms 500 text/html; charset=utf-8
+2016-11-09 11:23:15.319 +01:00 [Debug] Connection id ""0HL07RMGGI8BM"" completed keep alive response.
+2016-11-09 11:23:20.248 +01:00 [Information] Request starting HTTP/1.1 GET http://localhost:34250/Admin/Registrer  
+2016-11-09 11:23:20.249 +01:00 [Debug] The request path "/Admin/Registrer" does not match a supported file type
+2016-11-09 11:23:20.249 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller=Home}/{action=Index}/{id?}"'.
+2016-11-09 11:23:20.250 +01:00 [Debug] Executing action "GroupProject.Controllers.AdminController.Registrer (GroupProject)"
+2016-11-09 11:23:20.254 +01:00 [Information] Executing action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)" with arguments (null) - ModelState is Valid
+2016-11-09 11:23:20.254 +01:00 [Debug] Executed action method "GroupProject.Controllers.AdminController.Registrer (GroupProject)", returned result "Microsoft.AspNetCore.Mvc.ViewResult".
+2016-11-09 11:23:20.254 +01:00 [Debug] View lookup cache miss for view '"Registrer"' in controller '"Admin"'.
+2016-11-09 11:23:20.257 +01:00 [Debug] Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException occurred, checking if Entity Framework recorded this exception as resulting from a failed database operation.
+2016-11-09 11:23:20.257 +01:00 [Debug] Entity Framework did not record any exceptions due to failed database operations. This means the current exception is not a failed Entity Framework database operation, or the current exception occurred from a DbContext that was not obtained from request services.
+2016-11-09 11:23:20.289 +01:00 [Error] An unhandled exception has occurred while executing the request
+Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException: One or more compilation failures occurred:
+ibadfpgl.ff2(1118,3862): error CS1031: Type expected
+ibadfpgl.ff2(1118,3914): error CS1061: 'RegisterViewModel' does not contain a definition for 'kontoType' and no extension method 'kontoType' accepting a first argument of type 'RegisterViewModel' could be found (are you missing a using directive or an assembly reference?)
+   at Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationResult.EnsureSuccessful()
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.CompilerCache.CreateCacheEntry(String relativePath, String normalizedPath, Func`2 compile)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.CompilerCache.GetOrAdd(String relativePath, Func`2 compile)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewResult.<ExecuteResultAsync>d__26.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResultAsync>d__32.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResultFilterAsync>d__31.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAllResultFiltersAsync>d__29.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeResourceFilterAsync>d__23.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAsync>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.<Invoke>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Session.SessionMiddleware.<Invoke>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.VisualStudio.Web.BrowserLink.Runtime.BrowserLinkMiddleware.<ExecuteWithFilter>d__7.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__6.MoveNext()
+2016-11-09 11:23:20.303 +01:00 [Information] Request finished in 56.5564ms 500 text/html; charset=utf-8
+2016-11-09 11:23:20.303 +01:00 [Debug] Connection id ""0HL07RMGGI8BM"" completed keep alive response.
+2016-11-09 11:25:10.496 +01:00 [Debug] Connection id ""0HL07RMGGI8BM"" received FIN.
+2016-11-09 11:25:10.509 +01:00 [Debug] Connection id ""0HL07RMGGI8BM"" disconnecting.
+2016-11-09 11:25:10.509 +01:00 [Debug] Connection id ""0HL07RMGGI8BM"" sending FIN.
+2016-11-09 11:25:10.518 +01:00 [Debug] Connection id ""0HL07RMGGI8BM"" sent FIN with status "0".
+2016-11-09 11:25:10.518 +01:00 [Debug] Connection id ""0HL07RMGGI8BM"" stopped.
