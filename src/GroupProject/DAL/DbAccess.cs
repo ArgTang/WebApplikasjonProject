@@ -1,3 +1,4 @@
+﻿
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -84,9 +85,9 @@ namespace GroupProject.DAL
             try
             {
                 var kontoListe = _persondbcontext.Person
-                    .Include(s => s.konto)
-                    .ThenInclude(k => k.betal)
-                    .Single(p => p.PersonNr == applicationUser.UserName);
+                                                 .Include(s => s.konto)
+                                                 .ThenInclude(k => k.betal)
+                                                 .Single(p => p.PersonNr == applicationUser.UserName);
 
                 List<Betalinger> betalinger = new List<Betalinger>();
                 foreach (Konto k in kontoListe.konto)
@@ -105,7 +106,7 @@ namespace GroupProject.DAL
             }
         }
 
-        public void changePayment(Betalinger betal)
+        public void updatePayment(Betalinger betal)
         {
 
             try
@@ -180,8 +181,8 @@ namespace GroupProject.DAL
             try
             {
                 return _persondbcontext.Betal
-                    .Include(k => k.konto)
-                    .Single(b => b.Id == id);
+                                       .Include(k => k.konto)
+                                       .Single(b => b.Id == id);
             }
             catch (Exception e)
             {
@@ -226,7 +227,7 @@ namespace GroupProject.DAL
 
         }
 
-        public Betalinger GetBetalinger(int id)
+        public Betalinger getBetaling(int id)
         {
             try
             {
@@ -294,7 +295,7 @@ namespace GroupProject.DAL
             {
                 foreach (int id in ids)
                 {
-                    Betalinger betaling = GetBetalinger(id);
+                    Betalinger betaling = getBetaling(id);
                     if (betaling != null)
                     {
                         executeTransaction(betaling);
