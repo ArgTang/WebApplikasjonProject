@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace GroupProject.DAL
 {
@@ -23,13 +24,16 @@ namespace GroupProject.DAL
         private readonly ILogger<DbAccess> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public DbAccess(PersonDbContext personDbContext, ILogger<DbAccess> logger, UserManager<ApplicationUser> usermanager)
+        public DbAccess(
+            PersonDbContext personDbContext, 
+            ILogger<DbAccess> logger,
+            UserManager<ApplicationUser> userManager )
         {
             try
             {
                 _logger = logger;
                 _persondbcontext = personDbContext;
-                _userManager = usermanager;
+                _userManager = userManager;
             }
             catch (Exception e)
             {
@@ -302,24 +306,6 @@ namespace GroupProject.DAL
             }
         }
 
-
-        public async Task<bool> addUser(ApplicationUser user, String password)
-        {
-            try
-            {
-                //var identityResult = await _userManager.CreateAsync(user, password);
-                _logger.LogInformation("Person added  {user}", user);
-                _persondbcontext.Users.Add(user);
-                _persondbcontext.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                _logger.LogError("A unhandled error accured adding {user} :::: {Exception}", user, e);
-                return false;
-            }
-            
-        }
         public List<Betalinger> getAllPayments()
         {
             try
