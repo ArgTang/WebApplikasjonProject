@@ -28,7 +28,6 @@
     "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0",
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
-    "Microsoft.Framework.Logging": "1.0.0-beta8",
     "Serilog.Extensions.Logging": "1.2.0",
     "Microsoft.NETCore.App": {
       "type": "platform",
@@ -86,8 +85,7 @@
   },
 
   "scripts": {
-    "precompile": [ "gulp compile", "dotnet bundle" ],
-    "prepublish": [ "npm install", "bower install", "gulp clean",  ],
+    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp compile", "dotnet bundle" ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }
