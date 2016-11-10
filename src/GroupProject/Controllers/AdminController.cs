@@ -15,12 +15,10 @@ namespace GroupProject.Controllers
     public class AdminController : Controller
     {
         private readonly AdminBLL _adminBLL;
-        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AdminController(AdminBLL adminBLL, UserManager<ApplicationUser> userManager )
+        public AdminController(AdminBLL adminBLL)
         {
             _adminBLL = adminBLL;
-            _userManager = userManager;
         }
 
         // GET: /<controller>/
@@ -40,29 +38,10 @@ namespace GroupProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistrerNyBruker(RegisterViewModel model)
         {
-
-            /*Hei Tor! Du lurer kanskje på hva all denne logikken gjør i denne metoden ?
-             * jo det skal jeg fortelle deg! Vi har nå sittet her i 7 timer å prøvd å 
-             * med lagdeling, men det viser seg at i kontroller er det eneste stedet
-             * " _usermanager.CreateAsync " fungerer. Håper på forståelse, hilsen ACO
-             */
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser
-                {
-                    firstName = model.firstName,
-                    lastName = model.lastName,
-                    PhoneNumber = model.phonenumber,
-                    postal = model.zipcode,
-                    adresse = model.adresse,
-                    Email = model.epost,
-                    UserName = model.personNr
-
-                    //TODO må opprette konto
-                };
-
-                var identityResult = await _userManager.CreateAsync(user, model.password);
-                ViewBag.success = true;
+                var res = await _adminBLL.createuser(model);
+                ViewBag.success = res.Succeeded;
             }
             return RedirectToAction("Registrer");
         }

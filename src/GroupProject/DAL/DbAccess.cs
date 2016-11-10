@@ -6,7 +6,6 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace GroupProject.DAL
 {
@@ -67,6 +66,32 @@ namespace GroupProject.DAL
                 _logger.LogError("A unhandled error accured getting person with {Username} :::: {Exception}", username, e);
                 return null;
             }
+        }
+
+        internal async Task<IdentityResult> createuser(ApplicationUser user, Konto konto, string pass)
+        {
+
+            Konto avaialble;
+            do {
+                Random rnd = new Random();
+                int digit = rnd.Next(1, 9999);
+                konto.kontoNr = "6543002" + digit.ToString();
+
+                avaialble = _persondbcontext.Kontoer.FirstOrDefault(k => k.kontoNr == konto.kontoNr);
+            } while ( avaialble != null );
+
+            konto.user = user;
+            user.konto.Add(konto);
+            var identityResult = await _userManager.CreateAsync(user, pass);
+
+            if ( identityResult.Succeeded ) {
+                _persondbcontext.Kontoer.Add(konto);
+                _logger.LogInformation("User {navn} created with account {kontonr} ", user.firstName, konto.kontoNr);
+            } else {
+                _logger.LogError("Could not create user with {Username} :::: {Exception}", user.firstName, identityResult.Errors);
+            }
+
+            return identityResult;
         }
 
         public List<Betalinger> getPayments(ApplicationUser applicationUser)

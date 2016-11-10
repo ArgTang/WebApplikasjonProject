@@ -13,6 +13,7 @@ namespace GroupProject.DAL
         [Required]
         public string lastName { get; set; }
 
+        [Required]
         public string adresse { get; set; }
 
         public string zipcode { get; set; }
