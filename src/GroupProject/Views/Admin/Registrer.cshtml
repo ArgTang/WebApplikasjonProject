@@ -6,11 +6,11 @@
 <section class="container">
     @if (ViewBag.success != null && ViewBag.success == true)
     {
-        <p>Brukeren er registrert</p>
+        <p class="bg-success">Brukeren er registrert</p>
     }
     else if( ViewBag.success != null )
     {
-        <p>Feil i registrering prøv igjen</p>
+        <p class="bg-danger">Feil i registrering prøv igjen</p>
     }
 
     <form class="form-horizontal" asp-controller="Admin" asp-action="RegistrerNyBruker" method="post" id="reg_form">
@@ -180,3 +180,12 @@
         });
     }
 </script>
+
+@if ( Model != null && Model.zipcode.Length > 1 ) {
+    <script>
+        (function () {
+            var el = document.querySelector('#zipcode');
+            getPostal(@Model.zipcode);
+        })();
+    </script>
+}

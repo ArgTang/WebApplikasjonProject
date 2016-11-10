@@ -39,9 +39,12 @@ namespace GroupProject.Controllers
             if (ModelState.IsValid)
             {
                 var res = await _adminBLL.createuser(model);
+                if(res.Succeeded) {
+                    model = null;
+                }
                 ViewBag.success = res.Succeeded;
             }
-            return RedirectToAction(nameof(AdminController.Registrer));
+            return View(nameof(AdminController.Registrer), model);
         }
 
         public IActionResult EndreBruker()
