@@ -57,4 +57,3 @@ gulp.task('sass:watch',
 
 
 gulp.task('compile', ['js:default', 'sass']);
-gulp.task('compile:prod', ['compile', 'clean:prod']);
