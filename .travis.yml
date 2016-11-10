@@ -15,6 +15,7 @@ script:
   - dotnet --verbose build -c Release
   - gulp compile
   - gulp clean:prod
+  - ls ./wwwroot/js
   - dotnet bundle
 
   # build and run tests
