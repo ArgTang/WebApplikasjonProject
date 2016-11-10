@@ -15,7 +15,7 @@ script:
   - dotnet restore && npm install
   - dotnet --info
   - dotnet --verbose build -c Release
-  - gulp compile
+  - gulp compile:prod
   - dotnet bundle
   # build and run tests
   - cd ../Test

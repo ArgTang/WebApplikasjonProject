@@ -29,6 +29,11 @@ gulp.task('clean', function () {
                 paths.webroot + '/css/**/*' ]);
 });
 
+gulp.task('clean:prod', function () {
+    return del([paths.webroot + '/js/**/*.ts',
+                paths.webroot + '/js/**/*.map']);
+});
+
 gulp.task('js:default', function () {
     gulp.src(paths.scripts)
         .pipe(gulp.dest(paths.webroot + '/js'));
@@ -50,4 +55,6 @@ gulp.task('sass:watch',
         gulp.watch(paths.sass, ['sass']);
 });
 
+
 gulp.task('compile', ['js:default', 'sass']);
+gulp.task('compile:prod', ['compile', 'clean:prod']);
