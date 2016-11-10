@@ -47,8 +47,9 @@ namespace GroupProject.BLL
             user.adresse = model.adresse;
             user.Email = model.epost;
             user.UserName = model.personNr;
+            //user.konto = model.kontoType;
 
-            _access.addUser(user, model.passord);
+            _access.addUser(user, model.password);
         }
         internal List<Betalinger> getALLPayments()
         {

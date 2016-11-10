@@ -1,30 +1,150 @@
 ﻿@model GroupProject.ViewModels.Admin.RegisterViewModel
 
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js" integrity="sha256-uUVS/d3xM3l8YmucAkj1DeRt6U4Y+Xv3ePUgVVEVmVw=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js" integrity="sha256-g1QKGxqsp+x5JkuN/JjHl96je2wztgS5Wo4h4c7gm9M=" crossorigin="anonymous"></script>
 
-<section class="container">
+<section class="container" id="__AjaxAntiForgeryForm">
     <form class="form-horizontal" action="" method="post" id="reg_form">
         <fieldset>
             <!-- Form Name -->
             <legend> Søk etter kunde ved bruk av personnummer </legend>
             <!-- Text input-->
             <div class="form-group">
-                <label asp-for="sokBruker" class="col-md-4 control-label">Søk etter personnummer</label>
+                <label asp-for="searchUser" class="col-md-4 control-label">Søk etter personnummer</label>
                 <div class="col-lg-6">
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Søk</button>
+                            <button  class="btn btn-default" type="button">Søk</button>
                         </span>
-                        <input asp-for="sokBruker" class="form-control">
+                        <input asp-for="searchUser" maxlength="11" class="form-control">
                     </div><!-- /input-group -->
+                    <span asp-validation-for="searchUser" class="text-danger"></span>
                 </div><!-- /.col-lg-6 -->
-            </div><!-- /.row -->
+            </div><!-- /.form-group -->
         </fieldset>
     </form>
 </section>
 <section class="container">
-    <form class="form-horizontal" action="" method="get" id="reg_form">
-
+    <form class="form-horizontal" action="RegistrerNyBruker()" method="post" id="reg_form">
+        <fieldset>
+            <legend> Endre personlig informasjon </legend>
+            <div class="form-group">
+                <label for="birthnr" class="col-md-4 control-label">Fødselsnummer</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input class="form-control" disabled />
+                    </div>
+                </div>
+            </div>
+            <!-- Fornavn -->
+            <div class="form-group">
+                <label asp-for="firstName" class="col-md-4 control-label">Fornavn</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input asp-for="firstName" class="form-control" />
+                    </div>
+                    <span asp-validation-for="firstName" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- Etternavn -->
+            <div class="form-group">
+                <label asp-for="lastName" class="col-md-4 control-label">Etternavn</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input asp-for="lastName" class="form-control" />
+                    </div>
+                    <span asp-validation-for="lastName" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- Telefonnummer -->
+            <div class="form-group">
+                <label asp-for="phonenumber" class="col-md-4 control-label">Telefonnummer</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input asp-for="phonenumber" class="form-control" />
+                    </div>
+                    <span asp-validation-for="phonenumber" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- Adresse -->
+            <div class="form-group">
+                <label asp-for="adresse" class="col-md-4 control-label">Adresse</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input asp-for="adresse" class="form-control" />
+                    </div>
+                    <span asp-validation-for="adresse" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- postnummer -->
+            
+            <div class="form-group">
+                <div class="form-inline">
+                    <label asp-for="zipcode" class="col-md-4 control-label">Postnummer</label>
+                    <div class="col-md-6  inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                            <input asp-for="zipcode" maxlength="4" class="form-control" id="zipCode">
+                        </div>    
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
+                            <input class="form-control" disabled="disabled" id="postal">
+                        </div>
+                    </div>
+                    <span asp-validation-for="zipcode" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- Epost -->
+            <div class="form-group">
+                <label asp-for="epost" class="col-md-4 control-label">Epost</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input asp-for="epost" class="form-control" />
+                    </div>
+                    <span asp-validation-for="epost" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- Send knapp -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-outline-success">Lagre endringer <span class="glyphicon glyphicon-send"></span></button>
+                </div>
+            </div>
+         </fieldset>
     </form>
 </section>
+
+<script>
+    //DETTE ER AJAX TOR!!!!
+    $("#zipCode").keyup(function () {
+        var zipCode = $("#zipCode");
+        getPostal(zipCode.val());
+    });
+
+    function getPostal(zipcode) {
+        var bringUrl = "https://api.bring.com/shippingguide/api/postalCode.json?clientUrl=www.acos-sparebank.no&country=NO&pnr=";
+        var postal = $("#postal");
+        var request = $.ajax({
+            type: "GET",
+            url: bringUrl + zipcode
+        });
+
+        request.done(function (response) {
+            postal.val(response.result);
+        });
+
+        request.fail(function (
+            jqXHR,
+            textStatus) {
+            postal.val("Kunne ikke hente poststed");
+        });
+    }
+</script>
+
