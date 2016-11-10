@@ -8,9 +8,9 @@
     {
         <p>Brukeren er registrert</p>
     }
-    else
+    else if( ViewBag.success != null )
     {
-        <p>Feil i registrering</p>
+        <p>Feil i registrering prøv igjen</p>
     }
 
     <form class="form-horizontal" asp-controller="Admin" asp-action="RegistrerNyBruker" method="post" id="reg_form">
@@ -162,6 +162,7 @@
         getPostal(zipCode.val());
     });
 
+    //AJAX
     function getPostal(zipcode) {
         var bringUrl = "https://api.bring.com/shippingguide/api/postalCode.json?clientUrl=www.acos-sparebank.no&country=NO&pnr=";
         var postal = $("#postal");
