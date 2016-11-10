@@ -70,7 +70,6 @@ namespace GroupProject.Controllers
             //If no body is specified
             catch (Exception e)
             {
-                _logger.LogError("{e}",e);
                 _logger.LogError("No form specified on '~/admin/faktura/betal'");
                 
             }
