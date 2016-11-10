@@ -1,10 +1,11 @@
 ﻿
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
- using Microsoft.AspNetCore.Identity;
- using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
 
 namespace GroupProject.DAL
 {
@@ -20,13 +21,18 @@ namespace GroupProject.DAL
     {
         private readonly PersonDbContext _persondbcontext;
         private readonly ILogger<DbAccess> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public DbAccess( PersonDbContext personDbContext, ILogger<DbAccess> logger )
+        public DbAccess(
+            PersonDbContext personDbContext, 
+            ILogger<DbAccess> logger,
+            UserManager<ApplicationUser> userManager )
         {
             try
             {
                 _logger = logger;
                 _persondbcontext = personDbContext;
+                _userManager = userManager;
             }
             catch (Exception e)
             {
@@ -60,6 +66,32 @@ namespace GroupProject.DAL
                 _logger.LogError("A unhandled error accured getting person with {Username} :::: {Exception}", username, e);
                 return null;
             }
+        }
+
+        internal async Task<IdentityResult> createuser(ApplicationUser user, Konto konto, string pass)
+        {
+
+            Konto avaialble;
+            do {
+                Random rnd = new Random();
+                int digit = rnd.Next(1, 9999);
+                konto.kontoNr = "6543002" + digit.ToString();
+
+                avaialble = _persondbcontext.Kontoer.FirstOrDefault(k => k.kontoNr == konto.kontoNr);
+            } while ( avaialble != null );
+
+            konto.user = user;
+            user.konto.Add(konto);
+            var identityResult = await _userManager.CreateAsync(user, pass);
+
+            if ( identityResult.Succeeded ) {
+                _persondbcontext.Kontoer.Add(konto);
+                _logger.LogInformation("User {navn} created with account {kontonr} ", user.firstName, konto.kontoNr);
+            } else {
+                _logger.LogError("Could not create user with {Username} :::: {Exception}", user.firstName, identityResult.Errors);
+            }
+
+            return identityResult;
         }
 
         public List<Betalinger> getPayments(ApplicationUser applicationUser)
