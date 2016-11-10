@@ -69,6 +69,7 @@ namespace GroupProject.ViewModels.Admin
         public string confirmPassword { get; set; }
 
         //søk etter bruker
+        [BirthNumber(ErrorMessage = "ugyldig fødselsnummer, sjekk at du har skrevet riktig")]
         [Required(ErrorMessage = "Dette feltet må være utfylt")]
         [DataType(DataType.Text)]
         [Display(Name = "Vennligst skriv inn ett fødselsnummer", Prompt = "Fødselsnummer")]
