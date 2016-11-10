@@ -1,5 +1,16 @@
 [
   {
+    "outputFileName": "wwwroot/js/index.min.js",
+    "inputFiles": [
+      "wwwroot/js/index.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  {
     "outputFileName": "wwwroot/css/style.min.css",
     "inputFiles": [
       "wwwroot/css/style.css"
@@ -16,16 +27,5 @@
     "inputFiles": [
       "wwwroot/css/main.css"
     ]
-  },
-  {
-    "outputFileName": "wwwroot/js/index.min.js",
-    "inputFiles": [
-      "wwwroot/js/index.js"
-    ],
-    "minify": {
-      "enabled": true,
-      "renameLocals": true
-    },
-    "sourceMap": false
   }
 ]
