@@ -59,7 +59,7 @@ namespace GroupProject.ViewModels.Admin
         public string epost { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Vennlisk skriv inn ditt passorde", Prompt = "Passord")]
+        [Display(Name = "Vennligst skriv inn ditt passord", Prompt = "Passord")]
         [Required(ErrorMessage = "Dette feltet må være utfylt")]
         public string passord { get; set; }
 

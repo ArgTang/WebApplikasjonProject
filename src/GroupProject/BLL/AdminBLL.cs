@@ -40,13 +40,14 @@ namespace GroupProject.BLL
         public void addUser(ViewModels.Admin.RegisterViewModel model)
         {
             ApplicationUser user = new ApplicationUser();
+            Konto konto = new Konto();
             user.firstName = model.firstName;
             user.lastName = model.lastName;
             user.PhoneNumber = model.phonenumber;
             user.zipcode = model.zipcode;
             user.adresse = model.adresse;
             user.Email = model.epost;
-            //user.personNr = model.sokBruker;
+           
 
             _access.addUser(user, model.passord);
         }
