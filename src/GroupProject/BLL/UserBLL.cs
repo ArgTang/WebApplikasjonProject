@@ -66,8 +66,6 @@ namespace GroupProject.BLL
             
             _dbAccess.addPayment(betaling);
         }
-        
-
 
         internal Betalinger getInvoice(ApplicationUser user, int id)
         {
@@ -78,6 +76,7 @@ namespace GroupProject.BLL
         {
             return _dbAccess.deleteInvoice(user, id);
         }
+
         public IEnumerable<Konto> getAccountNotBSU(ApplicationUser user)
         {
             return getAccounts(user).Where(item => item.kontoType != Konto.kontoNavn.BSU);
@@ -104,10 +103,8 @@ namespace GroupProject.BLL
 
         public async void logout(ApplicationUser user)
         {
-            user.lastLogin = DateTime.Now;
+            _dbAccess.updateLoginDate(user);
             await _signInManager.SignOutAsync();
         }
     }
 }
-
-
