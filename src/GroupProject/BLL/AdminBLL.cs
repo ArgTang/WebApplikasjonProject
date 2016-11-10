@@ -1,5 +1,4 @@
 ﻿using GroupProject.DAL;
-using GroupProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

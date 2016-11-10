@@ -1,11 +1,9 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using GroupProject.DAL;
 using GroupProject.BLL;
 using System.Threading.Tasks;
 using GroupProject.ViewModels.Admin;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,7 +22,7 @@ namespace GroupProject.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         { 
-            return RedirectToAction("FakturaOversikt");
+            return RedirectToAction(nameof(AdminController.FakturaOversikt));
         }
 
         public IActionResult Registrer()
@@ -43,7 +41,7 @@ namespace GroupProject.Controllers
                 var res = await _adminBLL.createuser(model);
                 ViewBag.success = res.Succeeded;
             }
-            return RedirectToAction("Registrer");
+            return RedirectToAction(nameof(AdminController.Registrer));
         }
 
         public IActionResult EndreBruker()
