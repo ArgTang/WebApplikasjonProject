@@ -68,6 +68,6 @@ namespace GroupProject.ViewModels.Admin
         [Required(ErrorMessage = "Dette feltet må være utfylt")]
         [StringLength(11, ErrorMessage = "Ett gyldig fødselsnummer kan kun inneholde 11 siffer")]
         [RegularExpression("/^[0-9]{11}/", ErrorMessage = "Ett gyldig fødselsnummer kan kun inneholde 11 siffer")]
-        public string sokBruker { get; set; }
+        public string personNr { get; set; }
     }
 }
