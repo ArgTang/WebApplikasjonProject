@@ -37,18 +37,18 @@ namespace GroupProject.BLL
             _access.executeMultipleTransaction(ids);
         }
 
-        public void addUser(ViewModels.Admin.RegisterViewModel model)
+        public async void addUser(ViewModels.Admin.RegisterViewModel model)
         {
             ApplicationUser user = new ApplicationUser();
             user.firstName = model.firstName;
             user.lastName = model.lastName;
             user.PhoneNumber = model.phonenumber;
-            user.zipcode = model.zipcode;
+            user.postal = model.zipcode;
             user.adresse = model.adresse;
             user.Email = model.epost;
-            user.UserName = model.personNr;   
+            user.UserName = model.personNr;
 
-            _access.addUser(user, model.password);
+            await _access.addUser(user, model.password);
         }
         internal List<Betalinger> getALLPayments()
         {

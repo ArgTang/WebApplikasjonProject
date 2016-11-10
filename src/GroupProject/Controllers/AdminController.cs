@@ -34,14 +34,14 @@ namespace GroupProject.Controllers
         // GET: /<controller>/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrerNyBruker(RegisterViewModel model)
+        public IActionResult RegistrerNyBruker(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
                 _adminBLL.addUser(model);
                 ViewBag.success = true;
             }
-            
+
             return RedirectToAction("Registrer");
         }
 
