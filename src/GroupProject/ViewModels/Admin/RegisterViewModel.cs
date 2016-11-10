@@ -70,14 +70,16 @@ namespace GroupProject.ViewModels.Admin
 
         //søk etter bruker
         [Required(ErrorMessage = "Dette feltet må være utfylt")]
-        [RegularExpression("/^[0-9]{11}/", ErrorMessage = "Ett gyldig fødselsnummer kan kun inneholde 11 siffer")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Vennligst skriv inn ett fødselsnummer", Prompt = "Fødselsnummer")]
+        [RegularExpression("[0-9]{11}", ErrorMessage = "Ett gyldig fødselsnummer kan kun inneholde 11 siffer")]
         public string personNr { get; set; }
 
         [RegularExpression("[0-9]{11}", ErrorMessage = "Ett gyldig fødselsnummer kan kun inneholde 11 siffer")]
         public string searchUser { get; set; }
 
         //drop down med kontotyper
-        [Required(ErrorMessage = "Dette feltet må være utfylt")]
-        public string kontoType { get; set; }
+        //[Required(ErrorMessage = "Dette feltet må være utfylt")]
+        //public string kontoType { get; set; }
     }
 }

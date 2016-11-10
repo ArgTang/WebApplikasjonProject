@@ -46,8 +46,7 @@ namespace GroupProject.BLL
             user.zipcode = model.zipcode;
             user.adresse = model.adresse;
             user.Email = model.epost;
-            user.UserName = model.personNr;
-            //user.konto = model.kontoType;
+            user.UserName = model.personNr;   
 
             _access.addUser(user, model.password);
         }

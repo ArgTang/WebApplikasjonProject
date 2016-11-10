@@ -11,12 +11,22 @@
     else
     {
         <p>Feil i registrering</p>
-
     }
 
-    <form class="form-horizontal" action="" method="post" id="reg_form">
+    <form class="form-horizontal" asp-controller="Admin" asp-action="RegistrerNyBruker" method="post" id="reg_form">
         <fieldset>
             <legend> Personlig informasjon </legend>
+            <!--Fødselsnummer-->
+            <div class="form-group">
+                <label asp-for="personNr" class="col-md-4 control-label">Fødselsnummer</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input asp-for="personNr" class="form-control">
+                    </div>
+                    <span asp-validation-for="personNr" class="text-danger"></span>
+                </div>
+            </div>
             <!-- Fornavn -->
             <div class="form-group">
                 <label asp-for="firstName" class="col-md-4 control-label">Fornavn</label>
@@ -119,30 +129,26 @@
                 </div>
             </div>
             <!-- Velg konto -->
-            <div class="form-group">
+            @*<div class="form-group">
                 <label class="col-md-4 control-label">Kontotype</label>
                 <div class="col-md-6 selectContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                         <select asp-for="kontoType" class="form-control">
                             <option value="">Vennligst velg type konto</option>
-                            @*@foreach (var konto in ViewBag.kontoNavn)
+                            @foreach (var konto in ViewBag.kontoNavn)
                             {
-                                <option value="@konto.">@konto.kontoType (@konto.kontoNr.Insert(4, " ").Insert(7, " ")) @konto.saldo kr</option>
-                            }*@
+                                <option value="@konto.">@konto.kontoType (@konto.kontoNr.Insert(4, " ").Insert(7, " "))</option>
+                            }
                         </select>
                     </div>
                 </div>
-            </div>
+            </div>*@
             <!-- Registrer ny bruker -->
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4">
                     <button type="submit" class="btn btn-outline-success">Registrer ny bruker<span class="glyphicon glyphicon-send"></span>
-                        @*@if (GroupProject.ViewModels.Admin.RegisterViewModel == 0){
-                        @:Legg til 
-
-                    }*@
                     </button>
                 </div>
             </div>
