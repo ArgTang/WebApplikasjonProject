@@ -1,6 +1,7 @@
 ﻿@model GroupProject.ViewModels.Admin.FakturaViewModel
 
 <section class="container" id="__AjaxAntiForgeryForm">
+    <div id="errorMessage" class="errorMessage"></div>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -13,6 +14,7 @@
             <th>Mottaker:</th>
             <th>konto:</th>
             <th>Forfallsdato:</th>
+            <th>Saldo:</th>
             <th>Sum:</th>
             <th>Valg:</th>
 
@@ -21,53 +23,37 @@
         @foreach (Betalinger betal in Model.payments)
         {
             <tr id="invoiceId_@betal.Id">
-                @foreach (Konto konto in Model.accounts)
-                {
-                    if (betal.konto.kontoNr.Equals(konto.kontoNr))
-                    {
-                        <td>
-                            @konto.kontoType
-                            <small>(@betal.konto.kontoNr.Insert(4, " ").Insert(7, " ")) </small>
-                        </td>
-                    }
-                }
+                <td id="@betal.konto.kontoNr">
+                    @betal.konto.kontoType
+                    <small>(@betal.konto.kontoNr.Insert(4, " ").Insert(7, " ")) </small>
+                </td>
                 <td>@betal.mottaker</td>
                 <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
                 <td>@betal.forfallDato.ToString("dd.MM.yyyy")</td>
+                <td id="saldo_@betal.Id">
+                    @betal.konto.saldo
+                    <span class="currency" style="margin-left: 5px">Kr</span>
+                </td>
                 <td>@betal.belop<span class="currency" style="margin-left: 5px">Kr</span></td>
                 <td>
-                    @if (betal.utfort == false)
+                    @if (@betal.utfort == false && @betal.konto.saldo > @betal.belop)
                     {
-                                @*<label><input type="checkbox" value="">Slett</label>
-                                <a onclick="deleteInvoice(@betal.Id)" class="btn">Slett</a>
-                                <a onclick="payInvoice(@betal.Id)" class="btn">Betal</a>*@
-                        <label><input type="checkbox" name="isPayed" value="">Betal</label>
+                        <label><input type="checkbox" name="isPayed" value="@betal.Id">Betal</label>
+                    }
+                    else
+                    {
+                        <label>Ingen Dekning</label>
                     }
                 </td>
             </tr>
         }
-            
         </tbody>
     </table>
-    <tr><a onclick="" class="btn">Betal alle</a></tr>
+    <tr>
+        <a onclick="deleteInvoice()" class="btn">Betal alle</a>
+        @Html.AntiForgeryToken()
+    </tr>
 </section>
-<script>
-    function deleteInvoice(id) {
-        var request = $.ajax({
-            type: "POST",
-            url: "faktura/delete",
-            data: {id:id,__RequestVerificationToken: $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val() }
-        });
 
-        request.done(function (response) {
-            if (response === "success") {
-                document.getElementById("invoiceId_" + id).outerHTML = "";
-            }
-        });
-
-        request.fail(function (jqXHR, textStatus) {
-
-        });
-    }
-</script>
+<script src="/js/adminFaktura.js"></script>
 
