@@ -89,15 +89,16 @@ namespace GroupProject.BLL
             user.Email = model.epost;
         }
 
-        public RegisterViewModel populateViewModel(RegisterViewModel model, ApplicationUser user)
+        public RegisterViewModel populateViewModel(ApplicationUser user)
         {
-            model.firstName = user.firstName;
-            model.lastName = user.lastName;
-            model.phonenumber = user.PhoneNumber;
-            model.adresse = user.adresse;
-            model.zipcode = user.zipcode;
-            model.epost = user.Email;
-            return model;
+            RegisterViewModel rvm = new RegisterViewModel();
+            rvm.firstName = user.firstName;
+            rvm.lastName = user.lastName;
+            rvm.phonenumber = user.PhoneNumber;
+            rvm.adresse = user.adresse;
+            rvm.zipcode = user.zipcode;
+            rvm.epost = user.Email;
+            return rvm;
         }
     }
 }

@@ -55,8 +55,7 @@ namespace GroupProject.Controllers
             ApplicationUser user = _adminBLL.getUser(model.searchUser);
             if(user != null)
             {
-                RegisterViewModel rvm = new RegisterViewModel(//fylle inn alle feltene som skal være med i registrerviewmodel);
-                return RedirectToAction(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(model,user));
+                return RedirectToAction(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));
             }
             return View(model);
         }
@@ -64,9 +63,10 @@ namespace GroupProject.Controllers
         // GET: /<controller>/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EndreBruker()
+        public IActionResult EndreBruker(RegisterViewModel model)
         {
-            return View();
+            //Denne metoden skal også brukes til å endre brukeren
+            return View(model);
         }
 
         public IActionResult FakturaOversikt()
