@@ -102,8 +102,11 @@
 
 <script>
     //DETTE ER AJAX TOR!!!!
-    $("#zipCode").keyup(function () {
-        var zipCode = $("#zipCode");
+    var zipCode = $("#zipCode");
+    if (zipCode.val() !== "") {
+        getPostal(zipCode.val());
+    }
+    zipCode.keyup(function () {
         getPostal(zipCode.val());
     });
 
