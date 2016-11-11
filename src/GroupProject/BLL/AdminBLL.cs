@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using GroupProject.ViewModels.Admin;
 using System.Threading.Tasks;
+using GroupProject.Class;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,14 +33,18 @@ namespace GroupProject.BLL
             return _access.executeTransaction(betalinger);
         }
 
-        public void executeTransactions(IEnumerable<int> ids)
+        public PaymentData executeTransactions(IEnumerable<string> ids )
         {
-            _access.executeMultipleTransaction(ids);
+            return _access.executeMultipleTransaction(ids);
         }
 
-        internal List<Betalinger> getALLPayments()
+        internal List<Betalinger> getAllUnpaydPayments()
         {
-            return _access.getAllPayments();
+            List<Betalinger> betalinger =  _access.getAllPayments()
+                                                  .Where(x => x.utfort == false)
+                                                  .ToList();
+            betalinger.Sort((x, y) => x.forfallDato.CompareTo(y.forfallDato));
+            return betalinger;
         }
 
         internal List<Konto> getAllAccounts()

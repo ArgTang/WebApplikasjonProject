@@ -244,6 +244,7 @@ ModelManifest.xml
 # Our own ignores
 src/GroupProject/frontendsrc/*/*.js
 src/GroupProject/frontendsrc/*/*.map
+!src/GroupProject/frontendsrc/scripts/adminFaktura.js
 
 src/GroupProject/wwwroot/js
 src/GroupProject/wwwroot/lib
@@ -253,6 +254,7 @@ src/GroupProject/Logs
 
 src/GroupProject/scripts/*.js
 src/GroupProject/scripts/*.js.map
+
 .vscode/
 
 .vscode/

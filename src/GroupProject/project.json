@@ -56,28 +56,28 @@
         }
     },
 
-    "buildOptions": {
-      "emitEntryPoint": true,
-      "preserveCompilationContext": true
-    },
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
+  },
 
-    "runtimeOptions": {
-      "configProperties": {
-        "System.GC.Server": true
-      }
-    },
-
-    "publishOptions": {
-      "include": [
-        "wwwroot",
-        "web.config",
-        "Appsettings.json",
-        "Views"
-      ]
-    },
-
-    "scripts": {
-      "prepublish": [ "npm install", "gulp clean", "gulp compile", "dotnet bundle" ],
-      "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
     }
+  },
+
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "web.config",
+      "Appsettings.json",
+      "Views"
+    ]
+  },
+
+  "scripts": {
+    "prepublish": [ "npm install", "gulp clean", "gulp compile", "dotnet bundle" ],
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+  }
 }
