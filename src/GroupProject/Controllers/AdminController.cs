@@ -32,9 +32,9 @@ namespace GroupProject.Controllers
         }
 
         // GET: /<controller>/
-        [HttpPost]
+        [HttpGet]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrerNyBruker(RegisterViewModel model)
+        public async Task<IActionResult> RegistrerNyBruker(RegisterViewModel model,)
         {
             if (ModelState.IsValid)
             {
@@ -47,16 +47,23 @@ namespace GroupProject.Controllers
             return View(nameof(AdminController.Registrer), model);
         }
 
+        // GET: /<controller>/
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult sokBruker(string name)
         {
             _adminBLL.getUser(name);
-            return View("sokBruker");
+            return View();
         }
 
+        // GET: /<controller>/
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult EndreBruker()
         {
 
             return View();
+            return View(nameof(AdminController.Registrer), model);
         }
 
         public IActionResult FakturaOversikt()

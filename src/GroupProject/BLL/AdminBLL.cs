@@ -74,9 +74,9 @@ namespace GroupProject.BLL
             return identityResult;
         }
 
-        public ApplicationUser getUser(String name)
+        public ApplicationUser getUser(String username)
         {
-            return _access.getPerson(name);
+            return _access.getPerson(username);
         }
 
         private void updateUser(RegisterViewModel model, ApplicationUser user)
