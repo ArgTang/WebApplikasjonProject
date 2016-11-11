@@ -34,7 +34,7 @@ namespace GroupProject.Controllers
         // GET: /<controller>/
         [HttpGet]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrerNyBruker(RegisterViewModel model,)
+        public async Task<IActionResult> RegistrerNyBruker(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -71,8 +71,11 @@ namespace GroupProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = _adminBLL.getUser(model.);
-                _adminBLL.updateUser(model); 
+                ApplicationUser user = _adminBLL.getUser(model.personNr);
+                if (user != null)
+                {
+                    _adminBLL.updateUser(model,user);
+                }
             }
             //Denne metoden skal også brukes til å endre brukeren
             return View(model);
