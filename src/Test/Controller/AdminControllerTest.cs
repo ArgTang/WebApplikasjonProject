@@ -92,6 +92,7 @@ namespace Test.Controller
             Assert.Equal(nameof(AdminController.Registrer), data.ViewName);
         }
 
+        [Fact]
         public void registrerNyBrukerTestValidNotcreated()
         {
             IActionResult result = setupRegisterTest(false);
