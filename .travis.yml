@@ -3,7 +3,7 @@ sudo: required
 dist: trusty
 
 mono: none
-dotnet: 1.0.0-preview2-003131
+dotnet: 1.0.0
 
 branches:  
   only:
@@ -11,6 +11,14 @@ branches:
     
 script:
   - cd src/GroupProject/
-  - dotnet restore
-  - npm install
+  - dotnet restore && npm install
   - dotnet --verbose build -c Release
+  - gulp compile
+  - gulp clean:prod
+  - ls ./wwwroot/js
+  - dotnet bundle
+
+  # build and run tests
+  - cd ../Test
+  - dotnet restore
+  - dotnet test

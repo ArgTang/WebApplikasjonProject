@@ -47,13 +47,12 @@ namespace GroupProject.Data
 
             if (!await _personDbContext.Users.AnyAsync())
             {
-                var newUser = new ApplicationUser
-                {
+                var newUser = new ApplicationUser {
                     UserName = "26118742957",
                     Email = "olelundsor@gmail.com",
                     firstName = "Ole",
                     lastName = "Lundsør",
-                    lastLogin = DateTime.Now
+                    lastLogin = DateTime.Now.AddDays(-2)
                 };
                 var identityResult = await _userManager.CreateAsync(newUser, "123456789Ole");
 
