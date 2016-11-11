@@ -79,7 +79,7 @@ namespace GroupProject.BLL
             return _access.getPerson(username);
         }
 
-        public void updateUser(RegisterViewModel model, ApplicationUser user)
+        public void updateUser(EndreBrukerViewModel model, ApplicationUser user)
         {
             user.firstName = model.firstName;
             user.lastName = model.lastName;
@@ -89,9 +89,9 @@ namespace GroupProject.BLL
             user.Email = model.epost;
         }
 
-        public RegisterViewModel populateViewModel(ApplicationUser user)
+        public EndreBrukerViewModel populateViewModel(ApplicationUser user)
         {
-            RegisterViewModel model = new RegisterViewModel();
+            EndreBrukerViewModel model = new EndreBrukerViewModel();
             model.personNr = user.UserName;
             model.firstName = user.firstName;
             model.lastName = user.lastName;

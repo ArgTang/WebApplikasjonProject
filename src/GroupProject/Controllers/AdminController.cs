@@ -65,7 +65,7 @@ namespace GroupProject.Controllers
         // GET: /<controller>/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EndreBruker(RegisterViewModel model)
+        public IActionResult EndreBruker(EndreBrukerViewModel model)
         {
             if (ModelState.IsValid)
             {
