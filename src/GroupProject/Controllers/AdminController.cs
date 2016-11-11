@@ -52,10 +52,14 @@ namespace GroupProject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult sokBruker(SearchViewModel model)
         {
-            ApplicationUser user = _adminBLL.getUser(model.searchUser);
-            if(user != null)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));
+                ApplicationUser user = _adminBLL.getUser(model.searchUser);
+                if (user != null)
+                {
+                    return View("EndreBruker", _adminBLL.populateViewModel(user));/*RedirectToAction(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));*/
+                }
+
             }
             return View(model);
         }
@@ -65,6 +69,11 @@ namespace GroupProject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EndreBruker(RegisterViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = _adminBLL.getUser(model.);
+                _adminBLL.updateUser(model); 
+            }
             //Denne metoden skal også brukes til å endre brukeren
             return View(model);
         }
