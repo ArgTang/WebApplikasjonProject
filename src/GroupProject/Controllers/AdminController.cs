@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using GroupProject.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using GroupProject.DAL;
 using GroupProject.ViewModels.Admin;
@@ -10,7 +7,6 @@ using GroupProject.BLL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using NuGet.Protocol.Core.v3;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -71,7 +67,6 @@ namespace GroupProject.Controllers
             catch (Exception e)
             {
                 _logger.LogError("No form specified on '~/admin/faktura/betal'");
-                
             }
             return Content("Error");
         }

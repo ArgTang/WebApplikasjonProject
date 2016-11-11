@@ -6,7 +6,7 @@ using GroupProject.DAL;
 
 namespace GroupProject.Class
 {
-    public class PaymentJson
+    public class PaymentData
     {
         public bool error = false;
         public List<Betalinger> sucsessfullPayments = new List<Betalinger>();

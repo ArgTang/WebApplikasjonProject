@@ -282,9 +282,9 @@ namespace GroupProject.DAL
         }
 
 
-        public PaymentJson executeMultipleTransaction(IEnumerable<string> ids)
+        public PaymentData executeMultipleTransaction(IEnumerable<string> ids)
         {
-            PaymentJson json = new PaymentJson();
+            PaymentData json = new PaymentData();
             try
             {
                 

@@ -34,7 +34,7 @@ namespace GroupProject.BLL
             return _access.executeTransaction(betalinger);
         }
 
-        public PaymentJson executeTransactions(IEnumerable<string> ids )
+        public PaymentData executeTransactions(IEnumerable<string> ids )
         {
             return _access.executeMultipleTransaction(ids);
         }

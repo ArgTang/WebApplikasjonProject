@@ -1,6 +1,7 @@
 ﻿using GroupProject.BLL;
 using GroupProject.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -12,7 +13,9 @@ namespace Test.Controller
         public AdminControllerTest()
         {
             var AdminMock = new Mock<AdminBLL>(null, null);
-            controller = new AdminController(AdminMock.Object);
+            var loggermock = new Mock<ILogger<AdminController>>();
+            controller = new AdminController(AdminMock.Object, loggermock.Object);
+
         }
 
 
