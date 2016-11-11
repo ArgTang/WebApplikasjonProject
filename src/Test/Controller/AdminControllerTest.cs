@@ -41,7 +41,7 @@ namespace Test.Controller
             Assert.IsType<ViewResult>(result);
 
             var modelres = ((ViewResult) result);
-            Assert.Equal(nameof(AdminController.Registrer), modelres.ViewName);
+            Assert.Equal(1, modelres.ViewData.Count);
         }
 
         [Fact]
@@ -58,16 +58,13 @@ namespace Test.Controller
             Assert.Equal(nameof(AdminController.Registrer), modelres.ViewName);
         }
 
-        [Fact]
-        public void registrerNyBrukerTestValid()
-        {
-            //var res = new Mock<IdentityResult>();
-            //res.SetReturnsDefault(true);
-            //res.SetupAllProperties();
 
+        private IActionResult setupRegisterTest(bool success)
+        {
+            var idres = new Mock<IdentityResult>();
             AdminBLLMock.Setup(call => call.createuser(It.IsAny<RegisterViewModel>()))
-                        .Returns(Task.FromResult(IdentityResult.Success));  
-                         
+                       .Returns(Task.FromResult(success ? IdentityResult.Success : idres.Object));
+        
             var model = new RegisterViewModel {
                 firstName = "per",
                 lastName = "persen",
@@ -80,11 +77,28 @@ namespace Test.Controller
 
             };
 
-            IActionResult result = controller.RegistrerNyBruker(model).Result;
+            return controller.RegistrerNyBruker(model).Result;
+        }
+
+        [Fact]
+        public void registrerNyBrukerTestValid()
+        {
+            IActionResult result = setupRegisterTest(true);
+
             Assert.IsType<ViewResult>(result);
 
             var data = ((ViewResult) result);
             Assert.Null(data.Model);
+            Assert.Equal(nameof(AdminController.Registrer), data.ViewName);
+        }
+
+        public void registrerNyBrukerTestValidNotcreated()
+        {
+            IActionResult result = setupRegisterTest(false);
+            Assert.IsType<ViewResult>(result);
+
+            var data = ((ViewResult) result);
+            Assert.NotNull(data.Model);
             Assert.Equal(nameof(AdminController.Registrer), data.ViewName);
         }
     }
