@@ -27,7 +27,8 @@ namespace GroupProject.DAL
         public DbAccess(
             PersonDbContext personDbContext, 
             ILogger<DbAccess> logger,
-            UserManager<ApplicationUser> userManager )
+            UserManager<ApplicationUser> userManager 
+        )
         {
             try
             {
@@ -54,8 +55,7 @@ namespace GroupProject.DAL
                 return null;
             }
         }
-
-
+        
         public ApplicationUser getPerson(String username)
         {
             try
@@ -87,7 +87,6 @@ namespace GroupProject.DAL
 
         internal async Task<IdentityResult> createuser(ApplicationUser user, Konto konto, string pass)
         {
-
             Konto avaialble;
             do {
                 Random rnd = new Random();
@@ -233,7 +232,7 @@ namespace GroupProject.DAL
             }
         }
 
-        public Konto getAccount(String kontoNr)
+        public Konto getAccount(string kontoNr)
         {
             try
             {
@@ -242,9 +241,7 @@ namespace GroupProject.DAL
             }
             catch (Exception e)
             {
-                _logger.LogError(
-                    "A unhandled error accured retriving invoices :::: {Exception}",
-                    e);
+                _logger.LogError("A unhandled error accured retriving invoices :::: {Exception}", e);
                 return null;
             }
         }
@@ -303,9 +300,10 @@ namespace GroupProject.DAL
 
                     return true;
                 }
-                
-                if (betaling.belop <= 0) return false;
-                if (betaling.konto.saldo < betaling.belop) return false;
+
+                if ( betaling.belop <= 0 || betaling.konto.saldo < betaling.belop ) {
+                    return false;
+                }
 
                 betaling.konto.saldo -= betaling.belop;
                 betaling.utfort = true;
@@ -329,10 +327,9 @@ namespace GroupProject.DAL
 
         public PaymentData executeMultipleTransaction(IEnumerable<string> ids)
         {
-            PaymentData json = new PaymentData();
+            PaymentData data = new PaymentData();
             try
-            {
-                
+            {                
                 foreach (string id in ids)
                 {
                     Betalinger betaling = getBetaling(Int32.Parse(id));
@@ -341,18 +338,18 @@ namespace GroupProject.DAL
                         if (!executeTransaction(betaling))
                         {
                             betaling.konto.betal = null;
-                            json.falsePayments.Add(betaling);
-                            json.error = true;
+                            data.falsePayments.Add(betaling);
+                            data.error = true;
                         }
                         else
                         {
                             betaling.konto.betal = null;
-                            json.sucsessfullPayments.Add(betaling);
+                            data.sucsessfullPayments.Add(betaling);
                         }
                             
                     }
                 }
-                return json;
+                return data;
             }
             catch (Exception e)
             {
@@ -360,9 +357,9 @@ namespace GroupProject.DAL
                    "A unhandled error accured executing {Invoices} :::: {Exception}",
                    ids, e);
 
-                json.error = true;
+                data.error = true;
             }
-            return json;
+            return data;
         }
 
         public List<Betalinger> getAllPayments()

@@ -63,11 +63,10 @@ namespace GroupProject.Controllers
                 if (user != null)
                 {
                     return View(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));
-                        /*RedirectToAction(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));*/
                 }
                 else
                 {
-                    ModelState.AddModelError("searchUser","Finner ingen bruker med dette fødselsnummeret");
+                    ModelState.AddModelError("searchUser", "Finner ingen bruker med dette fødselsnummeret");
                     return View(model);
                 }
 

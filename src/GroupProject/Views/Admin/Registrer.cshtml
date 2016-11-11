@@ -184,12 +184,3 @@
         });
     }
 </script>
-
-@if ( Model != null && Model.zipcode.Length > 1 ) {
-    <script>
-        (function () {
-            var el = document.querySelector('#zipcode');
-            getPostal(@Model.zipcode);
-        })();
-    </script>
-}

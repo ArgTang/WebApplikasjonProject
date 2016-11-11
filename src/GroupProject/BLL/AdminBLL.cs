@@ -23,11 +23,6 @@ namespace GroupProject.BLL
             _access = dbAccess;
         }
 
-        public List<Enum> getAccountName()
-        {
-            return new List<Enum> { };
-        }
-
         public bool executeTransaction(Betalinger betalinger)
         {
             return _access.executeTransaction(betalinger);
@@ -63,8 +58,7 @@ namespace GroupProject.BLL
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now
             };
-
-
+            
             ApplicationUser user = new ApplicationUser {
                 firstName = model.firstName,
                 lastName = model.lastName,

@@ -22,16 +22,10 @@
         @foreach (Betalinger betal in Model.payments)
         {
             <tr id="invoiceId_@betal.Id">
-                @foreach (Konto konto in Model.accounts)
-                {
-                    if (betal.konto.kontoNr.Equals(konto.kontoNr))
-                    {
-                        <td>
-                            @konto.kontoType
-                            <small>(@betal.konto.kontoNr.Insert(4, " ").Insert(7, " "))</small>
-                        </td>
-                    }
-                }
+                <td>
+                    @betal.konto.kontoType
+                    <small>(@betal.konto.kontoNr.Insert(4, " ").Insert(7, " ")) Disponibelt beløp: @betal.konto.saldo</small>
+                </td>
                 <td>@betal.mottaker</td>
                 <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
                 <td>@betal.forfallDato.ToString("dd.MM.yyyy")</td>
@@ -61,4 +55,3 @@
 </section>
 
 <script src="/js/adminFaktura.js"></script>
-

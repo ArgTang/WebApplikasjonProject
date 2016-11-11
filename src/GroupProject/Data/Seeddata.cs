@@ -42,8 +42,8 @@ namespace GroupProject.Data
         public async Task SeedPersons()
         {
             // kun for resetting av database, bør kjøres ved updates
-            _personDbContext.Database.EnsureDeleted();
-            _personDbContext.Database.EnsureCreated();
+            //_personDbContext.Database.EnsureDeleted();
+            //_personDbContext.Database.EnsureCreated();
 
             if (!await _personDbContext.Users.AnyAsync())
             {
@@ -165,31 +165,31 @@ namespace GroupProject.Data
                         UpdatedBy = "ole"
                     },
                     new Betalinger {
-                            konto = konto,
-                            belop = (decimal) 1312.25,
-                            info = "Bilforsikring",
-                            utfort = false,
-                            tilKonto = "12341212341",
-                            mottaker = "ACOS Forsikring",
-                            forfallDato = DateTime.Today.AddDays(4),
-                            CreatedDate = DateTime.Now,
-                            createdBy = "ole",
-                            UpdatedDate = DateTime.Now,
-                            UpdatedBy = "ole"
-                        },
-                        new Betalinger {
-                            konto = konto,
-                            belop = (decimal) 1400.65,
-                            info = "Resiseforsikring",
-                            utfort = false,
-                            tilKonto = "1234121252",
-                            mottaker = "ACOS Forsikring",
-                            forfallDato = DateTime.Today.AddDays(3),
-                            CreatedDate = DateTime.Now,
-                            createdBy = "ole",
-                            UpdatedDate = DateTime.Now,
-                            UpdatedBy = "ole"
-                        }}
+                        konto = konto,
+                        belop = (decimal) 1312.25,
+                        info = "Bilforsikring",
+                        utfort = false,
+                        tilKonto = "12341212341",
+                        mottaker = "ACOS Forsikring",
+                        forfallDato = DateTime.Today.AddDays(4),
+                        CreatedDate = DateTime.Now,
+                        createdBy = "ole",
+                        UpdatedDate = DateTime.Now,
+                        UpdatedBy = "ole"
+                    },
+                    new Betalinger {
+                        konto = konto,
+                        belop = (decimal) 1400.65,
+                        info = "Resiseforsikring",
+                        utfort = false,
+                        tilKonto = "1234121252",
+                        mottaker = "ACOS Forsikring",
+                        forfallDato = DateTime.Today.AddDays(3),
+                        CreatedDate = DateTime.Now,
+                        createdBy = "ole",
+                        UpdatedDate = DateTime.Now,
+                        UpdatedBy = "ole"
+                    }}
                 );
 
                 konto = kontoer.Single(k => k.kontoNr == "12341212341");
