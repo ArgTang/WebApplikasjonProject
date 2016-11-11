@@ -49,13 +49,14 @@ namespace GroupProject.Controllers
 
         public IActionResult sokBruker(string name)
         {
-            _adminBLL.getUser(name);
+            _adminBLL.getUser(name);    
             return View("sokBruker");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult EndreBruker()
         {
-
             return View();
         }
 
