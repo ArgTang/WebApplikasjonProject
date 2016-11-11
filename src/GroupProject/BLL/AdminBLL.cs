@@ -73,5 +73,21 @@ namespace GroupProject.BLL
             var identityResult = await _access.createuser(user, konto, model.password);
             return identityResult;
         }
+
+        public ApplicationUser getUser(String name)
+        {
+            return _access.getPerson(name);
+        }
+
+        private void updateUser(RegisterViewModel model, ApplicationUser user)
+        {
+            user.firstName = model.firstName;
+            user.lastName = model.lastName;
+            user.PhoneNumber = model.phonenumber;
+            user.adresse = model.adresse;
+            user.zipcode = model.zipcode;
+            user.Email = model.epost;
+            _access.changePerson(user);
+        }
     }
 }

@@ -68,6 +68,22 @@ namespace GroupProject.DAL
             }
         }
 
+        public void changePerson(ApplicationUser user)
+        {
+            try
+            {
+                _persondbcontext.Users.Update(user);
+                _persondbcontext.SaveChanges();
+                _logger.LogInformation("User changed {user}", user);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(
+                  "A unhandled error accured changing {user} :::: {Exception}",
+                  user, e);
+            }
+        }
+
         internal async Task<IdentityResult> createuser(ApplicationUser user, Konto konto, string pass)
         {
 
@@ -244,8 +260,6 @@ namespace GroupProject.DAL
                   "A unhandled error accured changing {Account} :::: {Exception}",
                   konto, e);
             }
-            
-
         }
 
         public Betalinger getBetaling(int id)

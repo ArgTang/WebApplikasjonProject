@@ -47,8 +47,15 @@ namespace GroupProject.Controllers
             return View(nameof(AdminController.Registrer), model);
         }
 
+        public IActionResult sokBruker(string name)
+        {
+            _adminBLL.getUser(name);
+            return View("EndreBruker");
+        }
+
         public IActionResult EndreBruker()
         {
+
             return View();
         }
 
