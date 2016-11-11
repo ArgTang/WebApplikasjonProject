@@ -17,12 +17,12 @@ namespace GroupProject.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        private readonly AdminBLL _AdminBLL;
+        private readonly AdminBLL _adminBLL;
         private readonly ILogger<AdminController> _logger;
 
         public AdminController(AdminBLL adminBLL, ILogger<AdminController> logger)
         {
-            _AdminBLL = adminBLL;
+            _adminBLL = adminBLL;
             _logger = logger;
         }
 
@@ -39,13 +39,13 @@ namespace GroupProject.Controllers
         }
 
         // GET: /<controller>/
-        [HttpPost]
+        [HttpGet]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistrerNyBruker(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var res = await _AdminBLL.createuser(model);
+                var res = await _adminBLL.createuser(model);
                 if(res.Succeeded) {
                     model = null;
                 }
@@ -54,16 +54,50 @@ namespace GroupProject.Controllers
             return View(nameof(AdminController.Registrer), model);
         }
 
-        public IActionResult EndreBruker()
+        // GET: /<controller>/
+        public IActionResult sokBruker(SearchViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = _adminBLL.getUser(model.searchUser);
+                if (user != null)
+                {
+                    return View(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));
+                        /*RedirectToAction(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));*/
+                }
+                else
+                {
+                    ModelState.AddModelError("searchUser","Finner ingen bruker med dette fødselsnummeret");
+                    return View(model);
+                }
+
+            }
             return View();
+        }
+
+        // GET: /<controller>/
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EndreBruker(EndreBrukerViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = _adminBLL.getUser(model.personNr);
+                if (user != null)
+                { 
+                    _adminBLL.updateUser(model,user);
+                    return RedirectToAction(nameof(AdminController.sokBruker));
+                }
+            }
+            //Denne metoden skal også brukes til å endre brukeren
+            return View(model);
         }
 
         public IActionResult FakturaOversikt()
         {
             FakturaViewModel fvm = new FakturaViewModel();
-            fvm.payments = _AdminBLL.getAllUnpaydPayments();
-            fvm.accounts = _AdminBLL.getAllAccounts();
+            fvm.payments = _adminBLL.getAllUnpaydPayments();
+            fvm.accounts = _adminBLL.getAllAccounts();
             return View(fvm);
         }
 
@@ -77,7 +111,7 @@ namespace GroupProject.Controllers
 
                 if (form.ContainsKey("checkBox[]"))
                 {
-                    return Json(JsonConvert.SerializeObject(_AdminBLL.executeTransactions(Request.Form["checkBox[]"])));
+                    return Json(JsonConvert.SerializeObject(_adminBLL.executeTransactions(Request.Form["checkBox[]"])));
                 }
             }
             //If no body is specified

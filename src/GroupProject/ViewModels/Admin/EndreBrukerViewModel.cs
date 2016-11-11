@@ -6,8 +6,13 @@ using GroupProject.Annotations;
 
 namespace GroupProject.ViewModels.Admin
 {
-    public class RegisterViewModel
+    public class EndreBrukerViewModel
     {
+        //fødselsnummer
+        [Required(ErrorMessage = "Dette feltet må være utfylt")]
+        [DataType(DataType.Text)]
+        public string personNr { get; set; }
+
         //fornavn
         [Required(ErrorMessage = "Dette feltet må være utfylt")]
         [DataType(DataType.Text)]
@@ -46,36 +51,12 @@ namespace GroupProject.ViewModels.Admin
         [RegularExpression("[0-9]{4}", ErrorMessage ="Ett postnummer kan kun inneholde 4 siffer")]
         public string zipcode { get; set; }
 
-        ////poststed
-        //public string postal { get; set; }
-
         //epostadresse
         [Required(ErrorMessage = "Dette feltet må være utfylt")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Vennligst skriv inn din epostadresse", Prompt ="Epostadresse")]
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage ="Epostadressen må inneholde @ og .")]
         public string epost { get; set; }
-
-        [Required(ErrorMessage ="Dette feltet må være utfylt")]
-        [DataType(DataType.Password)]
-        [Display(Name = "Vennligst skriv inn ett passord", Prompt = "Passord")]
-        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{12,40}$", ErrorMessage = "Minimum 12 tegn, minst en bokstav og ett nummer")]
-        public string password { get; set; }
-
-        [Required(ErrorMessage = "Dette feltet må være utfylt")]
-        [DataType(DataType.Password)]
-        [Display(Name = "Vennligst skriv inn ett passord", Prompt = "Passord")]
-        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{12,40}$", ErrorMessage = "Minimum 12 tegn, minst en bokstav og ett nummer")]
-        [Compare("password", ErrorMessage="Passordet må være det samme som det du skrev i forrige felt")]
-        public string confirmPassword { get; set; }
-
-        //søk etter bruker
-        [BirthNumber(ErrorMessage = "Ugyldig fødselsnummer, sjekk at du har skrevet riktig")]
-        [Required(ErrorMessage = "Dette feltet må være utfylt")]
-        [DataType(DataType.Text)]
-        [Display(Name = "Vennligst skriv inn ett fødselsnummer", Prompt = "Fødselsnummer")]
-        [RegularExpression("[0-9]{11}", ErrorMessage = "Ett gyldig fødselsnummer kan kun inneholde 11 siffer")]
-        public string personNr { get; set; }
 
         //drop down med kontotyper
         //[Required(ErrorMessage = "Dette feltet må være utfylt")]
