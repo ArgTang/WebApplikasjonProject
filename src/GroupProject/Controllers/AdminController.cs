@@ -48,8 +48,6 @@ namespace GroupProject.Controllers
         }
 
         // GET: /<controller>/
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult sokBruker(SearchViewModel model)
         {
             if (ModelState.IsValid)

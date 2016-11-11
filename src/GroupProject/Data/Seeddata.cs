@@ -42,8 +42,8 @@ namespace GroupProject.Data
         public async Task SeedPersons()
         {
             // kun for resetting av database, bør kjøres ved updates
-            _personDbContext.Database.EnsureDeleted();
-            _personDbContext.Database.EnsureCreated();
+            //_personDbContext.Database.EnsureDeleted();
+            //_personDbContext.Database.EnsureCreated();
 
             if (!await _personDbContext.Users.AnyAsync())
             {
@@ -52,6 +52,7 @@ namespace GroupProject.Data
                     Email = "olelundsor@gmail.com",
                     firstName = "Ole",
                     lastName = "Lundsør",
+                    PhoneNumber = "98765432",
                     adresse = "oleveien 1",
                     zipcode = "0001",
                     lastLogin = DateTime.Now.AddDays(-2)
@@ -65,6 +66,7 @@ namespace GroupProject.Data
                     Email = "olelundsor@hotmail.com",
                     firstName = "Ole",
                     lastName = "Lundsør (Admin)",
+                    PhoneNumber = "9383919",
                     adresse = "oleveien 1",
                     zipcode = "0001",
                     lastLogin = DateTime.Now
