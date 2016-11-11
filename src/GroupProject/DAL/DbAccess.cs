@@ -44,7 +44,7 @@ namespace GroupProject.DAL
         {
             try
             {
-                return _persondbcontext.Kontoer.Where(x => x.user == applicationUser).ToList();
+                return _persondbcontext.Kontoer.Where(x => x.user.Id == applicationUser.Id).ToList();
             }
             catch (Exception e)
             {
