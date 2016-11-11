@@ -17,15 +17,14 @@
             <th>Saldo:</th>
             <th>Sum:</th>
             <th>Valg:</th>
-
         </tr>
 
         @foreach (Betalinger betal in Model.payments)
         {
             <tr id="invoiceId_@betal.Id">
-                <td id="@betal.konto.kontoNr">
+                <td>
                     @betal.konto.kontoType
-                    <small>(@betal.konto.kontoNr.Insert(4, " ").Insert(7, " ")) </small>
+                    <small>(@betal.konto.kontoNr.Insert(4, " ").Insert(7, " ")) Disponibelt beløp: @betal.konto.saldo</small>
                 </td>
                 <td>@betal.mottaker</td>
                 <td>@betal.tilKonto.Insert(4, " ").Insert(7, " ")</td>
@@ -56,4 +55,3 @@
 </section>
 
 <script src="/js/adminFaktura.js"></script>
-

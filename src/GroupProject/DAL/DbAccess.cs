@@ -1,11 +1,12 @@
 ﻿
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
- using Microsoft.AspNetCore.Identity;
- using Microsoft.Extensions.Logging;
- using GroupProject.Class;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using GroupProject.Class;
 
 namespace GroupProject.DAL
 {
@@ -23,12 +24,17 @@ namespace GroupProject.DAL
         private readonly ILogger<DbAccess> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public DbAccess( PersonDbContext personDbContext, ILogger<DbAccess> logger )
+        public DbAccess(
+            PersonDbContext personDbContext, 
+            ILogger<DbAccess> logger,
+            UserManager<ApplicationUser> userManager 
+        )
         {
             try
             {
                 _logger = logger;
                 _persondbcontext = personDbContext;
+                _userManager = userManager;
             }
             catch (Exception e)
             {
@@ -40,7 +46,7 @@ namespace GroupProject.DAL
         {
             try
             {
-                return _persondbcontext.Kontoer.Where(x => x.user == applicationUser).ToList();
+                return _persondbcontext.Kontoer.Where(x => x.user.Id == applicationUser.Id).ToList();
             }
             catch (Exception e)
             {
@@ -49,8 +55,7 @@ namespace GroupProject.DAL
                 return null;
             }
         }
-
-
+        
         public ApplicationUser getPerson(String username)
         {
             try
@@ -62,6 +67,47 @@ namespace GroupProject.DAL
                 _logger.LogError("A unhandled error accured getting person with {Username} :::: {Exception}", username, e);
                 return null;
             }
+        }
+
+        public void changePerson(ApplicationUser user)
+        {
+            try
+            {
+                _persondbcontext.Users.Update(user);
+                _persondbcontext.SaveChanges();
+                _logger.LogInformation("User changed {user}", user);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(
+                  "A unhandled error accured changing {user} :::: {Exception}",
+                  user, e);
+            }
+        }
+
+        internal async Task<IdentityResult> createuser(ApplicationUser user, Konto konto, string pass)
+        {
+            Konto avaialble;
+            do {
+                Random rnd = new Random();
+                int digit = rnd.Next(1, 9999);
+                konto.kontoNr = "6543002" + digit.ToString();
+
+                avaialble = _persondbcontext.Kontoer.FirstOrDefault(k => k.kontoNr == konto.kontoNr);
+            } while ( avaialble != null );
+
+            konto.user = user;
+            user.konto.Add(konto);
+            var identityResult = await _userManager.CreateAsync(user, pass);
+
+            if ( identityResult.Succeeded ) {
+                _persondbcontext.Kontoer.Add(konto);
+                _logger.LogInformation("User {navn} created with account {kontonr} ", user.firstName, konto.kontoNr);
+            } else {
+                _logger.LogError("Could not create user with {Username} :::: {Exception}", user.firstName, identityResult.Errors);
+            }
+
+            return identityResult;
         }
 
         public List<Betalinger> getPayments(ApplicationUser applicationUser)
@@ -186,7 +232,7 @@ namespace GroupProject.DAL
             }
         }
 
-        public Konto getAccount(String kontoNr)
+        public Konto getAccount(string kontoNr)
         {
             try
             {
@@ -195,9 +241,7 @@ namespace GroupProject.DAL
             }
             catch (Exception e)
             {
-                _logger.LogError(
-                    "A unhandled error accured retriving invoices :::: {Exception}",
-                    e);
+                _logger.LogError("A unhandled error accured retriving invoices :::: {Exception}", e);
                 return null;
             }
         }
@@ -216,8 +260,6 @@ namespace GroupProject.DAL
                   "A unhandled error accured changing {Account} :::: {Exception}",
                   konto, e);
             }
-            
-
         }
 
         public Betalinger getBetaling(int id)
@@ -258,9 +300,10 @@ namespace GroupProject.DAL
 
                     return true;
                 }
-                
-                if (betaling.belop <= 0) return false;
-                if (betaling.konto.saldo < betaling.belop) return false;
+
+                if ( betaling.belop <= 0 || betaling.konto.saldo < betaling.belop ) {
+                    return false;
+                }
 
                 betaling.konto.saldo -= betaling.belop;
                 betaling.utfort = true;
@@ -284,10 +327,9 @@ namespace GroupProject.DAL
 
         public PaymentData executeMultipleTransaction(IEnumerable<string> ids)
         {
-            PaymentData json = new PaymentData();
+            PaymentData data = new PaymentData();
             try
-            {
-                
+            {                
                 foreach (string id in ids)
                 {
                     Betalinger betaling = getBetaling(Int32.Parse(id));
@@ -296,18 +338,18 @@ namespace GroupProject.DAL
                         if (!executeTransaction(betaling))
                         {
                             betaling.konto.betal = null;
-                            json.falsePayments.Add(betaling);
-                            json.error = true;
+                            data.falsePayments.Add(betaling);
+                            data.error = true;
                         }
                         else
                         {
                             betaling.konto.betal = null;
-                            json.sucsessfullPayments.Add(betaling);
+                            data.sucsessfullPayments.Add(betaling);
                         }
                             
                     }
                 }
-                return json;
+                return data;
             }
             catch (Exception e)
             {
@@ -315,9 +357,9 @@ namespace GroupProject.DAL
                    "A unhandled error accured executing {Invoices} :::: {Exception}",
                    ids, e);
 
-                json.error = true;
+                data.error = true;
             }
-            return json;
+            return data;
         }
 
         public List<Betalinger> getAllPayments()

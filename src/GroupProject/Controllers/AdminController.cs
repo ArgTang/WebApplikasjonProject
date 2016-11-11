@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using GroupProject.DAL;
+using GroupProject.BLL;
+using System.Threading.Tasks;
 using GroupProject.ViewModels.Admin;
 using Microsoft.AspNetCore.Authorization;
 using GroupProject.BLL;
@@ -15,38 +17,86 @@ namespace GroupProject.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        private readonly AdminBLL _AdminBLL;
+        private readonly AdminBLL _adminBLL;
         private readonly ILogger<AdminController> _logger;
 
         public AdminController(AdminBLL adminBLL, ILogger<AdminController> logger)
         {
-            _AdminBLL = adminBLL;
+            _adminBLL = adminBLL;
             _logger = logger;
         }
 
         // GET: /<controller>/
         public IActionResult Index()
         { 
-            return RedirectToAction("FakturaOversikt");
+            return RedirectToAction(nameof(AdminController.FakturaOversikt));
         }
 
-        // GET: /<controller>/
         public IActionResult Registrer()
         {
             ViewBag.kontoNavn = Konto.kontoNavn.Brukskonto;
             return View();
         }
 
-        public IActionResult EndreBruker()
+        // GET: /<controller>/
+        [HttpGet]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegistrerNyBruker(RegisterViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                var res = await _adminBLL.createuser(model);
+                if(res.Succeeded) {
+                    model = null;
+                }
+                ViewBag.success = res.Succeeded;
+            }
+            return View(nameof(AdminController.Registrer), model);
+        }
+
+        // GET: /<controller>/
+        public IActionResult sokBruker(SearchViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = _adminBLL.getUser(model.searchUser);
+                if (user != null)
+                {
+                    return View(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));
+                }
+                else
+                {
+                    ModelState.AddModelError("searchUser", "Finner ingen bruker med dette fødselsnummeret");
+                    return View(model);
+                }
+
+            }
             return View();
+        }
+
+        // GET: /<controller>/
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EndreBruker(EndreBrukerViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = _adminBLL.getUser(model.personNr);
+                if (user != null)
+                { 
+                    _adminBLL.updateUser(model,user);
+                    return RedirectToAction(nameof(AdminController.sokBruker));
+                }
+            }
+            //Denne metoden skal også brukes til å endre brukeren
+            return View(model);
         }
 
         public IActionResult FakturaOversikt()
         {
             FakturaViewModel fvm = new FakturaViewModel();
-            fvm.payments = _AdminBLL.getAllUnpaydPayments();
-            fvm.accounts = _AdminBLL.getAllAccounts();
+            fvm.payments = _adminBLL.getAllUnpaydPayments();
+            fvm.accounts = _adminBLL.getAllAccounts();
             return View(fvm);
         }
 
@@ -60,7 +110,7 @@ namespace GroupProject.Controllers
 
                 if (form.ContainsKey("checkBox[]"))
                 {
-                    return Json(JsonConvert.SerializeObject(_AdminBLL.executeTransactions(Request.Form["checkBox[]"])));
+                    return Json(JsonConvert.SerializeObject(_adminBLL.executeTransactions(Request.Form["checkBox[]"])));
                 }
             }
             //If no body is specified
