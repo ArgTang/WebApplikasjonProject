@@ -61,11 +61,12 @@ namespace Test.Controller
         [Fact]
         public void registrerNyBrukerTestValid()
         {
-            var res = new Mock<IdentityResult>();
-            res.SetReturnsDefault(true);
+            //var res = new Mock<IdentityResult>();
+            //res.SetReturnsDefault(true);
+            //res.SetupAllProperties();
 
             AdminBLLMock.Setup(call => call.createuser(It.IsAny<RegisterViewModel>()))
-                        .Returns(Task.FromResult(res.Object));  
+                        .Returns(Task.FromResult(IdentityResult.Success));  
                          
             var model = new RegisterViewModel {
                 firstName = "per",
@@ -80,12 +81,11 @@ namespace Test.Controller
             };
 
             IActionResult result = controller.RegistrerNyBruker(model).Result;
+            Assert.IsType<ViewResult>(result);
 
-            var data = (ViewResult) result;
-
+            var data = ((ViewResult) result);
             Assert.Null(data.Model);
-            Assert.IsType<RedirectToActionResult>(result);
-            Assert.NotNull(result);
+            Assert.Equal(nameof(AdminController.Registrer), data.ViewName);
         }
     }
 }
