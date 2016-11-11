@@ -45,7 +45,7 @@ namespace GroupProject.DAL
         {
             try
             {
-                return _persondbcontext.Kontoer.Where(x => x.user == applicationUser).ToList();
+                return _persondbcontext.Kontoer.Where(x => x.user.Id == applicationUser.Id).ToList();
             }
             catch (Exception e)
             {
@@ -66,6 +66,22 @@ namespace GroupProject.DAL
             {
                 _logger.LogError("A unhandled error accured getting person with {Username} :::: {Exception}", username, e);
                 return null;
+            }
+        }
+
+        public void changePerson(ApplicationUser user)
+        {
+            try
+            {
+                _persondbcontext.Users.Update(user);
+                _persondbcontext.SaveChanges();
+                _logger.LogInformation("User changed {user}", user);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(
+                  "A unhandled error accured changing {user} :::: {Exception}",
+                  user, e);
             }
         }
 
@@ -247,8 +263,6 @@ namespace GroupProject.DAL
                   "A unhandled error accured changing {Account} :::: {Exception}",
                   konto, e);
             }
-            
-
         }
 
         public Betalinger getBetaling(int id)

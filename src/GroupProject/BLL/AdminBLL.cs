@@ -79,5 +79,35 @@ namespace GroupProject.BLL
             var identityResult = await _access.createuser(user, konto, model.password);
             return identityResult;
         }
+
+        public ApplicationUser getUser(String username)
+        {
+            return _access.getPerson(username);
+        }
+
+        public void updateUser(EndreBrukerViewModel model, ApplicationUser user)
+        {
+            user.firstName = model.firstName;
+            user.lastName = model.lastName;
+            user.PhoneNumber = model.phonenumber;
+            user.adresse = model.adresse;
+            user.zipcode = model.zipcode;
+            user.Email = model.epost;
+
+            _access.changePerson(user);
+        }
+
+        public EndreBrukerViewModel populateViewModel(ApplicationUser user)
+        {
+            EndreBrukerViewModel model = new EndreBrukerViewModel();
+            model.personNr = user.UserName;
+            model.firstName = user.firstName;
+            model.lastName = user.lastName;
+            model.phonenumber = user.PhoneNumber;
+            model.adresse = user.adresse;
+            model.zipcode = user.zipcode;
+            model.epost = user.Email;
+            return model;
+        }
     }
 }
