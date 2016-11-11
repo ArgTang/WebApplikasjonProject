@@ -47,7 +47,7 @@ namespace GroupProject.BLL
             return _access.getAllAccounts();
         }
 
-        public async Task<IdentityResult> createuser(RegisterViewModel model)
+        public virtual async Task<IdentityResult> createuser(RegisterViewModel model)
         {
 
             Konto konto = new Konto {
