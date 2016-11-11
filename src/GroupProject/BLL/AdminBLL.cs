@@ -87,7 +87,17 @@ namespace GroupProject.BLL
             user.adresse = model.adresse;
             user.zipcode = model.zipcode;
             user.Email = model.epost;
-            _access.changePerson(user);
+        }
+
+        public RegisterViewModel populateViewModel(RegisterViewModel model, ApplicationUser user)
+        {
+            model.firstName = user.firstName;
+            model.lastName = user.lastName;
+            model.phonenumber = user.PhoneNumber;
+            model.adresse = user.adresse;
+            model.zipcode = user.zipcode;
+            model.epost = user.Email;
+            return model;
         }
     }
 }

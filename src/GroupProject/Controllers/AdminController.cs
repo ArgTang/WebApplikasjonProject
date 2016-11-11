@@ -50,10 +50,15 @@ namespace GroupProject.Controllers
         // GET: /<controller>/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult sokBruker(string name)
+        public IActionResult sokBruker(SearchViewModel model)
         {
-            _adminBLL.getUser(name);
-            return View();
+            ApplicationUser user = _adminBLL.getUser(model.searchUser);
+            if(user != null)
+            {
+                RegisterViewModel rvm = new RegisterViewModel(//fylle inn alle feltene som skal være med i registrerviewmodel);
+                return RedirectToAction(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(model,user));
+            }
+            return View(model);
         }
 
         // GET: /<controller>/
@@ -61,9 +66,7 @@ namespace GroupProject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EndreBruker()
         {
-
             return View();
-            return View(nameof(AdminController.Registrer), model);
         }
 
         public IActionResult FakturaOversikt()
