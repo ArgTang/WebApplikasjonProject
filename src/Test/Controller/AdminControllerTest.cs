@@ -102,5 +102,30 @@ namespace Test.Controller
             Assert.NotNull(data.Model);
             Assert.Equal(nameof(AdminController.Registrer), data.ViewName);
         }
+
+
+        [Fact]
+        public void sokBrukertWrong()
+        {
+            controller.ModelState.AddModelError("", "err");
+            var model = new SearchViewModel();
+            IActionResult result = controller.sokBruker(model);
+
+            Assert.IsType<ViewResult>(result);
+
+            var modelres = ((ViewResult) result);
+            Assert.Equal(null, modelres.Model);
+        }
+
+        [Fact]
+        public void sokbrukerTestNoUser()
+        {
+            //IActionResult result = setupRegisterTest(false);
+            //Assert.IsType<ViewResult>(result);
+
+            //var data = ((ViewResult) result);
+            //Assert.NotNull(data.Model);
+            //Assert.Equal(nameof(AdminController.Registrer), data.ViewName);
+        }
     }
 }
