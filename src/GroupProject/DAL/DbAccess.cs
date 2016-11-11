@@ -3,9 +3,9 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
- using GroupProject.Class;
  using Microsoft.AspNetCore.Identity;
  using Microsoft.Extensions.Logging;
+ using GroupProject.Class;
 
 namespace GroupProject.DAL
 {
@@ -19,17 +19,16 @@ namespace GroupProject.DAL
 
     public class DbAccess
     {
-        private PersonDbContext _persondbcontext { get; set; }
+        private readonly PersonDbContext _persondbcontext;
         private readonly ILogger<DbAccess> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public DbAccess(PersonDbContext personDbContext, ILogger<DbAccess> logger, UserManager<ApplicationUser> userManager )
+        public DbAccess( PersonDbContext personDbContext, ILogger<DbAccess> logger )
         {
             try
             {
                 _logger = logger;
                 _persondbcontext = personDbContext;
-                _userManager = userManager;
             }
             catch (Exception e)
             {
@@ -120,6 +119,13 @@ namespace GroupProject.DAL
             {
                 _logger.LogError("A unhandled error accured adding {Betalinger} :::: {Exception}", betalinger, e);
             }
+        }
+
+        internal void updateLoginDate(ApplicationUser user)
+        {
+            user.lastLogin = DateTime.Now;
+            _persondbcontext.Update(user);
+            _persondbcontext.SaveChanges();
         }
 
         internal Betalinger getInvoice(ApplicationUser user, int id)
