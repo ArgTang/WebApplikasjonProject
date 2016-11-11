@@ -87,6 +87,8 @@ namespace GroupProject.BLL
             user.adresse = model.adresse;
             user.zipcode = model.zipcode;
             user.Email = model.epost;
+
+            _access.changePerson(user);
         }
 
         public EndreBrukerViewModel populateViewModel(ApplicationUser user)

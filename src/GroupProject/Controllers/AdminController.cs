@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using GroupProject.DAL;
 using GroupProject.BLL;
 using System.Threading.Tasks;
@@ -55,11 +56,17 @@ namespace GroupProject.Controllers
                 ApplicationUser user = _adminBLL.getUser(model.searchUser);
                 if (user != null)
                 {
-                    return View("EndreBruker", _adminBLL.populateViewModel(user));/*RedirectToAction(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));*/
+                    return View(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));
+                        /*RedirectToAction(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));*/
+                }
+                else
+                {
+                    ModelState.AddModelError("searchUser","Finner ingen bruker med dette fødselsnummeret");
+                    return View(model);
                 }
 
             }
-            return View(model);
+            return View();
         }
 
         // GET: /<controller>/
@@ -71,8 +78,9 @@ namespace GroupProject.Controllers
             {
                 ApplicationUser user = _adminBLL.getUser(model.personNr);
                 if (user != null)
-                {
+                { 
                     _adminBLL.updateUser(model,user);
+                    return RedirectToAction(nameof(AdminController.sokBruker));
                 }
             }
             //Denne metoden skal også brukes til å endre brukeren

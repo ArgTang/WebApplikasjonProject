@@ -9,6 +9,8 @@ namespace GroupProject.ViewModels.Admin
     public class EndreBrukerViewModel
     {
         //fødselsnummer
+        [Required(ErrorMessage = "Dette feltet må være utfylt")]
+        [DataType(DataType.Text)]
         public string personNr { get; set; }
 
         //fornavn
