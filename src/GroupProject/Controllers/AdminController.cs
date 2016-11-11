@@ -32,7 +32,7 @@ namespace GroupProject.Controllers
         }
 
         // GET: /<controller>/
-        [HttpPost]
+        [HttpGet]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistrerNyBruker(RegisterViewModel model)
         {
@@ -47,7 +47,10 @@ namespace GroupProject.Controllers
             return View(nameof(AdminController.Registrer), model);
         }
 
-        public IActionResult sokBruker(string name)
+        // GET: /<controller>/
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult sokBruker(SearchViewModel model)
         {
             _adminBLL.getUser(name);    
             return View("sokBruker");
@@ -57,7 +60,33 @@ namespace GroupProject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EndreBruker()
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = _adminBLL.getUser(model.searchUser);
+                if (user != null)
+                {
+                    return View("EndreBruker", _adminBLL.populateViewModel(user));/*RedirectToAction(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));*/
+                }
+
+            }
+            return View(model);
+        }
+
+        // GET: /<controller>/
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EndreBruker(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = _adminBLL.getUser(model.personNr);
+                if (user != null)
+                {
+                    _adminBLL.updateUser(model,user);
+                }
+            }
+            //Denne metoden skal også brukes til å endre brukeren
+            return View(model);
         }
 
         public IActionResult FakturaOversikt()

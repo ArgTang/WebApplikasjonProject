@@ -74,12 +74,12 @@ namespace GroupProject.BLL
             return identityResult;
         }
 
-        public ApplicationUser getUser(String name)
+        public ApplicationUser getUser(String username)
         {
-            return _access.getPerson(name);
+            return _access.getPerson(username);
         }
 
-        private void updateUser(RegisterViewModel model, ApplicationUser user)
+        public void updateUser(RegisterViewModel model, ApplicationUser user)
         {
             user.firstName = model.firstName;
             user.lastName = model.lastName;
@@ -87,7 +87,18 @@ namespace GroupProject.BLL
             user.adresse = model.adresse;
             user.zipcode = model.zipcode;
             user.Email = model.epost;
-            _access.changePerson(user);
+        }
+
+        public RegisterViewModel populateViewModel(ApplicationUser user)
+        {
+            RegisterViewModel rvm = new RegisterViewModel();
+            rvm.firstName = user.firstName;
+            rvm.lastName = user.lastName;
+            rvm.phonenumber = user.PhoneNumber;
+            rvm.adresse = user.adresse;
+            rvm.zipcode = user.zipcode;
+            rvm.epost = user.Email;
+            return rvm;
         }
     }
 }
