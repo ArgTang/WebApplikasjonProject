@@ -50,7 +50,7 @@ namespace GroupProject.Controllers
         public IActionResult sokBruker(string name)
         {
             _adminBLL.getUser(name);
-            return View("EndreBruker");
+            return View("sokBruker");
         }
 
         public IActionResult EndreBruker()
