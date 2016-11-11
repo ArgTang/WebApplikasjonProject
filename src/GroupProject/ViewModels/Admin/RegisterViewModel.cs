@@ -35,7 +35,8 @@ namespace GroupProject.ViewModels.Admin
         [Required(ErrorMessage = "Dette feltet må være utfylt")]
         [DataType(DataType.Text)]
         [Display(Name = "Vennligst skriv inn din adresse", Prompt = "Adresse")]
-        [StringLength(50, ErrorMessage = "Adressen kan maksimum ha 50 tegn")MinLength(2, ErrorMessage = "Adressen må minimum ha to tegn")]
+        [StringLength(50, ErrorMessage = "Adressen kan maksimum ha 50 tegn"),
+            MinLength(2, ErrorMessage = "Adressen må minimum ha to tegn")]
         public string adresse { get; set; }
 
         //postnummer
