@@ -33,7 +33,7 @@ namespace GroupProject.BLL
             return _access.executeMultipleTransaction(ids);
         }
 
-        internal List<Betalinger> getAllUnpaydPayments()
+        public virtual List<Betalinger> getAllUnpaydPayments()
         {
             List<Betalinger> betalinger =  _access.getAllPayments()
                                                   .Where(x => x.utfort == false)
@@ -42,7 +42,7 @@ namespace GroupProject.BLL
             return betalinger;
         }
 
-        internal List<Konto> getAllAccounts()
+        public virtual List<Konto> getAllAccounts()
         {
             return _access.getAllAccounts();
         }

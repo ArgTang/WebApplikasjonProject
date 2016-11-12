@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -248,6 +249,23 @@ namespace Test.Controller
 
             var data = ((RedirectToActionResult) result);
             Assert.Equal(nameof(AdminController.sokBruker), data.ActionName);
+        }
+
+        [Fact]
+        public void fakturaOversiktTest()
+        {
+            //Arrange
+            AdminBLLMock.Setup(call => call.getAllUnpaydPayments()).Returns(new List<Betalinger>());
+            
+            //Act
+            IActionResult result = controller.FakturaOversikt();
+
+            //Assert
+            Assert.IsType<ViewResult>(result);
+            
+            var data = ((ViewResult) result);
+            Assert.IsType<FakturaViewModel>(data.Model);
+            Assert.NotNull(data.Model);
         }
     }
 }
