@@ -83,7 +83,7 @@ namespace GroupProject.Controllers
                 ApplicationUser user = _adminBLL.getUser(model.personNr);
                 if (user != null)
                 { 
-                    _adminBLL.updateUser(model,user);
+                    _adminBLL.updateUser(model, user);
                     return RedirectToAction(nameof(AdminController.sokBruker));
                 }
             }

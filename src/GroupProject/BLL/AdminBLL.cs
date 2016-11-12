@@ -79,7 +79,7 @@ namespace GroupProject.BLL
             return _access.getPerson(username);
         }
 
-        public void updateUser(EndreBrukerViewModel model, ApplicationUser user)
+        public virtual void updateUser(EndreBrukerViewModel model, ApplicationUser user)
         {
             user.firstName = model.firstName;
             user.lastName = model.lastName;

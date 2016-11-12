@@ -179,5 +179,75 @@ namespace Test.Controller
             Assert.Equal(nameof(AdminController.EndreBruker), data.ViewName);
             Assert.IsType<EndreBrukerViewModel>(data.Model);
         }
+
+        [Fact]
+        public void endreBrukerWrong()
+        {
+            //Arrange
+            controller.ModelState.AddModelError("", "err");
+            var model = new EndreBrukerViewModel();
+
+            //Act
+            IActionResult result = controller.EndreBruker(model);
+
+            //Assert
+            Assert.IsType<ViewResult>(result);
+
+            var data = ((ViewResult) result);
+            Assert.Equal(model, data.Model);
+        }
+
+        private EndreBrukerViewModel setupEndreBrukerTest(bool valid)
+        {
+            var model = new EndreBrukerViewModel {
+                personNr = "23098949518",
+                firstName = "per",
+                lastName = "persen",
+                phonenumber = "12345678",
+                adresse = "persgae 12",
+                zipcode = "1400",
+                epost = "per@per.com"
+            };
+
+            AdminBLLMock.Setup(call => call.getUser(It.IsAny<string>()))
+                .Returns(valid ? new ApplicationUser() : null);
+
+            return model;
+        }
+
+        [Fact]
+        public void endreBrukerNoUser()
+        {
+            //Arrange
+            var model = setupEndreBrukerTest(false);
+
+            //Act
+            IActionResult result = controller.EndreBruker(model);
+
+            //Assert
+            Assert.IsType<ViewResult>(result);
+
+            var data = ((ViewResult) result);
+            Assert.Equal(model, data.Model);
+        }
+
+        [Fact]
+        public void endreBrukerValid()
+        {
+            //Arrange
+            var model = setupEndreBrukerTest(true);
+            AdminBLLMock.Setup(call => call.updateUser(It.IsAny<EndreBrukerViewModel>(), It.IsAny<ApplicationUser>()))
+                .Verifiable();
+
+            //Act
+            IActionResult result = controller.EndreBruker(model);
+
+            //Assert
+            Assert.IsType<RedirectToActionResult>(result);
+            AdminBLLMock.Verify();
+
+            var data = ((RedirectToActionResult) result);
+            Assert.Equal(nameof(AdminController.sokBruker), data.ActionName);
+        }
     }
 }
