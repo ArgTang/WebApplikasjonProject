@@ -74,7 +74,7 @@ namespace GroupProject.BLL
             return identityResult;
         }
 
-        public ApplicationUser getUser(String username)
+        public virtual ApplicationUser getUser(string username)
         {
             return _access.getPerson(username);
         }
@@ -91,7 +91,7 @@ namespace GroupProject.BLL
             _access.changePerson(user);
         }
 
-        public EndreBrukerViewModel populateViewModel(ApplicationUser user)
+        public virtual EndreBrukerViewModel populateViewModel(ApplicationUser user)
         {
             EndreBrukerViewModel model = new EndreBrukerViewModel();
             model.personNr = user.UserName;
