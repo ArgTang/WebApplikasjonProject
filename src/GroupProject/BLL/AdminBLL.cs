@@ -28,7 +28,7 @@ namespace GroupProject.BLL
             return _access.executeTransaction(betalinger);
         }
 
-        public PaymentData executeTransactions(IEnumerable<string> ids )
+        public virtual PaymentData executeTransactions(IEnumerable<string> ids )
         {
             return _access.executeMultipleTransaction(ids);
         }

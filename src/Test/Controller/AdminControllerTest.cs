@@ -1,10 +1,13 @@
 ﻿using GroupProject.BLL;
+using GroupProject.Class;
 using GroupProject.Controllers;
 using GroupProject.DAL;
 using GroupProject.ViewModels.Admin;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
 using Moq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,7 +19,7 @@ namespace Test.Controller
     {
         private readonly AdminController controller;
         private readonly Mock<AdminBLL> AdminBLLMock;
-       
+
         public AdminControllerTest()
         {
             //Setup Default Controller for testing
@@ -245,7 +248,7 @@ namespace Test.Controller
 
             //Assert
             Assert.IsType<RedirectToActionResult>(result);
-            AdminBLLMock.Verify();
+            AdminBLLMock.Verify(call => call.updateUser(It.IsAny<EndreBrukerViewModel>(), It.IsAny<ApplicationUser>()), Times.Once);
 
             var data = ((RedirectToActionResult) result);
             Assert.Equal(nameof(AdminController.sokBruker), data.ActionName);
@@ -256,7 +259,8 @@ namespace Test.Controller
         {
             //Arrange
             AdminBLLMock.Setup(call => call.getAllUnpaydPayments()).Returns(new List<Betalinger>());
-            
+            AdminBLLMock.Setup(call => call.getAllAccounts()).Returns(new List<Konto>());
+
             //Act
             IActionResult result = controller.FakturaOversikt();
 
@@ -266,6 +270,80 @@ namespace Test.Controller
             var data = ((ViewResult) result);
             Assert.IsType<FakturaViewModel>(data.Model);
             Assert.NotNull(data.Model);
+            var model = (FakturaViewModel) data.Model;
+            Assert.NotNull(model.accounts);
+            Assert.NotNull(model.payments);
+        }
+
+
+        [Fact]
+        public void BetalTestError()
+        {
+            //Act
+            IActionResult result = controller.Betal();
+
+            //Assert
+            Assert.IsType<ContentResult>(result);
+
+            var data = ((ContentResult) result);
+            Assert.Equal("Error", data.Content);
+        }
+
+
+        //This was not easy to puzzle together
+        // http://stackoverflow.com/questions/35319501/how-to-unit-test-a-controller-action-using-the-response-property-in-asp-net-5-m
+        // https://gist.github.com/ChrisMcKee/8517855
+        // http://www.danylkoweb.com/Blog/how-to-successfully-mock-httpcontext-BT
+
+        private ControllerContext setupBetalTest(bool correctForm)
+        {
+            var returns = new PaymentData();
+            AdminBLLMock.Setup(call => call.executeTransactions(It.IsAny<IEnumerable<string>>()))
+                .Returns(returns);
+
+            // fake HttpContext
+            var form = new FormCollection(new Dictionary<string, StringValues> {
+                    { correctForm ? "checkBox[]" : "wrongform[]", new string[] { "value1" } }
+                }
+            );
+            var httpContext = new Mock<HttpContext>();
+            httpContext.Setup(c => c.Request.Form).Returns(form);
+            var controllercontext = new ControllerContext();
+            controllercontext.HttpContext = httpContext.Object;
+
+            return controllercontext;
+        }
+
+
+        [Fact]
+        public void BetalTestWork()
+        {
+            //Arrange
+            controller.ControllerContext = setupBetalTest(true);
+
+            //Act
+            IActionResult result = controller.Betal();
+
+            //Assert
+            Assert.IsType<JsonResult>(result);
+            AdminBLLMock.Verify(call => call.executeTransactions(It.IsAny<IEnumerable<string>>()), Times.Once);
+        }
+
+        [Fact]
+        public void BetalTestWrongform()
+        {
+            //Arrange
+            controller.ControllerContext = setupBetalTest(false);
+
+            //Act
+            IActionResult result = controller.Betal();
+
+            //Assert
+            Assert.IsType<ContentResult>(result);
+
+            var data = ((ContentResult) result);
+            Assert.Equal("Error", data.Content);
+            AdminBLLMock.Verify(call => call.executeTransactions(It.IsAny<IEnumerable<string>>()), Times.Never);
         }
     }
 }

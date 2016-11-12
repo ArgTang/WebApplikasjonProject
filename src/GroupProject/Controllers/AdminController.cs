@@ -99,6 +99,7 @@ namespace GroupProject.Controllers
             return View(fvm);
         }
 
+        // AJAX
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Betal()
