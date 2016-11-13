@@ -35,8 +35,11 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                         <select asp-for="kontoType" class="form-control">
                             <option value="">Vennligst velg type konto</option>
+
+                            @*Løkke med en single variable (se i ViewModel)*@
                             @foreach (var konto in ViewBag.kontoNavn)
                             {
+                                @*@konto. => @konto.somevalue*@
                                 <option value="@konto.">@konto.kontoType</option>
                             }
                         </select>
