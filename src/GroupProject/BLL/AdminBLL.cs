@@ -74,16 +74,16 @@ namespace GroupProject.BLL
             return identityResult;
         }
 
-        public Konto createKonto(RegisterKontoViewModel model, ApplicationUser user)
+        public Konto createKonto(RegisterKontoViewModel model)
         {
 
             Konto konto = new Konto
             {
                 kontoNr = model.kontoNr,
-                kontoType = model.kontoType
+                //kontoType = model.kontoType
             };
 
-            var identityResult =  _access.createAccount(user, konto);
+            var identityResult =  _access.createAccount(konto);
             return identityResult;
         }
         public virtual ApplicationUser getUser(string username)

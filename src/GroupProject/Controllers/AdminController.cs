@@ -5,6 +5,7 @@ using GroupProject.BLL;
 using System.Threading.Tasks;
 using GroupProject.ViewModels.Admin;
 using Microsoft.AspNetCore.Authorization;
+using GroupProject.BLL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -99,14 +100,13 @@ namespace GroupProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var res = await _adminBLL(model);
-                if (res.Succeeded)
+                var res = _adminBLL.createKonto(model);
+                if (res != null)
                 {
                     model = null;
                 }
-                ViewBag.success = res.Succeeded;
             }
-            return View(nameof(AdminController.Registrer), model);
+            return View(nameof(AdminController.sokBrukerKonto));
         }
         // GET: /<controller>/
         [HttpPost]
@@ -118,7 +118,7 @@ namespace GroupProject.Controllers
                 ApplicationUser user = _adminBLL.getUser(model.personNr);
                 if (user != null)
                 { 
-                    _adminBLL.updateUser(model, user);
+                    _adminBLL.updateUser(model,user);
                     return RedirectToAction(nameof(AdminController.sokBruker));
                 }
             }
@@ -134,7 +134,6 @@ namespace GroupProject.Controllers
             return View(fvm);
         }
 
-        // AJAX
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Betal()
@@ -151,7 +150,7 @@ namespace GroupProject.Controllers
             //If no body is specified
             catch (Exception e)
             {
-                _logger.LogError("No form specified on '~/admin/faktura/betal' :::: Exception: {e}", e);
+                _logger.LogError("No form specified on '~/admin/faktura/betal'");
             }
             return Content("Error");
         }

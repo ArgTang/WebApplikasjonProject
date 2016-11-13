@@ -110,7 +110,7 @@ namespace GroupProject.DAL
             return identityResult;
         }
 
-        internal Konto createAccount(ApplicationUser user, Konto konto)
+        internal Konto createAccount(Konto konto)
         {
             Konto avaialble;
             do
@@ -122,8 +122,6 @@ namespace GroupProject.DAL
                 avaialble = _persondbcontext.Kontoer.FirstOrDefault(k => k.kontoNr == konto.kontoNr);
             } while (avaialble != null);
 
-            konto.user = user;
-            user.konto.Add(konto);
             var identityResult = _persondbcontext.Kontoer.Add(konto);
 
             if (identityResult != null)
@@ -137,7 +135,6 @@ namespace GroupProject.DAL
             }
             return konto;
         }
-
 
         public List<Betalinger> getPayments(ApplicationUser applicationUser)
         {
