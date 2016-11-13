@@ -13,6 +13,13 @@ namespace GroupProject.ViewModels.Admin
 
         [Required(ErrorMessage = "Saldo må skrives inn")]
         public decimal saldo { get; set; }
+                
+        public enum kontoNavn
+        {
+            BSU,
+            Sparekonto,
+            Brukskonto
+        }
 
         //drop down med kontotyper
         //dette er ikke en liste, burde også være av typen ENUM

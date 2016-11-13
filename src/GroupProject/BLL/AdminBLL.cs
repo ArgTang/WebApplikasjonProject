@@ -80,7 +80,7 @@ namespace GroupProject.BLL
             Konto konto = new Konto
             {
                 kontoNr = model.kontoNr,
-                //kontoType = model.kontoType
+                kontoType = model.kontoType
             };
 
             var result =  _access.createAccount(konto);
