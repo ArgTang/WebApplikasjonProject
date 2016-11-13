@@ -109,6 +109,7 @@ namespace GroupProject.Controllers
             }
 
             if ( model.kontoType == null ) {
+                //http://stackoverflow.com/questions/1167361/how-do-i-convert-an-enum-to-a-list-in-chttp://stackoverflow.com/questions/1167361/how-do-i-convert-an-enum-to-a-list-in-c
                 model.kontoType = Enum.GetValues(typeof(Konto.kontoNavn)).Cast<Konto.kontoNavn>();
             }
 
