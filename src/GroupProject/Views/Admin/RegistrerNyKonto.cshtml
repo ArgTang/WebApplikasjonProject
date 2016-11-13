@@ -35,9 +35,9 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                         <select asp-for="kontoType" class="form-control">
                             <option value="">Vennligst velg type konto</option>
-                            @foreach (var konto in ViewBag.kontoType)
+                            @foreach (var konto in ViewBag.kontoNavn)
                             {
-                                <option value="@konto.">@konto.kontoType (@konto.kontoNr.Insert(4, " ").Insert(7, " "))</option>
+                                <option value="@konto.">@konto.kontoType</option>
                             }
                         </select>
                     </div>
