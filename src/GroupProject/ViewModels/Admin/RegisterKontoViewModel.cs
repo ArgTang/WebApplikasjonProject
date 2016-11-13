@@ -15,6 +15,7 @@ namespace GroupProject.ViewModels.Admin
         public decimal saldo { get; set; }
 
         //drop down med kontotyper
+        //dette er ikke en liste, burde også være av typen ENUM
         [Required(ErrorMessage = "Dette feltet må være utfylt")]
         public string kontoType { get; set; }
     }
