@@ -6,7 +6,7 @@
 <section class="container">
     @if (ViewBag.success != null && ViewBag.success == true)
     {
-        <p class="bg-success">Brukeren er registrert</p>
+        <p class="bg-success">Kontoen er registrert</p>
     }
     else if( ViewBag.success != null )
     {
@@ -16,9 +16,19 @@
     <form class="form-horizontal" asp-controller="Admin" asp-action="RegistrerNyKonto" method="post" id="reg_form">
         <fieldset>
             <legend> Legg til konto </legend>
-
+            <!--Kontonr-->
+            <div class="form-group">
+                <label asp-for="kontoNr" class="col-md-4 control-label">Konto nummer</label>
+                <div class="col-md-6  inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input asp-for="kontoNr" maxlength="11" class="form-control">
+                    </div>
+                    <span asp-validation-for="kontoNr" class="text-danger"></span>
+                </div>
+            </div>
             <!-- Velg konto -->
-            @*<div class="form-group">
+            <div class="form-group">
                 <label class="col-md-4 control-label">Kontotype</label>
                 <div class="col-md-6 selectContainer">
                     <div class="input-group">
@@ -32,7 +42,7 @@
                         </select>
                     </div>
                 </div>
-            </div>*@
+            </div>
             <!-- Registrer ny bruker -->
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
@@ -44,32 +54,3 @@
         </fieldset>
     </form>
 </section>
-
-<script>
-    var zipCode = $("#zipCode");
-    if (zipCode.val() !== "") {
-        getPostal(zipCode.val());
-    }
-   zipCode.keyup(function () {
-
-        getPostal(zipCode.val());
-    });
-
-    //AJAX
-    function getPostal(zipcode) {
-        var bringUrl = "https://api.bring.com/shippingguide/api/postalCode.json?clientUrl=www.acos-sparebank.no&country=NO&pnr=";
-        var postal = $("#postal");
-        var request = $.ajax({
-            type: "GET",
-            url: bringUrl + zipcode
-        });
-        request.done(function (response) {
-            postal.val(response.result);
-        });
-        request.fail(function (
-            jqXHR,
-            textStatus) {
-            postal.val("Kunne ikke hente poststed");
-        });
-    }
-</script>
