@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 
 namespace GroupProject.Controllers
 {
+    //Only allow users that have is an admin
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
