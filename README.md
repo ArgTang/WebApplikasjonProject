@@ -27,10 +27,26 @@ You also need Node.js installed. Gulp should run from visual studio, if not run 
 ## Database
 
 You want to initialise the Db you need to run some commands from the commandline
-navigate into the projectfolder `src/Groupproject` and run these commnads ` dotnet ef migrations add migrationname` and`dotnet ef database update`
+navigate into the projectfolder `src/Groupproject` and run these commands ` dotnet ef migrations add migrationname` and`dotnet ef database update`
 theres also a readme file in the projectfile that explains this in more detail
 
 ## Login
+
 Username for demo user is 26118742957
 Password is 123456789Ole
 this can also be found in Data/Seeddata
+
+## Part two
+
+* Added an admin in seeddata:  
+        + username: 20058348741  
+        + password: 20058348741Ole
+* Fixed alot of bugs
+* cleaned up some code
+* Admin can create new users
+* new users are created with a default account
+* Admin can run tranactions that users have created
+* Admin can change info on users
+* Moved Controller Logic into Buisness Layer
+* Added tests for adminController
+* Added Unittests to our CI server
