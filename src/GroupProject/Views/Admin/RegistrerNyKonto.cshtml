@@ -33,13 +33,11 @@
                 <div class="col-md-6 selectContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                        <select asp-for="kontoType" class="form-control">
+                        <select asp-for="type" class="form-control">
                             <option value="">Vennligst velg type konto</option>
-                            @*Løkke med en single variable (se i ViewModel)*@
-                            @foreach (var konto in ViewBag.kontoNavn)
+                            @foreach (var kontoType in Model.accountTypes)
                             {
-                                @*@konto. => @konto.somevalue*@
-                                <option value="@konto.">@konto.kontoType</option>
+                                <option value="@kontoType">@kontoType</option>
                             }
                         </select>
                     </div>

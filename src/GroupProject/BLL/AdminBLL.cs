@@ -83,9 +83,10 @@ namespace GroupProject.BLL
                 //kontoType = model.kontoType
             };
 
-            var identityResult =  _access.createAccount(konto);
-            return identityResult;
+            var result =  _access.createAccount(konto);
+            return konto;
         }
+
         public virtual ApplicationUser getUser(string username)
         {
             return _access.getPerson(username);
