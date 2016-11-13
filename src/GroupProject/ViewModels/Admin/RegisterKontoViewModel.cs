@@ -17,8 +17,7 @@ namespace GroupProject.ViewModels.Admin
         [Required(ErrorMessage = "Kontotype må være valgt")]
         public Konto.kontoNavn type { get; set; }
 
-        [Required]
-        public String user { get; set; }
+        public ApplicationUser user { get; set; }
 
         public IEnumerable<Konto.kontoNavn> accountTypes { get; set; }
     }
