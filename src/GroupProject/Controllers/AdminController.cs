@@ -75,6 +75,7 @@ namespace GroupProject.Controllers
             return View();
         }
 
+        // This is WIP, and not working
         public IActionResult sokBrukerKonto(SearchViewModel model)
         {
             if (ModelState.IsValid)
@@ -94,6 +95,7 @@ namespace GroupProject.Controllers
             return View();
         }
 
+        // This is WIP, and not working
         // GET: /<controller>/
         [HttpGet]
         [ValidateAntiForgeryToken]

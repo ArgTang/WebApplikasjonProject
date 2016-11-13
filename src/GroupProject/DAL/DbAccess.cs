@@ -110,6 +110,7 @@ namespace GroupProject.DAL
             return identityResult;
         }
 
+        // This is WIP, and not working
         internal Konto createAccount(Konto konto)
         {
             Konto avaialble;

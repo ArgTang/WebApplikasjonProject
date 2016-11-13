@@ -74,6 +74,7 @@ namespace GroupProject.BLL
             return identityResult;
         }
 
+        // This is WIP, and not working
         public Konto createKonto(RegisterKontoViewModel model)
         {
 
