@@ -43,9 +43,6 @@ namespace GroupProject.ViewModels.Admin
         [RegularExpression("[0-9]{4}", ErrorMessage ="Ett postnummer kan kun inneholde 4 siffer")]
         public string zipcode { get; set; }
 
-        ////poststed
-        //public string postal { get; set; }
-
         //epostadresse
         [Required(ErrorMessage = "Dette feltet må være utfylt")]
         [DataType(DataType.EmailAddress)]

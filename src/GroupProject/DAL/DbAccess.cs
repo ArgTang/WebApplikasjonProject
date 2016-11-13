@@ -110,7 +110,6 @@ namespace GroupProject.DAL
             return identityResult;
         }
 
-        // This is WIP, and not working
         internal Konto createAccount(Konto konto)
         {
             Konto avaialble;
@@ -127,8 +126,8 @@ namespace GroupProject.DAL
 
             if (identityResult != null)
             {
-                _persondbcontext.Kontoer.Add(konto);
-                _logger.LogInformation("Konto {konto} created with account {kontonr} ", konto.kontoNr);
+                _persondbcontext.SaveChanges();
+               _logger.LogInformation("Konto {konto} created with account {kontonr} ",avaialble, konto.kontoNr);
             }
             else
             {

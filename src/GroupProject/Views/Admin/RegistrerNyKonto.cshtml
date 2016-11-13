@@ -16,17 +16,28 @@
     <form class="form-horizontal" asp-controller="Admin" asp-action="RegistrerNyKonto" method="post" id="reg_form">
         <fieldset>
             <legend> Legg til konto </legend>
-            <!--Kontonr-->
+            <!--Personnummer-->
             <div class="form-group">
-                <label asp-for="kontoNr" class="col-md-4 control-label">Konto nummer</label>
+                <label asp-for="user" class="col-md-4 control-label">Saldo</label>
                 <div class="col-md-6  inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input asp-for="kontoNr" maxlength="11" class="form-control">
+                        <input asp-for="user" maxlength="11" class="form-control" readonly>
                     </div>
-                    <span asp-validation-for="kontoNr" class="text-danger"></span>
+                    <span asp-validation-for="user" class="text-danger"></span>
                 </div>
             </div>
+            <!--Saldo-->
+            <div class="form-group">
+                <label asp-for="saldo" class="col-md-4 control-label">Saldo</label>
+                    <div class="col-md-6  inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                            <input asp-for="saldo" maxlength="11" class="form-control">
+                        </div>
+                        <span asp-validation-for="saldo" class="text-danger"></span>
+                    </div>
+                </div>
             <!-- Velg kontotype -->
             <div class="form-group">
                 <label class="col-md-4 control-label">Kontotype</label>
@@ -35,11 +46,12 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                         <select asp-for="type" class="form-control">
                             <option value="">Vennligst velg type konto</option>
-                            @foreach (var kontoType in Model.accountTypes)
+                            @foreach (Konto.kontoNavn kontoType in Model.accountTypes)
                             {
                                 <option value="@kontoType">@kontoType</option>
                             }
                         </select>
+                       
                     </div>
                 </div>
             </div>
