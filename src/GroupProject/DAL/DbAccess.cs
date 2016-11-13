@@ -110,6 +110,33 @@ namespace GroupProject.DAL
             return identityResult;
         }
 
+        // This is WIP, and not working
+        internal Konto createAccount(Konto konto)
+        {
+            Konto avaialble;
+            do
+            {
+                Random rnd = new Random();
+                int digit = rnd.Next(1, 9999);
+                konto.kontoNr = "6543002" + digit.ToString();
+
+                avaialble = _persondbcontext.Kontoer.FirstOrDefault(k => k.kontoNr == konto.kontoNr);
+            } while (avaialble != null);
+
+            var identityResult = _persondbcontext.Kontoer.Add(konto);
+
+            if (identityResult != null)
+            {
+                _persondbcontext.Kontoer.Add(konto);
+                _logger.LogInformation("Konto {konto} created with account {kontonr} ", konto.kontoNr);
+            }
+            else
+            {
+                _logger.LogError("Could not create konto with {kontoNr} :::: {Exception}");
+            }
+            return konto;
+        }
+
         public List<Betalinger> getPayments(ApplicationUser applicationUser)
         {
             try
