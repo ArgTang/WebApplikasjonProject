@@ -22,6 +22,7 @@ namespace GroupProject.ViewModels.Admin
         }
 
         [Required(ErrorMessage = "Dette feltet må være utfylt")]
-        public kontoNavn kontoType { get; set; }
+        public IEnumerable<Konto.kontoNavn> kontoType { get; set; }
+
     }
 }

@@ -9,6 +9,7 @@ using GroupProject.BLL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Linq;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -106,8 +107,14 @@ namespace GroupProject.Controllers
                     model = null;
                 }
             }
-            return View(nameof(AdminController.sokBrukerKonto));
+
+            if ( model.kontoType == null ) {
+                model.kontoType = Enum.GetValues(typeof(Konto.kontoNavn)).Cast<Konto.kontoNavn>();
+            }
+
+            return View(nameof(AdminController.sokBrukerKonto), model);
         }
+
         // GET: /<controller>/
         [HttpPost]
         [ValidateAntiForgeryToken]
