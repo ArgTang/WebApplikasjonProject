@@ -101,6 +101,28 @@ namespace GroupProject.Controllers
         }
 
         // GET: /<controller>/
+        [HttpGet]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegistrerNyKonto(RegisterKontoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var res = _adminBLL.createKonto(model);
+                if (res != null)
+                {
+                    model = null;
+                }
+            }
+
+            if ( model.accountTypes == null ) {
+                //http://stackoverflow.com/questions/1167361/how-do-i-convert-an-enum-to-a-list-in-chttp://stackoverflow.com/questions/1167361/how-do-i-convert-an-enum-to-a-list-in-c
+                model.accountTypes = Enum.GetValues(typeof(Konto.kontoNavn)).Cast<Konto.kontoNavn>();
+            }
+
+            return View(nameof(AdminController.sokBrukerKonto), model);
+        }
+
+        // GET: /<controller>/
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult RegistrerNyKonto(RegisterKontoViewModel model)

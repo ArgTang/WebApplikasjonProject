@@ -1,6 +1,3 @@
-
-﻿using System.Collections.Generic;
-using GroupProject.DAL;
 using System.ComponentModel.DataAnnotations;
 using GroupProject.Annotations;
 
@@ -73,9 +70,5 @@ namespace GroupProject.ViewModels.Admin
         [Display(Name = "Vennligst skriv inn ett fødselsnummer", Prompt = "Fødselsnummer")]
         [RegularExpression("[0-9]{11}", ErrorMessage = "Ett gyldig fødselsnummer kan kun inneholde 11 siffer")]
         public string personNr { get; set; }
-
-        //drop down med kontotyper
-        //[Required(ErrorMessage = "Dette feltet må være utfylt")]
-        //public string kontoType { get; set; }
     }
 }

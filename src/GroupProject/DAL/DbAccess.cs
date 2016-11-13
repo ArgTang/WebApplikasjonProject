@@ -126,7 +126,6 @@ namespace GroupProject.DAL
 
             if (identityResult != null)
             {
-                _persondbcontext.Kontoer.Add(konto);
                 _persondbcontext.SaveChanges();
                _logger.LogInformation("Konto {konto} created with account {kontonr} ",avaialble, konto.kontoNr);
             }
