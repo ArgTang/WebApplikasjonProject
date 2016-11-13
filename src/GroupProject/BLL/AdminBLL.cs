@@ -53,7 +53,7 @@ namespace GroupProject.BLL
             Konto konto = new Konto {
                 saldo = 0,
                 kontoType = Konto.kontoNavn.Brukskonto,
-                createdBy = "admin",
+                createdBy = "Admin",
                 UpdatedBy = "Admin",
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now
@@ -74,18 +74,21 @@ namespace GroupProject.BLL
             return identityResult;
         }
 
-        // This is WIP, and not working
         public Konto createKonto(RegisterKontoViewModel model)
         {
-
+            
             Konto konto = new Konto
             {
-                kontoNr = model.kontoNr,
-                //kontoType = model.kontoType
+                saldo = model.saldo,
+                kontoType = model.type,
+                UpdatedBy = "Admin",
+                createdBy = "Admin",
+                UpdatedDate = DateTime.Now,
+                CreatedDate = DateTime.Now
             };
+            konto.user = getUser(model.user);
 
-            var result =  _access.createAccount(konto);
-            return konto;
+            return _access.createAccount(konto); ;
         }
 
         public virtual ApplicationUser getUser(string username)
@@ -116,6 +119,11 @@ namespace GroupProject.BLL
             model.zipcode = user.zipcode;
             model.epost = user.Email;
             return model;
+        }
+
+        public IEnumerable<Konto.kontoNavn> getAccountTypes()
+        {
+            return Enum.GetValues(typeof(Konto.kontoNavn)).Cast<Konto.kontoNavn>();
         }
     }
 }

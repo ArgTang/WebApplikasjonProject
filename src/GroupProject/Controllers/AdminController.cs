@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using GroupProject.DAL;
 using GroupProject.BLL;
@@ -76,7 +77,6 @@ namespace GroupProject.Controllers
             return View();
         }
 
-        // This is WIP, and not working
         public IActionResult sokBrukerKonto(SearchViewModel model)
         {
             if (ModelState.IsValid)
@@ -84,7 +84,10 @@ namespace GroupProject.Controllers
                 ApplicationUser user = _adminBLL.getUser(model.searchUser);
                 if (user != null)
                 {
-                    return View(nameof(AdminController.RegistrerNyKonto));
+                    RegisterKontoViewModel kontoModel = new RegisterKontoViewModel();
+                    kontoModel.user = user;
+                    kontoModel.accountTypes = _adminBLL.getAccountTypes();
+                    return View(nameof(AdminController.RegistrerNyKonto),kontoModel);
                 }
                 else
                 {
@@ -96,27 +99,20 @@ namespace GroupProject.Controllers
             return View();
         }
 
-        // This is WIP, and not working
         // GET: /<controller>/
-        [HttpGet]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistrerNyKonto(RegisterKontoViewModel model)
+        public IActionResult RegistrerNyKonto(RegisterKontoViewModel model)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 var res = _adminBLL.createKonto(model);
                 if (res != null)
                 {
-                    model = null;
+                    return View(nameof(AdminController.sokBrukerKonto));
                 }
             }
-
-            if ( model.accountTypes == null ) {
-                //http://stackoverflow.com/questions/1167361/how-do-i-convert-an-enum-to-a-list-in-chttp://stackoverflow.com/questions/1167361/how-do-i-convert-an-enum-to-a-list-in-c
-                model.accountTypes = Enum.GetValues(typeof(Konto.kontoNavn)).Cast<Konto.kontoNavn>();
-            }
-
-            return View(nameof(AdminController.sokBrukerKonto), model);
+            return View(model);
         }
 
         // GET: /<controller>/
