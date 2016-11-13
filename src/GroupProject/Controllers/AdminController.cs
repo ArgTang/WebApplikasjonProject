@@ -5,7 +5,6 @@ using GroupProject.BLL;
 using System.Threading.Tasks;
 using GroupProject.ViewModels.Admin;
 using Microsoft.AspNetCore.Authorization;
-using GroupProject.BLL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -73,6 +72,10 @@ namespace GroupProject.Controllers
                 }
 
             }
+
+            if(model.searchUser == null) {
+                ModelState.Clear();
+            }
             return View();
         }
 
@@ -92,6 +95,10 @@ namespace GroupProject.Controllers
                     return View(model);
                 }
 
+            }
+
+            if ( model.searchUser == null ) {
+                ModelState.Clear();
             }
             return View();
         }
@@ -115,7 +122,6 @@ namespace GroupProject.Controllers
                 //http://stackoverflow.com/questions/1167361/how-do-i-convert-an-enum-to-a-list-in-chttp://stackoverflow.com/questions/1167361/how-do-i-convert-an-enum-to-a-list-in-c
                 model.accountTypes = Enum.GetValues(typeof(Konto.kontoNavn)).Cast<Konto.kontoNavn>();
             }
-
             return View(nameof(AdminController.sokBrukerKonto), model);
         }
 
