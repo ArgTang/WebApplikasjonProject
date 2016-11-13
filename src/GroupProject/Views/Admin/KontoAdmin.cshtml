@@ -1,0 +1,75 @@
+﻿@model GroupProject.ViewModels.Admin.RegisterViewModel
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js" integrity="sha256-uUVS/d3xM3l8YmucAkj1DeRt6U4Y+Xv3ePUgVVEVmVw=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js" integrity="sha256-g1QKGxqsp+x5JkuN/JjHl96je2wztgS5Wo4h4c7gm9M=" crossorigin="anonymous"></script>
+
+<section class="container">
+    @if (ViewBag.success != null && ViewBag.success == true)
+    {
+        <p class="bg-success">Brukeren er registrert</p>
+    }
+    else if( ViewBag.success != null )
+    {
+        <p class="bg-danger">Feil i registrering prøv igjen</p>
+    }
+
+    <form class="form-horizontal" asp-controller="Admin" asp-action="RegistrerNyKonto" method="post" id="reg_form">
+        <fieldset>
+            <legend> Legg til konto </legend>
+
+            <!-- Velg konto -->
+            @*<div class="form-group">
+                <label class="col-md-4 control-label">Kontotype</label>
+                <div class="col-md-6 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select asp-for="kontoType" class="form-control">
+                            <option value="">Vennligst velg type konto</option>
+                            @foreach (var konto in ViewBag.kontoNavn)
+                            {
+                                <option value="@konto.">@konto.kontoType (@konto.kontoNr.Insert(4, " ").Insert(7, " "))</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>*@
+            <!-- Registrer ny bruker -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-outline-success">Registrer ny konto<span class="glyphicon glyphicon-send"></span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</section>
+
+<script>
+    var zipCode = $("#zipCode");
+    if (zipCode.val() !== "") {
+        getPostal(zipCode.val());
+    }
+   zipCode.keyup(function () {
+
+        getPostal(zipCode.val());
+    });
+
+    //AJAX
+    function getPostal(zipcode) {
+        var bringUrl = "https://api.bring.com/shippingguide/api/postalCode.json?clientUrl=www.acos-sparebank.no&country=NO&pnr=";
+        var postal = $("#postal");
+        var request = $.ajax({
+            type: "GET",
+            url: bringUrl + zipcode
+        });
+        request.done(function (response) {
+            postal.val(response.result);
+        });
+        request.fail(function (
+            jqXHR,
+            textStatus) {
+            postal.val("Kunne ikke hente poststed");
+        });
+    }
+</script>
