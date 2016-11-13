@@ -81,7 +81,7 @@ namespace GroupProject.Controllers
                 ApplicationUser user = _adminBLL.getUser(model.searchUser);
                 if (user != null)
                 {
-                    return View(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));
+                    return View(nameof(AdminController.RegistrerNyKonto));
                 }
                 else
                 {
