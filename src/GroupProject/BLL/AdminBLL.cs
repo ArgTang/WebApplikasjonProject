@@ -28,12 +28,12 @@ namespace GroupProject.BLL
             return _access.executeTransaction(betalinger);
         }
 
-        public PaymentData executeTransactions(IEnumerable<string> ids )
+        public virtual PaymentData executeTransactions(IEnumerable<string> ids )
         {
             return _access.executeMultipleTransaction(ids);
         }
 
-        internal List<Betalinger> getAllUnpaydPayments()
+        public virtual List<Betalinger> getAllUnpaydPayments()
         {
             List<Betalinger> betalinger =  _access.getAllPayments()
                                                   .Where(x => x.utfort == false)
@@ -42,12 +42,12 @@ namespace GroupProject.BLL
             return betalinger;
         }
 
-        internal List<Konto> getAllAccounts()
+        public virtual List<Konto> getAllAccounts()
         {
             return _access.getAllAccounts();
         }
 
-        public async Task<IdentityResult> createuser(RegisterViewModel model)
+        public virtual async Task<IdentityResult> createuser(RegisterViewModel model)
         {
 
             Konto konto = new Konto {
@@ -86,12 +86,12 @@ namespace GroupProject.BLL
             var identityResult =  _access.createAccount(user, konto);
             return identityResult;
         }
-        public ApplicationUser getUser(String username)
+        public virtual ApplicationUser getUser(string username)
         {
             return _access.getPerson(username);
         }
 
-        public void updateUser(EndreBrukerViewModel model, ApplicationUser user)
+        public virtual void updateUser(EndreBrukerViewModel model, ApplicationUser user)
         {
             user.firstName = model.firstName;
             user.lastName = model.lastName;
@@ -103,7 +103,7 @@ namespace GroupProject.BLL
             _access.changePerson(user);
         }
 
-        public EndreBrukerViewModel populateViewModel(ApplicationUser user)
+        public virtual EndreBrukerViewModel populateViewModel(ApplicationUser user)
         {
             EndreBrukerViewModel model = new EndreBrukerViewModel();
             model.personNr = user.UserName;
