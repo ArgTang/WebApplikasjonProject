@@ -192,7 +192,7 @@ namespace GroupProject.Data
                     }}
                 );
 
-                konto = kontoer.Single(k => k.kontoNr == "12341212341");
+                konto = kontoer.Single(k => k.kontoNr == "65430022341");
                 konto.betal.AddRange(new List<Betalinger> {
                     new Betalinger {
                         konto = konto,

@@ -74,14 +74,13 @@ namespace GroupProject.BLL
             return identityResult;
         }
 
-        // This is WIP, and not working
         public Konto createKonto(RegisterKontoViewModel model)
         {
 
             Konto konto = new Konto
             {
-                kontoNr = model.kontoNr,
-                //kontoType = model.kontoType
+                user = model.user,
+                kontoType = model.type  
             };
 
             var result =  _access.createAccount(konto);
@@ -116,6 +115,11 @@ namespace GroupProject.BLL
             model.zipcode = user.zipcode;
             model.epost = user.Email;
             return model;
+        }
+
+        public IEnumerable<Konto.kontoNavn> getAccountTypes()
+        {
+            return Enum.GetValues(typeof(Konto.kontoNavn)).Cast<Konto.kontoNavn>();
         }
     }
 }
