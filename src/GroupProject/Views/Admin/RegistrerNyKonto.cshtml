@@ -27,7 +27,7 @@
                     <span asp-validation-for="kontoNr" class="text-danger"></span>
                 </div>
             </div>
-            <!-- Velg konto -->
+            <!-- Velg kontotype -->
             <div class="form-group">
                 <label class="col-md-4 control-label">Kontotype</label>
                 <div class="col-md-6 selectContainer">
@@ -35,7 +35,7 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                         <select asp-for="kontoType" class="form-control">
                             <option value="">Vennligst velg type konto</option>
-                            @foreach (var konto in ViewBag.kontoNavn)
+                            @foreach (var konto in ViewBag.kontoType)
                             {
                                 <option value="@konto.">@konto.kontoType (@konto.kontoNr.Insert(4, " ").Insert(7, " "))</option>
                             }
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Registrer ny bruker -->
+            <!-- Registrer ny konto -->
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4">
