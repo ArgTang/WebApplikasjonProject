@@ -42,8 +42,8 @@ namespace GroupProject.Data
         public async Task SeedPersons()
         {
             // kun for resetting av database, bør kjøres ved updates
-            //_personDbContext.Database.EnsureDeleted();
-            //_personDbContext.Database.EnsureCreated();
+            _personDbContext.Database.EnsureDeleted();
+            _personDbContext.Database.EnsureCreated();
 
             if (!await _personDbContext.Users.AnyAsync())
             {
@@ -90,7 +90,7 @@ namespace GroupProject.Data
                 kontoliste.Add(new Konto
                 {
                     user = person,
-                    kontoNr = "12341212341",
+                    kontoNr = "65430023421",
                     saldo = 100202,
                     CreatedDate = DateTime.Now,
                     createdBy = "ole",
@@ -103,7 +103,7 @@ namespace GroupProject.Data
                     new Konto
                     {
                         user = person,
-                        kontoNr = "65430023421",
+                        kontoNr = "65430023422",
                         saldo = 0,
                         CreatedDate = DateTime.Now,
                         createdBy = "geir",
@@ -192,7 +192,7 @@ namespace GroupProject.Data
                     }}
                 );
 
-                konto = kontoer.Single(k => k.kontoNr == "65430022341");
+                konto = kontoer.Single(k => k.kontoNr == "65430023422");
                 konto.betal.AddRange(new List<Betalinger> {
                     new Betalinger {
                         konto = konto,

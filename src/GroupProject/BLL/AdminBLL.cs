@@ -86,7 +86,7 @@ namespace GroupProject.BLL
                 UpdatedDate = DateTime.Now,
                 CreatedDate = DateTime.Now
             };
-            konto.user = model.user;
+            konto.user = getUser(model.user);
 
             return _access.createAccount(konto); ;
         }

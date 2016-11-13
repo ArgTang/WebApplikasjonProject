@@ -85,9 +85,10 @@ namespace GroupProject.Controllers
                 if (user != null)
                 {
                     RegisterKontoViewModel kontoModel = new RegisterKontoViewModel();
-                    kontoModel.user = user;
+
+                    kontoModel.user = user.UserName;
                     kontoModel.accountTypes = _adminBLL.getAccountTypes();
-                    return View(nameof(AdminController.RegistrerNyKonto),kontoModel);
+                    return View(nameof(AdminController.RegistrerNyKonto), kontoModel);
                 }
                 else
                 {
