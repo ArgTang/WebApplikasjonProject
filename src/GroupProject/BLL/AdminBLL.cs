@@ -74,6 +74,20 @@ namespace GroupProject.BLL
             return identityResult;
         }
 
+        // This is WIP, and not working
+        public Konto createKonto(RegisterKontoViewModel model)
+        {
+
+            Konto konto = new Konto
+            {
+                kontoNr = model.kontoNr,
+                //kontoType = model.kontoType
+            };
+
+            var result =  _access.createAccount(konto);
+            return konto;
+        }
+
         public virtual ApplicationUser getUser(string username)
         {
             return _access.getPerson(username);
