@@ -17,6 +17,6 @@ namespace GroupProject.ViewModels.Admin
         //drop down med kontotyper
         //dette er ikke en liste, burde også være av typen ENUM
         [Required(ErrorMessage = "Dette feltet må være utfylt")]
-        public string kontoType { get; set; }
+        public IEnumerable<Konto.kontoNavn> kontoType { get; set; }
     }
 }
