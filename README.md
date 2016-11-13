@@ -31,19 +31,22 @@ navigate into the projectfolder `src/Groupproject` and run these commands ` dotn
 theres also a readme file in the projectfile that explains this in more detail
 
 ## Login
+
 Username for demo user is 26118742957
 Password is 123456789Ole
 this can also be found in Data/Seeddata
 
-# Part two
+## Part two
 
-* Added an admin in seeddata:
-        * username: 20058348741
-        * password: 20058348741Ole
+* Added an admin in seeddata:  
+        + username: 20058348741  
+        + password: 20058348741Ole
 * Fixed alot of bugs
 * cleaned up some code
 * Admin can create new users
+* new users are created with a default account
+* Admin can run tranactions that users have created
 * Admin can change info on users
 * Moved Controller Logic into Buisness Layer
-* added tests for adminController
+* Added tests for adminController
 * Added Unittests to our CI server
