@@ -106,8 +106,14 @@ namespace GroupProject.Controllers
                     model = null;
                 }
             }
-            return View(nameof(AdminController.sokBrukerKonto));
+
+            //if(model.kontoType == null) {
+            //    model.kontoType = _adminBLL.getAccountTypes();
+            //}
+            
+            return View(nameof(AdminController.sokBrukerKonto), model);
         }
+
         // GET: /<controller>/
         [HttpPost]
         [ValidateAntiForgeryToken]
