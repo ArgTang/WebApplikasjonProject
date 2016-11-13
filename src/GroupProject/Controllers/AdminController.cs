@@ -74,6 +74,41 @@ namespace GroupProject.Controllers
             return View();
         }
 
+        public IActionResult sokBrukerKonto(SearchViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = _adminBLL.getUser(model.searchUser);
+                if (user != null)
+                {
+                    return View(nameof(AdminController.EndreBruker), _adminBLL.populateViewModel(user));
+                }
+                else
+                {
+                    ModelState.AddModelError("searchUser", "Finner ingen bruker med dette fødselsnummeret");
+                    return View(model);
+                }
+
+            }
+            return View();
+        }
+
+        // GET: /<controller>/
+        [HttpGet]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegistrerNyKonto(RegisterKontoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var res = await _adminBLL(model);
+                if (res.Succeeded)
+                {
+                    model = null;
+                }
+                ViewBag.success = res.Succeeded;
+            }
+            return View(nameof(AdminController.Registrer), model);
+        }
         // GET: /<controller>/
         [HttpPost]
         [ValidateAntiForgeryToken]

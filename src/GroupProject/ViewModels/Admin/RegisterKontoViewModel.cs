@@ -14,10 +14,8 @@ namespace GroupProject.ViewModels.Admin
         [Required(ErrorMessage = "Saldo må skrives inn")]
         public decimal saldo { get; set; }
 
-
-
         //drop down med kontotyper
-        //[Required(ErrorMessage = "Dette feltet må være utfylt")]
-        //public string kontoType { get; set; }
+        [Required(ErrorMessage = "Dette feltet må være utfylt")]
+        public string kontoType { get; set; }
     }
 }
